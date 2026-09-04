@@ -106,6 +106,56 @@ export function tint(color: string, pct: number): string {
   return `color-mix(in srgb, ${color} ${pct}%, transparent)`;
 }
 
+/** color-mix helper: `pct`% of `color` mixed into `other`. */
+export function mix(color: string, other: string, pct: number): string {
+  return `color-mix(in srgb, ${color} ${pct}%, ${other})`;
+}
+
+/**
+ * Full-page skin: remaps the Pryma semantic tokens on :root to a demo's palette (with
+ * !important) so the whole outer shell — nav, footer, rail, buttons, backgrounds — adopts
+ * the selected demo's look, mirroring the design system's `skinCss`. Injected as a <style>
+ * while a demo is open and removed on exit. The demo inside the iframe is a separate
+ * document and is unaffected; it keeps its own `--d-*` theme.
+ */
+export function demoSkinCss(t: DemoTheme): string {
+  const a = t.accent;
+  const ink = t.ink;
+  const mute = t.mute;
+  return (
+    ':root{' +
+    `color-scheme:${t.dark ? 'dark' : 'light'};` +
+    `--surface-void:${t.bg2} !important;--surface-page:${t.bg} !important;--surface-raised:${t.bg2} !important;` +
+    `--surface-card:${t.card} !important;--surface-card-solid:${t.card} !important;--surface-inset:${tint(ink, 5)} !important;` +
+    `--surface-accent:${tint(a, 10)} !important;--surface-glass:${tint(ink, 4)} !important;` +
+    `--surface-nav:${mix(t.bg, 'transparent', 88)} !important;--surface-chrome:${tint(ink, 5)} !important;` +
+    `--surface-featured:${a} !important;` +
+    `--text-hi:${ink} !important;--text-body:${ink} !important;--text-mute:${mute} !important;--text-faint:${mute} !important;` +
+    `--text-on-accent:${t.onAccent} !important;--text-link:${a} !important;--text-link-hover:${mix(a, ink, 78)} !important;--text-neon:${a} !important;` +
+    `--action-primary:${a} !important;--action-primary-hover:${mix(a, ink, 88)} !important;--action-primary-press:${mix(a, ink, 76)} !important;` +
+    `--action-secondary:${tint(a, 12)} !important;--action-secondary-hover:${tint(a, 20)} !important;` +
+    `--action-outline:${a} !important;--action-outline-hover:${mix(a, ink, 80)} !important;` +
+    `--focus-ring:${a} !important;--focus-halo:${tint(a, 18)} !important;` +
+    `--line-hairline:${t.lineSoft} !important;--line-strong:${t.line} !important;--line-neon:${tint(a, 45)} !important;--line-cyan:${tint(a, 35)} !important;--line-accent:${tint(a, 30)} !important;` +
+    `--pink-500:${a} !important;--pink-400:${a} !important;--cyan-400:${a} !important;--cyan-300:${a} !important;--violet-400:${a} !important;` +
+    `--tone-violet-fg:${a} !important;--tone-violet-chip:${tint(a, 10)} !important;--tone-violet-line:${tint(a, 28)} !important;` +
+    `--tone-pink-fg:${a} !important;--tone-pink-chip:${tint(a, 10)} !important;--tone-pink-line:${tint(a, 28)} !important;` +
+    `--tone-cyan-fg:${a} !important;--tone-cyan-chip:${tint(a, 10)} !important;--tone-cyan-line:${tint(a, 28)} !important;` +
+    '--glow-pink-sm:none !important;--glow-pink-md:none !important;--glow-pink-lg:none !important;--glow-cyan-sm:none !important;--glow-cyan-md:none !important;--glow-violet-md:none !important;--glow-text-pink:none !important;--glow-text-cyan:none !important;' +
+    `--elev-inset-neon:inset 0 0 0 1px ${tint(a, 34)} !important;` +
+    `--grad-mesh-pink:radial-gradient(60% 70% at 18% 12%,${tint(a, 14)} 0%,transparent 68%) !important;` +
+    `--grad-mesh-violet:radial-gradient(58% 62% at 82% 26%,${tint(a, 10)} 0%,transparent 70%) !important;` +
+    `--grad-mesh-cyan:radial-gradient(52% 55% at 50% 96%,${tint(a, 8)} 0%,transparent 72%) !important;` +
+    `--grad-hero:linear-gradient(180deg,${t.bg} 0%,${t.bg2} 100%) !important;` +
+    `--grad-fade-page:linear-gradient(180deg,transparent 0%,${t.bg} 82%) !important;` +
+    `--grad-brand:linear-gradient(96deg,${a} 0%,${mix(a, ink, 70)} 100%) !important;` +
+    `--grad-neon-text:linear-gradient(92deg,${a} 0%,${mix(a, ink, 70)} 100%) !important;` +
+    `--grid-line:${tint(a, 12)} !important;` +
+    `--selection-bg:${tint(a, 28)} !important;--selection-fg:${ink} !important;` +
+    '}'
+  );
+}
+
 /** Build a cssText string of the `--d-*` custom properties to bind on a demo root element. */
 export function demoThemeStyle(t: DemoTheme): string {
   const vars = demoThemeVars(t);

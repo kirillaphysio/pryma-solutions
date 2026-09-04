@@ -1,3 +1,4 @@
+// ── Landing ────────────────────────────────────────────────
 .demo-hero {
   display: flex;
   flex-direction: column;
@@ -21,17 +22,45 @@
   }
 }
 
-.demo-card {
+.dg-card {
+  // reset the native button
+  appearance: none;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background: var(--surface-card);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: inset 0 0 0 1px var(--line-hairline), var(--elev-1);
+  border-radius: var(--radius-xl);
+  padding: var(--card-pad);
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+  color: var(--text-body);
+  transition:
+    transform var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--glow-violet-md), var(--elev-2);
+  }
+
+  &__preview {
+    display: block;
+    height: 230px;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: inset 0 0 0 1px var(--line-hairline);
+    background: #0d0b1c;
+  }
 
   &__frame {
-    display: block;
     width: 100%;
-    height: 420px;
+    height: 100%;
     border: 0;
-    background: #faf6f0;
+    display: block;
+    pointer-events: none; // the card handles the click
   }
 
   &__num {
@@ -46,6 +75,7 @@
     font-size: var(--heading-md-size);
     font-weight: var(--heading-md-weight);
     color: var(--text-hi);
+    font-family: var(--font-display);
   }
 
   &__note {
@@ -53,6 +83,16 @@
     line-height: var(--body-md-lh);
     color: var(--text-mute);
     margin-bottom: auto;
+  }
+
+  &__open {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--action-primary);
+    font-family: var(--font-ui);
+    font-weight: var(--weight-medium);
+    font-size: var(--body-md-size);
   }
 }
 
@@ -62,11 +102,288 @@
   justify-content: space-between;
   gap: var(--space-32);
   flex-wrap: wrap;
+  border-radius: var(--radius-xl);
+  padding: var(--card-pad);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
 
   &__text {
     font-size: var(--body-md-size);
     line-height: var(--body-md-lh);
     color: var(--text-mute);
     max-width: 560px;
+  }
+}
+
+// ── Stage ──────────────────────────────────────────────────
+.dg-stagewrap {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr);
+  gap: var(--space-32);
+  align-items: start;
+}
+
+.dg-rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  position: sticky;
+  top: 96px;
+
+  &__back {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0 0 var(--space-sm);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-family: var(--font-mono);
+    font-size: var(--mono-sm-size);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    transition: color var(--dur-fast) var(--ease-out);
+    &:hover {
+      color: var(--text-hi);
+    }
+  }
+
+  &__item {
+    appearance: none;
+    text-align: left;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    box-shadow: inset 2px 0 0 0 var(--line-hairline);
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition:
+      background var(--dur-fast) var(--ease-out),
+      box-shadow var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      background: var(--surface-glass);
+    }
+    &.is-active {
+      background: var(--surface-card-solid);
+      box-shadow: inset 2px 0 0 0 var(--action-primary), inset 0 0 0 1px var(--line-hairline);
+    }
+  }
+
+  &__num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--text-faint);
+    .dg-rail__item.is-active & {
+      color: var(--action-primary);
+    }
+  }
+
+  &__name {
+    font-family: var(--font-ui);
+    font-size: var(--body-md-size);
+    font-weight: var(--weight-medium);
+    color: var(--text-mute);
+    .dg-rail__item.is-active & {
+      color: var(--text-hi);
+      font-weight: var(--weight-bold);
+    }
+  }
+
+  &__note {
+    font-size: var(--caption-size);
+    line-height: 1.45;
+    color: var(--text-faint);
+  }
+}
+
+.dg-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  min-width: 0;
+}
+
+.dg-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.dg-seg {
+  display: flex;
+  gap: 2px;
+  background: var(--surface-inset);
+  box-shadow: inset 0 0 0 1px var(--line-hairline);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+
+  &__btn {
+    appearance: none;
+    border: none;
+    cursor: pointer;
+    border-radius: calc(var(--radius-sm) - 1px);
+    padding: 7px 16px;
+    font-family: var(--font-ui);
+    font-size: var(--button-cap-size);
+    font-weight: var(--weight-semibold);
+    letter-spacing: 0.03em;
+    background: transparent;
+    color: var(--text-mute);
+    transition:
+      background var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+
+    &:hover {
+      color: var(--text-hi);
+    }
+    &.is-active {
+      background: var(--action-primary);
+      color: var(--text-on-accent);
+      box-shadow: var(--glow-pink-sm);
+    }
+  }
+}
+
+.dg-standalone {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--mono-sm-size);
+  letter-spacing: 0.06em;
+  color: var(--text-mute);
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+  &:hover {
+    color: var(--text-link-hover);
+  }
+}
+
+.dg-stage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: var(--space-xs);
+  overflow: hidden;
+}
+
+.dg-shell {
+  box-sizing: border-box;
+  overflow: hidden;
+  flex: 0 0 auto;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    0 0 0 1px rgba(255, 255, 255, 0.07);
+  transition:
+    width var(--dur-med) var(--ease-out),
+    height var(--dur-med) var(--ease-out);
+
+  &--mobile {
+    background: #15141a;
+    border-radius: 34px;
+  }
+  &--tablet {
+    background: #15141a;
+    border-radius: 22px;
+  }
+  &--desktop {
+    background: #1b1a20;
+    border-radius: 10px;
+  }
+}
+
+.dg-chrome {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 8px;
+
+  &__dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 99px;
+  }
+  &__bar {
+    margin-left: 10px;
+    flex: 1;
+    max-width: 260px;
+    height: 15px;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.dg-screen {
+  overflow: hidden;
+  background: #000;
+  position: relative;
+
+  &--mobile {
+    border-radius: 24px;
+  }
+  &--tablet {
+    border-radius: 12px;
+  }
+  &--desktop {
+    border-radius: 4px;
+  }
+}
+
+.dg-frame {
+  border: 0;
+  display: block;
+  transform-origin: top left;
+  background: #fff;
+}
+
+.dg-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line-hairline);
+  padding-top: var(--space-lg);
+
+  &__note {
+    font-family: var(--font-mono);
+    font-size: var(--mono-sm-size);
+    letter-spacing: 0.06em;
+    color: var(--text-faint);
+  }
+}
+
+// ── Responsive: collapse the rail above the stage ──────────
+@media (max-width: 900px) {
+  .dg-stagewrap {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-xl);
+  }
+  .dg-rail {
+    position: static;
+    top: auto;
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    &::-webkit-scrollbar {
+      height: 0;
+    }
+  }
+  .dg-rail__back {
+    display: none;
+  }
+  .dg-rail__item {
+    flex: 0 0 auto;
+    min-width: 190px;
   }
 }
