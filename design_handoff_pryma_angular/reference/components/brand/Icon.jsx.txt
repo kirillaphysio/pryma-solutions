@@ -1,0 +1,24 @@
+import React from 'react';
+
+const BASE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
+
+/** Lucide glyph rendered as a currentColor mask — recolourable, no inline path data. */
+export function Icon({ name, size = 20, strokeAlign, color, style, ...rest }) {
+  const url = BASE + name + '.svg';
+  return React.createElement('span', {
+    'aria-hidden': 'true',
+    'data-icon': name,
+    style: {
+      display: 'inline-block',
+      width: size, height: size, flex: '0 0 auto',
+      backgroundColor: color || 'currentColor',
+      WebkitMaskImage: 'url(' + url + ')', maskImage: 'url(' + url + ')',
+      WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat',
+      WebkitMaskPosition: 'center', maskPosition: 'center',
+      WebkitMaskSize: 'contain', maskSize: 'contain',
+      verticalAlign: strokeAlign === 'text' ? '-0.15em' : 'middle',
+      ...style,
+    },
+    ...rest,
+  });
+}

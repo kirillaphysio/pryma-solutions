@@ -1,0 +1,90 @@
+const { Button, Card, Eyebrow, Icon, MeshBackdrop, TextLink } = window.PrymaDesignSystem_286b6c;
+
+const PACKAGES = [
+  { t: 'Bemutatkozó oldal', b: 'Egy jól felépített oldal, amin minden fontos elfér: mit csinálsz, kinek, és hogyan lehet elérni téged.', items: ['Egy oldal, mobilra optimalizálva', 'Kapcsolatfelvételi űrlap', 'Domain és élesítés beállítva'] },
+  { t: 'Több oldalas weboldal', b: 'Ha több szolgáltatásod van, vagy referenciákat és árakat is szeretnél kiírni.', items: ['3–6 aloldal', 'Szerkeszthető tartalom', 'Alap keresőoptimalizálás'] },
+  { t: 'Arculat és weboldal', b: 'Ha a nulláról induló vállalkozásnak egyszerre kell megjelenés és oldal.', items: ['Logó és színvilág', 'Tipográfia és használati útmutató', 'A kész weboldal az új arculattal'] },
+];
+
+function ServicesScreen({ onNavigate }) {
+  return (
+    <>
+      <MeshBackdrop intensity="soft" grid={false} contentStyle={{ padding: 'clamp(40px,7vw,80px) 0 clamp(36px,6vw,64px)' }}>
+        <Container>
+          <AppearGroup immediate style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', maxWidth: 720 }}>
+            <Eyebrow tone="violet">Szolgáltatások</Eyebrow>
+            <h1 style={{ fontSize: 'var(--display-xl-size)', fontWeight: 'var(--display-xl-weight)', lineHeight: 'var(--display-xl-lh)', letterSpacing: 'var(--display-xl-ls)', color: 'var(--text-hi)', textWrap: 'pretty' }}>
+              Amit el tudok vállalni.
+            </h1>
+            <p style={{ fontSize: 'var(--body-lg-size)', lineHeight: 'var(--body-lg-lh)', letterSpacing: 'var(--body-lg-ls)', color: 'var(--text-mute)' }}>
+              Kis vállalkozásokkal és induló ötletekkel dolgozom. Nem minden projekt igényel mindent, ezért mindig azzal kezdünk, ami a legtöbbet hozza.
+            </p>
+            <div className="r-cta-stack" style={{ display: 'flex', gap: 'var(--space-md)', flexWrap: 'wrap' }}>
+              <Button variant="primary" onClick={() => onNavigate('/kapcsolat')}>Kérj ajánlatot</Button>
+            </div>
+          </AppearGroup>
+        </Container>
+      </MeshBackdrop>
+
+      <Section tight>
+        <AppearGroup className="r-g3">
+          <FeatureTile icon="palette" tone="pink" title="Arculat" body="Logó, színek, betűtípusok és egy rövid útmutató. Cél, hogy magabiztosan tudd használni, ne csak nézni." />
+          <FeatureTile icon="layers" tone="violet" title="Weboldal" body="Tervezés és fejlesztés egy kézből. Gyors, mobilon is jó, és nem kell hozzá bonyolult rendszert kezelned." />
+          <FeatureTile icon="target" tone="cyan" title="Marketing alapok" body="Kinek szólsz, mit mondasz róla, és melyik két csatornán érdemes ezt elkezdeni." />
+        </AppearGroup>
+      </Section>
+
+      <Section tight>
+        <SectionHead eyebrow="Csomagok" title="Három tipikus indulás." lead="Ezek a leggyakoribb munkák. Az árat a terjedelem alapján adom meg, fix összegben, még a kezdés előtt." tone="cyan" />
+        <AppearGroup className="r-g3" style={{ marginTop: 'var(--space-48)', alignItems: 'stretch' }}>
+          {PACKAGES.map(p => (
+            <Card key={p.t} variant="surface" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+              <h3 style={{ fontSize: 'var(--heading-md-size)', fontWeight: 'var(--heading-md-weight)', color: 'var(--text-hi)' }}>{p.t}</h3>
+              <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>{p.b}</p>
+              <CheckList items={p.items} />
+            </Card>
+          ))}
+        </AppearGroup>
+      </Section>
+
+      <Section tight>
+        <div className="r-g2">
+          <Appear from="left" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+            <Eyebrow tone="pink">Jó tudni</Eyebrow>
+            <h3 style={{ fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', lineHeight: 'var(--display-md-lh)', color: 'var(--text-hi)' }}>Mielőtt nekiállunk.</h3>
+            <CheckList tone="pink" items={['Egy bemutatkozó oldal jellemzően 2–3 hét, összetettebb oldal 4–6 hét.', 'A szöveget közösen rakjuk össze, nem kell készen küldened.', 'Ha nincs fotód, mutatok megoldást arra is.', 'Élesítés után egy hónapig javítom, ami menet közben derül ki.']} />
+          </Appear>
+          <Appear from="right" delay={120}><Card variant="outline" padding="var(--space-48)" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+            <Icon name="clock" size={22} color="var(--violet-400)" />
+            <h4 style={{ fontSize: 'var(--heading-sm-size)', fontWeight: 600, color: 'var(--text-hi)' }}>Nem tudod, melyik kell?</h4>
+            <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>
+              Írj pár sort a vállalkozásodról, és megírom, melyik változat elég most, és mi az, ami ráér később.
+            </p>
+            <TextLink href="mailto:hello@pryma.solutions">hello@pryma.solutions</TextLink>
+          </Card></Appear>
+        </div>
+      </Section>
+
+      <Section tight>
+        <SectionHead eyebrow="Karbantartás" title="Miután élesítettünk." lead="A weboldal nem áll meg az élesítésnél. Ezekben tudok segíteni utána is." tone="violet" />
+        <AppearGroup className="r-g3" style={{ marginTop: 'var(--space-48)' }}>
+          <FeatureTile icon="shield-check" tone="violet" title="Biztonság és frissítés" body="Rendszeres mentés és a háttérben futó rendszerek frissen tartása, hogy az oldal ne álljon le." />
+          <FeatureTile icon="pencil" tone="pink" title="Tartalom karbantartása" body="Szöveg, kép vagy ár módosult? Szólsz, és átvezetem, nem kell hozzá magadnak belenyúlnod." />
+          <FeatureTile icon="life-buoy" tone="cyan" title="Gyors segítség" body="Ha valami elromlik vagy elakadsz, rövid időn belül válaszolok és megoldjuk." />
+        </AppearGroup>
+      </Section>
+
+      <Section tight>
+        <Appear from="scale"><Card variant="band" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-32)', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)' }}>
+            <h3 style={{ fontSize: 'var(--heading-lg-size)', fontWeight: 700, color: 'var(--text-on-accent)' }}>Beszéljük át, mire van szükséged.</h3>
+            <p style={{ fontSize: 'var(--body-md-size)', color: 'rgba(255,255,255,.82)' }}>Fél óra, konkrét kérdésekkel. Utána küldök egy tervet és egy árat.</p>
+          </div>
+          <Button variant="onAccent" onClick={() => onNavigate('/kapcsolat')} iconRight={<Icon name="arrow-right" size={16} />}>Kapcsolatfelvétel</Button>
+        </Card></Appear>
+      </Section>
+    </>
+  );
+}
+
+Object.assign(window, { ServicesScreen });

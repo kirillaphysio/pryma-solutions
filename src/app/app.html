@@ -1,0 +1,14 @@
+<a class="pry-skip" href="#main" i18n="@@skip.link">Ugrás a tartalomra</a>
+
+<pry-nav-bar [links]="navLinks" ctaPath="/contact" />
+
+<main id="main" tabindex="-1">
+  <router-outlet />
+</main>
+
+<pry-footer
+  [columns]="footerColumns"
+  [tagline]="tagline"
+  [legal]="legal"
+  [note]="note"
+/>

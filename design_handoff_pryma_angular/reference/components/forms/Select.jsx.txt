@@ -1,0 +1,53 @@
+import React from 'react';
+import { fieldRing } from './TextInput.jsx';
+
+/* Native popup lists cannot render translucent backgrounds, so the options get an
+   opaque surface + explicit text colour instead of inheriting the inset well. */
+const optionStyle = { background: 'var(--surface-card-solid)', color: 'var(--text-hi)' };
+
+export function Select({ label, value, onChange, options = [], placeholder, name, id, hint, error, disabled = false, required = false, style, ...rest }) {
+  const [focus, setFocus] = React.useState(false);
+  const [hover, setHover] = React.useState(false);
+  const fid = id || name;
+  const items = options.map(o => (typeof o === 'string' ? { value: o, label: o } : o));
+  return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 6, ...style } }, [
+    label && React.createElement('label', {
+      key: 'l', htmlFor: fid,
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', fontWeight: 'var(--weight-bold)', color: 'var(--text-mute)', letterSpacing: 'var(--caption-ls)' },
+    }, [label, required && React.createElement('span', { key: 'r', style: { color: 'var(--pink-500)', marginLeft: 4 } }, '*')]),
+    React.createElement('div', { key: 'w', style: { position: 'relative', display: 'flex', alignItems: 'center' } }, [
+      React.createElement('select', {
+        key: 's', id: fid, name, value, disabled, required, onChange,
+        onFocus: () => setFocus(true), onBlur: () => setFocus(false),
+        onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+        style: {
+          width: '100%', boxSizing: 'border-box', appearance: 'none', WebkitAppearance: 'none',
+          fontFamily: 'var(--font-ui)', fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)',
+          color: value ? 'var(--text-hi)' : 'var(--text-faint)', background: 'var(--surface-inset)',
+          border: 'none', borderRadius: 'var(--radius-sm)', padding: '10px 36px 10px 12px', minHeight: 44,
+          boxShadow: fieldRing({ focus, hover, error }), outline: 'none',
+          transition: 'box-shadow var(--dur-med) var(--ease-out)', cursor: disabled ? 'not-allowed' : 'pointer',
+          opacity: disabled ? 0.5 : 1,
+        },
+        ...rest,
+      }, [
+        placeholder && React.createElement('option', { key: 'p', value: '', style: optionStyle }, placeholder),
+        ...items.map(o => React.createElement('option', { key: o.value, value: o.value, style: optionStyle }, o.label)),
+      ]),
+      React.createElement('span', {
+        key: 'c', 'aria-hidden': 'true',
+        style: {
+          position: 'absolute', right: 12, width: 14, height: 14, pointerEvents: 'none',
+          backgroundColor: 'var(--text-mute)',
+          maskImage: 'url(https://unpkg.com/lucide-static@0.544.0/icons/chevron-down.svg)',
+          WebkitMaskImage: 'url(https://unpkg.com/lucide-static@0.544.0/icons/chevron-down.svg)',
+          maskSize: 'contain', WebkitMaskSize: 'contain', maskRepeat: 'no-repeat', WebkitMaskRepeat: 'no-repeat',
+        },
+      }),
+    ]),
+    (error || hint) && React.createElement('span', {
+      key: 'h',
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', lineHeight: 'var(--caption-lh)', color: error ? 'var(--signal-error)' : 'var(--text-faint)' },
+    }, error || hint),
+  ]);
+}

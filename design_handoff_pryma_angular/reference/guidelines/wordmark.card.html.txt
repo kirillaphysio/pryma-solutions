@@ -1,0 +1,11 @@
+<!-- @dsCard group="Brand" viewport="700x150" name="Wordmark" subtitle="Type-only lockup — no logo file exists in the source material" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.rows{display:flex;flex-direction:column;gap:16px}.r{display:flex;align-items:center;gap:22px}
+.wm{display:inline-flex;align-items:center;gap:10px}.bar{width:6px;height:23px;border-radius:2px;background:var(--grad-brand);box-shadow:var(--glow-text-pink);transform:skewX(-14deg)}
+.nm{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:1.3px;line-height:1;background:var(--grad-neon-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sfx{font-weight:700;font-size:9px;letter-spacing:.16em;color:var(--text-faint)}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint)}</style>
+</head><body><div class="rows">
+<div class="r"><span class="wm"><span class="bar"></span><span class="nm">PRYMA</span><span class="sfx">SOLUTIONS</span></span><span class="k">gradient &middot; nav / hero</span></div>
+<div class="r"><span class="wm"><span class="bar"></span><span class="nm" style="background:none;color:var(--text-hi)">PRYMA</span></span><span class="k">mono &middot; on gradient bands, footers</span></div>
+<div class="r"><span class="k">No logo file was provided with the source material. The mark is set in Space Grotesk 700 caps at 0.06em tracking; the skewed prism bar is the only graphic element.</span></div>
+</div></body></html>

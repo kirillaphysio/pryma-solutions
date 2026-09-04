@@ -1,0 +1,15 @@
+import * as React from 'react';
+
+/** Single metric at 50px display size with a neon gradient text fill. */
+export interface StatCardProps {
+  /** The number itself, e.g. "94%", "43", "2.1s". */
+  value: string;
+  /** Bold one-line name for the metric. */
+  label?: string;
+  /** Small grey qualifier under the label. */
+  caption?: string;
+  tone?: 'pink' | 'cyan' | 'violet';
+  align?: 'left' | 'center';
+  style?: React.CSSProperties;
+}
+export function StatCard(props: StatCardProps): JSX.Element;

@@ -1,0 +1,13 @@
+<!-- @dsCard group="Effects" viewport="700x150" name="Interaction states" subtitle="Hover brightens and grows the glow; press darkens and drops 1px" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.g{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.p{display:inline-flex;padding:14px 28px;border-radius:var(--radius-pill);color:#fff;font-weight:700;font-size:16px;letter-spacing:.2px}
+.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);width:100%;margin-top:4px}</style>
+</head><body><div class="g">
+<span class="p" style="background:var(--action-primary);box-shadow:var(--glow-pink-sm)">Rest</span>
+<span class="p" style="background:var(--action-primary-hover);box-shadow:var(--glow-pink-md)">Hover</span>
+<span class="p" style="background:var(--action-primary-press);box-shadow:var(--glow-pink-sm);transform:translateY(1px)">Press</span>
+<span class="p" style="background:var(--action-primary);box-shadow:var(--glow-pink-sm);opacity:.42;filter:saturate(.35)">Disabled</span>
+<span class="p" style="background:var(--action-primary);box-shadow:var(--glow-pink-sm);outline:2px solid var(--cyan-400);outline-offset:2px">Focus</span>
+<span class="k">hover +6% lightness &amp; glow-md &middot; press --action-primary-press + translateY(1px) &middot; disabled 42% opacity, saturate .35 &middot; focus 2px cyan ring, 2px offset</span>
+</div></body></html>

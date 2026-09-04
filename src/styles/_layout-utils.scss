@@ -1,0 +1,102 @@
+// Pryma site — responsive layout utilities used across the page templates. Global (not
+// component-scoped) because pages compose them directly. Carried from the reference kit.
+
+body {
+  overflow-x: hidden;
+}
+svg,
+video {
+  max-width: 100%;
+}
+
+// 3-up card rows: 3 → 2 → 1
+.r-g3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-xxl);
+}
+@media (max-width: 1000px) {
+  .r-g3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .r-g3 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// 4-up card rows: 4 → 2 → 1
+.r-g4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-xxl);
+}
+@media (max-width: 1000px) {
+  .r-g4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 680px) {
+  .r-g4 {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// even two-column splits
+.r-g2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-48);
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .r-g2 {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-32);
+  }
+}
+
+// contact: form + aside
+.r-form-aside {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  gap: var(--space-48);
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .r-form-aside {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-32);
+  }
+}
+
+// name + email pair inside the form
+.r-field-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-lg);
+}
+@media (max-width: 560px) {
+  .r-field-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+// full-width CTA buttons on the smallest screens
+.r-cta-stack {
+  display: flex;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+@media (max-width: 480px) {
+  .r-cta-stack {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .r-cta-stack > * {
+    width: 100%;
+    justify-content: center;
+  }
+}

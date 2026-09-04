@@ -1,0 +1,56 @@
+/* pryma.solutions — responsive layout classes for the site screens.
+   Inline styles win over classes, so any grid that needs to reflow lives here. */
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{overflow-x:hidden}
+img,svg,video{max-width:100%}
+
+/* 3-up card rows: 3 → 2 → 1 */
+.r-g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-xxl)}
+@media (max-width:1000px){.r-g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:680px){.r-g3{grid-template-columns:minmax(0,1fr)}}
+
+/* 4-up card rows: 4 → 2 → 1 */
+.r-g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--space-xxl)}
+@media (max-width:1000px){.r-g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:680px){.r-g4{grid-template-columns:minmax(0,1fr)}}
+
+/* even two-column splits */
+.r-g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-48);align-items:center}
+@media (max-width:900px){.r-g2{grid-template-columns:minmax(0,1fr);gap:var(--space-32)}}
+
+/* contact: form + aside */
+.r-form-aside{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.7fr);gap:var(--space-48);align-items:start}
+@media (max-width:980px){.r-form-aside{grid-template-columns:minmax(0,1fr);gap:var(--space-32)}}
+
+/* name + email pair inside the form */
+.r-field-pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--space-lg)}
+@media (max-width:560px){.r-field-pair{grid-template-columns:minmax(0,1fr)}}
+
+/* demo exhibition: side rail + stage */
+.r-demo{display:grid;grid-template-columns:minmax(0,212px) minmax(0,1fr);gap:var(--space-32);align-items:start}
+.r-demo-rail{display:flex;flex-direction:column;gap:var(--space-md);position:sticky;top:96px}
+@media (max-width:900px){
+  .r-demo{grid-template-columns:minmax(0,1fr);gap:var(--space-xl)}
+  .r-demo-rail{position:static;top:auto;flex-direction:row;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;-webkit-overflow-scrolling:touch}
+  .r-demo-rail::-webkit-scrollbar{height:0}
+  .r-demo-rail>button{flex:0 0 auto;min-width:170px}
+  .r-demo-rail>button:first-child{min-width:0}
+}
+
+/* toolbar above the device frame */
+.r-demo-tools{display:flex;align-items:center;gap:var(--space-lg);flex-wrap:wrap}
+.r-demo-tools .r-push{margin-left:auto}
+@media (max-width:640px){.r-demo-tools{gap:var(--space-md)}.r-demo-tools .r-push{margin-left:0}.r-demo-tools .r-sep{display:none}}
+
+/* hero blocks: fluid vertical rhythm */
+.r-hero-full{padding:clamp(56px,10vw,112px) 0 clamp(48px,8vw,96px)}
+.r-hero-sub{padding:clamp(40px,7vw,80px) 0 clamp(36px,6vw,64px)}
+
+/* full-width buttons on the smallest screens */
+@media (max-width:480px){
+  .r-cta-stack{width:100%;flex-direction:column;align-items:stretch}
+  .r-cta-stack>*{width:100%}
+  .r-cta-stack button{width:100%;justify-content:center}
+}

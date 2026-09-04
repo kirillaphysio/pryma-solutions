@@ -1,0 +1,19 @@
+import * as React from 'react';
+
+/**
+ * Container surface. 16px radius, 32px padding, hairline instead of a border.
+ */
+export interface CardProps {
+  children?: React.ReactNode;
+  /** surface = translucent glass (default); accent = solid violet; gradient/band = the pink→violet fill; outline = hairline only. */
+  variant?: 'surface' | 'accent' | 'gradient' | 'band' | 'outline';
+  /** Overrides --card-pad (32px, or 48px on band). */
+  padding?: string | number;
+  radius?: string | number;
+  /** Adds hover lift + glow. Use for clickable cards only. */
+  interactive?: boolean;
+  /** Resting rim glow. */
+  glow?: 'none' | 'pink' | 'cyan' | 'violet';
+  style?: React.CSSProperties;
+}
+export function Card(props: CardProps): JSX.Element;

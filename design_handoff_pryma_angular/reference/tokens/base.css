@@ -1,0 +1,19 @@
+/* Pryma — element defaults. Kept deliberately thin: components carry their own styling. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;color-scheme:dark}
+body{margin:0;background:var(--surface-page);color:var(--text-body);font-family:var(--font-ui);font-size:var(--body-md-size);line-height:var(--body-md-lh);letter-spacing:var(--body-md-ls);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--text-hi);margin:0}
+h1{font-size:var(--display-xxl-size);line-height:var(--display-xxl-lh);letter-spacing:var(--display-xxl-ls);font-weight:var(--display-xxl-weight)}
+h2{font-size:var(--display-xl-size);line-height:var(--display-xl-lh);letter-spacing:var(--display-xl-ls);font-weight:var(--display-xl-weight)}
+h3{font-size:var(--display-md-size);line-height:var(--display-md-lh);letter-spacing:var(--display-md-ls);font-weight:var(--display-md-weight)}
+h4{font-size:var(--heading-lg-size);line-height:var(--heading-lg-lh);letter-spacing:var(--heading-lg-ls);font-weight:var(--heading-lg-weight)}
+p{margin:0}
+a{color:var(--text-link);text-decoration:none;transition:color var(--dur-fast) var(--ease-out),text-shadow var(--dur-fast) var(--ease-out)}
+a:hover{color:var(--text-link-hover);text-decoration:underline;text-underline-offset:3px;text-shadow:var(--glow-text-cyan)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+code,kbd,pre{font-family:var(--font-mono);font-size:var(--mono-sm-size)}
+::selection{background:var(--selection-bg);color:var(--selection-fg)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--scrollbar-thumb);border-radius:var(--radius-pill)}
+::-webkit-scrollbar-thumb:hover{background:var(--scrollbar-thumb-hover)}

@@ -1,0 +1,144 @@
+<!-- Hero -->
+<pry-mesh-backdrop intensity="full" [grid]="true" contentPad="clamp(56px,10vw,112px) 0 clamp(48px,8vw,96px)">
+  <pry-container>
+    <div class="home-hero">
+      <pry-eyebrow tone="pink" i18n="@@home.hero.eyebrow">Egyszemélyes stúdió</pry-eyebrow>
+      <h1 class="home-hero__title" i18n="@@home.hero.title">
+        Weboldal és arculat<br />a vállalkozásodnak.
+      </h1>
+      <p class="home-hero__lead" i18n="@@home.hero.lead">
+        Fejlesztő és designer vagyok egy személyben. Segítek felépíteni a vállalkozásod online
+        megjelenését: az arculattól a kész, működő weboldalig.
+      </p>
+      <div class="r-cta-stack home-hero__cta">
+        <a pry-button size="lg" variant="primary" routerLink="/contact">
+          <span i18n="@@home.hero.cta.primary">Kérj ajánlatot</span>
+          <pry-icon icon-right name="arrow-right" [size]="18" />
+        </a>
+        <a pry-button size="lg" variant="outline" routerLink="/services" i18n="@@home.hero.cta.secondary">
+          Mit vállalok
+        </a>
+      </div>
+      <span class="home-hero__note" i18n="@@home.hero.note">Válasz két munkanapon belül.</span>
+    </div>
+  </pry-container>
+</pry-mesh-backdrop>
+
+<!-- Three areas -->
+<pry-section>
+  <pry-section-head
+    eyebrow="Amiben segítek"
+    i18n-eyebrow="@@home.areas.eyebrow"
+    title="Három terület, egy ember."
+    i18n-title="@@home.areas.title"
+    lead="Nem kell külön designert, fejlesztőt és marketingest keresned. Egy helyen átlátható marad, hol tart a munka."
+    i18n-lead="@@home.areas.lead"
+  />
+  <div class="r-g3 home-mt48">
+    <pry-feature-tile
+      icon="palette"
+      tone="pink"
+      title="Arculat"
+      i18n-title="@@home.area.brand.title"
+      body="Logó, színek, tipográfia és egy rövid útmutató arról, hogyan használd őket a mindennapokban."
+      i18n-body="@@home.area.brand.body"
+    />
+    <pry-feature-tile
+      icon="layers"
+      tone="violet"
+      title="Weboldal"
+      i18n-title="@@home.area.web.title"
+      body="Tervezés és fejlesztés: bemutatkozó oldal vagy több aloldalas weboldal, mobilon is rendben."
+      i18n-body="@@home.area.web.body"
+    />
+    <pry-feature-tile
+      icon="target"
+      tone="cyan"
+      title="Marketing alapok"
+      i18n-title="@@home.area.mkt.title"
+      body="Mit mondj magadról, kinek, és hol. Egyszerű, követhető terv a következő pár hónapra."
+      i18n-body="@@home.area.mkt.body"
+    />
+  </div>
+</pry-section>
+
+<!-- Process -->
+<pry-section [tight]="true">
+  <pry-section-head
+    align="center"
+    tone="cyan"
+    eyebrow="Hogyan dolgozunk"
+    i18n-eyebrow="@@home.process.eyebrow"
+    title="Négy lépés, nincs felesleges kör."
+    i18n-title="@@home.process.title"
+  />
+  <div class="r-g4 home-mt48">
+    <pry-step-card
+      n="01"
+      title="Beszélgetés"
+      i18n-title="@@home.step1.title"
+      body="Elmondod, mivel foglalkozol és mire lenne szükséged. Ebből írok egy rövid tervet és egy fix árat."
+      i18n-body="@@home.step1.body"
+    />
+    <pry-step-card
+      n="02"
+      title="Terv"
+      i18n-title="@@home.step2.title"
+      body="Megmutatom, hogyan fog kinézni az oldal, mielőtt bármit megépítenék. Itt még könnyű változtatni."
+      i18n-body="@@home.step2.body"
+    />
+    <pry-step-card
+      n="03"
+      title="Megvalósítás"
+      i18n-title="@@home.step3.title"
+      body="Megépítem, élesítem, és megmutatom, hogyan tudod magad frissíteni a tartalmat."
+      i18n-body="@@home.step3.body"
+    />
+    <pry-step-card
+      n="04"
+      title="Utánkövetés, optimalizálás"
+      i18n-title="@@home.step4.title"
+      body="Élesítés után figyelem, hogyan működik az oldal, és finomítom azt, ami a valós használat alapján kiderül."
+      i18n-body="@@home.step4.body"
+    />
+  </div>
+</pry-section>
+
+<!-- Why one person -->
+<pry-section [tight]="true">
+  <div class="r-g2">
+    <div class="home-why">
+      <pry-eyebrow tone="violet" i18n="@@home.why.eyebrow">Miért egy emberrel</pry-eyebrow>
+      <h3 class="home-why__title" i18n="@@home.why.title">Velem beszélsz, nem egy fiókkezelővel.</h3>
+      <p class="home-why__body" i18n="@@home.why.body">
+        Én tervezem és én is építem meg az oldalt, így nincs félreértés a terv és a kész munka
+        között. Az induló vállalkozásoknál ez a legrövidebb út egy használható weboldalhoz.
+      </p>
+      <pry-check-list [items]="whyItems" />
+    </div>
+    <pry-card variant="accent" padding="var(--space-48)" class="home-aside">
+      <pry-icon name="mail" [size]="24" color="var(--cyan-300)" />
+      <h4 class="home-aside__title" i18n="@@home.aside.title">
+        Van egy ötleted, de még nem tudod, hol kezdj?
+      </h4>
+      <p class="home-aside__body" i18n="@@home.aside.body">
+        Írj pár sort arról, mivel foglalkozol. Visszaírom, mit érdemes először megcsinálni, akkor
+        is, ha végül nem együtt dolgozunk.
+      </p>
+      <a pry-text-link href="mailto:hello@pryma.solutions">hello&#64;pryma.solutions</a>
+    </pry-card>
+  </div>
+</pry-section>
+
+<!-- Closing band -->
+<pry-section [tight]="true">
+  <pry-card variant="band" class="home-band">
+    <h3 class="home-band__title" i18n="@@home.band.title">Kezdjük egy beszélgetéssel.</h3>
+    <p class="home-band__body" i18n="@@home.band.body">
+      Írd meg, mire lenne szükséged. Két munkanapon belül küldök egy tervet és egy árat.
+    </p>
+    <a pry-button variant="onAccent" size="lg" routerLink="/contact" i18n="@@home.band.cta">
+      Kapcsolatfelvétel
+    </a>
+  </pry-card>
+</pry-section>

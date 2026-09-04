@@ -1,0 +1,89 @@
+import React from 'react';
+
+const PADS = { lg: '16px 32px', md: '14px 28px', cap: '10px 22px' };
+const TYPE = {
+  lg: { fontSize: 'var(--button-lg-size)', lineHeight: 'var(--button-lg-lh)', letterSpacing: 'var(--button-lg-ls)' },
+  md: { fontSize: 'var(--button-md-size)', lineHeight: 'var(--button-md-lh)', letterSpacing: 'var(--button-md-ls)' },
+  cap: { fontSize: 'var(--button-cap-size)', lineHeight: 'var(--button-cap-lh)', letterSpacing: 'var(--button-cap-ls)' },
+};
+
+function skin(variant, hover, active) {
+  switch (variant) {
+    case 'secondary':
+      return {
+        background: hover ? 'var(--action-secondary-hover)' : 'var(--action-secondary)',
+        color: 'var(--text-hi)',
+        boxShadow: 'inset 0 0 0 1px var(--line-strong)',
+        padding: '10px 30px',
+      };
+    case 'outline':
+      return {
+        background: 'transparent',
+        color: hover ? 'var(--action-outline-hover)' : 'var(--action-outline)',
+        boxShadow: hover ? 'var(--glow-cyan-md)' : 'inset 0 0 0 2px var(--line-cyan)',
+      };
+    case 'onAccent':
+      return {
+        background: hover ? 'rgba(255,255,255,.14)' : 'transparent',
+        color: 'var(--text-on-accent)',
+        boxShadow: 'inset 0 0 0 2px rgba(255,255,255,.7)',
+      };
+    case 'ghost':
+      return {
+        background: hover ? 'var(--surface-glass)' : 'transparent',
+        color: hover ? 'var(--text-hi)' : 'var(--text-mute)',
+        boxShadow: 'none',
+      };
+    default:
+      return {
+        background: active ? 'var(--action-primary-press)' : hover ? 'var(--action-primary-hover)' : 'var(--action-primary)',
+        color: 'var(--text-on-accent)',
+        boxShadow: hover ? 'var(--glow-pink-md)' : 'var(--glow-pink-sm)',
+      };
+  }
+}
+
+export function Button({
+  children, variant = 'primary', size = 'md', href, onClick, disabled = false,
+  iconLeft, iconRight, fullWidth = false, type = 'button', style, ...rest
+}) {
+  const [hover, setHover] = React.useState(false);
+  const [active, setActive] = React.useState(false);
+  const s = skin(variant, hover && !disabled, active && !disabled);
+  const base = {
+    display: fullWidth ? 'flex' : 'inline-flex',
+    width: fullWidth ? '100%' : undefined,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 'var(--space-sm)',
+    fontFamily: 'var(--font-ui)',
+    fontWeight: 'var(--weight-bold)',
+    padding: PADS[size],
+    borderRadius: 'var(--radius-pill)',
+    border: 'none',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    textDecoration: 'none',
+    whiteSpace: 'nowrap',
+    transform: active && !disabled ? 'translateY(1px)' : 'translateY(0)',
+    transition: 'background var(--dur-fast) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out)',
+    opacity: disabled ? 0.42 : 1,
+    filter: disabled ? 'saturate(.35)' : 'none',
+    ...TYPE[size],
+    ...s,
+    ...style,
+  };
+  const handlers = disabled ? {} : {
+    onMouseEnter: () => setHover(true),
+    onMouseLeave: () => { setHover(false); setActive(false); },
+    onMouseDown: () => setActive(true),
+    onMouseUp: () => setActive(false),
+    onClick,
+  };
+  const inner = [
+    iconLeft ? React.createElement('span', { key: 'il', style: { display: 'inline-flex' } }, iconLeft) : null,
+    React.createElement('span', { key: 'l' }, children),
+    iconRight ? React.createElement('span', { key: 'ir', style: { display: 'inline-flex' } }, iconRight) : null,
+  ];
+  if (href && !disabled) return React.createElement('a', { href, style: base, ...handlers, ...rest }, inner);
+  return React.createElement('button', { type, style: base, disabled, ...handlers, ...rest }, inner);
+}

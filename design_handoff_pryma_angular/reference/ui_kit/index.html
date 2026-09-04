@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="hu"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pryma Solutions — weboldal és arculat</title>
+<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="responsive.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Jost:wght@400;500&family=Work+Sans:wght@400;500;600&display=swap">
+<style>body{margin:0;background:var(--surface-page)}#root{min-height:100vh}.demoframe{scrollbar-width:none}.demoframe::-webkit-scrollbar{width:0;height:0}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds_bundle.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx.txt"></script>
+<script type="text/babel" src="shared.jsx.txt"></script>
+<script type="text/babel" src="HomeScreen.jsx.txt"></script>
+<script type="text/babel" src="ServicesScreen.jsx.txt"></script>
+<script type="text/babel" src="ContactScreen.jsx.txt"></script>
+<script type="text/babel" src="demo-kit.jsx.txt"></script>
+<script type="text/babel" src="demo-szalon.jsx.txt"></script>
+<script type="text/babel" src="demo-edzo.jsx.txt"></script>
+<script type="text/babel" src="demo-asztalos.jsx.txt"></script>
+<script type="text/babel" src="DemoScreen.jsx.txt"></script>
+<script type="text/babel" src="Intro.jsx.txt"></script>
+<script type="text/babel">
+const { NavBar, Footer } = window.PrymaDesignSystem_286b6c;
+
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "dark",
+  "accent": "#ff2e88",
+  "ctaLabel": "Kérj ajánlatot",
+  "stickyNav": true,
+  "intro": "mindig",
+  "introSpeed": 1
+}/*EDITMODE-END*/;
+
+const ACCENTS = {
+  '#ff2e88': { hover: '#ff4d9b', press: '#e01f74', rgb: '255,46,136' },
+  '#9d5cff': { hover: '#b78cff', press: '#7b3ff0', rgb: '157,92,255' },
+  '#12a8cc': { hover: '#38e1ff', press: '#0b7f9c', rgb: '18,168,204' },
+};
+
+const NAV = [
+  { label: 'Szolgáltatások', href: '/szolgaltatasok' },
+  {
+    href: '/demo',
+    label: (
+      <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+        Demó
+        <span style={{ width: 6, height: 6, borderRadius: 99, background: 'var(--action-primary)', boxShadow: 'var(--glow-pink-sm)' }} />
+      </span>
+    ),
+  },
+  { label: 'Kapcsolat', href: '/kapcsolat' },
+];
+
+const FOOTER_COLUMNS = [
+  { title: 'Oldalak', links: [{ label: 'Kezdőlap', href: '/' }, { label: 'Szolgáltatások', href: '/szolgaltatasok' }, { label: 'Demó', href: '/demo' }, { label: 'Kapcsolat', href: '/kapcsolat' }] },
+];
+
+function App() {
+  const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const [route, setRoute] = React.useState('/');
+  const reduced = React.useRef(window.matchMedia('(prefers-reduced-motion: reduce)').matches).current;
+  const [intro, setIntro] = React.useState(() => {
+    if (reduced || t.intro === 'ki') return false;
+    if (t.intro === 'mindig') return true;
+    return !sessionStorage.getItem('pryma-intro-seen');
+  });
+  const [revealKey, setRevealKey] = React.useState(0);
+  const go = (href) => { setRoute(href); window.scrollTo({ top: 0, behavior: 'auto' }); };
+  const Screen = { '/szolgaltatasok': ServicesScreen, '/demo': DemoScreen, '/kapcsolat': ContactScreen }[route] || HomeScreen;
+
+  const endIntro = React.useCallback((href) => {
+    sessionStorage.setItem('pryma-intro-seen', '1');
+    if (href) { setRoute(href); window.scrollTo({ top: 0, behavior: 'auto' }); }
+    setIntro(false);
+    // the page already sits under the intro wipe when a gate card was chosen — re-animating it would blink
+    if (!href) setRevealKey((k) => k + 1);
+  }, []);
+
+  React.useEffect(() => {
+    document.documentElement.style.overflow = intro ? 'hidden' : '';
+    return () => { document.documentElement.style.overflow = ''; };
+  }, [intro]);
+
+  React.useEffect(() => {
+    const h = document.documentElement;
+    if (t.theme === 'light') h.setAttribute('data-theme', 'light'); else h.removeAttribute('data-theme');
+  }, [t.theme]);
+
+  React.useEffect(() => {
+    const h = document.documentElement, a = ACCENTS[t.accent] || ACCENTS['#ff2e88'];
+    h.style.setProperty('--action-primary', t.accent);
+    h.style.setProperty('--action-primary-hover', a.hover);
+    h.style.setProperty('--action-primary-press', a.press);
+    h.style.setProperty('--line-neon', 'rgba(' + a.rgb + ',.5)');
+    h.style.setProperty('--pink-500', t.accent);
+    h.style.setProperty('--glow-pink-sm', '0 0 0 1px rgba(' + a.rgb + ',.35),0 4px 18px rgba(' + a.rgb + ',.28)');
+    h.style.setProperty('--glow-pink-md', '0 0 0 1px rgba(' + a.rgb + ',.45),0 8px 34px rgba(' + a.rgb + ',.42)');
+    h.style.setProperty('--glow-pink-lg', '0 0 60px rgba(' + a.rgb + ',.5),0 0 140px rgba(' + a.rgb + ',.22)');
+  }, [t.accent]);
+
+  return (
+    <>
+      {intro && <Intro speed={t.introSpeed} onRoute={(href) => setRoute(href)} onEnter={endIntro} />}
+      <div key={revealKey} style={revealKey ? { animation: window.INTRO_REVEAL_ANIM } : undefined}>
+      <NavBar links={NAV} activeHref={route} onNavigate={go} signInLabel={null} sticky={t.stickyNav} ctaLabel={t.ctaLabel} onCta={() => go('/kapcsolat')} />
+      <Screen onNavigate={go} />
+      <Footer columns={FOOTER_COLUMNS} onNavigate={go} tagline="Weboldal, arculat és marketing alapok kis vállalkozásoknak." social={[]} legal="© 2026 Pryma Solutions" note="A Pryma gridre építve" />
+      </div>
+      <TweaksPanel>
+        <TweakSection label="Téma" />
+        <TweakRadio label="Theme" value={t.theme} options={['dark', 'light']} onChange={(v) => setTweak('theme', v)} />
+        <TweakColor label="Action colour" value={t.accent} options={Object.keys(ACCENTS)} onChange={(v) => setTweak('accent', v)} />
+        <TweakSection label="Intro animáció" />
+        <TweakRadio label="Lejátszás" value={t.intro} options={['munkamenetenként', 'mindig', 'ki']} onChange={(v) => setTweak('intro', v)} />
+        <TweakSlider label="Tempó" value={t.introSpeed} min={0.6} max={2} step={0.1} onChange={(v) => setTweak('introSpeed', v)} />
+        <TweakButton label="Intro újrajátszása" onClick={() => { sessionStorage.removeItem('pryma-intro-seen'); setIntro(true); }} />
+        <TweakSection label="Navigáció" />
+        <TweakText label="CTA label" value={t.ctaLabel} onChange={(v) => setTweak('ctaLabel', v)} />
+        <TweakToggle label="Sticky nav" value={t.stickyNav} onChange={(v) => setTweak('stickyNav', v)} />
+      </TweaksPanel>
+    </>
+  );
+}
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script></body></html>

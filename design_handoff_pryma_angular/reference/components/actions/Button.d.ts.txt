@@ -1,0 +1,22 @@
+import * as React from 'react';
+
+/**
+ * Pill CTA. Primary is the neon-pink fill and the only filled button in a viewport.
+ */
+export interface ButtonProps {
+  children?: React.ReactNode;
+  /** primary = pink fill (max one per viewport); onAccent = outline over a gradient band. */
+  variant?: 'primary' | 'secondary' | 'outline' | 'onAccent' | 'ghost';
+  /** lg for hero CTAs, md default, cap for compact nav/table actions. */
+  size?: 'lg' | 'md' | 'cap';
+  /** Renders an <a> instead of a <button>. */
+  href?: string;
+  onClick?: (e: React.MouseEvent) => void;
+  disabled?: boolean;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
+  fullWidth?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  style?: React.CSSProperties;
+}
+export function Button(props: ButtonProps): JSX.Element;

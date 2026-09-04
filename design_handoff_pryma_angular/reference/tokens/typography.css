@@ -1,0 +1,39 @@
+/* Pryma — type primitives + the tier scale (values carried over from the source spec). */
+:root{
+  --font-display:'Space Grotesk',system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --weight-regular:400; /* @kind other */
+  --weight-medium:500; /* @kind other */
+  --weight-semibold:600; /* @kind other */
+  --weight-bold:700; /* @kind other */
+
+  /* display tier — geometric, tight tracking */
+  --display-xxl-size:64px;   --display-xxl-lh:1.12; /* @kind other */ --display-xxl-ls:-0.768px; /* @kind other */ --display-xxl-weight:700; /* @kind other */
+  --display-xl-size:58px;    --display-xl-lh:1.25; /* @kind other */  --display-xl-ls:-0.464px; /* @kind other */  --display-xl-weight:600; /* @kind other */
+  --display-lg-size:50px;    --display-lg-lh:1.12; /* @kind other */  --display-lg-ls:-0.6px; /* @kind other */    --display-lg-weight:700; /* @kind other */
+  --display-md-size:32px;    --display-md-lh:1.25; /* @kind other */  --display-md-ls:-0.256px; /* @kind other */  --display-md-weight:700; /* @kind other */
+
+  --heading-lg-size:24px;    --heading-lg-lh:1.33; /* @kind other */  --heading-lg-ls:-0.096px; /* @kind other */  --heading-lg-weight:700; /* @kind other */
+  --heading-md-size:22px;    --heading-md-lh:1.4; /* @kind other */   --heading-md-ls:0; /* @kind other */         --heading-md-weight:600; /* @kind other */
+  --heading-sm-size:18px;    --heading-sm-lh:1.56; /* @kind other */  --heading-sm-ls:-0.0216px; /* @kind other */ --heading-sm-weight:600; /* @kind other */
+
+  /* UI tier — humanist, relaxed 1.55 leading */
+  --body-lg-size:18px;       --body-lg-lh:1.55; /* @kind other */     --body-lg-ls:-0.0216px; /* @kind other */
+  --body-md-size:16px;       --body-md-lh:1.55; /* @kind other */     --body-md-ls:0; /* @kind other */
+  --body-strong-size:16px;   --body-strong-lh:1.5; /* @kind other */  --body-strong-ls:0.16px; /* @kind other */
+  --button-lg-size:18px;     --button-lg-lh:1; /* @kind other */      --button-lg-ls:0; /* @kind other */
+  --button-md-size:16px;     --button-md-lh:1.38; /* @kind other */   --button-md-ls:0.2px; /* @kind other */
+  --button-cap-size:14.4px;  --button-cap-lh:1; /* @kind other */     --button-cap-ls:0.144px; /* @kind other */
+  --caption-size:14px;       --caption-lh:1.43; /* @kind other */     --caption-ls:0.1px; /* @kind other */
+  --micro-cap-size:12px;     --micro-cap-lh:1; /* @kind other */      --micro-cap-ls:0.96px; /* @kind other */
+  --mono-sm-size:13px;       --mono-sm-lh:1.5; /* @kind other */      --mono-sm-ls:0.2px; /* @kind other */
+
+  /* semantic type aliases */
+  --type-hero:var(--display-xxl-size);
+  --type-section:var(--display-xl-size);
+  --type-stat:var(--display-lg-size);
+  --type-card-title:var(--display-md-size);
+  --type-eyebrow:var(--micro-cap-size);
+}

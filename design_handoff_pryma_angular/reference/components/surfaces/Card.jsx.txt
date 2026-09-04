@@ -1,0 +1,31 @@
+import React from 'react';
+
+const VARIANTS = {
+  surface: { background: 'var(--surface-card)', boxShadow: 'inset 0 0 0 1px var(--line-hairline), var(--elev-1)', color: 'var(--text-body)', backdropFilter: 'var(--blur-glass)' },
+  accent: { background: 'var(--surface-accent)', boxShadow: 'inset 0 0 0 1px var(--line-accent)', color: 'var(--text-body)' },
+  gradient: { background: 'var(--surface-featured)', boxShadow: 'var(--elev-2)', color: 'var(--text-on-accent)' },
+  band: { background: 'var(--surface-featured)', boxShadow: 'var(--glow-pink-lg)', color: 'var(--text-on-accent)' },
+  outline: { background: 'transparent', boxShadow: 'inset 0 0 0 1px var(--line-strong)', color: 'var(--text-body)' },
+};
+
+export function Card({ children, variant = 'surface', padding, radius, interactive = false, glow = 'none', style, ...rest }) {
+  const [hover, setHover] = React.useState(false);
+  const v = VARIANTS[variant] || VARIANTS.surface;
+  const glowShadow = { pink: 'var(--glow-pink-md)', cyan: 'var(--glow-cyan-md)', violet: 'var(--glow-violet-md)', none: null }[glow];
+  return React.createElement('div', {
+    onMouseEnter: interactive ? () => setHover(true) : undefined,
+    onMouseLeave: interactive ? () => setHover(false) : undefined,
+    style: {
+      position: 'relative',
+      borderRadius: radius || (variant === 'band' ? 'var(--radius-xl)' : 'var(--radius-xl)'),
+      padding: padding || (variant === 'band' ? 'var(--card-pad-band)' : 'var(--card-pad)'),
+      transition: 'transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out)',
+      cursor: interactive ? 'pointer' : undefined,
+      ...v,
+      boxShadow: hover ? (glowShadow || 'var(--glow-violet-md)') + ', var(--elev-2)' : (glowShadow ? glowShadow + ', ' + v.boxShadow : v.boxShadow),
+      transform: hover ? 'translateY(-3px)' : 'translateY(0)',
+      ...style,
+    },
+    ...rest,
+  }, children);
+}

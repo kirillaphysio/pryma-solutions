@@ -1,0 +1,24 @@
+import React from 'react';
+
+/** Type-only wordmark: PRYMA in display caps with a gradient prism bar. No logo file exists in the source material. */
+export function Wordmark({ size = 22, tone = 'gradient', showBar = true, suffix = 'SOLUTIONS', style, ...rest }) {
+  const fill = tone === 'gradient'
+    ? { background: 'var(--grad-neon-text)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }
+    : { color: tone === 'mono' ? 'var(--text-hi)' : 'var(--pink-500)' };
+  return React.createElement('span', {
+    style: { display: 'inline-flex', alignItems: 'center', gap: Math.round(size * 0.45), ...style }, ...rest,
+  }, [
+    showBar && React.createElement('span', {
+      key: 'bar',
+      style: { width: Math.round(size * 0.26), height: Math.round(size * 1.05), borderRadius: 'var(--radius-xs)', background: 'var(--grad-brand)', boxShadow: 'var(--glow-text-pink)', transform: 'skewX(-14deg)' },
+    }),
+    React.createElement('span', {
+      key: 'mark',
+      style: { fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: size, letterSpacing: size * 0.06, lineHeight: 1, ...fill },
+    }, 'PRYMA'),
+    suffix && React.createElement('span', {
+      key: 'sfx',
+      style: { fontFamily: 'var(--font-ui)', fontWeight: 700, fontSize: Math.max(9, Math.round(size * 0.42)), letterSpacing: '0.16em', color: 'var(--text-faint)', lineHeight: 1, paddingTop: 2 },
+    }, suffix),
+  ]);
+}

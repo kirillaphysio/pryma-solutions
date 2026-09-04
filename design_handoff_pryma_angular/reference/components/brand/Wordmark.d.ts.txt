@@ -1,0 +1,15 @@
+import * as React from 'react';
+
+/** The Pryma wordmark, set in type. The source material contains no logo file, so no mark is drawn. */
+export interface WordmarkProps {
+  /** Cap height in px. 22 in nav, 18 in footer, 40+ in hero lockups. */
+  size?: number;
+  /** gradient = neon prism fill; mono = solid light; pink = solid accent. */
+  tone?: 'gradient' | 'mono' | 'pink';
+  /** The skewed gradient prism bar to the left of the name. */
+  showBar?: boolean;
+  /** Small caps suffix; pass null to drop it. */
+  suffix?: string | null;
+  style?: React.CSSProperties;
+}
+export function Wordmark(props: WordmarkProps): JSX.Element;

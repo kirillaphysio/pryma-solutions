@@ -1,0 +1,6 @@
+<!-- @dsCard group="Type" viewport="700x210" name="Display tier" subtitle="Space Grotesk 700 at 64/58/50/32px with negative tracking" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.r{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);min-width:96px;flex:0 0 auto}.d{font-family:var(--font-display);color:var(--text-hi)}</style>
+</head><body><div class="r"><span class="k">display-xxl<br>64 / -0.768</span><span class="d" style="font-size:64px;font-weight:700;line-height:1.12;letter-spacing:-.768px">Ship the future</span></div>
+<div class="r"><span class="k">display-xl<br>58 / -0.464</span><span class="d" style="font-size:44px;font-weight:600;line-height:1.25;letter-spacing:-.464px">Section opener</span></div>
+<div class="r"><span class="k">display-md<br>32 / -0.256</span><span class="d" style="font-size:32px;font-weight:700;line-height:1.25;letter-spacing:-.256px">Card title</span></div></body></html>

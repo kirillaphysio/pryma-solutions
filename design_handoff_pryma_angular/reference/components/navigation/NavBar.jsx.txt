@@ -1,0 +1,116 @@
+import React from 'react';
+import { Wordmark } from '../brand/Wordmark.jsx';
+import { Button } from '../actions/Button.jsx';
+import { Icon } from '../brand/Icon.jsx';
+
+/** True while the viewport is narrower than the given media query. */
+function useMatch(query) {
+  const [on, setOn] = React.useState(false);
+  React.useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia(query);
+    const h = (e) => setOn(e.matches);
+    setOn(mq.matches);
+    if (mq.addEventListener) { mq.addEventListener('change', h); return () => mq.removeEventListener('change', h); }
+    mq.addListener(h); return () => mq.removeListener(h);
+  }, [query]);
+  return on;
+}
+
+export function NavBar({ links = [], activeHref, onNavigate, sticky = true, ctaLabel = 'Start free', signInLabel = 'Sign in', onCta, onSignIn, style }) {
+  const [open, setOpen] = React.useState(false);
+  const compact = useMatch('(max-width: 860px)');
+  const go = (href) => (e) => { if (onNavigate) { e.preventDefault(); onNavigate(href); } setOpen(false); };
+  React.useEffect(() => { if (!compact) setOpen(false); }, [compact]);
+
+  const brand = React.createElement('a', { key: 'w', href: '#', onClick: go('/'), style: { display: 'flex', textDecoration: 'none' } },
+    React.createElement(Wordmark, { size: 20 }));
+
+  const row = compact
+    ? React.createElement('div', {
+      key: 'r',
+      style: {
+        maxWidth: 'var(--container-max)', margin: '0 auto',
+        padding: 'var(--space-md) var(--container-pad)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-lg)',
+      },
+    }, [
+      brand,
+      React.createElement('button', {
+        key: 'b', type: 'button', 'aria-label': open ? 'Bezárás' : 'Menü', 'aria-expanded': open,
+        onClick: () => setOpen(!open),
+        style: {
+          width: 44, height: 44, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+          background: 'transparent', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)',
+          color: 'var(--text-hi)', cursor: 'pointer', padding: 0, flex: '0 0 auto',
+        },
+      }, React.createElement(Icon, { name: open ? 'x' : 'menu', size: 22 })),
+    ])
+    : React.createElement('div', {
+      key: 'r',
+      style: {
+        maxWidth: 'var(--container-max)', margin: '0 auto',
+        padding: 'var(--space-lg) var(--container-pad)',
+        display: 'flex', alignItems: 'center', gap: 'var(--space-xxl)',
+      },
+    }, [
+      brand,
+      React.createElement('nav', {
+        key: 'n',
+        style: { display: 'flex', alignItems: 'center', gap: 'var(--space-huge)', marginLeft: 'auto', flexWrap: 'wrap' },
+      }, links.map(l => React.createElement(NavLink, { key: l.href, link: l, active: l.href === activeHref, onClick: go(l.href) }))),
+      React.createElement('div', { key: 'a', style: { display: 'flex', alignItems: 'center', gap: 'var(--space-md)', marginLeft: 'auto' } }, [
+        signInLabel && React.createElement(Button, { key: 's', variant: 'ghost', size: 'cap', onClick: onSignIn }, signInLabel),
+        ctaLabel && React.createElement(Button, { key: 'c', variant: 'primary', size: 'cap', onClick: onCta, iconRight: React.createElement(Icon, { name: 'arrow-right', size: 15 }) }, ctaLabel),
+      ]),
+    ]);
+
+  const drawer = compact && open && React.createElement('div', {
+    key: 'd',
+    style: {
+      borderTop: '1px solid var(--line-hairline)', background: 'var(--surface-raised)',
+      padding: 'var(--space-lg) var(--container-pad) var(--space-xl)',
+      display: 'flex', flexDirection: 'column', gap: 'var(--space-xs)',
+    },
+  }, [
+    ...links.map(l => React.createElement('a', {
+      key: l.href, href: l.href, onClick: go(l.href),
+      style: {
+        display: 'flex', alignItems: 'center', minHeight: 48, padding: '0 var(--space-sm)',
+        textDecoration: 'none', fontFamily: 'var(--font-ui)', fontSize: 'var(--body-lg-size)',
+        fontWeight: l.href === activeHref ? 'var(--weight-bold)' : 'var(--weight-medium)',
+        color: l.href === activeHref ? 'var(--text-hi)' : 'var(--text-mute)',
+        borderBottom: '1px solid var(--line-hairline)',
+      },
+    }, l.label)),
+    React.createElement('div', { key: 'a', style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-sm)', marginTop: 'var(--space-md)' } }, [
+      signInLabel && React.createElement(Button, { key: 's', variant: 'ghost', size: 'md', fullWidth: true, onClick: () => { setOpen(false); if (onSignIn) onSignIn(); } }, signInLabel),
+      ctaLabel && React.createElement(Button, { key: 'c', variant: 'primary', size: 'md', fullWidth: true, onClick: () => { setOpen(false); if (onCta) onCta(); }, iconRight: React.createElement(Icon, { name: 'arrow-right', size: 16 }) }, ctaLabel),
+    ]),
+  ]);
+
+  return React.createElement('header', {
+    style: {
+      position: sticky ? 'sticky' : 'relative', top: 0, zIndex: 40,
+      background: 'var(--surface-nav)', backdropFilter: 'var(--blur-nav)',
+      borderBottom: '1px solid var(--line-hairline)', ...style,
+    },
+  }, [row, drawer]);
+}
+
+function NavLink({ link, active, onClick }) {
+  const [hover, setHover] = React.useState(false);
+  return React.createElement('a', {
+    href: link.href, onClick,
+    onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+    style: {
+      position: 'relative', textDecoration: 'none',
+      fontFamily: 'var(--font-ui)', fontSize: 'var(--body-md-size)',
+      fontWeight: active ? 'var(--weight-bold)' : 'var(--weight-medium)',
+      color: active ? 'var(--text-hi)' : hover ? 'var(--text-hi)' : 'var(--text-mute)',
+      paddingBottom: 3,
+      boxShadow: active ? 'inset 0 -2px 0 0 var(--pink-500)' : hover ? 'inset 0 -2px 0 0 var(--line-neon)' : 'none',
+      transition: 'color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out)',
+    },
+  }, link.label);
+}

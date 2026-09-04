@@ -1,0 +1,354 @@
+/* Demó — kiállítás. Bal oldali szakmalista + eszközkeret, a teljes aloldal átveszi a téma színeit. */
+
+const { Button, Card, Eyebrow, Icon, MeshBackdrop } = window.PrymaDesignSystem_286b6c;
+
+/* A színpad magassága a látómezőhöz igazodik, hogy mobilon is elférjen. */
+function useStageH() {
+  const get = () => (typeof window === 'undefined' ? 640 : Math.max(360, Math.min(640, Math.round(window.innerHeight * 0.74))));
+  const [h, setH] = React.useState(get);
+  React.useEffect(() => {
+    const on = () => setH(get());
+    window.addEventListener('resize', on);
+    return () => window.removeEventListener('resize', on);
+  }, []);
+  return h;
+}
+const DEMO_PAGES = { szalon: () => window.SalonPage, edzo: () => window.TrainerPage, asztalos: () => window.WorkshopPage };
+
+function skinCss(t) {
+  const a = t.accent, ink = t.ink, mute = t.inkMute;
+  return ':root{color-scheme:' + (t.dark ? 'dark' : 'light') + ';'
+    + '--surface-void:' + t.bg2 + ' !important;--surface-page:' + t.bg + ' !important;--surface-raised:' + t.bg2 + ' !important;'
+    + '--surface-card:' + t.card + ' !important;--surface-card-solid:' + t.card + ' !important;--surface-inset:' + tint(ink, 5) + ' !important;'
+    + '--surface-accent:' + tint(a, 10) + ' !important;--surface-glass:' + tint(ink, 4) + ' !important;'
+    + '--surface-nav:' + mix(t.bg, 'transparent', 88) + ' !important;--surface-chrome:' + tint(ink, 5) + ' !important;'
+    + '--surface-featured:' + a + ' !important;'
+    + '--text-hi:' + ink + ' !important;--text-body:' + ink + ' !important;--text-mute:' + mute + ' !important;--text-faint:' + mute + ' !important;'
+    + '--text-on-accent:' + t.onAccent + ' !important;--text-link:' + a + ' !important;--text-link-hover:' + mix(a, ink, 78) + ' !important;--text-neon:' + a + ' !important;'
+    + '--action-primary:' + a + ' !important;--action-primary-hover:' + mix(a, ink, 88) + ' !important;--action-primary-press:' + mix(a, ink, 76) + ' !important;'
+    + '--action-secondary:' + tint(a, 12) + ' !important;--action-secondary-hover:' + tint(a, 20) + ' !important;'
+    + '--action-outline:' + a + ' !important;--action-outline-hover:' + mix(a, ink, 80) + ' !important;'
+    + '--focus-ring:' + a + ' !important;--focus-halo:' + tint(a, 18) + ' !important;'
+    + '--line-hairline:' + t.lineSoft + ' !important;--line-strong:' + t.line + ' !important;--line-neon:' + tint(a, 45) + ' !important;--line-cyan:' + tint(a, 35) + ' !important;--line-accent:' + tint(a, 30) + ' !important;'
+    + '--pink-500:' + a + ' !important;--pink-400:' + a + ' !important;--cyan-400:' + a + ' !important;--violet-400:' + a + ' !important;--cyan-300:' + a + ' !important;'
+    + '--tone-violet-fg:' + a + ' !important;--tone-violet-chip:' + tint(a, 10) + ' !important;--tone-violet-line:' + tint(a, 28) + ' !important;'
+    + '--tone-pink-fg:' + a + ' !important;--tone-pink-chip:' + tint(a, 10) + ' !important;--tone-pink-line:' + tint(a, 28) + ' !important;'
+    + '--tone-cyan-fg:' + a + ' !important;--tone-cyan-chip:' + tint(a, 10) + ' !important;--tone-cyan-line:' + tint(a, 28) + ' !important;'
+    + '--glow-pink-sm:none !important;--glow-pink-md:none !important;--glow-pink-lg:none !important;--glow-cyan-sm:none !important;--glow-cyan-md:none !important;--glow-violet-md:none !important;--glow-text-pink:none !important;--glow-text-cyan:none !important;'
+    + '--elev-inset-neon:inset 0 0 0 1px ' + tint(a, 34) + ' !important;'
+    + '--grad-mesh-pink:radial-gradient(60% 70% at 18% 12%,' + tint(a, 14) + ' 0%,transparent 68%) !important;'
+    + '--grad-mesh-violet:radial-gradient(58% 62% at 82% 26%,' + tint(a, 10) + ' 0%,transparent 70%) !important;'
+    + '--grad-mesh-cyan:radial-gradient(52% 55% at 50% 96%,' + tint(a, 8) + ' 0%,transparent 72%) !important;'
+    + '--grad-hero:linear-gradient(180deg,' + t.bg + ' 0%,' + t.bg2 + ' 100%) !important;'
+    + '--grad-fade-page:linear-gradient(180deg,transparent 0%,' + t.bg + ' 82%) !important;'
+    + '--grad-brand:linear-gradient(96deg,' + a + ' 0%,' + mix(a, ink, 70) + ' 100%) !important;'
+    + '--grad-neon-text:linear-gradient(92deg,' + a + ' 0%,' + mix(a, ink, 70) + ' 100%) !important;'
+    + '--grid-line:' + tint(a, 12) + ' !important;--scanline:' + tint(ink, 3) + ' !important;'
+    + '--scrollbar-track:' + t.bg2 + ' !important;--scrollbar-thumb:' + tint(ink, 22) + ' !important;--scrollbar-thumb-hover:' + tint(ink, 34) + ' !important;'
+    + '--selection-bg:' + tint(a, 28) + ' !important;--selection-fg:' + ink + ' !important;}';
+}
+
+/* Kilépéskor a demó háttere még egy pillanatra megmarad, és onnan úszik át a Pryma arculatba. */
+function fadeBackToPryma(from) {
+  if (!from || typeof document === 'undefined') return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const old = document.getElementById('pryma-demo-exit');
+  if (old) old.remove();
+  const o = document.createElement('div');
+  o.id = 'pryma-demo-exit';
+  o.style.cssText = 'position:fixed;inset:0;z-index:60;pointer-events:none;background:' + from + ';opacity:1';
+  document.body.appendChild(o);
+  const D = 620;
+  let raf = null, timer = null, safety = null, cutting = false;
+  const kill = () => { if (raf) cancelAnimationFrame(raf); clearTimeout(timer); clearTimeout(safety); o.remove(); };
+  /* Saját óra: a leváló komponens commitjában a CSS-animáció állva maradhat. */
+  const t0 = performance.now();
+  const tick = (ts) => {
+    if (cutting) return;
+    const p = Math.min(1, (ts - t0) / D);
+    o.style.opacity = String(1 - (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2));
+    if (p < 1) raf = requestAnimationFrame(tick); else kill();
+  };
+  raf = requestAnimationFrame(tick);
+  /* Ha nincs képkocka (háttérben levő fül, fojtott iframe), időzítő zárja le — soha nem marad fenn takaró réteg. */
+  timer = setTimeout(() => {
+    if (!o.isConnected || cutting) return;
+    if (parseFloat(getComputedStyle(o).opacity) < 0.02) return kill();
+    if (document.hidden) return kill();
+    cutting = true;
+    if (raf) cancelAnimationFrame(raf);
+    o.style.transition = 'opacity .34s linear';
+    o.style.opacity = '0';
+    o.addEventListener('transitionend', kill, { once: true });
+    safety = setTimeout(kill, 600);
+  }, D + 400);
+  o.__cut = kill;
+  return o;
+}
+
+function useDemoSkin(t) {
+  const last = React.useRef(null);
+  React.useEffect(() => {
+    if (!t) return;
+    last.current = t.bg;
+    let el = document.getElementById('pryma-demo-skin');
+    if (!el) { el = document.createElement('style'); el.id = 'pryma-demo-skin'; document.head.appendChild(el); }
+    el.textContent = skinCss(t);
+    return () => {
+      /* A takaró réteg még a skin levétele előtt kerül fel, hogy ne legyen egyetlen csupasz képkocka sem. */
+      const o = fadeBackToPryma(last.current);
+      const n = document.getElementById('pryma-demo-skin');
+      if (n) n.remove();
+      /* Ha csak témát vagy színt váltunk, a következő skin azonnal felkerül — akkor nincs átúszás. */
+      if (o) {
+        const suppress = () => { if (document.getElementById('pryma-demo-skin')) o.__cut(); };
+        requestAnimationFrame(suppress);
+        setTimeout(suppress, 0);
+      }
+    };
+  }, [t && t.id, t && t.accent]);
+}
+
+/* Indul magától, az első kézi mozdulatra átadja a vezetést. */
+function useAutoScroll(ref, key) {
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    el.scrollTop = 0;
+    let raf = null, stopped = false, start = null;
+    const stop = () => { stopped = true; if (raf) cancelAnimationFrame(raf); };
+    const step = (ts) => {
+      if (stopped) return;
+      if (start === null) start = ts;
+      const max = el.scrollHeight - el.clientHeight;
+      if (max > 0) el.scrollTop = max * Math.min(1, (ts - start) / 30000);
+      if ((ts - start) < 30000) raf = requestAnimationFrame(step);
+    };
+    const timer = setTimeout(() => { raf = requestAnimationFrame(step); }, 1400);
+    const evts = ['wheel', 'touchstart', 'pointerdown', 'keydown'];
+    evts.forEach(e => el.addEventListener(e, stop, { passive: true }));
+    return () => { clearTimeout(timer); stop(); evts.forEach(e => el.removeEventListener(e, stop)); };
+  }, [key]);
+}
+
+function MiniPreview({ theme, style }) {
+  const t = resolveDemo(theme, 0);
+  const bar = (w, c, h) => <span style={{ display: 'block', width: w, height: h || 5, background: c, borderRadius: 1 }} />;
+  return (
+    <div style={{ background: t.bg, border: '1px solid ' + t.line, borderRadius: 3, padding: 14, display: 'flex', flexDirection: 'column', gap: 9, aspectRatio: '16 / 10', ...style }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>{bar(26, t.ink, 4)}<span style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>{bar(12, t.lineSoft, 4)}{bar(12, t.lineSoft, 4)}{bar(16, t.accent, 4)}</span></div>
+      {theme.id === 'szalon' && <div style={{ display: 'flex', gap: 10, flex: 1 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, justifyContent: 'center' }}>{bar('70%', t.ink, 9)}{bar('52%', t.ink, 9)}{bar('84%', t.lineSoft, 4)}{bar(36, t.accent, 10)}</div>
+        <div style={{ flex: '0 0 34%', background: 'repeating-linear-gradient(135deg,' + t.stripeA + ' 0 4px,' + t.stripeB + ' 4px 8px)', border: '1px solid ' + t.lineSoft }} />
+      </div>}
+      {theme.id === 'edzo' && <div style={{ display: 'flex', flexDirection: 'column', gap: 7, flex: 1, justifyContent: 'center' }}>
+        {bar('88%', t.ink, 12)}{bar('60%', t.ink, 12)}
+        <div style={{ display: 'flex', gap: 5, marginTop: 3 }}>{[0, 1, 2].map(i => <span key={i} style={{ flex: 1, height: 20, background: i === 1 ? t.accent : t.card, border: '1px solid ' + t.lineSoft, borderRadius: 2 }} />)}</div>
+      </div>}
+      {theme.id === 'asztalos' && <div style={{ display: 'flex', flexDirection: 'column', gap: 6, flex: 1, justifyContent: 'center' }}>
+        {bar('66%', t.ink, 8)}{bar('40%', t.lineSoft, 4)}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 5, marginTop: 4 }}>{[0, 1, 2].map(i => <span key={i} style={{ height: 1, background: t.line }} />)}</div>
+        {bar(30, t.accent, 5)}
+      </div>}
+    </div>
+  );
+}
+
+function DeviceFrame({ dev, w, stageH, children, scrollKey, t }) {
+  const STAGE_H = stageH || 640;
+  const D = DEMO_DEVICES.find(d => d.key === dev);
+  const bezel = dev === 'mobile' ? 11 : dev === 'tablet' ? 13 : 6;
+  const chrome = dev === 'desktop' ? 30 : 0;
+  const avail = Math.max(280, w);
+  const scale = Math.min((avail - bezel * 2) / D.w, (STAGE_H - bezel * 2 - chrome) / D.h, 1);
+  const innerRef = React.useRef(null);
+  useAutoScroll(innerRef, scrollKey + dev);
+  const [up, setUp] = React.useState(false);
+  React.useEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    const on = () => setUp(el.scrollTop > 240);
+    on();
+    el.addEventListener('scroll', on, { passive: true });
+    return () => el.removeEventListener('scroll', on);
+  }, [scrollKey, dev]);
+  const toTop = () => {
+    const el = innerRef.current;
+    if (!el) return;
+    el.dispatchEvent(new Event('pointerdown'));
+    el.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  const shellW = Math.round(D.w * scale) + bezel * 2;
+  const shellH = Math.round(D.h * scale) + bezel * 2 + chrome;
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center' }}>
+      <div style={{ width: shellW, height: shellH, background: dev === 'desktop' ? '#1b1a20' : '#15141a', borderRadius: dev === 'mobile' ? 34 : dev === 'tablet' ? 22 : 10, padding: bezel, boxShadow: '0 24px 60px rgba(0,0,0,.34), 0 0 0 1px rgba(255,255,255,.07)', boxSizing: 'border-box', overflow: 'hidden', transition: 'width .28s cubic-bezier(.2,.8,.2,1), height .28s cubic-bezier(.2,.8,.2,1)' }}>
+        {chrome > 0 && (
+          <div style={{ height: chrome, display: 'flex', alignItems: 'center', gap: 6, padding: '0 6px' }}>
+            {['#ff5f57', '#febc2e', '#28c840'].map(c => <span key={c} style={{ width: 9, height: 9, borderRadius: 99, background: c }} />)}
+            <span style={{ marginLeft: 10, flex: 1, maxWidth: 240, height: 15, borderRadius: 4, background: 'rgba(255,255,255,.1)' }} />
+          </div>
+        )}
+        <div style={{ width: Math.round(D.w * scale), height: Math.round(D.h * scale), borderRadius: dev === 'mobile' ? 24 : dev === 'tablet' ? 12 : 4, overflow: 'hidden', background: '#000', position: 'relative' }}>
+          <div ref={innerRef} className="demoframe" style={{ width: D.w, height: D.h, transform: 'scale(' + scale + ')', transformOrigin: 'top left', overflowY: 'auto', overflowX: 'hidden', WebkitOverflowScrolling: 'touch' }}>
+            {children}
+          </div>
+          <button onClick={toTop} aria-label="Vissza a lap tetejére" title="Vissza a lap tetejére" style={{ position: 'absolute', right: dev === 'mobile' ? 12 : 18, bottom: dev === 'mobile' ? 12 : 18, width: dev === 'mobile' ? 34 : 40, height: dev === 'mobile' ? 34 : 40, borderRadius: 99, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', background: t ? t.accent : 'var(--action-primary)', color: t ? t.onAccent : 'var(--text-on-accent)', border: 'none', boxShadow: '0 6px 18px rgba(0,0,0,.28)', opacity: up ? 1 : 0, pointerEvents: up ? 'auto' : 'none', transform: up ? 'none' : 'translateY(10px)', transition: 'opacity .28s cubic-bezier(.2,.8,.2,1), transform .28s cubic-bezier(.2,.8,.2,1)' }}>
+            <span style={{ display: 'flex', animation: up ? 'demoHop 1.6s cubic-bezier(.3,.7,.3,1) infinite' : 'none' }}>
+              <Icon name="arrow-up" size={dev === 'mobile' ? 15 : 17} color="currentColor" />
+            </span>
+          </button>
+          <style>{'@keyframes demoHop{0%,58%,100%{transform:translateY(0)}72%{transform:translateY(-4px)}86%{transform:translateY(-1px)}}'}</style>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DemoScreen({ onNavigate }) {
+  const [pick, setPick] = React.useState(null);
+  const [mood, setMood] = React.useState({});
+  const [lay, setLay] = React.useState({});
+  const [motion, setMotion] = React.useState(true);
+  const [gfx, setGfx] = React.useState('ikon');
+  const [dev, setDev] = React.useState(() => (typeof window !== 'undefined' && window.innerWidth < 760 ? 'mobile' : 'desktop'));
+  const stageH = useStageH();
+  const theme = pick ? DEMO_THEMES.find(x => x.id === pick) : null;
+  const t = theme ? resolveDemo(theme, mood[pick] || 0) : null;
+  const layIdx = pick ? (lay[pick] || 0) : 0;
+  useDemoSkin(t);
+
+  const stageRef = React.useRef(null);
+  const [stageW, setStageW] = React.useState(880);
+  React.useEffect(() => {
+    const el = stageRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(([e]) => setStageW(e.contentRect.width));
+    ro.observe(el);
+    setStageW(el.getBoundingClientRect().width);
+    return () => ro.disconnect();
+  }, [pick]);
+
+  if (!theme) {
+    return (
+      <>
+        <MeshBackdrop intensity="soft" grid={false} contentStyle={{ padding: 'clamp(40px,7vw,80px) 0 clamp(32px,5vw,56px)' }}>
+          <Container>
+            <AppearGroup immediate style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', maxWidth: 720 }}>
+              <Eyebrow tone="pink">Demó</Eyebrow>
+              <h1 style={{ fontSize: 'var(--display-xl-size)', fontWeight: 'var(--display-xl-weight)', lineHeight: 'var(--display-xl-lh)', letterSpacing: 'var(--display-xl-ls)', color: 'var(--text-hi)', textWrap: 'pretty' }}>
+                Nézd meg, mit tudna a te oldalad.
+              </h1>
+              <p style={{ fontSize: 'var(--body-lg-size)', lineHeight: 'var(--body-lg-lh)', letterSpacing: 'var(--body-lg-ls)', color: 'var(--text-mute)' }}>
+                Három szakma, három szándékosan különböző stílus. Válassz egyet, és megnyílik egy teljes példaoldal: színt, elrendezést és grafikát is váltogathatsz benne, mobilon, tableten és nagy képernyőn is.
+              </p>
+            </AppearGroup>
+          </Container>
+        </MeshBackdrop>
+
+        <Section tight>
+          <AppearGroup className="r-g3" style={{ alignItems: 'stretch' }}>
+            {DEMO_THEMES.map((th, i) => (
+              <Card key={th.id} variant="surface" interactive glow="none" onClick={() => setPick(th.id)} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', cursor: 'pointer' }}>
+                <MiniPreview theme={th} />
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--mono-sm-size)', letterSpacing: '.1em', color: 'var(--text-faint)' }}>{'0' + (i + 1)}</span>
+                <h3 style={{ fontSize: 'var(--heading-md-size)', fontWeight: 'var(--heading-md-weight)', color: 'var(--text-hi)' }}>{th.rail}</h3>
+                <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)', marginBottom: 'auto' }}>{th.note}</p>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--mono-sm-size)', letterSpacing: '.06em', color: 'var(--text-faint)' }}>{th.layouts.length} elrendezés · {th.moods.length} színvilág · {DEMO_GFX.length} grafika</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 'var(--space-md)' }}>
+                  {th.moods.map(m => <span key={m.dot} style={{ width: 12, height: 12, borderRadius: 99, background: m.dot, boxShadow: '0 0 0 1px var(--line-hairline)' }} />)}
+                  <span style={{ marginLeft: 'auto', fontSize: 'var(--body-md-size)', color: 'var(--action-primary)', display: 'inline-flex', alignItems: 'center', gap: 6 }}>Megnyitom <Icon name="arrow-right" size={14} /></span>
+                </span>
+              </Card>
+            ))}
+          </AppearGroup>
+        </Section>
+
+        <Section tight>
+          <Appear from="scale"><Card variant="outline" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-32)', flexWrap: 'wrap' }}>
+            <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)', maxWidth: 560 }}>
+              A példaoldalakon szándékosan nincs kitalált cégnév, a fotók helyét pedig jelöltem. A tieden a saját képeid és szövegeid lesznek.
+            </p>
+            <Button variant="primary" onClick={() => onNavigate('/kapcsolat')}>Beszéljük át</Button>
+          </Card></Appear>
+        </Section>
+      </>
+    );
+  }
+
+  const Page = DEMO_PAGES[pick]();
+  return (
+    <div style={{ background: 'var(--surface-page)', padding: 'clamp(24px,4vw,40px) var(--container-pad) clamp(48px,7vw,72px)' }}>
+      <div style={{ maxWidth: 1640, margin: '0 auto' }}>
+        <div className="r-demo">
+          <aside className="r-demo-rail">
+            <button onClick={() => setPick(null)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text-faint)', marginBottom: 'var(--space-md)' }}>
+              <Icon name="arrow-left" size={14} /> Mind a három
+            </button>
+            {DEMO_THEMES.map((th, i) => {
+              const on = th.id === pick;
+              return (
+                <button key={th.id} onClick={() => setPick(th.id)} style={{ textAlign: 'left', cursor: 'pointer', background: on ? 'var(--surface-card-solid)' : 'transparent', border: '1px solid ' + (on ? 'var(--line-strong)' : 'transparent'), borderLeft: '2px solid ' + (on ? 'var(--action-primary)' : 'var(--line-hairline)'), borderRadius: 'var(--radius-sm)', padding: '14px 16px', display: 'flex', flexDirection: 'column', gap: 6 }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.14em', color: on ? 'var(--action-primary)' : 'var(--text-faint)' }}>{'0' + (i + 1)}</span>
+                  <span style={{ fontFamily: 'var(--font-ui)', fontSize: 15, fontWeight: on ? 600 : 500, color: on ? 'var(--text-hi)' : 'var(--text-mute)' }}>{th.rail}</span>
+                  <span style={{ fontSize: 12, lineHeight: 1.5, color: 'var(--text-faint)' }}>{th.note}</span>
+                </button>
+              );
+            })}
+          </aside>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+            <div className="r-demo-tools">
+              <div style={{ display: 'flex', gap: 8 }}>
+                {theme.moods.map((m, i) => {
+                  const on = (mood[pick] || 0) === i;
+                  return <button key={m.dot} onClick={() => setMood({ ...mood, [pick]: i })} aria-label={'Szín ' + (i + 1)} style={{ width: 22, height: 22, borderRadius: 99, background: m.dot, cursor: 'pointer', border: '2px solid ' + (on ? 'var(--text-hi)' : 'transparent'), outline: '1px solid var(--line-hairline)', outlineOffset: on ? 1 : 0, padding: 0 }} />;
+                })}
+              </div>
+              <span className="r-sep" style={{ width: 1, height: 22, background: 'var(--line-hairline)' }} />
+              <div style={{ display: 'flex', gap: 2, background: 'var(--surface-inset)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 3 }}>
+                {theme.layouts.map((L, i) => {
+                  const on = layIdx === i;
+                  return <button key={L.id} onClick={() => setLay({ ...lay, [pick]: i })} title={L.note} style={{ cursor: 'pointer', border: 'none', borderRadius: 'calc(var(--radius-sm) - 2px)', padding: '7px 14px', fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600, letterSpacing: '.04em', background: on ? 'var(--surface-card-solid)' : 'transparent', boxShadow: on ? 'inset 0 0 0 1px var(--line-strong)' : 'none', color: on ? 'var(--text-hi)' : 'var(--text-mute)' }}>{L.label}</button>;
+                })}
+              </div>
+              <div style={{ display: 'flex', gap: 2, background: 'var(--surface-inset)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 3 }}>
+                {DEMO_GFX.map(g => {
+                  const on = gfx === g.key;
+                  return <button key={g.key} onClick={() => setGfx(g.key)} title={g.note} style={{ cursor: 'pointer', border: 'none', borderRadius: 'calc(var(--radius-sm) - 2px)', padding: '7px 14px', fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600, letterSpacing: '.04em', background: on ? 'var(--surface-card-solid)' : 'transparent', boxShadow: on ? 'inset 0 0 0 1px var(--line-strong)' : 'none', color: on ? 'var(--text-hi)' : 'var(--text-mute)' }}>{g.label}</button>;
+                })}
+              </div>
+              <button onClick={() => setMotion(!motion)} style={{ cursor: 'pointer', background: 'transparent', border: '1px solid var(--line-hairline)', borderRadius: 99, padding: '6px 12px 6px 8px', display: 'inline-flex', alignItems: 'center', gap: 8, fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', color: motion ? 'var(--text-hi)' : 'var(--text-faint)' }}>
+                <span style={{ width: 26, height: 14, borderRadius: 99, background: motion ? 'var(--action-primary)' : 'var(--line-strong)', position: 'relative', transition: 'background .2s' }}>
+                  <span style={{ position: 'absolute', top: 2, left: motion ? 14 : 2, width: 10, height: 10, borderRadius: 99, background: motion ? 'var(--text-on-accent)' : 'var(--surface-page)', transition: 'left .2s cubic-bezier(.2,.8,.2,1)' }} />
+                </span>
+                Mozgás
+              </button>
+              <div className="r-push" style={{ display: 'flex', gap: 2, background: 'var(--surface-inset)', border: '1px solid var(--line-hairline)', borderRadius: 'var(--radius-sm)', padding: 3 }}>
+                {DEMO_DEVICES.map(d => {
+                  const on = d.key === dev;
+                  return (
+                    <button key={d.key} onClick={() => setDev(d.key)} style={{ cursor: 'pointer', border: 'none', borderRadius: 'calc(var(--radius-sm) - 2px)', padding: '7px 15px', fontFamily: 'var(--font-ui)', fontSize: 12, fontWeight: 600, letterSpacing: '.04em', background: on ? 'var(--action-primary)' : 'transparent', color: on ? 'var(--text-on-accent)' : 'var(--text-mute)' }}>{d.label}</button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div ref={stageRef} style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', paddingTop: 4, overflow: 'hidden' }}>
+              <DeviceFrame dev={dev} w={stageW} stageH={stageH} scrollKey={pick + (mood[pick] || 0)} t={t}>
+                <Page t={t} dev={dev} v={theme.layouts[layIdx].id} motion={motion} gfx={gfx} />
+              </DeviceFrame>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-lg)', flexWrap: 'wrap', borderTop: '1px solid var(--line-hairline)', paddingTop: 'var(--space-lg)' }}>
+              <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: 'var(--text-faint)' }}>Az oldal magától indul — görgesd, ha átveszed. A kártyák, sorok és a galéria kattinthatók.</span>
+              <Button variant="primary" onClick={() => onNavigate('/kapcsolat')} iconRight={<Icon name="arrow-right" size={15} />}>Ilyet szeretnék</Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { DemoScreen });

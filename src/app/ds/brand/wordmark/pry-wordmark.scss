@@ -1,0 +1,40 @@
+.pry-wm {
+  display: inline-flex;
+  align-items: center;
+
+  &__bar {
+    border-radius: var(--radius-xs);
+    background: var(--grad-brand);
+    box-shadow: var(--glow-text-pink);
+    transform: skewX(-14deg);
+    flex: 0 0 auto;
+  }
+
+  &__mark {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1;
+
+    &.t-pink {
+      color: var(--pink-500);
+    }
+    &.t-mono {
+      color: var(--text-hi);
+    }
+    &.t-gradient {
+      background: var(--grad-neon-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  &__suffix {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--text-faint);
+    line-height: 1;
+    padding-top: 2px;
+  }
+}

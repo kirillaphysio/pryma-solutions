@@ -1,0 +1,32 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Actions" subtitle="Pill buttons, sizes, states and icon buttons" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Actions</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--navy-950);background-image:var(--grad-mesh-violet),var(--grad-mesh-pink);padding:24px;font-family:var(--font-ui)}#root{display:flex;flex-direction:column;gap:20px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:14px}.lbl{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { Button, IconButton, Icon } = window.PrymaDesignSystem_286b6c;
+
+function Demo(){return (<>
+  <div><div className="lbl">Variants</div><div className="row">
+    <Button variant="primary" iconRight={<Icon name="arrow-right" size={16}/>}>Start free</Button>
+    <Button variant="secondary">Sign in</Button>
+    <Button variant="outline">Read docs</Button>
+    <Button variant="ghost">Later</Button>
+    <Button variant="primary" disabled>Disabled</Button>
+  </div></div>
+  <div><div className="lbl">Sizes &middot; icon buttons</div><div className="row">
+    <Button size="lg" variant="primary">Large 18px</Button>
+    <Button size="md" variant="secondary">Medium 16px</Button>
+    <Button size="cap" variant="outline">Cap 14.4px</Button>
+    <span style={{width:12}}></span>
+    <IconButton label="Search" variant="glass"><Icon name="search" size={17}/></IconButton>
+    <IconButton label="Play" variant="neon"><Icon name="play" size={17}/></IconButton>
+    <IconButton label="More" variant="ghost"><Icon name="ellipsis" size={17}/></IconButton>
+  </div></div>
+</>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

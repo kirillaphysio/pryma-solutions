@@ -1,0 +1,37 @@
+<pry-card [variant]="featured() ? 'gradient' : 'surface'" [glow]="featured() ? 'pink' : 'none'" class="pry-pricing__card">
+  <div class="pry-pricing__head">
+    <div class="pry-pricing__row">
+      <span class="pry-pricing__tier" [class.on-accent]="featured()">{{ tier() }}</span>
+      @if (badge()) {
+        <pry-eyebrow [tone]="featured() ? 'onAccent' : 'violet'">{{ badge() }}</pry-eyebrow>
+      }
+    </div>
+    <div class="pry-pricing__price-row">
+      <span class="pry-pricing__price" [class.on-accent]="featured()">{{ price() }}</span>
+      @if (period()) {
+        <span class="pry-pricing__period" [class.on-accent]="featured()">{{ period() }}</span>
+      }
+    </div>
+    @if (blurb()) {
+      <p class="pry-pricing__blurb" [class.on-accent]="featured()">{{ blurb() }}</p>
+    }
+  </div>
+
+  <ul class="pry-pricing__features">
+    @for (f of features(); track f) {
+      <li class="pry-pricing__feature" [class.on-accent]="featured()">
+        <pry-icon
+          name="check"
+          [size]="16"
+          [color]="featured() ? 'rgba(255,255,255,.9)' : 'var(--tone-cyan-fg)'"
+          class="pry-pricing__tick"
+        />
+        <span>{{ f }}</span>
+      </li>
+    }
+  </ul>
+
+  <a pry-button [variant]="featured() ? 'onAccent' : 'primary'" [fullWidth]="true" [routerLink]="ctaPath()">
+    {{ cta() }}
+  </a>
+</pry-card>

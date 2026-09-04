@@ -1,0 +1,35 @@
+.pry-ft {
+  display: block;
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+  }
+
+  &__mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-md);
+    background: var(--surface-inset);
+    box-shadow: inset 0 0 0 1px var(--line-hairline);
+  }
+
+  &__title {
+    font-size: var(--heading-sm-size);
+    font-weight: var(--heading-sm-weight);
+    letter-spacing: var(--heading-sm-ls);
+    color: var(--text-hi);
+    font-family: var(--font-display);
+  }
+
+  &__body {
+    font-size: var(--body-md-size);
+    line-height: var(--body-md-lh);
+    color: var(--text-mute);
+  }
+}

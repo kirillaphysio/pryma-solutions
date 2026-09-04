@@ -1,0 +1,257 @@
+// Pryma — the runtime contract. Every semantic alias the components consume is emitted
+// here as a CSS custom property. Values are authored (not rounded) and carried verbatim
+// from the design-system reference tokens — do not "clean up" a number. The light theme
+// (_theme-light) and the responsive re-key (_responsive) override a subset of these.
+:root {
+  // ── Base: navy → violet void ──────────────────────────────
+  --navy-1000: #05030f;
+  --navy-950: #0a0720;
+  --navy-900: #0e0a2b;
+  --navy-850: #141038;
+  --navy-800: #1b1546;
+  --violet-750: #241a5c;
+  --violet-700: #2e1f74;
+
+  // ── Neon accents ──────────────────────────────────────────
+  --pink-500: #ff2e88;
+  --pink-600: #e01f74;
+  --pink-700: #b3155b;
+  --pink-400: #ff6fae;
+  --pink-200: #ffc2dd;
+  --magenta-500: #c026d3;
+  --violet-500: #9d5cff;
+  --violet-400: #b78cff;
+  --cyan-400: #38e1ff;
+  --cyan-300: #7aecff;
+  --cyan-600: #12a8cc;
+
+  // ── Neutrals on dark ──────────────────────────────────────
+  --mist-050: #f4f2ff;
+  --mist-100: #e3e0f5;
+  --mist-300: #b3aed4;
+  --mist-500: #8a83ad;
+  --mist-700: #57507c;
+  --mist-800: #39335a;
+
+  // ── Semantic primitives ───────────────────────────────────
+  --signal-error: #ff4d5e;
+  --signal-warn: #ffb62e;
+  --signal-success: #2ee6a8;
+
+  // ── Surfaces ──────────────────────────────────────────────
+  --surface-void: var(--navy-1000);
+  --surface-page: var(--navy-950);
+  --surface-raised: var(--navy-900);
+  --surface-card: rgba(20, 16, 56, 0.72);
+  --surface-card-solid: var(--navy-850);
+  --surface-inset: rgba(5, 3, 15, 0.55);
+  --surface-accent: var(--violet-750);
+  --surface-featured: linear-gradient(148deg, #2e1f74 0%, #5b1d6e 52%, #b3155b 100%);
+  --surface-glass: rgba(244, 242, 255, 0.05);
+  --surface-nav: rgba(10, 7, 32, 0.72);
+  --surface-chrome: rgba(5, 3, 15, 0.5);
+
+  // ── Text ──────────────────────────────────────────────────
+  --text-hi: var(--mist-050);
+  --text-body: var(--mist-100);
+  --text-mute: var(--mist-300);
+  --text-faint: var(--mist-500);
+  --text-on-accent: #ffffff;
+  --text-link: var(--cyan-400);
+  --text-link-hover: var(--cyan-300);
+  --text-neon: var(--pink-500);
+
+  // ── Action ────────────────────────────────────────────────
+  --action-primary: var(--pink-500);
+  --action-primary-hover: #ff4d9b;
+  --action-primary-press: var(--pink-600);
+  --action-secondary: rgba(157, 92, 255, 0.14);
+  --action-secondary-hover: rgba(157, 92, 255, 0.24);
+  --action-outline: var(--cyan-400);
+  --action-outline-hover: var(--cyan-300);
+  --action-disabled: var(--mist-800);
+  --focus-ring: var(--cyan-400);
+  --focus-halo: rgba(56, 225, 255, 0.16);
+
+  // ── Line / hairlines ──────────────────────────────────────
+  --line-hairline: rgba(179, 174, 212, 0.14);
+  --line-strong: rgba(179, 174, 212, 0.28);
+  --line-neon: rgba(255, 46, 136, 0.55);
+  --line-cyan: rgba(56, 225, 255, 0.45);
+  --line-accent: rgba(157, 92, 255, 0.34);
+
+  // ── Accent tones (chips, eyebrows) ────────────────────────
+  --tone-violet-fg: var(--violet-400);
+  --tone-violet-chip: rgba(157, 92, 255, 0.14);
+  --tone-violet-line: rgba(157, 92, 255, 0.32);
+  --tone-pink-fg: var(--pink-400);
+  --tone-pink-chip: rgba(255, 46, 136, 0.13);
+  --tone-pink-line: var(--line-neon);
+  --tone-cyan-fg: var(--cyan-400);
+  --tone-cyan-chip: rgba(56, 225, 255, 0.12);
+  --tone-cyan-line: var(--line-cyan);
+
+  // ── Chrome ────────────────────────────────────────────────
+  --scrollbar-track: var(--navy-1000);
+  --scrollbar-thumb: var(--mist-800);
+  --scrollbar-thumb-hover: var(--mist-700);
+  --selection-bg: rgba(255, 46, 136, 0.35);
+  --selection-fg: #ffffff;
+
+  // ── Signature gradients ───────────────────────────────────
+  --grad-brand: linear-gradient(96deg, #38e1ff 0%, #9d5cff 44%, #ff2e88 100%);
+  --grad-hero: linear-gradient(180deg, #0a0720 0%, #1b1546 58%, #3b1355 100%);
+  --grad-neon-text: linear-gradient(92deg, #ff2e88 0%, #b78cff 60%, #38e1ff 100%);
+  --grad-stat-cyan: linear-gradient(92deg, #38e1ff 0%, #9d5cff 100%);
+  --grad-stat-violet: linear-gradient(92deg, #b78cff 0%, #ff2e88 100%);
+  --grad-mesh-pink: radial-gradient(60% 70% at 18% 12%, rgba(255, 46, 136, 0.34) 0%, rgba(255, 46, 136, 0) 68%);
+  --grad-mesh-violet: radial-gradient(58% 62% at 82% 26%, rgba(157, 92, 255, 0.32) 0%, rgba(157, 92, 255, 0) 70%);
+  --grad-mesh-cyan: radial-gradient(52% 55% at 50% 96%, rgba(56, 225, 255, 0.24) 0%, rgba(56, 225, 255, 0) 72%);
+  --grad-horizon: linear-gradient(180deg, rgba(255, 46, 136, 0) 0%, rgba(255, 46, 136, 0.5) 48%, rgba(56, 225, 255, 0.5) 100%);
+  --grad-fade-page: linear-gradient(180deg, rgba(10, 7, 32, 0) 0%, var(--navy-950) 82%);
+
+  // ── Type: families + weights ──────────────────────────────
+  --font-display: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-ui: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  // ── Type: display tier (geometric, tight tracking) ────────
+  --display-xxl-size: 64px;
+  --display-xxl-lh: 1.12;
+  --display-xxl-ls: -0.768px;
+  --display-xxl-weight: 700;
+  --display-xl-size: 58px;
+  --display-xl-lh: 1.25;
+  --display-xl-ls: -0.464px;
+  --display-xl-weight: 600;
+  --display-lg-size: 50px;
+  --display-lg-lh: 1.12;
+  --display-lg-ls: -0.6px;
+  --display-lg-weight: 700;
+  --display-md-size: 32px;
+  --display-md-lh: 1.25;
+  --display-md-ls: -0.256px;
+  --display-md-weight: 700;
+
+  // ── Type: heading tier ────────────────────────────────────
+  --heading-lg-size: 24px;
+  --heading-lg-lh: 1.33;
+  --heading-lg-ls: -0.096px;
+  --heading-lg-weight: 700;
+  --heading-md-size: 22px;
+  --heading-md-lh: 1.4;
+  --heading-md-ls: 0;
+  --heading-md-weight: 600;
+  --heading-sm-size: 18px;
+  --heading-sm-lh: 1.56;
+  --heading-sm-ls: -0.0216px;
+  --heading-sm-weight: 600;
+
+  // ── Type: UI tier (humanist, 1.55 leading) ────────────────
+  --body-lg-size: 18px;
+  --body-lg-lh: 1.55;
+  --body-lg-ls: -0.0216px;
+  --body-md-size: 16px;
+  --body-md-lh: 1.55;
+  --body-md-ls: 0;
+  --body-strong-size: 16px;
+  --body-strong-lh: 1.5;
+  --body-strong-ls: 0.16px;
+  --button-lg-size: 18px;
+  --button-lg-lh: 1;
+  --button-lg-ls: 0;
+  --button-md-size: 16px;
+  --button-md-lh: 1.38;
+  --button-md-ls: 0.2px;
+  --button-cap-size: 14.4px;
+  --button-cap-lh: 1;
+  --button-cap-ls: 0.144px;
+  --caption-size: 14px;
+  --caption-lh: 1.43;
+  --caption-ls: 0.1px;
+  --micro-cap-size: 12px;
+  --micro-cap-lh: 1;
+  --micro-cap-ls: 0.96px;
+  --mono-sm-size: 13px;
+  --mono-sm-lh: 1.5;
+  --mono-sm-ls: 0.2px;
+
+  // ── Type: semantic aliases ────────────────────────────────
+  --type-hero: var(--display-xxl-size);
+  --type-section: var(--display-xl-size);
+  --type-stat: var(--display-lg-size);
+  --type-card-title: var(--display-md-size);
+  --type-eyebrow: var(--micro-cap-size);
+
+  // ── Spacing ───────────────────────────────────────────────
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 20px;
+  --space-xxl: 24px;
+  --space-huge: 28px;
+  --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+  --space-128: 128px;
+
+  // ── Radii ─────────────────────────────────────────────────
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 48px;
+  --radius-pill: 90px;
+
+  // ── Layout ────────────────────────────────────────────────
+  --container-max: 1240px;
+  --container-pad: 24px;
+  --section-pad-y: 96px;
+  --section-pad-y-tight: 48px;
+  --card-pad: 32px;
+  --card-pad-band: 48px;
+  --bp-tablet: 768px;
+  --bp-desktop: 1024px;
+  --bp-wide: 1440px;
+
+  // ── Elevation (near-black lift) ───────────────────────────
+  --elev-0: none;
+  --elev-1: 0 5px 20px rgba(5, 3, 15, 0.55);
+  --elev-2: 0 0 32px rgba(5, 3, 15, 0.7);
+  --elev-3: 0 1px 10px rgba(5, 3, 15, 0.8), 0 18px 48px rgba(5, 3, 15, 0.55);
+  --elev-inset-neon: inset 0 0 0 1px rgba(255, 46, 136, 0.45);
+
+  // ── Neon glow (the real depth language) ───────────────────
+  --glow-pink-sm: 0 0 0 1px rgba(255, 46, 136, 0.35), 0 4px 18px rgba(255, 46, 136, 0.28);
+  --glow-pink-md: 0 0 0 1px rgba(255, 46, 136, 0.45), 0 8px 34px rgba(255, 46, 136, 0.42);
+  --glow-pink-lg: 0 0 60px rgba(255, 46, 136, 0.5), 0 0 140px rgba(255, 46, 136, 0.22);
+  --glow-cyan-sm: 0 0 0 1px rgba(56, 225, 255, 0.35), 0 4px 18px rgba(56, 225, 255, 0.26);
+  --glow-cyan-md: 0 0 0 1px rgba(56, 225, 255, 0.45), 0 8px 34px rgba(56, 225, 255, 0.38);
+  --glow-violet-md: 0 0 0 1px rgba(157, 92, 255, 0.4), 0 8px 34px rgba(157, 92, 255, 0.34);
+  --glow-text-pink: 0 0 18px rgba(255, 46, 136, 0.55);
+  --glow-text-cyan: 0 0 18px rgba(56, 225, 255, 0.5);
+
+  // ── Glass ─────────────────────────────────────────────────
+  --blur-glass: blur(18px) saturate(140%);
+  --blur-nav: blur(24px) saturate(160%);
+
+  // ── Motion ────────────────────────────────────────────────
+  --ease-out: cubic-bezier(0.22, 0.68, 0, 1);
+  --ease-in-out: cubic-bezier(0.55, 0.06, 0.28, 0.98);
+  --dur-fast: 120ms;
+  --dur-med: 220ms;
+  --dur-slow: 420ms;
+  --dur-ambient: 14s;
+
+  // ── Texture ───────────────────────────────────────────────
+  --grid-line: rgba(157, 92, 255, 0.22);
+  --grid-size: 44px;
+  --scanline: rgba(244, 242, 255, 0.028);
+}

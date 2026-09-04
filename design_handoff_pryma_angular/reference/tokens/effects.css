@@ -1,0 +1,36 @@
+/* Pryma — elevation, neon glow, blur, motion. */
+:root{
+  /* elevation: dark systems lift with glow + hairline, not grey shadow */
+  --elev-0:none;
+  --elev-1:0 5px 20px rgba(5,3,15,.55);
+  --elev-2:0 0 32px rgba(5,3,15,.7);
+  --elev-3:0 1px 10px rgba(5,3,15,.8),0 18px 48px rgba(5,3,15,.55);
+  --elev-inset-neon:inset 0 0 0 1px rgba(255,46,136,.45);
+
+  /* neon glow — the system's real depth language */
+  --glow-pink-sm:0 0 0 1px rgba(255,46,136,.35),0 4px 18px rgba(255,46,136,.28);
+  --glow-pink-md:0 0 0 1px rgba(255,46,136,.45),0 8px 34px rgba(255,46,136,.42);
+  --glow-pink-lg:0 0 60px rgba(255,46,136,.5),0 0 140px rgba(255,46,136,.22);
+  --glow-cyan-sm:0 0 0 1px rgba(56,225,255,.35),0 4px 18px rgba(56,225,255,.26);
+  --glow-cyan-md:0 0 0 1px rgba(56,225,255,.45),0 8px 34px rgba(56,225,255,.38);
+  --glow-violet-md:0 0 0 1px rgba(157,92,255,.4),0 8px 34px rgba(157,92,255,.34);
+  --glow-text-pink:0 0 18px rgba(255,46,136,.55);
+  --glow-text-cyan:0 0 18px rgba(56,225,255,.5);
+
+  /* glass */
+  --blur-glass:blur(18px) saturate(140%); /* @kind other */
+  --blur-nav:blur(24px) saturate(160%); /* @kind other */
+
+  /* motion */
+  --ease-out:cubic-bezier(.22,.68,0,1); /* @kind other */
+  --ease-in-out:cubic-bezier(.55,.06,.28,.98); /* @kind other */
+  --dur-fast:120ms; /* @kind other */
+  --dur-med:220ms; /* @kind other */
+  --dur-slow:420ms; /* @kind other */
+  --dur-ambient:14s; /* @kind other */
+
+  /* texture */
+  --grid-line:rgba(157,92,255,.22); /* @kind other */
+  --grid-size:44px; /* @kind other */
+  --scanline:rgba(244,242,255,.028); /* @kind other */
+}

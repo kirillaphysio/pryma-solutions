@@ -1,0 +1,33 @@
+import React from 'react';
+import { fieldRing } from './TextInput.jsx';
+
+export function TextArea({ label, value, onChange, placeholder, name, id, rows = 4, hint, error, disabled = false, required = false, style, ...rest }) {
+  const [focus, setFocus] = React.useState(false);
+  const [hover, setHover] = React.useState(false);
+  const fid = id || name;
+  return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 6, ...style } }, [
+    label && React.createElement('label', {
+      key: 'l', htmlFor: fid,
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', fontWeight: 'var(--weight-bold)', color: 'var(--text-mute)', letterSpacing: 'var(--caption-ls)' },
+    }, [label, required && React.createElement('span', { key: 'r', style: { color: 'var(--pink-500)', marginLeft: 4 } }, '*')]),
+    React.createElement('textarea', {
+      key: 't', id: fid, name, rows, value, placeholder, disabled, required, onChange,
+      onFocus: () => setFocus(true), onBlur: () => setFocus(false),
+      onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+      style: {
+        width: '100%', boxSizing: 'border-box', resize: 'vertical',
+        fontFamily: 'var(--font-ui)', fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)',
+        color: 'var(--text-hi)', background: 'var(--surface-inset)', border: 'none',
+        borderRadius: 'var(--radius-sm)', padding: '10px 12px', outline: 'none',
+        boxShadow: fieldRing({ focus, hover, error }),
+        transition: 'box-shadow var(--dur-med) var(--ease-out)',
+        opacity: disabled ? 0.5 : 1,
+      },
+      ...rest,
+    }),
+    (error || hint) && React.createElement('span', {
+      key: 'h',
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', lineHeight: 'var(--caption-lh)', color: error ? 'var(--signal-error)' : 'var(--text-faint)' },
+    }, error || hint),
+  ]);
+}

@@ -1,0 +1,25 @@
+import React from 'react';
+
+/** All-caps micro label — pill (chip) or bare (kicker above a headline). */
+export function Eyebrow({ children, variant = 'pill', tone = 'violet', style, ...rest }) {
+  const tones = {
+    violet: { color: 'var(--tone-violet-fg)', chip: 'var(--tone-violet-chip)', line: 'var(--tone-violet-line)' },
+    pink: { color: 'var(--tone-pink-fg)', chip: 'var(--tone-pink-chip)', line: 'var(--tone-pink-line)' },
+    cyan: { color: 'var(--tone-cyan-fg)', chip: 'var(--tone-cyan-chip)', line: 'var(--tone-cyan-line)' },
+    onAccent: { color: 'rgba(255,255,255,.82)', chip: 'rgba(255,255,255,.14)', line: 'rgba(255,255,255,.34)' },
+  };
+  const t = tones[tone] || tones.violet;
+  const type = {
+    fontFamily: 'var(--font-ui)', fontWeight: 'var(--weight-bold)',
+    fontSize: 'var(--micro-cap-size)', lineHeight: 'var(--micro-cap-lh)',
+    letterSpacing: 'var(--micro-cap-ls)', textTransform: 'uppercase', color: t.color,
+  };
+  if (variant === 'bare') return React.createElement('span', { style: { display: 'inline-block', alignSelf: 'flex-start', ...type, ...style }, ...rest }, children);
+  return React.createElement('span', {
+    style: {
+      display: 'inline-flex', alignItems: 'center', alignSelf: 'flex-start', gap: 'var(--space-sm)',
+      padding: '6px 12px', borderRadius: 'var(--radius-pill)',
+      background: t.chip, boxShadow: 'inset 0 0 0 1px ' + t.line, ...type, ...style,
+    }, ...rest,
+  }, children);
+}

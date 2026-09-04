@@ -1,0 +1,6 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Radius scale" subtitle="4px inputs, 12px mockups, 16px cards, 90px every button" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.g{display:flex;gap:12px}.i{flex:1;text-align:center}.b{height:62px;background:var(--surface-card);box-shadow:inset 0 0 0 1px var(--line-strong)}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);margin-top:7px}</style>
+</head><body><div class="g">
+<div class="i"><div class="b" style="border-radius:2px"></div><div class="k">xs<br>2px</div></div><div class="i"><div class="b" style="border-radius:4px"></div><div class="k">sm<br>4px</div></div><div class="i"><div class="b" style="border-radius:8px"></div><div class="k">md<br>8px</div></div><div class="i"><div class="b" style="border-radius:12px"></div><div class="k">lg<br>12px</div></div><div class="i"><div class="b" style="border-radius:16px"></div><div class="k">xl<br>16px</div></div><div class="i"><div class="b" style="border-radius:48px"></div><div class="k">xxl<br>48px</div></div><div class="i"><div class="b" style="border-radius:90px"></div><div class="k">pill<br>90px</div></div>
+</div></body></html>

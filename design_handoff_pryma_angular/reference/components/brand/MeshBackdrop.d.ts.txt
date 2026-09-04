@@ -1,0 +1,19 @@
+import * as React from 'react';
+
+/**
+ * Hero / section atmosphere — neon mesh gradient, perspective grid floor, optional horizon line.
+ */
+export interface MeshBackdropProps {
+  children?: React.ReactNode;
+  /** soft for mid-page bands, full for heroes, deep for the closing CTA. */
+  intensity?: 'soft' | 'full' | 'deep';
+  /** Perspective grid floor. Off for dense content sections. */
+  grid?: boolean;
+  /** Glowing 1px horizon rule across the vanishing point. */
+  horizon?: boolean;
+  minHeight?: number | string;
+  style?: React.CSSProperties;
+  /** Applied to the content layer above the atmosphere. */
+  contentStyle?: React.CSSProperties;
+}
+export function MeshBackdrop(props: MeshBackdropProps): JSX.Element;

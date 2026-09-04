@@ -1,0 +1,14 @@
+import * as React from 'react';
+
+/** Inline link in body copy. Cyan is the system's only non-pink chromatic accent in type. */
+export interface TextLinkProps {
+  children?: React.ReactNode;
+  href?: string;
+  /** onAccent = white with a persistent underline, for use on gradient bands. */
+  tone?: 'default' | 'onAccent';
+  /** Appends a nudging arrow — for standalone "learn more" links, not mid-sentence. */
+  arrow?: boolean;
+  onClick?: (e: React.MouseEvent) => void;
+  style?: React.CSSProperties;
+}
+export function TextLink(props: TextLinkProps): JSX.Element;

@@ -1,0 +1,6 @@
+<!-- @dsCard group="Type" viewport="700x180" name="Body tier" subtitle="Inter 400 at 1.55 leading — 18px lead, 16px default, 14px caption" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.r{margin-bottom:12px}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);display:block;margin-bottom:3px}</style>
+</head><body><div class="r"><span class="k">body-lg 18 / 1.55</span><p style="font-size:18px;line-height:1.55;letter-spacing:-.0216px;color:var(--text-body);max-width:56ch">Marketing lead copy. One step up from default so the opening paragraph carries the section.</p></div>
+<div class="r"><span class="k">body-md 16 / 1.55</span><p style="font-size:16px;line-height:1.55;color:var(--text-body);max-width:64ch">Default body. Quiet, humanist, highly legible at small sizes — the tier does the work while the display face carries the personality.</p></div>
+<div class="r"><span class="k">caption 14 / 1.43</span><p style="font-size:14px;line-height:1.43;letter-spacing:.1px;color:var(--text-faint)">Helper text, footnotes and metadata.</p></div></body></html>

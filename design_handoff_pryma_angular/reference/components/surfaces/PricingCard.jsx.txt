@@ -1,0 +1,43 @@
+import React from 'react';
+import { Card } from './Card.jsx';
+import { Button } from '../actions/Button.jsx';
+import { Eyebrow } from '../brand/Eyebrow.jsx';
+import { Icon } from '../brand/Icon.jsx';
+
+export function PricingCard({ tier, price, period = '/mo', blurb, features = [], cta = 'Start free', ctaHref, onCta, featured = false, badge, style }) {
+  const onAccent = featured;
+  return React.createElement(Card, {
+    variant: featured ? 'gradient' : 'surface',
+    glow: featured ? 'pink' : 'none',
+    style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)', ...style },
+  }, [
+    React.createElement('div', { key: 'h', style: { display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' } }, [
+      React.createElement('div', { key: 'r', style: { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm)' } }, [
+        React.createElement('span', {
+          key: 't',
+          style: { fontFamily: 'var(--font-display)', fontSize: 'var(--heading-lg-size)', fontWeight: 'var(--heading-lg-weight)', letterSpacing: 'var(--heading-lg-ls)', color: onAccent ? 'var(--text-on-accent)' : 'var(--text-hi)' },
+        }, tier),
+        badge && React.createElement(Eyebrow, { key: 'b', tone: onAccent ? 'onAccent' : 'violet' }, badge),
+      ]),
+      React.createElement('div', { key: 'p', style: { display: 'flex', alignItems: 'baseline', gap: 6 } }, [
+        React.createElement('span', {
+          key: 'v',
+          style: { fontFamily: 'var(--font-display)', fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', color: onAccent ? 'var(--text-on-accent)' : 'var(--text-hi)' },
+        }, price),
+        period && React.createElement('span', { key: 'r2', style: { fontSize: 'var(--caption-size)', color: onAccent ? 'rgba(255,255,255,.72)' : 'var(--text-faint)' } }, period),
+      ]),
+      blurb && React.createElement('p', { key: 'b2', style: { fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: onAccent ? 'rgba(255,255,255,.82)' : 'var(--text-mute)' } }, blurb),
+    ]),
+    React.createElement('ul', { key: 'f', style: { listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)', flex: 1 } },
+      features.map((ft, i) => React.createElement('li', {
+        key: i,
+        style: { display: 'flex', alignItems: 'flex-start', gap: 'var(--space-md)', fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: onAccent ? 'rgba(255,255,255,.9)' : 'var(--text-body)' },
+      }, [
+        React.createElement(Icon, { key: 'i', name: 'check', size: 16, color: onAccent ? 'rgba(255,255,255,.9)' : 'var(--tone-cyan-fg)', style: { marginTop: 5 } }),
+        React.createElement('span', { key: 's' }, ft),
+      ]))),
+    React.createElement(Button, {
+      key: 'c', variant: featured ? 'onAccent' : 'primary', fullWidth: true, href: ctaHref, onClick: onCta,
+    }, cta),
+  ]);
+}

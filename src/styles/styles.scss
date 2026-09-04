@@ -1,0 +1,9 @@
+// Pryma — single global stylesheet entry. Order matters: fonts, then the runtime token
+// contract (:root), then the overrides (light theme + responsive re-key), then the reset
+// which consumes the tokens. Component styling lives in each component's own .scss.
+@use "fonts";
+@use "root";
+@use "theme-light";
+@use "responsive";
+@use "reset";
+@use "layout-utils";

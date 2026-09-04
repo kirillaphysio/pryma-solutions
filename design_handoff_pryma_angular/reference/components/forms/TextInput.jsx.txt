@@ -1,0 +1,47 @@
+import React from 'react';
+
+const FIELD = {
+  width: '100%', boxSizing: 'border-box',
+  fontFamily: 'var(--font-ui)', fontSize: 'var(--body-md-size)',
+  lineHeight: 'var(--body-md-lh)', color: 'var(--text-hi)',
+  background: 'var(--surface-inset)', border: 'none',
+  borderRadius: 'var(--radius-sm)', padding: '10px 12px', minHeight: 44,
+  transition: 'box-shadow var(--dur-med) var(--ease-out), background var(--dur-fast) var(--ease-out)',
+  outline: 'none',
+};
+
+export function fieldRing(state) {
+  if (state.error) return 'inset 0 0 0 1px var(--signal-error), 0 0 0 3px rgba(255,77,94,.16)';
+  if (state.focus) return 'inset 0 0 0 1px var(--focus-ring), 0 0 0 3px var(--focus-halo)';
+  if (state.hover) return 'inset 0 0 0 1px var(--line-strong)';
+  return 'inset 0 0 0 1px var(--line-hairline)';
+}
+
+export function TextInput({
+  label, value, onChange, placeholder, type = 'text', name, id,
+  hint, error, disabled = false, required = false, iconLeft, style, ...rest
+}) {
+  const [focus, setFocus] = React.useState(false);
+  const [hover, setHover] = React.useState(false);
+  const fid = id || name || (label ? 'f-' + String(label).toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined);
+  return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: 6, ...style } }, [
+    label && React.createElement('label', {
+      key: 'l', htmlFor: fid,
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', fontWeight: 'var(--weight-bold)', color: 'var(--text-mute)', letterSpacing: 'var(--caption-ls)' },
+    }, [label, required && React.createElement('span', { key: 'r', style: { color: 'var(--pink-500)', marginLeft: 4 } }, '*')]),
+    React.createElement('div', { key: 'w', style: { position: 'relative', display: 'flex', alignItems: 'center' } }, [
+      iconLeft && React.createElement('span', { key: 'i', style: { position: 'absolute', left: 12, display: 'flex', color: 'var(--text-faint)', pointerEvents: 'none' } }, iconLeft),
+      React.createElement('input', {
+        key: 'i2', id: fid, name, type, value, placeholder, disabled, required,
+        onChange, onFocus: () => setFocus(true), onBlur: () => setFocus(false),
+        onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+        style: { ...FIELD, paddingLeft: iconLeft ? 38 : 12, boxShadow: fieldRing({ focus, hover, error }), opacity: disabled ? 0.5 : 1, cursor: disabled ? 'not-allowed' : 'text' },
+        ...rest,
+      }),
+    ]),
+    (error || hint) && React.createElement('span', {
+      key: 'h',
+      style: { fontFamily: 'var(--font-ui)', fontSize: 'var(--caption-size)', lineHeight: 'var(--caption-lh)', color: error ? 'var(--signal-error)' : 'var(--text-faint)' },
+    }, error || hint),
+  ]);
+}

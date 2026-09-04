@@ -1,0 +1,7 @@
+<!-- @dsCard group="Effects" viewport="700x170" name="Glass & hairlines" subtitle="18px card blur, 24px nav blur; 1px inset hairlines, never borders" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}body{padding:0}.st{position:relative;height:170px;background:var(--navy-950);overflow:hidden}
+.m{position:absolute;inset:-20%;background-image:var(--grad-mesh-pink),var(--grad-mesh-violet);filter:blur(6px)}
+.nav{position:relative;display:flex;align-items:center;gap:14px;padding:14px 20px;background:rgba(10,7,32,.72);backdrop-filter:var(--blur-nav);border-bottom:1px solid var(--line-hairline);font-family:var(--font-mono);font-size:11px;color:var(--text-mute)}
+.card{position:relative;margin:20px;padding:18px;border-radius:var(--radius-xl);background:var(--surface-card);backdrop-filter:var(--blur-glass);box-shadow:inset 0 0 0 1px var(--line-hairline);font-family:var(--font-mono);font-size:11px;color:var(--text-mute);line-height:1.8}</style>
+</head><body><div class="st"><div class="m"></div><div class="nav">--blur-nav &middot; rgba(10,7,32,.72)</div><div class="card">--surface-card rgba(20,16,56,.72) + --blur-glass<br>--line-hairline rgba(179,174,212,.14) as inset shadow</div></div></body></html>

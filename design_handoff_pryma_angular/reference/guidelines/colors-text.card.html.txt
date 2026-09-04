@@ -1,0 +1,10 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Text on dark" subtitle="Four text weights plus the cyan link colour" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.rows{display:flex;flex-direction:column;gap:10px}.r{display:flex;align-items:baseline;gap:14px}.t{font-size:17px}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);min-width:150px}</style>
+</head><body><div class="rows">
+<div class="r"><span class="k">--text-hi</span><span class="t" style="color:var(--text-hi);font-weight:700">Headline ink, near-white</span></div>
+<div class="r"><span class="k">--text-body</span><span class="t" style="color:var(--text-body)">Body copy sits one step down</span></div>
+<div class="r"><span class="k">--text-mute</span><span class="t" style="color:var(--text-mute)">Secondary and label copy</span></div>
+<div class="r"><span class="k">--text-faint</span><span class="t" style="color:var(--text-faint)">Captions, legal, metadata</span></div>
+<div class="r"><span class="k">--text-link</span><span class="t" style="color:var(--text-link)">Inline links are cyan</span></div>
+</div></body></html>

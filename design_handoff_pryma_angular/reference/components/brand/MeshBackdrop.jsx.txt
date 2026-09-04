@@ -1,0 +1,35 @@
+import React from 'react';
+
+/** The signature atmosphere: neon mesh gradient + perspective grid + horizon line. Sits behind content, never around it. */
+export function MeshBackdrop({ children, intensity = 'full', grid = true, horizon = false, minHeight, style, contentStyle, ...rest }) {
+  const strength = { soft: 0.45, full: 1, deep: 1.35 }[intensity] ?? 1;
+  return React.createElement('div', {
+    style: { position: 'relative', overflow: 'hidden', background: 'var(--surface-page)', minHeight, isolation: 'isolate', ...style }, ...rest,
+  }, [
+    React.createElement('div', {
+      key: 'mesh', 'aria-hidden': 'true',
+      style: {
+        position: 'absolute', inset: '-10% -5%', opacity: strength,
+        backgroundImage: 'var(--grad-mesh-pink), var(--grad-mesh-violet), var(--grad-mesh-cyan)',
+        filter: 'blur(10px)', pointerEvents: 'none',
+      },
+    }),
+    grid && React.createElement('div', {
+      key: 'grid', 'aria-hidden': 'true',
+      style: {
+        position: 'absolute', left: '-25%', right: '-25%', bottom: 0, height: '58%',
+        backgroundImage: 'linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)',
+        backgroundSize: 'var(--grid-size) var(--grid-size)',
+        transform: 'perspective(340px) rotateX(58deg)', transformOrigin: 'bottom center',
+        maskImage: 'linear-gradient(to top, rgba(0,0,0,.85), transparent 76%)',
+        WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,.85), transparent 76%)',
+        pointerEvents: 'none',
+      },
+    }),
+    horizon && React.createElement('div', {
+      key: 'hz', 'aria-hidden': 'true',
+      style: { position: 'absolute', left: 0, right: 0, bottom: '42%', height: 1, background: 'var(--grad-brand)', boxShadow: 'var(--glow-pink-lg)', opacity: 0.8, pointerEvents: 'none' },
+    }),
+    React.createElement('div', { key: 'body', style: { position: 'relative', zIndex: 1, ...contentStyle } }, children),
+  ]);
+}

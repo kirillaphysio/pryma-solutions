@@ -1,0 +1,9 @@
+<!-- @dsCard group="Type" viewport="700x140" name="Families" subtitle="Space Grotesk display · Inter UI · JetBrains Mono — all Google Fonts" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}.c{padding:14px;border-radius:var(--radius-lg);background:var(--surface-card);box-shadow:inset 0 0 0 1px var(--line-hairline)}
+.n{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint);margin-bottom:8px}.s{color:var(--text-hi);font-size:26px;line-height:1.1}</style>
+</head><body><div class="g">
+<div class="c"><div class="n">Display</div><div class="s" style="font-family:var(--font-display);font-weight:700;letter-spacing:-.5px">Aa Gg 24</div><div class="n" style="margin:8px 0 0">Space Grotesk 500/600/700</div></div>
+<div class="c"><div class="n">UI</div><div class="s" style="font-family:var(--font-ui);font-weight:400">Aa Gg 24</div><div class="n" style="margin:8px 0 0">Inter 400/500/700</div></div>
+<div class="c"><div class="n">Mono</div><div class="s" style="font-family:var(--font-mono)">Aa Gg 24</div><div class="n" style="margin:8px 0 0">JetBrains Mono 400/700</div></div>
+</div></body></html>

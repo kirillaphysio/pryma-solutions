@@ -1,0 +1,261 @@
+/* Demó — személyi edző. Sötét, kondenzált nagybetűs, rövid kártyás felépítés, kevés fotó. */
+
+function TrainerSection({ t, dev, alt, children, style }) {
+  return (
+    <section style={{ background: alt ? t.bg2 : t.bg, padding: dpick(dev, '48px 0', '64px 0', '92px 0'), ...style }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 ' + dpick(dev, '20px', '40px', '60px') }}>{children}</div>
+    </section>
+  );
+}
+
+function TrainerH({ t, dev, size, children, style }) {
+  return <h2 style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: dpick(dev, size * 0.62, size * 0.8, size), lineHeight: 1.02, letterSpacing: '-.025em', textTransform: 'uppercase', color: t.ink, margin: 0, textWrap: 'balance', ...style }}>{children}</h2>;
+}
+
+const TRAINER_PROGRAMS = [
+  { n: 'Alapozó', d: '12 hét', ic: 'sprout', b: 'Ha évek óta nem edzettél. Technika, terhelés lassan felépítve, hetente két alkalom.', tags: ['kezdő', '2×/hét'], more: ['Mozgásvizsgálat az első alkalommal', 'Saját testsúlyos alapok, majd súlyzó', 'Heti visszamérés, írásos terv'] },
+  { n: 'Erő', d: 'haladó', ic: 'dumbbell', b: 'Ha már van rutinod, de megállt a fejlődés. Számok, terv, kontrollált progresszió.', tags: ['haladó', '3×/hét'], more: ['Erőfelmérés guggolás, nyomás, húzás', 'Blokkokra bontott, számolt terhelés', 'Technikavideó-elemzés'] },
+  { n: 'Visszatérés', d: 'rehab után', ic: 'heart-pulse', b: 'Gyógytorna után, orvosi javaslat mentén. Óvatos tempó, folyamatos visszajelzés.', tags: ['rehab', '1–2×/hét'], more: ['Egyeztetés a gyógytornásszal', 'Fájdalomskála minden alkalommal', 'Lassított tempó, sok kontroll'] },
+];
+
+const TRAINER_PRICES = {
+  alkalmi: [
+    { n: '1 alkalom', p: '12 000 Ft', b: 'Ha csak ki akarod próbálni.', hi: false },
+    { n: '8 alkalom', p: '88 000 Ft', b: 'A legtöbben ezt választják. Két hónap, heti egy edzés.', hi: true },
+    { n: 'Online terv', p: '24 000 Ft / hó', b: 'Havi terv, videós technikaellenőrzés.', hi: false },
+  ],
+  berlet: [
+    { n: 'Heti 1 alkalom', p: '44 000 Ft / hó', b: 'Négy edzés havonta, fix időpontban.', hi: false },
+    { n: 'Heti 2 alkalom', p: '82 000 Ft / hó', b: 'A felépített programokhoz ez az alap.', hi: true },
+    { n: 'Heti 2 + online', p: '99 000 Ft / hó', b: 'Edzések és a közbeni napok terve is.', hi: false },
+  ],
+};
+
+/* Számjegyre animáló statisztika; ami nem szám, az simán belép. */
+function TrainerStat({ t, dev, value, label, motion, big, icon }) {
+  const ref = React.useRef(null);
+  const on = useInView(ref, motion);
+  const num = /^[\d]+([.,][\d]+)?%?$/.test(value);
+  const dec = num && /[.,]/.test(value);
+  const target = num ? parseFloat(value.replace(',', '.')) : 0;
+  const live = useCount(target, num && on && motion, 1100);
+  const val = num && !motion ? target : live;
+  const shown = num ? (dec ? val.toFixed(1).replace('.', ',') : String(Math.round(val))) + (value.indexOf('%') > -1 ? '%' : '') : value;
+  return (
+    <div ref={ref} style={{ background: t.bg, padding: dpick(dev, '18px 16px', '22px 20px', big ? '32px 28px' : '26px 24px'), display: 'flex', flexDirection: 'column', gap: 6, opacity: on ? 1 : 0, transform: on ? 'none' : 'translateY(14px)', transition: 'opacity .6s cubic-bezier(.2,.8,.2,1), transform .6s cubic-bezier(.2,.8,.2,1)' }}>
+      <span style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: dpick(dev, big ? 32 : 26, big ? 40 : 30, big ? 54 : 36), letterSpacing: '-.03em', color: t.accent, lineHeight: 1, fontVariantNumeric: 'tabular-nums' }}>{shown}</span>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 7, fontFamily: t.f.m, fontSize: 10, letterSpacing: '.1em', textTransform: 'uppercase', color: t.inkMute }}>{icon && <Gly name={icon} size={12} color={t.accent} />}{label}</span>
+    </div>
+  );
+}
+
+function TrainerPage({ t, dev, v = 'left', motion = true, gfx = 'foto' }) {
+  const ico = gfx !== 'foto';
+  const cols = dpick(dev, '1fr', 'repeat(3,1fr)', 'repeat(3,1fr)');
+  const [prog, setProg] = React.useState(0);
+  const [plan, setPlan] = React.useState('alkalmi');
+  const [menu, setMenu] = React.useState(false);
+  const links = ['Programok', 'Menete', 'Árak', 'Kapcsolat'];
+  const stats = [['1:1', 'edzés, nem csoport', 'user'], ['12', 'hetes felépítés', 'calendar-days'], ['60', 'perc alkalmanként', 'timer'], ['H–Szo', 'reggel 6-tól', 'clock']];
+  const statBar = (big) => (
+    <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr 1fr', 'repeat(4,1fr)', v === 'split' ? '1fr 1fr' : 'repeat(4,1fr)'), gap: 1, background: t.line, border: '1px solid ' + t.line }}>
+      {stats.map(([val, l, gi]) => <TrainerStat key={l} t={t} dev={dev} value={val} label={l} motion={motion} big={big} icon={ico ? gi : null} />)}
+    </div>
+  );
+
+  return (
+    <div className="dmo" style={{ background: t.bg, color: t.ink, fontFamily: t.f.b, fontSize: 15, lineHeight: 1.6, minHeight: '100%', ...demoVars(t) }}>
+      <DemoStyle />
+
+      <header style={{ position: 'relative', borderBottom: '1px solid ' + t.lineSoft, padding: dpick(dev, '16px 20px', '18px 40px', '20px 60px') }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 28 }}>
+          <span style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: 17, letterSpacing: '-.02em', textTransform: 'uppercase', color: t.ink }}>Személyi<span style={{ color: t.accent }}>edzés</span></span>
+          {dev !== 'mobile' && (
+            <nav style={{ display: 'flex', gap: 26, marginLeft: 'auto' }}>
+              {links.map(l => (
+                <span key={l} className="dmo-link" style={{ fontFamily: t.f.d, fontWeight: 600, fontSize: 12, letterSpacing: '.1em', textTransform: 'uppercase', color: t.inkMute }}>{l}</span>
+              ))}
+            </nav>
+          )}
+          {dev === 'mobile' && (
+            <span onClick={() => setMenu(!menu)} className="dmo-tap" style={{ marginLeft: 'auto', fontFamily: t.f.m, fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: menu ? t.accent : t.inkMute }}>{menu ? 'Bezár' : 'Menü'}</span>
+          )}
+          <DemoBtn t={t} style={{ marginLeft: dev === 'mobile' ? 0 : 0, padding: '10px 16px', fontSize: 12, fontWeight: 600, letterSpacing: '.06em', textTransform: 'uppercase' }}>Felmérés</DemoBtn>
+        </div>
+        {dev === 'mobile' && (
+          <div style={{ display: 'grid', gridTemplateRows: menu ? '1fr' : '0fr', overflow: 'hidden', transition: 'grid-template-rows .38s cubic-bezier(.2,.8,.2,1)' }}>
+            <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', paddingTop: menu ? 14 : 0, transition: 'padding .38s' }}>
+              {links.map(l => <span key={l} className="dmo-row" style={{ fontFamily: t.f.d, fontWeight: 600, fontSize: 13, letterSpacing: '.1em', textTransform: 'uppercase', color: t.ink, padding: '12px 4px', borderTop: '1px solid ' + t.lineSoft }}>{l}</span>)}
+            </div>
+          </div>
+        )}
+      </header>
+
+      {v === 'poster' ? (
+        <TrainerSection t={t} dev={dev} style={{ paddingTop: dpick(dev, 56, 84, 120), paddingBottom: dpick(dev, 40, 52, 72), background: 'linear-gradient(180deg,' + t.bg + ' 0%,' + tint(t.accent, 7) + ' 100%)' }}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 28, alignItems: 'center', textAlign: 'center' }}>
+            <Kicker t={t}>Személyi edzés · saját terem</Kicker>
+            <TrainerH t={t} dev={dev} size={104} style={{ maxWidth: 1000 }}>Amit nem hagysz abba három hét után.</TrainerH>
+            <p style={{ color: t.inkMute, fontSize: dpick(dev, 15, 17, 19), maxWidth: 560, margin: 0 }}>
+              Felmérésre épített terv, heti két alkalom. Kezdőknek, visszatérőknek és sérülés utáni újrakezdéshez.
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
+              <DemoBtn t={t} style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Ingyenes felmérés</DemoBtn>
+              <DemoBtn t={t} variant="outline" style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Programok</DemoBtn>
+            </div>
+          </Reveal>
+          <div style={{ marginTop: dpick(dev, 36, 48, 64) }}>{statBar(true)}</div>
+        </TrainerSection>
+      ) : v === 'split' ? (
+        <TrainerSection t={t} dev={dev} style={{ paddingBottom: dpick(dev, 40, 52, 64) }}>
+          <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '1.1fr .9fr'), gap: dpick(dev, 32, 40, 56), alignItems: 'center' }}>
+            <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+              <Kicker t={t}>Személyi edzés · saját terem</Kicker>
+              <TrainerH t={t} dev={dev} size={66}>Amit nem hagysz abba három hét után.</TrainerH>
+              <p style={{ color: t.inkMute, fontSize: dpick(dev, 15, 17, 18), maxWidth: 480, margin: 0 }}>
+                Felmérésre épített terv, heti két alkalom. Kezdőknek, visszatérőknek és sérülés utáni újrakezdéshez.
+              </p>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <DemoBtn t={t} style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Ingyenes felmérés</DemoBtn>
+                <DemoBtn t={t} variant="outline" style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Programok</DemoBtn>
+              </div>
+            </Reveal>
+            <Reveal motion={motion} delay={140} from="right">{statBar(false)}</Reveal>
+          </div>
+        </TrainerSection>
+      ) : (
+        <TrainerSection t={t} dev={dev} style={{ paddingBottom: dpick(dev, 40, 52, 64) }}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 26, maxWidth: 900 }}>
+            <Kicker t={t}>Személyi edzés · saját terem</Kicker>
+            <TrainerH t={t} dev={dev} size={78}>Amit nem hagysz abba három hét után.</TrainerH>
+            <p style={{ color: t.inkMute, fontSize: dpick(dev, 15, 17, 18), maxWidth: 520, margin: 0 }}>
+              Felmérésre épített terv, heti két alkalom. Kezdőknek, visszatérőknek és sérülés utáni újrakezdéshez.
+            </p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <DemoBtn t={t} style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Ingyenes felmérés</DemoBtn>
+              <DemoBtn t={t} variant="outline" style={{ fontWeight: 600, letterSpacing: '.04em', textTransform: 'uppercase' }}>Programok</DemoBtn>
+            </div>
+          </Reveal>
+          <div style={{ marginTop: dpick(dev, 36, 48, 64) }}>{statBar(false)}</div>
+        </TrainerSection>
+      )}
+
+      <TrainerSection t={t} dev={dev} alt>
+        <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 32 }}>
+          <Kicker t={t}>Programok</Kicker>
+          <TrainerH t={t} dev={dev} size={44}>Három út, ugyanaz a módszer.</TrainerH>
+        </Reveal>
+        <div style={{ display: 'grid', gridTemplateColumns: v === 'poster' ? dpick(dev, '1fr', '1fr', '1fr') : cols, gap: dpick(dev, 16, 18, 24) }}>
+          {TRAINER_PROGRAMS.map((p, i) => {
+            const on = prog === i;
+            return (
+              <Reveal key={p.n} motion={motion} delay={i * 110} onClick={() => setProg(i)} className="dmo-lift dmo-tap" style={{ background: on ? tint(t.accent, 9) : t.card, border: '1px solid ' + (on ? t.accent : t.line), borderRadius: t.radius, padding: dpick(dev, 22, 24, 30), display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: 12 }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    {ico && <Gly name={p.ic} size={19} color={on ? t.accent : t.inkMute} />}
+                    <span style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: 24, letterSpacing: '-.02em', textTransform: 'uppercase', color: on ? t.accent : t.ink, transition: 'color .25s' }}>{p.n}</span>
+                  </span>
+                  <span style={{ fontFamily: t.f.m, fontSize: 11, color: t.accent, letterSpacing: '.08em' }}>{p.d}</span>
+                </div>
+                <p style={{ color: t.inkMute, fontSize: 14, margin: 0 }}>{p.b}</p>
+                <div style={{ display: 'grid', gridTemplateRows: on ? '1fr' : '0fr', overflow: 'hidden', transition: 'grid-template-rows .4s cubic-bezier(.2,.8,.2,1)' }}>
+                  <div style={{ minHeight: 0 }}>
+                    <ul style={{ listStyle: 'none', margin: 0, padding: on ? '4px 0 8px' : 0, display: 'flex', flexDirection: 'column', gap: 8, transition: 'padding .4s' }}>
+                      {p.more.map(m => (
+                        <li key={m} style={{ display: 'flex', gap: 10, fontSize: 13, color: t.ink }}>
+                          <span style={{ width: 10, height: 1, background: t.accent, flex: '0 0 auto', marginTop: 9 }} />{m}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                <div style={{ display: 'flex', gap: 8, marginTop: 'auto', flexWrap: 'wrap', alignItems: 'center' }}>
+                  {p.tags.map(g => <span key={g} style={{ fontFamily: t.f.m, fontSize: 10, letterSpacing: '.1em', textTransform: 'uppercase', color: t.inkMute, border: '1px solid ' + t.line, borderRadius: 99, padding: '4px 10px' }}>{g}</span>)}
+                  <span style={{ marginLeft: 'auto', fontFamily: t.f.m, fontSize: 10, letterSpacing: '.1em', textTransform: 'uppercase', color: t.accent }}>{on ? '−' : '+'}</span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </TrainerSection>
+
+      <TrainerSection t={t} dev={dev}>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '.42fr 1fr'), gap: dpick(dev, 26, 32, 56), alignItems: 'start' }}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <Kicker t={t}>Hogyan zajlik</Kicker>
+            <TrainerH t={t} dev={dev} size={38}>Három lépés.</TrainerH>
+          </Reveal>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {[['01', 'Felmérés', 'Mozgásvizsgálat és egy beszélgetés arról, mit szeretnél elérni. Ez ingyenes és nem kötelez semmire.', 'clipboard-list'], ['02', 'Terv', 'Kapsz egy 12 hetes vázlatot: mit, mikor, milyen terheléssel. Írásban, hogy vissza tudd olvasni.', 'file-text'], ['03', 'Edzés', 'Heti alkalmak, közben rendszeres visszamérés. Ha valami nem működik, menet közben átalakítjuk.', 'dumbbell']].map(([n, h, b, gi], i) => (
+              <Reveal key={n} motion={motion} delay={i * 120} from="right" className="dmo-row" style={{ display: 'grid', gridTemplateColumns: '54px 1fr', gap: dpick(dev, 12, 18, 24), padding: dpick(dev, '18px 8px', '20px 8px', '24px 8px'), borderTop: '1px solid ' + t.line }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: t.f.m, fontSize: 12, color: t.accent, letterSpacing: '.1em' }}>{n}{ico && <Gly name={gi} size={15} color={t.accent} />}</span>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <span style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: dpick(dev, 19, 21, 23), letterSpacing: '-.02em', textTransform: 'uppercase', color: t.ink }}>{h}</span>
+                  <p style={{ color: t.inkMute, fontSize: 14, margin: 0, maxWidth: 560 }}>{b}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </TrainerSection>
+
+      <div className="dmo-zoom">
+        <Art t={t} gfx={gfx} ratio={dpick(dev, '4 / 3', '2 / 1', '21 / 9')} label="edzés közben · terem" motif="rings" icon="dumbbell" glyph={32} style={{ border: 'none', borderRadius: 0 }} />
+      </div>
+
+      <TrainerSection t={t} dev={dev} alt>
+        <Reveal motion={motion} style={{ display: 'flex', flexDirection: dev === 'mobile' ? 'column' : 'row', alignItems: dev === 'mobile' ? 'flex-start' : 'flex-end', justifyContent: 'space-between', gap: 20, marginBottom: 32 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            <Kicker t={t}>Árak</Kicker>
+            <TrainerH t={t} dev={dev} size={44}>Nincs éves szerződés.</TrainerH>
+          </div>
+          <div style={{ display: 'flex', gap: 2, background: t.card, border: '1px solid ' + t.line, borderRadius: 99, padding: 3 }}>
+            {[['alkalmi', 'Alkalmi'], ['berlet', 'Bérlet']].map(([k, l]) => (
+              <span key={k} onClick={() => setPlan(k)} className="dmo-tap" style={{ borderRadius: 99, padding: '8px 18px', fontFamily: t.f.d, fontWeight: 600, fontSize: 12, letterSpacing: '.08em', textTransform: 'uppercase', background: plan === k ? t.accent : 'transparent', color: plan === k ? t.onAccent : t.inkMute }}>{l}</span>
+            ))}
+          </div>
+        </Reveal>
+        <div style={{ display: 'grid', gridTemplateColumns: cols, gap: dpick(dev, 16, 18, 24), alignItems: 'stretch' }}>
+          {TRAINER_PRICES[plan].map((p, i) => (
+            <div key={plan + p.n} className="dmo-lift" style={{ background: p.hi ? t.accent : t.card, border: '1px solid ' + (p.hi ? t.accent : t.line), borderRadius: t.radius, padding: dpick(dev, 22, 24, 30), display: 'flex', flexDirection: 'column', gap: 12, animation: motion ? 'dmoIn .45s cubic-bezier(.2,.8,.2,1) both' : 'none', animationDelay: (i * 70) + 'ms' }}>
+              <span style={{ fontFamily: t.f.m, fontSize: 10, letterSpacing: '.14em', textTransform: 'uppercase', color: p.hi ? t.onAccent : t.inkMute, opacity: p.hi ? .7 : 1 }}>{p.n}</span>
+              <span style={{ fontFamily: t.f.d, fontWeight: 800, fontSize: dpick(dev, 26, 28, 32), letterSpacing: '-.03em', color: p.hi ? t.onAccent : t.ink, lineHeight: 1 }}>{p.p}</span>
+              <p style={{ fontSize: 14, margin: 0, color: p.hi ? t.onAccent : t.inkMute, opacity: p.hi ? .78 : 1 }}>{p.b}</p>
+            </div>
+          ))}
+        </div>
+        <style>{'@keyframes dmoIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}'}</style>
+      </TrainerSection>
+
+      <TrainerSection t={t} dev={dev}>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '1fr 1fr'), gap: dpick(dev, 28, 32, 64), alignItems: 'center' }}>
+          <Reveal motion={motion} style={{ display: 'block' }}>
+            <p style={{ fontFamily: t.f.d, fontWeight: 600, fontSize: dpick(dev, 22, 26, 30), lineHeight: 1.25, letterSpacing: '-.02em', color: t.ink, margin: 0 }}>
+              „Nyolc alkalom után először fordult elő, hogy magamtól mentem be a terembe.”
+            </p>
+          </Reveal>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: t.line, border: '1px solid ' + t.line }}>
+            {[['86%', 'három hónap után is edz', 'trending-up'], ['4,9', 'átlagos értékelés', 'star']].map(([val, l, gi]) => <TrainerStat key={l} t={t} dev={dev} value={val} label={l} motion={motion} icon={ico ? gi : null} />)}
+          </div>
+        </div>
+      </TrainerSection>
+
+      <section style={{ background: t.accent, padding: dpick(dev, '40px 20px', '52px 40px', '64px 60px') }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexDirection: dev === 'desktop' ? 'row' : 'column', alignItems: dev === 'desktop' ? 'center' : 'flex-start', justifyContent: 'space-between', gap: 24 }}>
+          <TrainerH t={t} dev={dev} size={40} style={{ color: t.onAccent, maxWidth: 640 }}>Az első felmérés ingyenes.</TrainerH>
+          <span className="dmo-btn" style={{ fontFamily: t.f.b, fontSize: 14, fontWeight: 600, letterSpacing: '.06em', textTransform: 'uppercase', background: t.bg, color: t.ink, padding: '15px 24px', borderRadius: t.radius, whiteSpace: 'nowrap' }}>Időpontot kérek</span>
+        </div>
+      </section>
+
+      <footer style={{ background: t.bg2, padding: dpick(dev, '28px 20px', '32px 40px', '36px 60px'), borderTop: '1px solid ' + t.lineSoft }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: 20, justifyContent: 'space-between', fontFamily: t.f.m, fontSize: 11, letterSpacing: '.08em', textTransform: 'uppercase', color: t.inkMute }}>
+          {[['+36 30 123 4567', 'phone'], ['edzes@example.hu', 'mail'], ['Budapest · saját terem', 'map-pin']].map(([txt, gi]) => (
+            <span key={txt} style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>{ico && <Gly name={gi} size={13} color={t.accent} />}{txt}</span>
+          ))}
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Object.assign(window, { TrainerPage });

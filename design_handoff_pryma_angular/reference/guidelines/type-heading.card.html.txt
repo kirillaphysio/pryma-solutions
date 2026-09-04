@@ -1,0 +1,6 @@
+<!-- @dsCard group="Type" viewport="700x160" name="Heading tier" subtitle="24 / 22 / 18px — tier names, sub-sections, compact titles" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.r{display:flex;align-items:baseline;gap:16px;margin-bottom:12px}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);min-width:120px}.d{font-family:var(--font-display);color:var(--text-hi)}</style>
+</head><body><div class="r"><span class="k">heading-lg 24/700</span><span class="d" style="font-size:24px;font-weight:700;letter-spacing:-.096px">Pricing tier name</span></div>
+<div class="r"><span class="k">heading-md 22/600</span><span class="d" style="font-size:22px;font-weight:600">Sub-section heading</span></div>
+<div class="r"><span class="k">heading-sm 18/600</span><span class="d" style="font-size:18px;font-weight:600;letter-spacing:-.0216px">Compact card title</span></div></body></html>

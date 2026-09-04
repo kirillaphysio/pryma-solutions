@@ -1,0 +1,93 @@
+.pry-footer {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  background: var(--surface-void);
+  // The footer's top rule is the second (and last) real border in the system.
+  border-top: 1px solid var(--line-hairline);
+
+  &__glow {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: var(--grad-brand);
+    opacity: 0.7;
+  }
+
+  &__top {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-64) var(--container-pad) var(--space-32);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-32) var(--space-48);
+  }
+
+  &__brand {
+    flex: 1 1 260px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  &__tagline {
+    font-size: var(--caption-size);
+    line-height: var(--caption-lh);
+    color: var(--text-faint);
+    max-width: 260px;
+  }
+
+  &__col {
+    flex: 1 1 160px;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  &__col-title {
+    font-family: var(--font-ui);
+    font-weight: var(--weight-bold);
+    font-size: var(--micro-cap-size);
+    letter-spacing: var(--micro-cap-ls);
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+
+  &__link {
+    font-size: var(--body-md-size);
+    color: var(--text-mute);
+    text-decoration: none;
+    transition: color var(--dur-fast) var(--ease-out);
+    &:hover {
+      color: var(--text-hi);
+      text-decoration: none;
+      text-shadow: none;
+    }
+  }
+
+  &__legal {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-xl) var(--container-pad) var(--space-32);
+    border-top: 1px solid var(--line-hairline);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-sm) var(--space-lg);
+    flex-wrap: wrap;
+    font-size: var(--caption-size);
+    color: var(--text-faint);
+    letter-spacing: var(--caption-ls);
+  }
+
+  &__note {
+    font-family: var(--font-mono);
+    font-size: var(--mono-sm-size);
+    color: var(--text-faint);
+    opacity: 0.8;
+  }
+}

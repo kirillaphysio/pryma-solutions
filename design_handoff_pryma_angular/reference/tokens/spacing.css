@@ -1,0 +1,34 @@
+/* Pryma — spacing, layout and radius scales. */
+:root{
+  --space-xs:4px;
+  --space-sm:8px;
+  --space-md:12px;
+  --space-lg:16px;
+  --space-xl:20px;
+  --space-xxl:24px;
+  --space-huge:28px;
+  --space-32:32px;
+  --space-48:48px;
+  --space-64:64px;
+  --space-96:96px;
+  --space-128:128px;
+
+  --radius-xs:2px;
+  --radius-sm:4px;
+  --radius-md:8px;
+  --radius-lg:12px;
+  --radius-xl:16px;
+  --radius-xxl:48px;
+  --radius-pill:90px;
+
+  --container-max:1240px; /* @kind spacing */
+  --container-pad:24px;
+  --section-pad-y:96px;
+  --section-pad-y-tight:48px;
+  --card-pad:32px;
+  --card-pad-band:48px;
+
+  --bp-tablet:768px; /* @kind spacing */
+  --bp-desktop:1024px; /* @kind spacing */
+  --bp-wide:1440px; /* @kind spacing */
+}

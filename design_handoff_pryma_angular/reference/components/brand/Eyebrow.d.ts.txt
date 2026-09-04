@@ -1,0 +1,11 @@
+import * as React from 'react';
+
+/** Uppercase micro-label above headlines and on pricing tiers. */
+export interface EyebrowProps {
+  children?: React.ReactNode;
+  /** pill = tinted chip with hairline; bare = plain caps kicker. */
+  variant?: 'pill' | 'bare';
+  tone?: 'violet' | 'pink' | 'cyan' | 'onAccent';
+  style?: React.CSSProperties;
+}
+export function Eyebrow(props: EyebrowProps): JSX.Element;

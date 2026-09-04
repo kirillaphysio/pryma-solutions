@@ -1,0 +1,23 @@
+<!-- @dsCard group="Components" viewport="700x250" name="Forms" subtitle="Input, select and textarea — 4px wells with a cyan focus ring" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Forms</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--navy-950);background-image:var(--grad-mesh-violet),var(--grad-mesh-pink);padding:24px;font-family:var(--font-ui)}#root{display:flex;flex-direction:column;gap:20px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:14px}.lbl{font-family:var(--font-ui);font-size:11px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--text-faint);margin-bottom:10px}</style>
+</head><body><div id="root"></div>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<script type="text/babel">
+const { TextInput, Select, TextArea, Icon } = window.PrymaDesignSystem_286b6c;
+
+function Demo(){const [v,setV]=React.useState('');return (
+  <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:20}}>
+    <div style={{display:'flex',flexDirection:'column',gap:16}}>
+      <TextInput label="Work email" type="email" required placeholder="you@company.com" value={v} onChange={e=>setV(e.target.value)} iconLeft={<Icon name="mail" size={16}/>}/>
+      <TextInput label="Seats" defaultValue="12" error="Enter a number above 1"/>
+      <Select label="Team size" placeholder="Choose one" options={['1\u201310','11\u201350','51\u2013200','200+']}/>
+    </div>
+    <TextArea label="What are you building?" rows={7} placeholder="A few lines is plenty." hint="We reply within one business day."/>
+  </div>);}
+ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script></body></html>

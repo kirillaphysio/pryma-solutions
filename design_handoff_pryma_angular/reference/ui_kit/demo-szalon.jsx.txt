@@ -1,0 +1,252 @@
+/* Demó — fodrászat & kozmetika. Meleg, szerif, képvezérelt, hosszú oldal. */
+
+function SalonSection({ t, dev, alt, flush, children, style }) {
+  return (
+    <section style={{ background: alt ? t.bg2 : t.bg, padding: dpick(dev, '52px 0', '72px 0', '104px 0'), ...style }}>
+      <div style={{ maxWidth: 1180, margin: '0 auto', padding: flush ? 0 : '0 ' + dpick(dev, '20px', '40px', '64px') }}>{children}</div>
+    </section>
+  );
+}
+
+function SalonH({ t, dev, size, children, style }) {
+  return <h2 style={{ fontFamily: t.f.d, fontWeight: 500, fontSize: dpick(dev, size * 0.68, size * 0.84, size), lineHeight: 1.08, letterSpacing: '-.01em', color: t.ink, textWrap: 'pretty', ...style }}>{children}</h2>;
+}
+
+const SALON_SERVICES = [
+  { n: 'Vágás és formázás', d: '60 perc', p: '8 000 Ft-tól', img: 'vágás közben · közeli', ic: 'scissors', mo: 'arcs' },
+  { n: 'Festés és melír', d: '120 perc', p: '16 000 Ft-tól', img: 'festés · előtte-utána', ic: 'paintbrush', mo: 'bloom' },
+  { n: 'Arckezelés', d: '75 perc', p: '12 000 Ft-tól', img: 'kozmetikai kezelés', ic: 'sparkles', mo: 'grid' },
+];
+
+const SALON_PRICES = [
+  ['Női vágás, mosás, szárítás', '8 000 – 11 000 Ft'],
+  ['Férfi vágás', '6 000 Ft'],
+  ['Tőfestés', '12 000 Ft-tól'],
+  ['Melír, fóliás', '18 000 Ft-tól'],
+  ['Alap arckezelés', '12 000 Ft'],
+  ['Szemöldökformázás', '3 500 Ft'],
+];
+
+const SALON_GALLERY = [
+  { l: 'hajfestés · részlet', m: 'bloom', i: 'paintbrush' },
+  { l: 'szalonbelső · szék', m: 'grid', i: 'armchair' },
+  { l: 'termékpolc', m: 'grid', i: 'package' },
+  { l: 'mosdótér · tükör', m: 'arcs', i: 'droplets' },
+];
+
+const SALON_ABOUT = [['Konzultáció minden új vendégnek', 'message-circle'], ['Illatmentes termékek kérésre', 'leaf'], ['Kártyás fizetés', 'credit-card']];
+
+function SalonPage({ t, dev, v = 'split', motion = true, gfx = 'foto' }) {
+  const ico = gfx !== 'foto';
+  const links = ['Szolgáltatások', 'Árak', 'A szalonról', 'Kapcsolat'];
+  const cols = dpick(dev, '1fr', 'repeat(3,1fr)', 'repeat(3,1fr)');
+  const [menu, setMenu] = React.useState(false);
+  const [gal, setGal] = React.useState(0);
+  const wide = dev === 'desktop';
+
+  const heroText = (align) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 22, alignItems: align === 'center' ? 'center' : 'flex-start', textAlign: align === 'center' ? 'center' : 'left' }}>
+      <Kicker t={t}>Belváros · hétfő–szombat</Kicker>
+      <SalonH t={t} dev={dev} size={align === 'center' ? 66 : 62} style={{ margin: 0 }}>Ápolt haj,<br />nyugodt másfél óra.</SalonH>
+      <p style={{ color: t.inkMute, fontSize: dpick(dev, 15, 16, 17), maxWidth: 440, margin: 0 }}>
+        Vágás, festés és arckezelés egy helyen. Előre egyeztetett időpontban, sietés nélkül.
+      </p>
+      <div style={{ display: 'flex', gap: 14, flexWrap: 'wrap', alignItems: 'center', justifyContent: align === 'center' ? 'center' : 'flex-start' }}>
+        <DemoBtn t={t}>Időpontot kérek</DemoBtn>
+        <DemoBtn t={t} variant="ghost">Árak megtekintése</DemoBtn>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="dmo" style={{ background: t.bg, color: t.ink, fontFamily: t.f.b, fontSize: 15, lineHeight: 1.65, minHeight: '100%', ...demoVars(t) }}>
+      <DemoStyle />
+
+      <header style={{ borderBottom: '1px solid ' + t.lineSoft, background: t.bg, padding: dpick(dev, '16px 20px', '20px 40px', '24px 64px') }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', display: 'flex', flexDirection: dev === 'mobile' ? 'row' : 'column', alignItems: 'center', gap: dev === 'mobile' ? 0 : 14, justifyContent: 'space-between' }}>
+          <span style={{ fontFamily: t.f.d, fontSize: dpick(dev, 19, 22, 25), letterSpacing: '.16em', textTransform: 'uppercase', color: t.ink }}>Fodrászat &amp; Kozmetika</span>
+          {dev === 'mobile' ? (
+            <span onClick={() => setMenu(!menu)} className="dmo-tap" style={{ display: 'flex', flexDirection: 'column', gap: 4, padding: 4 }}>
+              {[0, 1, 2].map(i => (
+                <span key={i} style={{ width: 20, height: 1.5, background: menu ? t.accent : t.ink, transition: 'transform .3s cubic-bezier(.2,.8,.2,1), opacity .2s', transform: menu ? (i === 0 ? 'translateY(5.5px) rotate(45deg)' : i === 2 ? 'translateY(-5.5px) rotate(-45deg)' : 'none') : 'none', opacity: menu && i === 1 ? 0 : 1 }} />
+              ))}
+            </span>
+          ) : (
+            <nav style={{ display: 'flex', gap: 30, alignItems: 'center' }}>
+              {links.map(l => <span key={l} className="dmo-link" style={{ fontSize: 13, letterSpacing: '.06em', color: t.inkMute }}>{l}</span>)}
+              <DemoBtn t={t} style={{ padding: '9px 18px', fontSize: 13 }}>Időpont</DemoBtn>
+            </nav>
+          )}
+        </div>
+        {dev === 'mobile' && (
+          <div style={{ display: 'grid', gridTemplateRows: menu ? '1fr' : '0fr', overflow: 'hidden', transition: 'grid-template-rows .38s cubic-bezier(.2,.8,.2,1)' }}>
+            <div style={{ minHeight: 0, display: 'flex', flexDirection: 'column', gap: 2, paddingTop: menu ? 16 : 0, transition: 'padding .38s' }}>
+              {links.map(l => <span key={l} className="dmo-row" style={{ fontSize: 15, color: t.ink, padding: '11px 4px', borderTop: '1px solid ' + t.lineSoft }}>{l}</span>)}
+              <DemoBtn t={t} wide style={{ marginTop: 10 }}>Időpontot kérek</DemoBtn>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {v === 'center' ? (
+        <SalonSection t={t} dev={dev} style={{ paddingBottom: dpick(dev, 36, 44, 56) }}>
+          <Reveal motion={motion} style={{ maxWidth: 760, margin: '0 auto' }}>{heroText('center')}</Reveal>
+        </SalonSection>
+      ) : v === 'magazine' ? (
+        <SalonSection t={t} dev={dev} style={{ paddingBottom: dpick(dev, 44, 56, 72) }}>
+          <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '.9fr 1.1fr'), gap: dpick(dev, 28, 36, 0), alignItems: 'center' }}>
+            <Reveal motion={motion} from="scale" className="dmo-zoom" style={{ zIndex: 1 }}>
+              <Art t={t} gfx={gfx} ratio={dev === 'mobile' ? '4 / 3' : '3 / 4'} label="portré · szalonbelső" motif="arcs" icon="scissors" glyph={30} />
+            </Reveal>
+            <Reveal motion={motion} delay={140} from="right" style={{ background: t.bg, padding: wide ? '52px 0 52px 52px' : 0, marginLeft: wide ? -64 : 0, zIndex: 2, position: 'relative' }}>
+              {heroText('left')}
+            </Reveal>
+          </div>
+        </SalonSection>
+      ) : (
+        <SalonSection t={t} dev={dev}>
+          <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '1.02fr .98fr'), gap: dpick(dev, 32, 40, 64), alignItems: 'center' }}>
+            <Reveal motion={motion}>{heroText('left')}</Reveal>
+            <Reveal motion={motion} delay={140} from="scale" className="dmo-zoom">
+              <Art t={t} gfx={gfx} ratio={dev === 'mobile' ? '4 / 3' : '4 / 5'} label="portré · szalonbelső" motif="arcs" icon="scissors" glyph={30} />
+            </Reveal>
+          </div>
+        </SalonSection>
+      )}
+
+      {v === 'center' && (
+        <Reveal motion={motion} from="scale" className="dmo-zoom" style={{ padding: '0 0 ' + dpick(dev, 8, 12, 16) }}>
+          <Art t={t} gfx={gfx} ratio={dpick(dev, '4 / 3', '2 / 1', '21 / 8')} label="portré · szalonbelső" motif="bloom" icon="scissors" glyph={30} style={{ border: 'none', borderRadius: 0 }} />
+        </Reveal>
+      )}
+
+      <SalonSection t={t} dev={dev} alt>
+        <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 12, marginBottom: 36 }}>
+          <Kicker t={t}>Szolgáltatások</Kicker>
+          <SalonH t={t} dev={dev} size={40} style={{ margin: 0 }}>Amiért a legtöbben jönnek.</SalonH>
+        </Reveal>
+        <div style={{ display: 'grid', gridTemplateColumns: v === 'magazine' ? dpick(dev, '1fr', 'repeat(3,1fr)', 'repeat(3,1fr)') : cols, gap: dpick(dev, 26, 24, 34) }}>
+          {SALON_SERVICES.map((s, i) => (
+            <Reveal key={s.n} motion={motion} delay={i * 110} className="dmo-lift" style={{ display: 'flex', flexDirection: 'column', gap: 14, background: t.card, border: '1px solid ' + t.lineSoft, borderRadius: t.radius, padding: 14, marginTop: v === 'magazine' && wide ? i * 26 : 0 }}>
+              <div className="dmo-zoom"><Art t={t} gfx={gfx} ratio="4 / 3" label={s.img} motif={s.mo} icon={s.ic} glyph={24} /></div>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                {ico && <Gly name={s.ic} size={19} color={t.accent} />}
+                <span style={{ fontFamily: t.f.d, fontSize: 24, color: t.ink }}>{s.n}</span>
+              </span>
+              <span style={{ fontFamily: t.f.m, fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: t.inkMute }}>{s.d} · {s.p}</span>
+            </Reveal>
+          ))}
+        </div>
+      </SalonSection>
+
+      {v === 'split' ? (
+        <SalonSection t={t} dev={dev} flush style={{ padding: 0 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', 'repeat(3,1fr)', 'repeat(3,1fr)'), gap: 2 }}>
+            {SALON_GALLERY.slice(0, 3).map((g, i) => (
+              <Reveal key={g.l} motion={motion} delay={i * 120} from="scale" className="dmo-zoom">
+                <Art t={t} gfx={gfx} ratio={dpick(dev, '3 / 2', '3 / 4', '3 / 4')} label={g.l} motif={g.m} icon={g.i} glyph={26} style={{ border: 'none', borderRadius: 0 }} />
+              </Reveal>
+            ))}
+          </div>
+        </SalonSection>
+      ) : (
+        <SalonSection t={t} dev={dev}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <div className="dmo-zoom" style={{ border: '1px solid ' + t.line, borderRadius: t.radius }}>
+              <Art key={gal} t={t} gfx={gfx} ratio={dpick(dev, '4 / 3', '3 / 2', '16 / 9')} label={SALON_GALLERY[gal].l} motif={SALON_GALLERY[gal].m} icon={SALON_GALLERY[gal].i} glyph={30} style={{ border: 'none', borderRadius: 0, animation: 'none', opacity: 1 }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: dpick(dev, 6, 10, 12) }}>
+              {SALON_GALLERY.map((g, i) => (
+                <Art key={g.l} t={t} gfx={gfx} ratio="1 / 1" label={dev === 'mobile' ? String(i + 1) : g.l} motif={g.m} icon={g.i} glyph={dev === 'mobile' ? 13 : 17} onClick={() => setGal(i)} className="dmo-tap"
+                  style={{ borderColor: i === gal ? t.accent : t.line, borderWidth: i === gal ? 2 : 1, opacity: i === gal ? 1 : .62 }} />
+              ))}
+            </div>
+            <span style={{ fontFamily: t.f.m, fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', color: t.inkMute }}>Válassz képet a galériából</span>
+          </Reveal>
+        </SalonSection>
+      )}
+
+      <SalonSection t={t} dev={dev}>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '.9fr 1.1fr'), gap: dpick(dev, 30, 36, 64), alignItems: 'center' }}>
+          <Reveal motion={motion} from="left" className="dmo-zoom" style={{ order: v === 'magazine' ? 2 : 1 }}>
+            <Art t={t} gfx={gfx} ratio="1 / 1" label="a szalon · nappali fény" motif="rings" icon="flower" glyph={30} />
+          </Reveal>
+          <Reveal motion={motion} delay={120} style={{ display: 'flex', flexDirection: 'column', gap: 20, order: v === 'magazine' ? 1 : 2 }}>
+            <Kicker t={t}>A szalonról</Kicker>
+            <SalonH t={t} dev={dev} size={38} style={{ margin: 0 }}>Két szék, egy vendég egyszerre.</SalonH>
+            <p style={{ color: t.inkMute, margin: 0 }}>
+              Nem futószalag: annyi időpontot adunk ki egy napra, amennyivel valóban lehet foglalkozni. Az első alkalom mindig konzultációval kezdődik, hogy a hajad állapotához illő megoldást válasszuk.
+            </p>
+            <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              {SALON_ABOUT.map(([txt, gi]) => (
+                <li key={txt} style={{ display: 'flex', gap: 12, alignItems: 'baseline', color: t.ink }}>
+                  {ico
+                    ? <Gly name={gi} size={15} color={t.accent} style={{ transform: 'translateY(2px)' }} />
+                    : <span style={{ width: 16, height: 1, background: t.accent, flex: '0 0 auto', transform: 'translateY(-4px)' }} />}
+                  {txt}
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </SalonSection>
+
+      <SalonSection t={t} dev={dev} alt>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '.5fr 1fr'), gap: dpick(dev, 28, 32, 56), alignItems: 'start' }}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            <Kicker t={t}>Árak</Kicker>
+            <SalonH t={t} dev={dev} size={34} style={{ margin: 0 }}>Tájékoztató árlista.</SalonH>
+          </Reveal>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {SALON_PRICES.map(([n, p], i) => (
+              <Reveal key={n} motion={motion} delay={i * 60} className="dmo-row" style={{ display: 'flex', justifyContent: 'space-between', gap: 20, padding: '15px 8px', borderBottom: '1px solid ' + t.lineSoft, alignItems: 'baseline' }}>
+                <span style={{ color: t.ink, fontSize: dpick(dev, 14, 15, 16) }}>{n}</span>
+                <span style={{ fontFamily: t.f.m, fontSize: 12, color: t.inkMute, whiteSpace: 'nowrap' }}>{p}</span>
+              </Reveal>
+            ))}
+            <p style={{ fontFamily: t.f.m, fontSize: 11, color: t.inkMute, marginTop: 16, letterSpacing: '.04em' }}>A végleges ár a hajhossztól és a felhasznált anyagtól függ.</p>
+          </div>
+        </div>
+      </SalonSection>
+
+      <SalonSection t={t} dev={dev}>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr 1fr', '1fr 1fr'), gap: dpick(dev, 26, 32, 56) }}>
+          {[['Öt éve ide járok, és még soha nem kellett kétszer elmagyaráznom, mit szeretnék.', 'Vendég · festés'], ['Az időpont időpont: nem vártam, és nem is siettettek.', 'Vendég · arckezelés']].map(([q, w], i) => (
+            <Reveal key={w} motion={motion} delay={i * 140} style={{ display: 'flex', flexDirection: 'column', gap: 16, borderTop: '1px solid ' + t.line, paddingTop: 22 }}>
+              <p style={{ fontFamily: t.f.d, fontSize: dpick(dev, 21, 22, 25), lineHeight: 1.35, color: t.ink, margin: 0 }}>„{q}”</p>
+              <span style={{ fontFamily: t.f.m, fontSize: 11, letterSpacing: '.12em', textTransform: 'uppercase', color: t.inkMute }}>{w}</span>
+            </Reveal>
+          ))}
+        </div>
+      </SalonSection>
+
+      <SalonSection t={t} dev={dev} style={{ background: tint(t.accent, 10) }}>
+        <div style={{ display: 'grid', gridTemplateColumns: dpick(dev, '1fr', '1fr', '1fr .8fr'), gap: dpick(dev, 28, 32, 56), alignItems: 'center' }}>
+          <Reveal motion={motion} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <SalonH t={t} dev={dev} size={40} style={{ margin: 0 }}>Kérj időpontot.</SalonH>
+            <p style={{ color: t.inkMute, margin: 0, maxWidth: 420 }}>Írd meg, mikor lenne jó, és mit szeretnél. Aznap visszajelzünk.</p>
+          </Reveal>
+          <Reveal motion={motion} delay={120} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+            {['Név', 'Telefonszám'].map(p => (
+              <span key={p} className="dmo-field" style={{ background: t.card, border: '1px solid ' + t.line, borderRadius: t.radius, padding: '13px 15px', fontSize: 14, color: t.inkMute }}>{p}</span>
+            ))}
+            <DemoBtn t={t} wide>Időpontot kérek</DemoBtn>
+          </Reveal>
+        </div>
+      </SalonSection>
+
+      <footer style={{ background: t.bg2, borderTop: '1px solid ' + t.line, padding: dpick(dev, '32px 20px', '40px', '48px 64px') }}>
+        <div style={{ maxWidth: 1180, margin: '0 auto', display: 'grid', gridTemplateColumns: dpick(dev, '1fr', 'repeat(3,1fr)', 'repeat(3,1fr)'), gap: 24 }}>
+          {[['Nyitvatartás', 'H–P 9:00–18:00\nSzo 9:00–13:00', 'clock'], ['Cím', 'Belváros, főutca 12.\n1. emelet', 'map-pin'], ['Elérhetőség', '+36 1 234 5678\nidopont@example.hu', 'phone']].map(([h, b, gi]) => (
+            <div key={h} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span style={{ display: 'flex', alignItems: 'center', gap: 8, fontFamily: t.f.m, fontSize: 10, letterSpacing: '.16em', textTransform: 'uppercase', color: t.inkMute }}>{ico && <Gly name={gi} size={13} color={t.accent} />}{h}</span>
+              <span style={{ fontSize: 14, color: t.ink, whiteSpace: 'pre-line', lineHeight: 1.6 }}>{b}</span>
+            </div>
+          ))}
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+Object.assign(window, { SalonPage });

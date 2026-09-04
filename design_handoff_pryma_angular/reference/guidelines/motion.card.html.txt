@@ -1,0 +1,11 @@
+<!-- @dsCard group="Effects" viewport="700x150" name="Motion" subtitle="120/220/420ms on a decisive ease-out; 14s ambient gradient drift" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.rows{display:flex;flex-direction:column;gap:10px}.r{display:flex;align-items:center;gap:14px}.k{font-family:var(--font-mono);font-size:10px;color:var(--text-faint);min-width:190px}
+.track{flex:1;height:8px;border-radius:90px;background:var(--surface-inset);box-shadow:inset 0 0 0 1px var(--line-hairline);overflow:hidden}.fill{height:100%;background:var(--grad-brand)}
+@keyframes run{0%{width:6%}100%{width:100%}}</style>
+</head><body><div class="rows">
+<div class="r"><span class="k">--dur-fast 120ms hover</span><div class="track"><div class="fill" style="animation:run 120ms var(--ease-out) infinite alternate"></div></div></div>
+<div class="r"><span class="k">--dur-med 220ms glow / lift</span><div class="track"><div class="fill" style="animation:run 220ms var(--ease-out) infinite alternate"></div></div></div>
+<div class="r"><span class="k">--dur-slow 420ms reveal</span><div class="track"><div class="fill" style="animation:run 420ms var(--ease-in-out) infinite alternate"></div></div></div>
+<div class="r"><span class="k">--ease-out cubic(.22,.68,0,1)</span><span class="k" style="min-width:0">fast out, long settle — never a bounce</span></div>
+</div></body></html>

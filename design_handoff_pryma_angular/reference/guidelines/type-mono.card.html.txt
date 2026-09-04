@@ -1,0 +1,4 @@
+<!-- @dsCard group="Type" viewport="700x130" name="Mono" subtitle="JetBrains Mono for token names, code and mockup chrome" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.m{font-family:var(--font-mono);font-size:13px;line-height:1.5;letter-spacing:.2px;color:var(--cyan-300)}.mm{font-family:var(--font-mono);font-size:13px;color:var(--text-faint)}</style>
+</head><body><div class="m">--action-primary: #ff2e88;</div><div class="m">--radius-pill: 90px;</div><div class="mm">pryma.app/build &middot; mockup title bars &middot; metadata</div></body></html>

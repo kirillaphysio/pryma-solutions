@@ -1,0 +1,90 @@
+/* Pryma — light theme. Opt in with data-theme="light" on <html> (whole page) or on any
+   container (a light section inside a dark page). Overrides semantic aliases only:
+   primitives, type, spacing and motion are shared. The gradient band (--surface-featured)
+   and the pink CTA stay identical in both themes — they are the brand anchors. */
+[data-theme="light"]{
+  color-scheme:light;
+
+  /* surfaces */
+  --surface-void:#eceafa;
+  --surface-page:#f8f6ff;
+  --surface-raised:#ffffff;
+  --surface-card:rgba(255,255,255,.78);
+  --surface-card-solid:#ffffff;
+  --surface-inset:rgba(36,26,92,.05);
+  --surface-accent:#efe9ff;
+  --surface-glass:rgba(36,26,92,.05); /* @kind color */
+  --surface-nav:rgba(248,246,255,.74); /* @kind color */
+  --surface-chrome:rgba(36,26,92,.06); /* @kind color */
+
+  /* text */
+  --text-hi:#140f2e;
+  --text-body:#2d2654;
+  --text-mute:#5b5386;
+  --text-faint:#7b739e;
+  --text-link:#0b7f9c;
+  --text-link-hover:#075f76;
+  --text-neon:var(--pink-600);
+
+  /* action — primary pink is unchanged */
+  --action-secondary:rgba(157,92,255,.12);
+  --action-secondary-hover:rgba(157,92,255,.2);
+  --action-outline:#0b7f9c;
+  --action-outline-hover:#075f76;
+  --action-disabled:#cfcae4;
+  --focus-ring:#0b7f9c;
+  --focus-halo:rgba(18,168,204,.18);
+
+  /* line */
+  --line-hairline:rgba(36,26,92,.12);
+  --line-strong:rgba(36,26,92,.22);
+  --line-neon:rgba(224,31,116,.4);
+  --line-cyan:rgba(18,168,204,.42);
+  --line-accent:rgba(157,92,255,.28);
+
+  /* accent tones — deepened so caps-size labels stay legible on white */
+  --tone-violet-fg:#6d33d6;
+  --tone-violet-chip:rgba(157,92,255,.12);
+  --tone-violet-line:rgba(157,92,255,.3);
+  --tone-pink-fg:var(--pink-700);
+  --tone-pink-chip:rgba(255,46,136,.1);
+  --tone-pink-line:rgba(224,31,116,.32);
+  --tone-cyan-fg:#0b7f9c;
+  --tone-cyan-chip:rgba(18,168,204,.1);
+  --tone-cyan-line:rgba(18,168,204,.32);
+
+  /* gradients */
+  --grad-hero:linear-gradient(180deg,#f8f6ff 0%,#efe9ff 56%,#ffe7f2 100%); /* @kind color */
+  --grad-neon-text:linear-gradient(92deg,#e01f74 0%,#7b3ff0 58%,#12a8cc 100%); /* @kind color */
+  --grad-stat-cyan:linear-gradient(92deg,#12a8cc 0%,#7b3ff0 100%); /* @kind color */
+  --grad-stat-violet:linear-gradient(92deg,#7b3ff0 0%,#e01f74 100%); /* @kind color */
+  --grad-mesh-pink:radial-gradient(60% 70% at 18% 12%,rgba(255,46,136,.16) 0%,rgba(255,46,136,0) 68%); /* @kind color */
+  --grad-mesh-violet:radial-gradient(58% 62% at 82% 26%,rgba(157,92,255,.16) 0%,rgba(157,92,255,0) 70%); /* @kind color */
+  --grad-mesh-cyan:radial-gradient(52% 55% at 50% 96%,rgba(56,225,255,.14) 0%,rgba(56,225,255,0) 72%); /* @kind color */
+  --grad-fade-page:linear-gradient(180deg,rgba(248,246,255,0) 0%,#f8f6ff 82%); /* @kind color */
+
+  /* elevation — light needs real shadow, not glow, to read as lift */
+  --elev-1:0 4px 16px rgba(36,26,92,.07);
+  --elev-2:0 10px 34px rgba(36,26,92,.09);
+  --elev-3:0 1px 3px rgba(36,26,92,.07),0 18px 44px rgba(36,26,92,.11);
+  --elev-inset-neon:inset 0 0 0 1px rgba(255,46,136,.38);
+
+  /* glow — kept, at roughly two-thirds strength; text glow is off */
+  --glow-pink-sm:0 0 0 1px rgba(255,46,136,.28),0 4px 14px rgba(255,46,136,.22);
+  --glow-pink-md:0 0 0 1px rgba(255,46,136,.36),0 8px 26px rgba(255,46,136,.3);
+  --glow-pink-lg:0 0 46px rgba(255,46,136,.3),0 0 110px rgba(255,46,136,.14);
+  --glow-cyan-sm:0 0 0 1px rgba(18,168,204,.3),0 4px 14px rgba(18,168,204,.2);
+  --glow-cyan-md:0 0 0 1px rgba(18,168,204,.38),0 8px 26px rgba(18,168,204,.26);
+  --glow-violet-md:0 0 0 1px rgba(123,63,240,.34),0 8px 26px rgba(123,63,240,.24);
+  --glow-text-pink:none;
+  --glow-text-cyan:none;
+
+  /* texture + chrome */
+  --grid-line:rgba(157,92,255,.16); /* @kind other */
+  --scanline:rgba(20,15,46,.03); /* @kind other */
+  --scrollbar-track:#ece9f8;
+  --scrollbar-thumb:#c9c3e2;
+  --scrollbar-thumb-hover:#b1a9d2;
+  --selection-bg:rgba(255,46,136,.22);
+  --selection-fg:#140f2e;
+}

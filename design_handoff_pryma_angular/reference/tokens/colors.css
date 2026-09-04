@@ -1,0 +1,110 @@
+/* Pryma — color primitives + semantic aliases. Dark-first synthwave palette.
+   Light theme lives in tokens/themes.css and overrides the semantic aliases only. */
+:root{
+  /* ── Base: navy → violet void ────────────────────────────── */
+  --navy-1000:#05030f;
+  --navy-950:#0a0720;
+  --navy-900:#0e0a2b;
+  --navy-850:#141038;
+  --navy-800:#1b1546;
+  --violet-750:#241a5c;
+  --violet-700:#2e1f74;
+
+  /* ── Neon accents ───────────────────────────────────────── */
+  --pink-500:#ff2e88;
+  --pink-600:#e01f74;
+  --pink-700:#b3155b;
+  --pink-400:#ff6fae;
+  --pink-200:#ffc2dd;
+  --magenta-500:#c026d3;
+  --violet-500:#9d5cff;
+  --violet-400:#b78cff;
+  --cyan-400:#38e1ff;
+  --cyan-300:#7aecff;
+  --cyan-600:#12a8cc;
+
+  /* ── Neutrals on dark ───────────────────────────────────── */
+  --mist-050:#f4f2ff;
+  --mist-100:#e3e0f5;
+  --mist-300:#b3aed4;
+  --mist-500:#8a83ad;
+  --mist-700:#57507c;
+  --mist-800:#39335a;
+
+  /* ── Semantic primitives ────────────────────────────────── */
+  --signal-error:#ff4d5e;
+  --signal-warn:#ffb62e;
+  --signal-success:#2ee6a8;
+
+  /* ── Semantic aliases: surfaces ─────────────────────────── */
+  --surface-void:var(--navy-1000);
+  --surface-page:var(--navy-950);
+  --surface-raised:var(--navy-900);
+  --surface-card:rgba(20,16,56,.72);
+  --surface-card-solid:var(--navy-850);
+  --surface-inset:rgba(5,3,15,.55);
+  --surface-accent:var(--violet-750);
+  --surface-featured:linear-gradient(148deg,#2e1f74 0%,#5b1d6e 52%,#b3155b 100%); /* @kind color */
+  --surface-glass:rgba(244,242,255,.05); /* @kind color */
+  --surface-nav:rgba(10,7,32,.72); /* @kind color */
+  --surface-chrome:rgba(5,3,15,.5); /* @kind color */
+
+  /* ── Semantic aliases: text ─────────────────────────────── */
+  --text-hi:var(--mist-050);
+  --text-body:var(--mist-100);
+  --text-mute:var(--mist-300);
+  --text-faint:var(--mist-500);
+  --text-on-accent:#ffffff;
+  --text-link:var(--cyan-400);
+  --text-link-hover:var(--cyan-300);
+  --text-neon:var(--pink-500);
+
+  /* ── Semantic aliases: action ───────────────────────────── */
+  --action-primary:var(--pink-500);
+  --action-primary-hover:#ff4d9b;
+  --action-primary-press:var(--pink-600);
+  --action-secondary:rgba(157,92,255,.14);
+  --action-secondary-hover:rgba(157,92,255,.24);
+  --action-outline:var(--cyan-400);
+  --action-outline-hover:var(--cyan-300);
+  --action-disabled:var(--mist-800);
+  --focus-ring:var(--cyan-400);
+  --focus-halo:rgba(56,225,255,.16);
+
+  /* ── Semantic aliases: line ─────────────────────────────── */
+  --line-hairline:rgba(179,174,212,.14);
+  --line-strong:rgba(179,174,212,.28);
+  --line-neon:rgba(255,46,136,.55);
+  --line-cyan:rgba(56,225,255,.45);
+  --line-accent:rgba(157,92,255,.34);
+
+  /* ── Semantic aliases: accent tones (chips, eyebrows) ───── */
+  --tone-violet-fg:var(--violet-400);
+  --tone-violet-chip:rgba(157,92,255,.14);
+  --tone-violet-line:rgba(157,92,255,.32);
+  --tone-pink-fg:var(--pink-400);
+  --tone-pink-chip:rgba(255,46,136,.13);
+  --tone-pink-line:var(--line-neon);
+  --tone-cyan-fg:var(--cyan-400);
+  --tone-cyan-chip:rgba(56,225,255,.12);
+  --tone-cyan-line:var(--line-cyan);
+
+  /* ── Semantic aliases: chrome ───────────────────────────── */
+  --scrollbar-track:var(--navy-1000);
+  --scrollbar-thumb:var(--mist-800);
+  --scrollbar-thumb-hover:var(--mist-700);
+  --selection-bg:rgba(255,46,136,.35);
+  --selection-fg:#ffffff;
+
+  /* ── Signature gradients ────────────────────────────────── */
+  --grad-brand:linear-gradient(96deg,#38e1ff 0%,#9d5cff 44%,#ff2e88 100%); /* @kind color */
+  --grad-hero:linear-gradient(180deg,#0a0720 0%,#1b1546 58%,#3b1355 100%); /* @kind color */
+  --grad-neon-text:linear-gradient(92deg,#ff2e88 0%,#b78cff 60%,#38e1ff 100%); /* @kind color */
+  --grad-stat-cyan:linear-gradient(92deg,#38e1ff 0%,#9d5cff 100%); /* @kind color */
+  --grad-stat-violet:linear-gradient(92deg,#b78cff 0%,#ff2e88 100%); /* @kind color */
+  --grad-mesh-pink:radial-gradient(60% 70% at 18% 12%,rgba(255,46,136,.34) 0%,rgba(255,46,136,0) 68%); /* @kind color */
+  --grad-mesh-violet:radial-gradient(58% 62% at 82% 26%,rgba(157,92,255,.32) 0%,rgba(157,92,255,0) 70%); /* @kind color */
+  --grad-mesh-cyan:radial-gradient(52% 55% at 50% 96%,rgba(56,225,255,.24) 0%,rgba(56,225,255,0) 72%); /* @kind color */
+  --grad-horizon:linear-gradient(180deg,rgba(255,46,136,0) 0%,rgba(255,46,136,.5) 48%,rgba(56,225,255,.5) 100%); /* @kind color */
+  --grad-fade-page:linear-gradient(180deg,rgba(10,7,32,0) 0%,var(--navy-950) 82%); /* @kind color */
+}

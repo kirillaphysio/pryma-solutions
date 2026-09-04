@@ -1,0 +1,78 @@
+const { Button, Card, Eyebrow, Icon, MeshBackdrop, TextLink } = window.PrymaDesignSystem_286b6c;
+
+function HomeScreen({ onNavigate }) {
+  return (
+    <>
+      <MeshBackdrop intensity="full" grid contentStyle={{ padding: 'clamp(56px,10vw,112px) 0 clamp(48px,8vw,96px)' }}>
+        <Container>
+          <AppearGroup immediate style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--space-xxl)', maxWidth: 820, margin: '0 auto' }}>
+            <Eyebrow tone="pink">Egyszemélyes stúdió</Eyebrow>
+            <h1 style={{ fontSize: 'var(--display-xxl-size)', fontWeight: 700, lineHeight: 'var(--display-xxl-lh)', letterSpacing: 'var(--display-xxl-ls)', color: 'var(--text-hi)', textWrap: 'pretty' }}>
+              Weboldal és arculat<br />a vállalkozásodnak.
+            </h1>
+            <p style={{ fontSize: 'var(--body-lg-size)', lineHeight: 'var(--body-lg-lh)', letterSpacing: 'var(--body-lg-ls)', color: 'var(--text-mute)', maxWidth: 600 }}>
+              Fejlesztő és designer vagyok egy személyben. Segítek felépíteni a vállalkozásod online megjelenését: az arculattól a kész, működő weboldalig.
+            </p>
+            <div className="r-cta-stack" style={{ display: 'flex', gap: 'var(--space-md)', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <Button size="lg" variant="primary" onClick={() => onNavigate('/kapcsolat')} iconRight={<Icon name="arrow-right" size={18} />}>Kérj ajánlatot</Button>
+              <Button size="lg" variant="outline" onClick={() => onNavigate('/szolgaltatasok')}>Mit vállalok</Button>
+            </div>
+            <span style={{ fontSize: 'var(--caption-size)', color: 'var(--text-faint)' }}>Válasz két munkanapon belül.</span>
+          </AppearGroup>
+        </Container>
+      </MeshBackdrop>
+
+      <Section>
+        <SectionHead eyebrow="Amiben segítek" title="Három terület, egy ember." lead="Nem kell külön designert, fejlesztőt és marketingest keresned. Egy helyen átlátható marad, hol tart a munka." />
+        <AppearGroup className="r-g3" style={{ marginTop: 'var(--space-48)' }}>
+          <FeatureTile icon="palette" tone="pink" title="Arculat" body="Logó, színek, tipográfia és egy rövid útmutató arról, hogyan használd őket a mindennapokban." />
+          <FeatureTile icon="layers" tone="violet" title="Weboldal" body="Tervezés és fejlesztés: bemutatkozó oldal vagy több aloldalas weboldal, mobilon is rendben." />
+          <FeatureTile icon="target" tone="cyan" title="Marketing alapok" body="Mit mondj magadról, kinek, és hol. Egyszerű, követhető terv a következő pár hónapra." />
+        </AppearGroup>
+      </Section>
+
+      <Section tight>
+        <SectionHead eyebrow="Hogyan dolgozunk" title="Négy lépés, nincs felesleges kör." align="center" tone="cyan" />
+        <AppearGroup className="r-g4" style={{ marginTop: 'var(--space-48)' }}>
+          <StepCard n="01" title="Beszélgetés" body="Elmondod, mivel foglalkozol és mire lenne szükséged. Ebből írok egy rövid tervet és egy fix árat." />
+          <StepCard n="02" title="Terv" body="Megmutatom, hogyan fog kinézni az oldal, mielőtt bármit megépítenék. Itt még könnyű változtatni." />
+          <StepCard n="03" title="Megvalósítás" body="Megépítem, élesítem, és megmutatom, hogyan tudod magad frissíteni a tartalmat." />
+          <StepCard n="04" title="Utánkövetés, optimalizálás" body="Élesítés után figyelem, hogyan működik az oldal, és finomítom azt, ami a valós használat alapján kiderül." />
+        </AppearGroup>
+      </Section>
+
+      <Section tight>
+        <div className="r-g2">
+          <Appear from="left" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+            <Eyebrow tone="violet">Miért egy emberrel</Eyebrow>
+            <h3 style={{ fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', lineHeight: 'var(--display-md-lh)', color: 'var(--text-hi)' }}>Velem beszélsz, nem egy fiókkezelővel.</h3>
+            <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>
+              Én tervezem és én is építem meg az oldalt, így nincs félreértés a terv és a kész munka között. Az induló vállalkozásoknál ez a legrövidebb út egy használható weboldalhoz.
+            </p>
+            <CheckList items={['Egy kapcsolattartó a teljes munka alatt', 'Fix ár, a munka megkezdése előtt egyeztetve', 'Az oldal a tiéd: a fájlok és a hozzáférések nálad maradnak']} />
+          </Appear>
+          <Appear from="right" delay={120}><Card variant="accent" padding="var(--space-48)" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+            <Icon name="mail" size={24} color="var(--cyan-300)" />
+            <h4 style={{ fontSize: 'var(--heading-md-size)', fontWeight: 600, color: 'var(--text-hi)' }}>Van egy ötleted, de még nem tudod, hol kezdj?</h4>
+            <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>
+              Írj pár sort arról, mivel foglalkozol. Visszaírom, mit érdemes először megcsinálni, akkor is, ha végül nem együtt dolgozunk.
+            </p>
+            <TextLink href="mailto:hello@pryma.solutions">hello@pryma.solutions</TextLink>
+          </Card></Appear>
+        </div>
+      </Section>
+
+      <Section tight>
+        <Appear from="scale"><Card variant="band" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', gap: 'var(--space-xl)', padding: 'clamp(40px,7vw,72px) var(--card-pad-band)' }}>
+          <h3 style={{ fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', color: 'var(--text-on-accent)' }}>Kezdjük egy beszélgetéssel.</h3>
+          <p style={{ fontSize: 'var(--body-lg-size)', lineHeight: 'var(--body-lg-lh)', color: 'rgba(255,255,255,.84)', maxWidth: 540 }}>
+            Írd meg, mire lenne szükséged. Két munkanapon belül küldök egy tervet és egy árat.
+          </p>
+          <Button variant="onAccent" size="lg" onClick={() => onNavigate('/kapcsolat')}>Kapcsolatfelvétel</Button>
+        </Card></Appear>
+      </Section>
+    </>
+  );
+}
+
+Object.assign(window, { HomeScreen });

@@ -1,0 +1,27 @@
+import React from 'react';
+
+const SIZES = { sm: 32, md: 40, lg: 48 };
+
+export function IconButton({ children, label, variant = 'ghost', size = 'md', onClick, href, disabled = false, style, ...rest }) {
+  const [hover, setHover] = React.useState(false);
+  const px = SIZES[size];
+  const tone = variant === 'neon'
+    ? { background: hover ? 'var(--action-primary-hover)' : 'var(--action-primary)', color: 'var(--text-on-accent)', boxShadow: hover ? 'var(--glow-pink-md)' : 'var(--glow-pink-sm)' }
+    : variant === 'glass'
+      ? { background: hover ? 'var(--action-secondary)' : 'var(--surface-glass)', color: 'var(--text-hi)', boxShadow: 'inset 0 0 0 1px var(--line-strong)' }
+      : { background: hover ? 'var(--surface-glass)' : 'transparent', color: hover ? 'var(--text-hi)' : 'var(--text-mute)', boxShadow: 'none' };
+  const props = {
+    'aria-label': label, title: label, onClick: disabled ? undefined : onClick,
+    onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+    style: {
+      display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+      width: px, height: px, flex: '0 0 auto',
+      borderRadius: 'var(--radius-pill)', border: 'none', padding: 0,
+      cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.42 : 1,
+      transition: 'background var(--dur-fast) var(--ease-out), box-shadow var(--dur-med) var(--ease-out), color var(--dur-fast) var(--ease-out)',
+      ...tone, ...style,
+    },
+    ...rest,
+  };
+  return href && !disabled ? React.createElement('a', { href, ...props }, children) : React.createElement('button', { type: 'button', disabled, ...props }, children);
+}

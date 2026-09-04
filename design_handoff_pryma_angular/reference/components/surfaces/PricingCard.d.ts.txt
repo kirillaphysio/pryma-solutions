@@ -1,0 +1,21 @@
+import * as React from 'react';
+
+/** A pricing tier. The featured tier takes the pink→violet gradient fill. */
+export interface PricingCardProps {
+  tier: string;
+  /** Formatted price string, e.g. "$29" or "Custom". */
+  price: string;
+  /** Defaults to "/mo"; pass null for custom pricing. */
+  period?: string | null;
+  blurb?: string;
+  features?: string[];
+  cta?: string;
+  ctaHref?: string;
+  onCta?: (e: React.MouseEvent) => void;
+  /** Gradient fill + pink glow. Exactly one tier per table. */
+  featured?: boolean;
+  /** Eyebrow chip beside the tier name, e.g. "Most popular". */
+  badge?: string;
+  style?: React.CSSProperties;
+}
+export function PricingCard(props: PricingCardProps): JSX.Element;

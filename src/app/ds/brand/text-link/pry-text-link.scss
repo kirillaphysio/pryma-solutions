@@ -1,0 +1,38 @@
+.pry-tl {
+  color: var(--text-link);
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: color var(--dur-fast) var(--ease-out);
+
+  &--arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__arrow {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+
+  &.t-default {
+    text-decoration: none;
+    &:hover {
+      color: var(--text-link-hover);
+      text-decoration: underline;
+      text-shadow: var(--glow-text-cyan);
+    }
+  }
+
+  &.t-onAccent {
+    color: var(--text-on-accent);
+    font-weight: var(--weight-bold);
+    text-decoration: underline;
+    &:hover {
+      color: var(--text-on-accent);
+    }
+  }
+
+  &:hover &__arrow {
+    transform: translateX(3px);
+  }
+}

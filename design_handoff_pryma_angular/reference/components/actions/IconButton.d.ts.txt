@@ -1,0 +1,16 @@
+import * as React from 'react';
+
+/** Circular icon-only action — nav utilities, footer social row, mockup chrome. */
+export interface IconButtonProps {
+  /** The glyph, normally an <Icon />. */
+  children?: React.ReactNode;
+  /** Required accessible name. */
+  label: string;
+  variant?: 'ghost' | 'glass' | 'neon';
+  size?: 'sm' | 'md' | 'lg';
+  onClick?: (e: React.MouseEvent) => void;
+  href?: string;
+  disabled?: boolean;
+  style?: React.CSSProperties;
+}
+export function IconButton(props: IconButtonProps): JSX.Element;

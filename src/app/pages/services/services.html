@@ -1,0 +1,158 @@
+<!-- Hero -->
+<pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(36px,6vw,64px)">
+  <pry-container>
+    <div class="svc-hero">
+      <pry-eyebrow tone="violet" i18n="@@svc.hero.eyebrow">Szolgáltatások</pry-eyebrow>
+      <h1 class="svc-hero__title" i18n="@@svc.hero.title">Amit el tudok vállalni.</h1>
+      <p class="svc-hero__lead" i18n="@@svc.hero.lead">
+        Kis vállalkozásokkal és induló ötletekkel dolgozom. Nem minden projekt igényel mindent,
+        ezért mindig azzal kezdünk, ami a legtöbbet hozza.
+      </p>
+      <div class="r-cta-stack">
+        <a pry-button variant="primary" routerLink="/contact" i18n="@@svc.hero.cta">Kérj ajánlatot</a>
+      </div>
+    </div>
+  </pry-container>
+</pry-mesh-backdrop>
+
+<!-- Three areas -->
+<pry-section [tight]="true">
+  <div class="r-g3">
+    <pry-feature-tile
+      icon="palette"
+      tone="pink"
+      title="Arculat"
+      i18n-title="@@svc.area.brand.title"
+      body="Logó, színek, betűtípusok és egy rövid útmutató. Cél, hogy magabiztosan tudd használni, ne csak nézni."
+      i18n-body="@@svc.area.brand.body"
+    />
+    <pry-feature-tile
+      icon="layers"
+      tone="violet"
+      title="Weboldal"
+      i18n-title="@@svc.area.web.title"
+      body="Tervezés és fejlesztés egy kézből. Gyors, mobilon is jó, és nem kell hozzá bonyolult rendszert kezelned."
+      i18n-body="@@svc.area.web.body"
+    />
+    <pry-feature-tile
+      icon="target"
+      tone="cyan"
+      title="Marketing alapok"
+      i18n-title="@@svc.area.mkt.title"
+      body="Kinek szólsz, mit mondasz róla, és melyik két csatornán érdemes ezt elkezdeni."
+      i18n-body="@@svc.area.mkt.body"
+    />
+  </div>
+</pry-section>
+
+<!-- Packages -->
+<pry-section [tight]="true">
+  <pry-section-head
+    tone="cyan"
+    eyebrow="Csomagok"
+    i18n-eyebrow="@@svc.pkg.eyebrow"
+    title="Három tipikus indulás."
+    i18n-title="@@svc.pkg.title"
+    lead="Ezek a leggyakoribb munkák. Az árat a terjedelem alapján adom meg, fix összegben, még a kezdés előtt."
+    i18n-lead="@@svc.pkg.lead"
+  />
+  <div class="r-g3 svc-mt48 svc-stretch">
+    <pry-card variant="surface" class="svc-pkg">
+      <h3 class="svc-pkg__title" i18n="@@svc.pkg1.title">Bemutatkozó oldal</h3>
+      <p class="svc-pkg__body" i18n="@@svc.pkg1.body">
+        Egy jól felépített oldal, amin minden fontos elfér: mit csinálsz, kinek, és hogyan lehet
+        elérni téged.
+      </p>
+      <pry-check-list [items]="pkg1" />
+    </pry-card>
+    <pry-card variant="surface" class="svc-pkg">
+      <h3 class="svc-pkg__title" i18n="@@svc.pkg2.title">Több oldalas weboldal</h3>
+      <p class="svc-pkg__body" i18n="@@svc.pkg2.body">
+        Ha több szolgáltatásod van, vagy referenciákat és árakat is szeretnél kiírni.
+      </p>
+      <pry-check-list [items]="pkg2" />
+    </pry-card>
+    <pry-card variant="surface" class="svc-pkg">
+      <h3 class="svc-pkg__title" i18n="@@svc.pkg3.title">Arculat és weboldal</h3>
+      <p class="svc-pkg__body" i18n="@@svc.pkg3.body">
+        Ha a nulláról induló vállalkozásnak egyszerre kell megjelenés és oldal.
+      </p>
+      <pry-check-list [items]="pkg3" />
+    </pry-card>
+  </div>
+</pry-section>
+
+<!-- Good to know -->
+<pry-section [tight]="true">
+  <div class="r-g2">
+    <div class="svc-good">
+      <pry-eyebrow tone="pink" i18n="@@svc.good.eyebrow">Jó tudni</pry-eyebrow>
+      <h3 class="svc-good__title" i18n="@@svc.good.title">Mielőtt nekiállunk.</h3>
+      <pry-check-list tone="pink" [items]="good" />
+    </div>
+    <pry-card variant="outline" padding="var(--space-48)" class="svc-aside">
+      <pry-icon name="clock" [size]="22" color="var(--violet-400)" />
+      <h4 class="svc-aside__title" i18n="@@svc.aside.title">Nem tudod, melyik kell?</h4>
+      <p class="svc-aside__body" i18n="@@svc.aside.body">
+        Írj pár sort a vállalkozásodról, és megírom, melyik változat elég most, és mi az, ami ráér
+        később.
+      </p>
+      <a pry-text-link href="mailto:hello@pryma.solutions">hello&#64;pryma.solutions</a>
+    </pry-card>
+  </div>
+</pry-section>
+
+<!-- Maintenance -->
+<pry-section [tight]="true">
+  <pry-section-head
+    tone="violet"
+    eyebrow="Karbantartás"
+    i18n-eyebrow="@@svc.maint.eyebrow"
+    title="Miután élesítettünk."
+    i18n-title="@@svc.maint.title"
+    lead="A weboldal nem áll meg az élesítésnél. Ezekben tudok segíteni utána is."
+    i18n-lead="@@svc.maint.lead"
+  />
+  <div class="r-g3 svc-mt48">
+    <pry-feature-tile
+      icon="shield-check"
+      tone="violet"
+      title="Biztonság és frissítés"
+      i18n-title="@@svc.maint.security.title"
+      body="Rendszeres mentés és a háttérben futó rendszerek frissen tartása, hogy az oldal ne álljon le."
+      i18n-body="@@svc.maint.security.body"
+    />
+    <pry-feature-tile
+      icon="pencil"
+      tone="pink"
+      title="Tartalom karbantartása"
+      i18n-title="@@svc.maint.content.title"
+      body="Szöveg, kép vagy ár módosult? Szólsz, és átvezetem, nem kell hozzá magadnak belenyúlnod."
+      i18n-body="@@svc.maint.content.body"
+    />
+    <pry-feature-tile
+      icon="life-buoy"
+      tone="cyan"
+      title="Gyors segítség"
+      i18n-title="@@svc.maint.help.title"
+      body="Ha valami elromlik vagy elakadsz, rövid időn belül válaszolok és megoldjuk."
+      i18n-body="@@svc.maint.help.body"
+    />
+  </div>
+</pry-section>
+
+<!-- Closing band -->
+<pry-section [tight]="true">
+  <pry-card variant="band" class="svc-band">
+    <div class="svc-band__text">
+      <h3 class="svc-band__title" i18n="@@svc.band.title">Beszéljük át, mire van szükséged.</h3>
+      <p class="svc-band__body" i18n="@@svc.band.body">
+        Fél óra, konkrét kérdésekkel. Utána küldök egy tervet és egy árat.
+      </p>
+    </div>
+    <a pry-button variant="onAccent" routerLink="/contact">
+      <span i18n="@@svc.band.cta">Kapcsolatfelvétel</span>
+      <pry-icon icon-right name="arrow-right" [size]="16" />
+    </a>
+  </pry-card>
+</pry-section>

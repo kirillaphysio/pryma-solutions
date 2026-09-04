@@ -1,0 +1,23 @@
+import React from 'react';
+
+/** Inline link. Cyan on dark surfaces; inherits white with a persistent underline on gradient bands. */
+export function TextLink({ children, href = '#', tone = 'default', arrow = false, onClick, style, ...rest }) {
+  const [hover, setHover] = React.useState(false);
+  const onAccent = tone === 'onAccent';
+  return React.createElement('a', {
+    href, onClick,
+    onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+    style: {
+      display: arrow ? 'inline-flex' : 'inline',
+      alignItems: arrow ? 'center' : undefined,
+      gap: arrow ? 6 : undefined,
+      color: onAccent ? 'var(--text-on-accent)' : hover ? 'var(--text-link-hover)' : 'var(--text-link)',
+      fontWeight: onAccent ? 'var(--weight-bold)' : 'inherit',
+      textDecoration: onAccent || hover ? 'underline' : 'none',
+      textUnderlineOffset: '3px',
+      textShadow: hover && !onAccent ? 'var(--glow-text-cyan)' : 'none',
+      transition: 'color var(--dur-fast) var(--ease-out)',
+      cursor: 'pointer', ...style,
+    }, ...rest,
+  }, [children, arrow && React.createElement('span', { key: 'a', style: { transform: hover ? 'translateX(3px)' : 'none', transition: 'transform var(--dur-fast) var(--ease-out)' } }, '\u2192')]);
+}

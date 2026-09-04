@@ -1,0 +1,273 @@
+/* Demó — shared theme data + primitives for the three example landing pages. */
+
+const DEMO_THEMES = [
+  {
+    id: 'szalon',
+    rail: 'Fodrászat & kozmetika',
+    note: 'Meleg, képvezérelt, hosszú oldal',
+    fonts: { d: "'Cormorant Garamond', Georgia, serif", b: "'Jost', system-ui, sans-serif", m: "'IBM Plex Mono', ui-monospace, monospace" },
+    base: {
+      dark: false, bg: '#faf6f0', bg2: '#f1e9dd', ink: '#2b2320', inkMute: '#6f635a',
+      line: 'rgba(43,35,32,.15)', lineSoft: 'rgba(43,35,32,.08)', card: '#ffffff',
+      onAccent: '#ffffff', stripeA: 'rgba(43,35,32,.09)', stripeB: 'rgba(43,35,32,.02)', radius: '2px',
+    },
+    moods: [
+      { dot: '#c0596f', accent: '#c0596f' },
+      { dot: '#b5643c', accent: '#b5643c' },
+      { dot: '#6f7d5f', accent: '#6f7d5f' },
+    ],
+    layouts: [
+      { id: 'split', label: 'Osztott', note: 'Szöveg balra, portré jobbra' },
+      { id: 'center', label: 'Középre zárt', note: 'Középen a szöveg, alatta széles fotó' },
+      { id: 'magazine', label: 'Magazin', note: 'Átlapoló cím, eltolt képek' },
+    ],
+  },
+  {
+    id: 'edzo',
+    rail: 'Személyi edző',
+    note: 'Sötét, rövid, kártyás felépítés',
+    fonts: { d: "'Archivo', system-ui, sans-serif", b: "'Work Sans', system-ui, sans-serif", m: "'IBM Plex Mono', ui-monospace, monospace" },
+    base: {
+      dark: true, bg: '#0e0f11', bg2: '#16181b', ink: '#f5f6f4', inkMute: '#9aa0a3',
+      line: 'rgba(255,255,255,.13)', lineSoft: 'rgba(255,255,255,.07)', card: '#191c1f',
+      onAccent: '#0e0f11', stripeA: 'rgba(255,255,255,.09)', stripeB: 'rgba(255,255,255,.02)', radius: '4px',
+    },
+    moods: [
+      { dot: '#c7f04a', accent: '#c7f04a' },
+      { dot: '#ff6a2b', accent: '#ff6a2b' },
+      { dot: '#4ad2ff', accent: '#4ad2ff' },
+    ],
+    layouts: [
+      { id: 'left', label: 'Balra zárt', note: 'Cím balra, számsáv alatta' },
+      { id: 'poster', label: 'Poszter', note: 'Egész képernyős cím, nagy számok' },
+      { id: 'split', label: 'Kettéosztott', note: 'Cím és számok egymás mellett' },
+    ],
+  },
+  {
+    id: 'asztalos',
+    rail: 'Asztalos / kivitelező',
+    note: 'Minimál, szöveges, kevés fotó',
+    fonts: { d: "'Work Sans', system-ui, sans-serif", b: "'Work Sans', system-ui, sans-serif", m: "'IBM Plex Mono', ui-monospace, monospace" },
+    base: {
+      dark: false, bg: '#f7f2e9', bg2: '#ece2d1', ink: '#221c14', inkMute: '#6d6353',
+      line: 'rgba(34,28,20,.18)', lineSoft: 'rgba(34,28,20,.09)', card: '#fffdf7',
+      onAccent: '#ffffff', stripeA: 'rgba(34,28,20,.1)', stripeB: 'rgba(34,28,20,.02)', radius: '0px',
+    },
+    moods: [
+      { dot: '#a8762a', accent: '#a8762a' },
+      { dot: '#3a5a48', accent: '#3a5a48' },
+      { dot: '#46587a', accent: '#46587a' },
+    ],
+    layouts: [
+      { id: 'list', label: 'Listás', note: 'Szöveges nyitás, sorokba szedve' },
+      { id: 'index', label: 'Indexes', note: 'Bal oldali tartalomjegyzék' },
+      { id: 'wide', label: 'Széles', note: 'Teljes szélességű nyitókép' },
+    ],
+  },
+];
+
+const DEMO_DEVICES = [
+  { key: 'mobile', label: 'Mobil', w: 390, h: 844 },
+  { key: 'tablet', label: 'Tablet', w: 834, h: 1112 },
+  { key: 'desktop', label: 'Desktop', w: 1440, h: 900 },
+];
+
+function resolveDemo(theme, moodIdx) {
+  const m = theme.moods[moodIdx % theme.moods.length];
+  return { ...theme.base, ...m, f: theme.fonts, id: theme.id };
+}
+
+/* device-conditional value */
+function dpick(dev, m, t, d) { return dev === 'mobile' ? m : dev === 'tablet' ? t : d; }
+
+function mix(c, other, pct) { return 'color-mix(in srgb, ' + c + ' ' + pct + '%, ' + other + ')'; }
+function tint(c, pct) { return 'color-mix(in srgb, ' + c + ' ' + pct + '%, transparent)'; }
+
+/* ---- interakció + mozgás ---------------------------------------------- */
+
+/* Belép-e a nézetbe: a keret (.demoframe) a scroll root. */
+function useInView(ref, motion = true) {
+  const [on, setOn] = React.useState(!motion);
+  React.useEffect(() => {
+    if (!motion) { setOn(true); return; }
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setOn(true); return; }
+    setOn(false);
+    const root = el.closest ? el.closest('.demoframe') : null;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setOn(true); io.disconnect(); } }, { root, rootMargin: '0px 0px -6% 0px', threshold: 0.04 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [motion]);
+  return on;
+}
+
+function Reveal({ motion = true, delay = 0, from = 'up', children, style, ...rest }) {
+  const ref = React.useRef(null);
+  const on = useInView(ref, motion);
+  const off = from === 'left' ? 'translateX(-22px)' : from === 'right' ? 'translateX(22px)' : from === 'scale' ? 'scale(.97)' : 'translateY(20px)';
+  return (
+    <div ref={ref} style={{ opacity: on ? 1 : 0, transform: on ? 'none' : off, transition: 'opacity .75s cubic-bezier(.2,.8,.2,1) ' + delay + 'ms, transform .75s cubic-bezier(.2,.8,.2,1) ' + delay + 'ms', ...style }} {...rest}>{children}</div>
+  );
+}
+
+/* Számláló, ami a belépéskor indul. */
+function useCount(to, run, ms = 1000) {
+  const [v, setV] = React.useState(run ? to : 0);
+  React.useEffect(() => {
+    if (!run) { setV(0); return; }
+    let raf, st = null;
+    const step = (ts) => {
+      if (st === null) st = ts;
+      const p = Math.min(1, (ts - st) / ms);
+      setV(to * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) raf = requestAnimationFrame(step);
+    };
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [to, run, ms]);
+  return v;
+}
+
+/* Egyetlen stíluslap a hover/mozgás állapotokhoz — a színek a gyökér CSS-változóiból jönnek. */
+function DemoStyle() {
+  return <style>{'.dmo{--dmo-e:cubic-bezier(.2,.8,.2,1)}'
+    + '.dmo-lift{transition:transform .32s var(--dmo-e),border-color .32s,box-shadow .32s}'
+    + '.dmo-lift:hover{transform:translateY(-5px);border-color:var(--dacc);box-shadow:0 12px 30px var(--dshadow)}'
+    + '.dmo-row{transition:background .24s,color .24s}'
+    + '.dmo-row:hover{background:var(--dsoft)}'
+    + '.dmo-link{position:relative;cursor:pointer;transition:color .2s}'
+    + '.dmo-link:hover{color:var(--dacc)}'
+    + '.dmo-link:after{content:"";position:absolute;left:0;bottom:-5px;height:1px;width:100%;background:var(--dacc);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--dmo-e)}'
+    + '.dmo-link:hover:after{transform:scaleX(1)}'
+    + '.dmo-btn{cursor:pointer;transition:transform .22s var(--dmo-e),filter .22s}'
+    + '.dmo-btn:hover{transform:translateY(-2px);filter:brightness(1.07)}'
+    + '.dmo-btn:active{transform:translateY(0)}'
+    + '.dmo-zoom{overflow:hidden}'
+    + '.dmo-zoom>*{transition:transform .9s var(--dmo-e)}'
+    + '.dmo-zoom:hover>*{transform:scale(1.05)}'
+    + '.dmo-tap{cursor:pointer;transition:opacity .25s,border-color .25s,background .25s}'
+    + '.dmo-tap:hover{opacity:.88}'
+    + '.dmo-fold{overflow:hidden;transition:grid-template-rows .42s var(--dmo-e),opacity .32s}'
+    + '.dmo-field{transition:border-color .22s,box-shadow .22s}'
+    + '.dmo-field:hover,.dmo-field:focus-within{border-color:var(--dacc);box-shadow:0 0 0 3px var(--dhalo)}'}</style>;
+}
+
+/* Gyökér változók, hogy a fenti szabályok témát kapjanak. */
+function demoVars(t) {
+  return { '--dacc': t.accent, '--dsoft': tint(t.ink, 4), '--dhalo': tint(t.accent, 16), '--dshadow': t.dark ? 'rgba(0,0,0,.5)' : 'rgba(43,35,32,.12)' };
+}
+
+/* Striped image placeholder with a mono caption for what belongs there. */
+function Stripes({ label, ratio = '4 / 3', t, style, className, onClick }) {
+  return (
+    <div className={className} onClick={onClick} style={{ aspectRatio: ratio, background: 'repeating-linear-gradient(135deg,' + t.stripeA + ' 0 5px,' + t.stripeB + ' 5px 11px)', border: '1px solid ' + t.line, borderRadius: t.radius, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', ...style }}>
+      <span style={{ fontFamily: t.f.m, fontSize: 10, letterSpacing: '.12em', textTransform: 'uppercase', color: t.inkMute, background: t.bg, padding: '5px 9px', border: '1px solid ' + t.line, textAlign: 'center', lineHeight: 1.4 }}>{label}</span>
+    </div>
+  );
+}
+
+/* ---- grafika: ikonok és illusztrációk --------------------------------- */
+
+const DEMO_GFX = [
+  { key: 'foto', label: 'Fotóhely', note: 'Csak jelölt képhelyek, ikonok nélkül' },
+  { key: 'ikon', label: 'Ikonok', note: 'Képhelyek és szakmához illő ikonok' },
+  { key: 'illu', label: 'Illusztráció', note: 'A képek helyén geometrikus illusztráció' },
+];
+
+const LUCIDE = 'https://unpkg.com/lucide-static@0.544.0/icons/';
+
+/* Lucide glyph currentColor-maszkként — ugyanaz a mechanizmus, mint a rendszer Icon eleme. */
+function Gly({ name, size = 18, color, style }) {
+  const u = 'url(' + LUCIDE + name + '.svg)';
+  return <span aria-hidden="true" style={{ display: 'inline-block', width: size, height: size, flex: '0 0 auto', backgroundColor: color || 'currentColor', WebkitMaskImage: u, maskImage: u, WebkitMaskRepeat: 'no-repeat', maskRepeat: 'no-repeat', WebkitMaskPosition: 'center', maskPosition: 'center', WebkitMaskSize: 'contain', maskSize: 'contain', verticalAlign: 'middle', ...style }} />;
+}
+
+/* Hajszálvonalas keret egy glyph körül — kártyák és sorok élén. */
+function IconMark({ t, name, size = 17, box = 38, round, style }) {
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: box, height: box, flex: '0 0 auto', borderRadius: round ? 99 : t.radius, background: tint(t.accent, 10), border: '1px solid ' + tint(t.accent, 26), ...style }}>
+      <Gly name={name} size={size} color={t.accent} />
+    </span>
+  );
+}
+
+/* Illusztráció a fotóhelyek helyett — csak kör, téglalap és vonal, a téma színeiből. */
+function Illu({ t, motif = 'arcs', icon, ratio = '4 / 3', glyph = 26, style, className, onClick }) {
+  const A = (o) => tint(t.accent, o), I = (o) => tint(t.ink, o), P = (s) => ({ position: 'absolute', ...s });
+  const M = {
+    arcs: [
+      P({ top: '-16%', left: '4%', width: '56%', aspectRatio: '1', borderRadius: '50%', border: '1px solid ' + I(16) }),
+      P({ bottom: '-24%', right: '-8%', width: '68%', aspectRatio: '1', borderRadius: '50%', background: A(11) }),
+      P({ top: '28%', right: '13%', width: '22%', aspectRatio: '1', borderRadius: '50%', border: '1px solid ' + A(55) }),
+      P({ left: 0, right: 0, top: '58%', height: 1, background: I(9) }),
+    ],
+    bloom: [
+      P({ top: '20%', left: '5%', width: '44%', aspectRatio: '1', borderRadius: '50%', background: A(13) }),
+      P({ top: '32%', left: '28%', width: '44%', aspectRatio: '1', borderRadius: '50%', border: '1px solid ' + A(45) }),
+      P({ top: '10%', right: '3%', width: '34%', aspectRatio: '1', borderRadius: '50%', background: I(6) }),
+    ],
+    bars: [
+      P({ left: 0, right: 0, bottom: '13%', height: 1, background: I(14) }),
+      P({ left: '9%', bottom: '13%', width: '10%', height: '30%', background: I(12) }),
+      P({ left: '26%', bottom: '13%', width: '10%', height: '52%', background: I(12) }),
+      P({ left: '43%', bottom: '13%', width: '10%', height: '74%', background: A(72) }),
+      P({ left: '60%', bottom: '13%', width: '10%', height: '44%', background: I(12) }),
+      P({ left: '77%', bottom: '13%', width: '10%', height: '62%', background: I(12) }),
+    ],
+    rings: [
+      P({ top: '50%', left: '50%', width: '82%', aspectRatio: '1', borderRadius: '50%', border: '1px solid ' + I(12), transform: 'translate(-50%,-50%)' }),
+      P({ top: '50%', left: '50%', width: '58%', aspectRatio: '1', borderRadius: '50%', border: '1px solid ' + A(42), transform: 'translate(-50%,-50%)' }),
+      P({ top: '50%', left: '50%', width: '32%', aspectRatio: '1', borderRadius: '50%', background: A(14), transform: 'translate(-50%,-50%)' }),
+    ],
+    plan: [
+      P({ inset: '13%', border: '1px solid ' + I(20) }),
+      P({ inset: '25%', border: '1px solid ' + A(45) }),
+      P({ left: '13%', right: '13%', top: '50%', height: 1, background: I(11) }),
+      P({ top: '13%', bottom: '13%', left: '50%', width: 1, background: I(11) }),
+      P({ left: '13%', right: '13%', top: '7%', height: 1, background: A(50) }),
+    ],
+    grain: Array.from({ length: 7 }, (_, i) => P({ left: '7%', right: '7%', top: (13 + i * 11) + '%', height: 1, background: i % 3 === 0 ? A(40) : I(11) })),
+    grid: [
+      P({ top: 0, bottom: 0, left: '25%', width: 1, background: I(10) }),
+      P({ top: 0, bottom: 0, left: '50%', width: 1, background: I(10) }),
+      P({ top: 0, bottom: 0, left: '75%', width: 1, background: I(10) }),
+      P({ left: 0, right: 0, top: '33%', height: 1, background: I(10) }),
+      P({ left: 0, right: 0, top: '66%', height: 1, background: I(10) }),
+      P({ left: '50%', top: '33%', width: '25%', height: '33%', background: A(15) }),
+    ],
+  };
+  return (
+    <div className={className} onClick={onClick} style={{ position: 'relative', aspectRatio: ratio, background: t.card, border: '1px solid ' + t.line, borderRadius: t.radius, overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', ...style }}>
+      {(M[motif] || M.arcs).map((s, i) => <span key={i} style={s} />)}
+      {icon && (
+        <span style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: glyph * 2, height: glyph * 2, borderRadius: 99, background: mix(t.bg, 'transparent', 84), border: '1px solid ' + tint(t.accent, 30) }}>
+          <Gly name={icon} size={glyph} color={t.accent} />
+        </span>
+      )}
+    </div>
+  );
+}
+
+/* Egy képhely: jelölt fotóhely vagy illusztráció, a grafika-váltó szerint. */
+function Art({ t, gfx = 'foto', label, motif, icon, ratio, glyph, style, className, onClick }) {
+  return gfx === 'illu'
+    ? <Illu t={t} motif={motif} icon={icon} ratio={ratio} glyph={glyph} style={style} className={className} onClick={onClick} />
+    : <Stripes t={t} label={label} ratio={ratio} style={style} className={className} onClick={onClick} />;
+}
+
+/* Mono kicker used above headlines in all three demos. */
+function Kicker({ t, children, style }) {
+  return <span style={{ fontFamily: t.f.m, fontSize: 11, letterSpacing: '.2em', textTransform: 'uppercase', color: t.accent, ...style }}>{children}</span>;
+}
+
+function DemoBtn({ t, children, variant = 'solid', wide, style, className = 'dmo-btn', onClick }) {
+  const base = { fontFamily: t.f.b, fontSize: 14, fontWeight: 500, padding: '13px 22px', borderRadius: t.radius, cursor: 'pointer', border: '1px solid transparent', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8, width: wide ? '100%' : undefined, whiteSpace: 'nowrap' };
+  const v = variant === 'solid'
+    ? { background: t.accent, color: t.onAccent }
+    : variant === 'outline'
+      ? { background: 'transparent', color: t.ink, borderColor: t.line }
+      : { background: 'transparent', color: t.accent, padding: '13px 0' };
+  return <span className={className} onClick={onClick} style={{ ...base, ...v, ...style }}>{children}</span>;
+}
+
+Object.assign(window, { DEMO_THEMES, DEMO_DEVICES, DEMO_GFX, resolveDemo, dpick, mix, tint, Stripes, Illu, Art, Gly, IconMark, Kicker, DemoBtn, Reveal, useInView, useCount, DemoStyle, demoVars });

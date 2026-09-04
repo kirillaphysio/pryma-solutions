@@ -1,0 +1,9 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Signature gradients" subtitle="Brand sweep, hero fill, featured surface, neon text" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.g{display:grid;grid-template-columns:1fr 1fr;gap:12px}.b{height:54px;border-radius:var(--radius-md);display:flex;align-items:flex-end;padding:8px 10px;font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,.86)}</style>
+</head><body><div class="g">
+<div class="b" style="background:var(--grad-brand)">--grad-brand</div>
+<div class="b" style="background:var(--surface-featured)">--surface-featured</div>
+<div class="b" style="background:var(--grad-hero)">--grad-hero</div>
+<div class="b" style="background:var(--navy-900);color:transparent;background-image:none"><span style="background:var(--grad-neon-text);-webkit-background-clip:text;background-clip:text;color:transparent;font-family:var(--font-display);font-size:22px;font-weight:700;letter-spacing:-.4px">--grad-neon-text</span></div>
+</div></body></html>

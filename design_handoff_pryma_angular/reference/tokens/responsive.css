@@ -1,0 +1,45 @@
+/* Pryma — responsive token scaling.
+   Layout rails tighten and the display tier steps down as the viewport narrows,
+   so long headlines and 3-up grids stay readable on phones. Fixed-width
+   artifacts (decks, print pages) never reach these breakpoints. */
+
+@media (max-width:1024px){
+  :root{
+    --container-pad:20px;
+    --section-pad-y:72px;
+    --section-pad-y-tight:40px;
+    --card-pad:26px;
+    --card-pad-band:36px;
+    --display-xxl-size:50px;
+    --display-xl-size:44px;
+    --display-lg-size:40px;
+    --display-md-size:28px;
+  }
+}
+
+@media (max-width:768px){
+  :root{
+    --container-pad:18px;
+    --section-pad-y:56px;
+    --section-pad-y-tight:32px;
+    --card-pad:22px;
+    --card-pad-band:24px;
+    --display-xxl-size:38px;
+    --display-xxl-lh:1.14; /* @kind other */
+    --display-xl-size:32px;
+    --display-xl-lh:1.18; /* @kind other */
+    --display-lg-size:30px;
+    --display-md-size:24px;
+    --heading-lg-size:21px;
+    --heading-md-size:19px;
+    --body-lg-size:17px;
+  }
+}
+
+@media (max-width:420px){
+  :root{
+    --display-xxl-size:32px;
+    --display-xl-size:28px;
+    --display-md-size:22px;
+  }
+}

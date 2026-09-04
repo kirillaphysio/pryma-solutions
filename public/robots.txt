@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pryma.solutions/sitemap.xml

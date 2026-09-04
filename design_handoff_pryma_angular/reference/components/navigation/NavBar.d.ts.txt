@@ -1,0 +1,23 @@
+import * as React from 'react';
+
+export interface NavItem { label: string; href: string }
+
+/**
+ * Sticky marketing top nav: wordmark left, links centre, ghost + primary pills right.
+ */
+export interface NavBarProps {
+  links?: NavItem[];
+  /** href of the current page — underlines that link in pink. */
+  activeHref?: string;
+  /** Intercepts link clicks for in-page routing. */
+  onNavigate?: (href: string) => void;
+  sticky?: boolean;
+  /** Primary pill label; null hides it. */
+  ctaLabel?: string | null;
+  /** Ghost button label; null hides it. */
+  signInLabel?: string | null;
+  onCta?: (e: React.MouseEvent) => void;
+  onSignIn?: (e: React.MouseEvent) => void;
+  style?: React.CSSProperties;
+}
+export function NavBar(props: NavBarProps): JSX.Element;

@@ -1,0 +1,21 @@
+import * as React from 'react';
+
+/** Single-line field. 4px radius, inset dark well, cyan focus ring. */
+export interface TextInputProps {
+  label?: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
+  type?: 'text' | 'email' | 'password' | 'tel' | 'url' | 'search' | 'number';
+  name?: string;
+  id?: string;
+  /** Helper copy under the field. */
+  hint?: string;
+  /** Error message — replaces the hint and switches the ring to red. */
+  error?: string;
+  disabled?: boolean;
+  required?: boolean;
+  iconLeft?: React.ReactNode;
+  style?: React.CSSProperties;
+}
+export function TextInput(props: TextInputProps): JSX.Element;

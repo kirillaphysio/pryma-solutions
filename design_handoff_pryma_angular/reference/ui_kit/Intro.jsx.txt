@@ -1,0 +1,207 @@
+/* Pryma intro — the core drops in, powers on frame by frame, wordmark locks, then the entry gate. */
+
+const INTRO_CSS = `
+@keyframes pi-grid{from{opacity:0}to{opacity:1}}
+@keyframes pi-drop{0%{transform:translateY(-128%) scale(1.05);opacity:0}9%{opacity:1}66%{transform:translateY(3.2%) scale(1)}82%{transform:translateY(-1.4%)}92%{transform:translateY(.5%)}100%{transform:translateY(0)}}
+@keyframes pi-jolt{0%,100%{transform:translate(0,0)}14%{transform:translate(-5px,3px)}30%{transform:translate(5px,-3px)}52%{transform:translate(-3px,2px)}74%{transform:translate(2px,-1px)}}
+@keyframes pi-impact{0%{opacity:0;transform:scaleX(.3)}18%{opacity:1}100%{opacity:0;transform:scaleX(1.5)}}
+@keyframes pi-frame{0%{opacity:0}100%{opacity:1}}
+@keyframes pi-blink{0%{opacity:0}22%{opacity:1}38%{opacity:.1}54%{opacity:1}68%{opacity:.35}100%{opacity:1}}
+@keyframes pi-aura{0%{opacity:0;transform:scale(.72)}100%{opacity:1;transform:scale(1)}}
+@keyframes pi-flash{0%{opacity:0}30%{opacity:.75}100%{opacity:0}}
+@keyframes pi-scan{0%{transform:translateY(-30px);opacity:0}12%{opacity:.9}88%{opacity:.9}100%{transform:translateY(660px);opacity:0}}
+@keyframes pi-hud{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pi-bloom{0%{opacity:1;transform:scale(1)}42%{opacity:1;transform:scale(1.04)}100%{opacity:0;transform:scale(1.18)}}
+@keyframes pi-lock{0%{opacity:0;transform:scale(.93);filter:blur(9px)}58%{opacity:1;filter:blur(0)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
+@keyframes pi-out{from{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(1.06)}}
+@keyframes pi-lift{from{clip-path:inset(0 0 0 0)}to{clip-path:inset(0 0 100% 0)}}
+@keyframes pi-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pi-flick{0%{opacity:0}5%{opacity:.85}9%{opacity:.06}15%{opacity:.7}20%{opacity:.04}27%{opacity:1}32%{opacity:.18}40%{opacity:.9}46%{opacity:.32}57%{opacity:1}63%{opacity:.55}71%{opacity:1}79%{opacity:.78}100%{opacity:1}}
+`;
+
+const { Wordmark, Card, Eyebrow } = window.PrymaDesignSystem_286b6c;
+
+/* Six-frame power-on sequence. Frame 1 is dark, each following frame lights one more system. */
+const FRAMES = [
+  { src: 'robot/f1.jpg', at: 0, dur: 0, kf: null },
+  { src: 'robot/f2.jpg', at: 1180, dur: 300, kf: 'pi-blink' },
+  { src: 'robot/f3.jpg', at: 1440, dur: 260, kf: 'pi-frame' },
+  { src: 'robot/f4.jpg', at: 1690, dur: 240, kf: 'pi-frame' },
+  { src: 'robot/f5.jpg', at: 1920, dur: 240, kf: 'pi-frame' },
+  { src: 'robot/f6.jpg', at: 2150, dur: 300, kf: 'pi-frame' },
+];
+
+const FRAME_W = 362;
+const FRAME_H = 641;
+/* feather every edge so the artwork's starfield melts into the void — two nested masks */
+const MASK_Y = 'linear-gradient(180deg,transparent 0%,#000 7%,#000 58%,rgba(0,0,0,.45) 84%,transparent 100%)';
+const MASK_X = 'linear-gradient(90deg,transparent 0%,rgba(0,0,0,.5) 12%,#000 26%,#000 74%,rgba(0,0,0,.5) 88%,transparent 100%)';
+
+const GATE = [
+  { n: '01', title: 'Szolgáltatások', desc: 'Weboldal, arculat és marketing alapok kis vállalkozásoknak.', href: '/szolgaltatasok', ring: 'var(--glow-pink-md)', line: 'var(--line-neon)' },
+  { n: '02', title: 'Demó', desc: 'Élő minták valódi kisvállalkozásokra szabva.', href: '/demo', ring: 'var(--glow-violet-md)', line: 'var(--line-accent)' },
+  { n: '03', title: 'Kapcsolat', desc: 'Kérj ajánlatot, 3 munkanapon belül válaszolunk.', href: '/kapcsolat', ring: 'var(--glow-cyan-md)', line: 'var(--line-cyan)' },
+];
+
+const BOOT_MS = 3400;
+
+function Intro({ speed = 1, onEnter, onRoute }) {
+  const T = React.useCallback((ms) => Math.round(ms / speed), [speed]);
+  const [pct, setPct] = React.useState(0);
+  const [scale, setScale] = React.useState(1);
+  const [stage, setStage] = React.useState('boot');
+  const [narrow, setNarrow] = React.useState(() => window.matchMedia('(max-width: 560px)').matches);
+
+  React.useEffect(() => {
+    const mq = window.matchMedia('(max-width: 560px)');
+    const on = (e) => setNarrow(e.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
+
+  React.useEffect(() => {
+    if (document.getElementById('pryma-intro-css')) return;
+    const s = document.createElement('style');
+    s.id = 'pryma-intro-css';
+    s.textContent = INTRO_CSS;
+    document.head.appendChild(s);
+  }, []);
+
+  React.useEffect(() => {
+    const vv = window.visualViewport;
+    // the core is one rigid block: scale it to whatever the device actually shows
+    const fit = () => {
+      const w = vv?.width ?? window.innerWidth;
+      const h = vv?.height ?? window.innerHeight;
+      // 448 = the widest thing in the block (the locked PRYMA SOLUTIONS wordmark), not the robot frame
+      setScale(Math.min(1, (w - 32) / 448, (h - 48) / 760));
+    };
+    fit();
+    window.addEventListener('resize', fit);
+    window.addEventListener('orientationchange', fit);
+    vv?.addEventListener('resize', fit);
+    return () => {
+      window.removeEventListener('resize', fit);
+      window.removeEventListener('orientationchange', fit);
+      vv?.removeEventListener('resize', fit);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    const start = T(900), span = T(1420);
+    let raf;
+    const t0 = performance.now();
+    const tick = (now) => {
+      const p = Math.max(0, Math.min(1, (now - t0 - start) / span));
+      setPct(Math.round(p * 100));
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    const toGate = setTimeout(() => setStage('gate'), T(BOOT_MS));
+    return () => { cancelAnimationFrame(raf); clearTimeout(toGate); };
+  }, [T]);
+
+  const enter = (href) => {
+    onRoute?.(href);          // route swaps under the intro before the wipe starts
+    setStage('exit');
+    setTimeout(() => onEnter(href), 620);
+  };
+
+  const anim = (name, dur, delay, ease = 'var(--ease-out)', fill = 'both') =>
+    `${name} ${T(dur)}ms ${ease} ${T(delay)}ms ${fill}`;
+
+  return (
+    <div style={{ position: 'fixed', inset: 0, zIndex: 9000, background: '#06081a', overflow: stage === 'boot' ? 'hidden' : 'auto', animation: stage === 'exit' ? 'pi-lift 600ms var(--ease-in-out) both' : undefined }}>
+      <div style={{ position: 'fixed', inset: 0, backgroundImage: 'linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px)', backgroundSize: 'var(--grid-size) var(--grid-size)', opacity: .16, maskImage: 'radial-gradient(58% 52% at 50% 46%,#000 0%,transparent 78%)', WebkitMaskImage: 'radial-gradient(58% 52% at 50% 46%,#000 0%,transparent 78%)', animation: anim('pi-grid', 420, 0) }} />
+      <div style={{ position: 'fixed', inset: 0, background: 'var(--grad-mesh-violet),var(--grad-mesh-pink)', opacity: .5 }} />
+
+      {stage === 'boot' ? (
+        <div style={{ position: 'absolute', inset: 0, display: 'grid', placeItems: 'center' }}>
+          <div style={{ position: 'relative', display: 'grid', justifyItems: 'center', transform: `scale(${scale})` }}>
+
+            <div style={{ position: 'relative', width: FRAME_W, height: FRAME_H, animation: `${anim('pi-jolt', 300, 900, 'var(--ease-out)')},${anim('pi-bloom', 440, 2660, 'var(--ease-in-out)')}` }}>
+              {/* aura behind the core — ignites with the visor */}
+              <div style={{ position: 'absolute', left: '50%', top: '22%', width: 520, height: 520, marginLeft: -260, marginTop: -260, borderRadius: 999, background: 'radial-gradient(circle,rgba(56,225,255,.34) 0%,rgba(157,92,255,.24) 38%,transparent 70%)', filter: 'blur(24px)', animation: anim('pi-aura', 900, 1180) }} />
+
+              <div style={{ position: 'absolute', inset: 0, animation: anim('pi-drop', 940, 0, 'cubic-bezier(.22,.9,.24,1)') }}>
+                <div style={{ position: 'absolute', inset: 0, maskImage: MASK_Y, WebkitMaskImage: MASK_Y }}>
+                <div style={{ position: 'absolute', inset: 0, maskImage: MASK_X, WebkitMaskImage: MASK_X }}>
+                  {FRAMES.map((f, i) => (
+                    <img
+                      key={f.src}
+                      src={f.src}
+                      alt=""
+                      draggable="false"
+                      style={{
+                        position: 'absolute', inset: 0, width: '100%', height: '100%',
+                        objectFit: 'cover', objectPosition: '50% 4%', userSelect: 'none',
+                        opacity: i === 0 ? 1 : 0,
+                        animation: f.kf ? anim(f.kf, f.dur, f.at, 'linear') : undefined,
+                      }}
+                    />
+                  ))}
+                  <div style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 3, background: 'linear-gradient(90deg,transparent,rgba(56,225,255,.95),transparent)', filter: 'blur(.5px)', animation: anim('pi-scan', 1100, 1100, 'linear') }} />
+                  <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(60% 40% at 50% 30%,rgba(226,240,255,.9),rgba(157,92,255,.35) 55%,transparent 80%)', mixBlendMode: 'screen', animation: `${anim('pi-flash', 420, 880, 'linear')},${anim('pi-flash', 520, 2150, 'linear')}` }} />
+                </div>
+                </div>
+              </div>
+
+              {/* impact shockwave on landing */}
+              <div style={{ position: 'absolute', left: '10%', right: '10%', bottom: '16%', height: 2, background: 'linear-gradient(90deg,transparent,rgba(255,46,136,.9),rgba(56,225,255,.9),transparent)', animation: anim('pi-impact', 620, 880, 'var(--ease-out)') }} />
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 14, marginTop: -18, font: 'var(--weight-medium) var(--mono-sm-size)/1 var(--font-mono)', letterSpacing: '.14em', color: 'var(--text-faint)', textTransform: 'uppercase', animation: `${anim('pi-hud', 300, 1080)},${anim('pi-bloom', 340, 2660, 'var(--ease-in-out)')}` }}>
+              <span>sys // pryma core</span>
+              <span style={{ color: 'var(--cyan-400)', textShadow: 'var(--glow-text-cyan)', fontVariantNumeric: 'tabular-nums' }}>{pct}%</span>
+            </div>
+
+            <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', animation: anim('pi-lock', 720, 2720) }}>
+              <Wordmark size={56} tone="gradient" showBar />
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div style={{ position: 'relative', minHeight: '100%', display: 'grid', alignContent: 'safe center', justifyItems: 'center', gap: 'clamp(20px,4vh,var(--space-xl))', padding: 'clamp(28px,7vh,88px) clamp(16px,5vw,64px)', animation: stage === 'exit' ? 'pi-out 420ms var(--ease-in-out) both' : undefined }}>
+          <div style={{ display: 'grid', justifyItems: 'center', gap: 'var(--space-md)', animation: 'pi-in 520ms var(--ease-out) both' }}>
+            <Wordmark size={26} tone="gradient" showBar />
+            <Eyebrow variant="bare" tone="cyan" style={{ fontFamily: 'var(--font-mono)', letterSpacing: '.18em' }}>// válaszd ki, hova tartasz</Eyebrow>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: narrow ? '1fr' : 'repeat(auto-fit,minmax(min(100%,232px),1fr))', gap: 'clamp(12px,2.4vw,var(--space-lg))', width: '100%', maxWidth: 1040 }}>
+            {GATE.map((g, i) => (
+              <Card key={g.n} variant="surface" interactive onClick={() => enter(g.href)} padding={narrow ? 'var(--space-md)' : undefined} style={narrow
+                ? { display: 'grid', gridTemplateColumns: 'auto 1fr auto', alignItems: 'center', columnGap: 'var(--space-md)', minHeight: 72, animation: `pi-in 520ms var(--ease-out) ${140 + i * 110}ms both` }
+                : { display: 'grid', gap: 'var(--space-md)', alignContent: 'start', animation: `pi-in 520ms var(--ease-out) ${140 + i * 110}ms both` }}>
+                <span style={{ position: 'absolute', inset: 0, borderRadius: 'var(--radius-xl)', pointerEvents: 'none', boxShadow: `${g.ring}, inset 0 0 0 1px ${g.line}`, animation: `pi-flick 1040ms var(--ease-out) ${420 + i * 110}ms both` }} />
+                {narrow ? (
+                  <>
+                    <span style={{ font: 'var(--weight-bold) var(--heading-md-size)/1 var(--font-mono)', color: 'var(--action-primary)', textShadow: 'var(--glow-text-pink)' }}>{g.n}</span>
+                    <div style={{ display: 'grid', gap: 4, minWidth: 0 }}>
+                      <h2 style={{ margin: 0, font: 'var(--weight-bold) var(--heading-sm-size)/1.15 var(--font-display)', letterSpacing: 'var(--heading-sm-ls)', color: 'var(--text-hi)' }}>{g.title}</h2>
+                      <p style={{ margin: 0, font: 'var(--caption-size)/1.4 var(--font-ui)', color: 'var(--text-mute)', textWrap: 'pretty', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{g.desc}</p>
+                    </div>
+                    <span aria-hidden="true" style={{ font: 'var(--weight-semibold) var(--body-md-size)/1 var(--font-mono)', color: 'var(--text-link)' }}>↗</span>
+                  </>
+                ) : (
+                  <>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                      <span style={{ font: 'var(--weight-bold) var(--display-md-size)/1 var(--font-mono)', color: 'var(--action-primary)', textShadow: 'var(--glow-text-pink)' }}>{g.n}</span>
+                      <span style={{ width: 8, height: 8, borderRadius: 99, background: 'var(--grad-brand)' }} />
+                    </div>
+                    <h2 style={{ margin: 0, font: 'var(--weight-bold) var(--heading-lg-size)/var(--heading-lg-lh) var(--font-display)', letterSpacing: 'var(--heading-lg-ls)', color: 'var(--text-hi)' }}>{g.title}</h2>
+                    <p style={{ margin: 0, font: 'var(--body-md-size)/var(--body-md-lh) var(--font-ui)', color: 'var(--text-mute)', textWrap: 'pretty' }}>{g.desc}</p>
+                    <span style={{ font: 'var(--weight-semibold) var(--button-cap-size)/1 var(--font-ui)', letterSpacing: 'var(--button-cap-ls)', textTransform: 'uppercase', color: 'var(--text-link)' }}>Megnézem ↗</span>
+                  </>
+                )}
+              </Card>
+            ))}
+          </div>
+
+          <button type="button" onClick={() => enter('/')} style={{ appearance: 'none', border: 0, background: 'transparent', cursor: 'pointer', font: 'var(--weight-medium) var(--caption-size)/1 var(--font-mono)', letterSpacing: '.12em', textTransform: 'uppercase', color: 'var(--text-faint)', padding: '14px 18px', minHeight: 44, animation: 'pi-in 520ms var(--ease-out) 520ms both' }}>Tovább a kezdőlapra →</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+Object.assign(window, { Intro, INTRO_REVEAL_ANIM: 'pi-in 620ms var(--ease-out) both' });

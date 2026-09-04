@@ -1,0 +1,49 @@
+.pry-mesh {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--surface-page);
+  isolation: isolate;
+
+  &__wash {
+    position: absolute;
+    inset: -10% -5%;
+    background-image: var(--grad-mesh-pink), var(--grad-mesh-violet), var(--grad-mesh-cyan);
+    filter: blur(10px);
+    pointer-events: none;
+  }
+
+  &__grid {
+    position: absolute;
+    left: -25%;
+    right: -25%;
+    bottom: 0;
+    height: 58%;
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: var(--grid-size) var(--grid-size);
+    transform: perspective(340px) rotateX(58deg);
+    transform-origin: bottom center;
+    -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 76%);
+    mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 76%);
+    pointer-events: none;
+  }
+
+  &__horizon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 42%;
+    height: 1px;
+    background: var(--grad-brand);
+    box-shadow: var(--glow-pink-lg);
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  &__body {
+    position: relative;
+    z-index: 1;
+  }
+}

@@ -1,0 +1,58 @@
+<div class="pry-nav__row">
+  <a class="pry-nav__brand" routerLink="/" (click)="close()" aria-label="Pryma Solutions — kezdőlap">
+    <pry-wordmark [size]="20" />
+  </a>
+
+  <!-- Desktop nav -->
+  <nav class="pry-nav__links" aria-label="Fő navigáció">
+    @for (l of links(); track l.path) {
+      <a
+        class="pry-nav__link"
+        [routerLink]="l.path"
+        routerLinkActive="is-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="rla.isActive ? 'page' : null"
+      >
+        {{ l.label }}@if (l.dot) {<span class="pry-nav__dot" aria-hidden="true"></span>}
+      </a>
+    }
+  </nav>
+
+  <div class="pry-nav__actions">
+    <a pry-button variant="primary" size="cap" [routerLink]="ctaPath()">
+      {{ ctaLabel() }}
+      <pry-icon icon-right name="arrow-right" [size]="15" />
+    </a>
+  </div>
+
+  <!-- Mobile toggle -->
+  <button
+    class="pry-nav__toggle"
+    type="button"
+    [attr.aria-label]="open() ? 'Bezárás' : 'Menü'"
+    [attr.aria-expanded]="open()"
+    (click)="toggle()"
+  >
+    <pry-icon [name]="open() ? 'x' : 'menu'" [size]="22" />
+  </button>
+</div>
+
+<!-- Mobile drawer -->
+@if (open()) {
+  <div class="pry-nav__drawer">
+    @for (l of links(); track l.path) {
+      <a
+        class="pry-nav__drawer-link"
+        [routerLink]="l.path"
+        routerLinkActive="is-active"
+        (click)="close()"
+      >
+        {{ l.label }}
+      </a>
+    }
+    <a pry-button variant="primary" size="md" [fullWidth]="true" [routerLink]="ctaPath()" (click)="close()">
+      {{ ctaLabel() }}
+      <pry-icon icon-right name="arrow-right" [size]="16" />
+    </a>
+  </div>
+}

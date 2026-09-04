@@ -1,0 +1,106 @@
+const { Eyebrow, Icon, Card } = window.PrymaDesignSystem_286b6c;
+
+const railStyle = { maxWidth: 'var(--container-max)', margin: '0 auto', padding: '0 var(--container-pad)' };
+
+/* --- Beúszó animációk: egy stíluslap + két komponens ---------------------- */
+(function () {
+  if (document.getElementById('pv-appear')) return;
+  const s = document.createElement('style');
+  s.id = 'pv-appear';
+  let d = '';
+  for (let i = 2; i <= 8; i++) d += '.pv-st>*:nth-child(' + i + '){transition-delay:' + ((i - 1) * 90) + 'ms}';
+  s.textContent = '.pv-e{}'
+    + '.pv-in,.pv-st>*{opacity:0;transform:translateY(22px);transition:opacity .72s cubic-bezier(.2,.8,.2,1),transform .72s cubic-bezier(.2,.8,.2,1)}'
+    + '.pv-in.pv-left{transform:translateX(-26px)}.pv-in.pv-right{transform:translateX(26px)}.pv-in.pv-scale{transform:scale(.975)}'
+    + '.pv-in.pv-on,.pv-st.pv-on>*{opacity:1;transform:none}'
+    + d
+    + '@media (prefers-reduced-motion: reduce){.pv-in,.pv-st>*{opacity:1 !important;transform:none !important;transition:none !important}}';
+  document.head.appendChild(s);
+})();
+
+function usePvOn(immediate) {
+  const ref = React.useRef(null);
+  const [on, setOn] = React.useState(false);
+  React.useEffect(() => {
+    if (immediate) { const id = requestAnimationFrame(() => setOn(true)); return () => cancelAnimationFrame(id); }
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setOn(true); return; }
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setOn(true); io.disconnect(); } }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [immediate]);
+  return [ref, on];
+}
+
+/* Egy blokk úszik be. from: up | left | right | scale */
+function Appear({ children, from = 'up', delay = 0, immediate = false, style, className = '', ...rest }) {
+  const [ref, on] = usePvOn(immediate);
+  const cls = ['pv-in', from !== 'up' ? 'pv-' + from : '', on ? 'pv-on' : '', className].filter(Boolean).join(' ');
+  return <div ref={ref} className={cls} style={delay ? { transitionDelay: delay + 'ms', ...style } : style} {...rest}>{children}</div>;
+}
+
+/* A közvetlen gyerekek egymás után úsznak be — a rács szerkezete marad. */
+function AppearGroup({ children, immediate = false, style, className = '', ...rest }) {
+  const [ref, on] = usePvOn(immediate);
+  return <div ref={ref} className={['pv-st', on ? 'pv-on' : '', className].filter(Boolean).join(' ')} style={style} {...rest}>{children}</div>;
+}
+
+function Container({ children, style }) {
+  return <div style={{ ...railStyle, ...style }}>{children}</div>;
+}
+
+function Section({ children, tight = false, style }) {
+  return (
+    <section style={{ padding: (tight ? 'var(--section-pad-y-tight)' : 'var(--section-pad-y)') + ' 0', ...style }}>
+      <Container>{children}</Container>
+    </section>
+  );
+}
+
+function SectionHead({ eyebrow, title, lead, align = 'left', tone = 'violet', maxWidth = 720 }) {
+  return (
+    <Appear style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', alignItems: align === 'center' ? 'center' : 'flex-start', textAlign: align, maxWidth, margin: align === 'center' ? '0 auto' : undefined }}>
+      {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
+      <h2 style={{ fontSize: 'var(--display-xl-size)', fontWeight: 'var(--display-xl-weight)', lineHeight: 'var(--display-xl-lh)', letterSpacing: 'var(--display-xl-ls)', color: 'var(--text-hi)', textWrap: 'pretty' }}>{title}</h2>
+      {lead && <p style={{ fontSize: 'var(--body-lg-size)', lineHeight: 'var(--body-lg-lh)', letterSpacing: 'var(--body-lg-ls)', color: 'var(--text-mute)', textWrap: 'pretty' }}>{lead}</p>}
+    </Appear>
+  );
+}
+
+function FeatureTile({ icon, title, body, tone = 'cyan' }) {
+  const c = { cyan: 'var(--cyan-400)', pink: 'var(--pink-400)', violet: 'var(--violet-400)' }[tone];
+  return (
+    <Card variant="surface" interactive glow="none" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 44, height: 44, borderRadius: 'var(--radius-md)', background: 'var(--surface-inset)', boxShadow: 'inset 0 0 0 1px var(--line-hairline)' }}>
+        <Icon name={icon} size={22} color={c} />
+      </span>
+      <h3 style={{ fontSize: 'var(--heading-sm-size)', fontWeight: 'var(--heading-sm-weight)', letterSpacing: 'var(--heading-sm-ls)', color: 'var(--text-hi)' }}>{title}</h3>
+      <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>{body}</p>
+    </Card>
+  );
+}
+
+function StepCard({ n, title, body }) {
+  return (
+    <Card variant="outline" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--mono-sm-size)', color: 'var(--pink-400)', letterSpacing: '.1em' }}>{n}</span>
+      <h3 style={{ fontSize: 'var(--heading-md-size)', fontWeight: 'var(--heading-md-weight)', color: 'var(--text-hi)' }}>{title}</h3>
+      <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>{body}</p>
+    </Card>
+  );
+}
+
+function CheckList({ items, tone = 'cyan' }) {
+  return (
+    <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+      {items.map(i => (
+        <li key={i} style={{ display: 'flex', gap: 'var(--space-md)', alignItems: 'flex-start', fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-body)' }}>
+          <Icon name="check" size={16} color={tone === 'pink' ? 'var(--pink-400)' : 'var(--cyan-400)'} style={{ marginTop: 5 }} />
+          <span>{i}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+Object.assign(window, { Container, Section, SectionHead, FeatureTile, StepCard, CheckList, Appear, AppearGroup });

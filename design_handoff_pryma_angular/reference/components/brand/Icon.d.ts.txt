@@ -1,0 +1,15 @@
+import * as React from 'react';
+
+/** Lucide icon (2px stroke, round caps) tinted with currentColor. */
+export interface IconProps {
+  /** Lucide icon slug, e.g. "arrow-right", "sparkles", "shield-check". */
+  name: string;
+  /** Square px size. 16 inline, 20 default, 24 nav, 32+ feature. */
+  size?: number;
+  /** "text" nudges the glyph onto a text baseline. */
+  strokeAlign?: 'text' | 'box';
+  /** Overrides currentColor. */
+  color?: string;
+  style?: React.CSSProperties;
+}
+export function Icon(props: IconProps): JSX.Element;

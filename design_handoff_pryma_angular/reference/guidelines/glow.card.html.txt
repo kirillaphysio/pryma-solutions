@@ -1,0 +1,10 @@
+<!-- @dsCard group="Effects" viewport="700x160" name="Neon glow" subtitle="Glow replaces grey shadow — pink, cyan and violet at two strengths" -->
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="../styles.css">
+<style>body{margin:0;padding:20px;background:var(--navy-950);font-family:var(--font-ui);color:var(--text-body)}.g{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.b{width:132px;height:62px;border-radius:var(--radius-lg);background:var(--navy-850);display:flex;align-items:center;justify-content:center;font-family:var(--font-mono);font-size:10px;color:var(--text-mute);text-align:center;padding:0 8px}</style>
+</head><body><div class="g">
+<div class="b" style="box-shadow:var(--glow-pink-sm)">glow-pink-sm</div>
+<div class="b" style="box-shadow:var(--glow-pink-md)">glow-pink-md</div>
+<div class="b" style="box-shadow:var(--glow-cyan-md)">glow-cyan-md</div>
+<div class="b" style="box-shadow:var(--glow-violet-md)">glow-violet-md</div>
+<div class="b" style="box-shadow:var(--glow-pink-lg)">glow-pink-lg</div>
+</div></body></html>

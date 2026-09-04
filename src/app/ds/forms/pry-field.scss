@@ -1,0 +1,117 @@
+// Shared field skin — input, textarea and select all consume the inset well, hairline ring
+// and 4px radius. Focus is a cyan inset ring + halo (the DS device for fields); the native
+// outline is suppressed only here, where the ring replaces it.
+:host {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pry-field__label {
+  font-family: var(--font-ui);
+  font-size: var(--caption-size);
+  font-weight: var(--weight-bold);
+  color: var(--text-mute);
+  letter-spacing: var(--caption-ls);
+}
+
+.pry-field__req {
+  color: var(--pink-500);
+  margin-left: 4px;
+}
+
+.pry-field__well {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.pry-field__icon {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+%field-base {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: var(--font-ui);
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-lh);
+  color: var(--text-hi);
+  background: var(--surface-inset);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--line-hairline);
+  transition:
+    box-shadow var(--dur-med) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+  &:focus {
+    box-shadow:
+      inset 0 0 0 1px var(--focus-ring),
+      0 0 0 3px var(--focus-halo);
+  }
+  &.has-error {
+    box-shadow:
+      inset 0 0 0 1px var(--signal-error),
+      0 0 0 3px rgba(255, 77, 94, 0.16);
+  }
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  &::placeholder {
+    color: var(--text-faint);
+  }
+}
+
+.pry-field__input {
+  @extend %field-base;
+  min-height: 44px;
+  &.has-icon {
+    padding-left: 38px;
+  }
+}
+
+.pry-field__textarea {
+  @extend %field-base;
+  resize: vertical;
+  line-height: var(--body-md-lh);
+}
+
+.pry-field__select {
+  @extend %field-base;
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 44px;
+  padding-right: 36px;
+  cursor: pointer;
+  &.is-placeholder {
+    color: var(--text-faint);
+  }
+}
+
+.pry-field__chevron {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+  color: var(--text-mute);
+}
+
+.pry-field__msg {
+  font-family: var(--font-ui);
+  font-size: var(--caption-size);
+  line-height: var(--caption-lh);
+  color: var(--text-faint);
+  &.is-error {
+    color: var(--signal-error);
+  }
+}

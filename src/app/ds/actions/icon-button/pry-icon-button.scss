@@ -1,0 +1,60 @@
+.pry-iconbtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: none;
+  padding: 0;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+
+  &.s-sm {
+    width: 32px;
+    height: 32px;
+  }
+  &.s-md {
+    width: 40px;
+    height: 40px;
+  }
+  &.s-lg {
+    width: 48px;
+    height: 48px;
+  }
+
+  &.v-ghost {
+    background: transparent;
+    color: var(--text-mute);
+    &:hover {
+      background: var(--surface-glass);
+      color: var(--text-hi);
+    }
+  }
+  &.v-glass {
+    background: var(--surface-glass);
+    color: var(--text-hi);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+    &:hover {
+      background: var(--action-secondary);
+    }
+  }
+  &.v-neon {
+    background: var(--action-primary);
+    color: var(--text-on-accent);
+    box-shadow: var(--glow-pink-sm);
+    &:hover {
+      background: var(--action-primary-hover);
+      box-shadow: var(--glow-pink-md);
+    }
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+    opacity: 0.42;
+    filter: saturate(0.35);
+    pointer-events: none;
+  }
+}

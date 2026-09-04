@@ -1,0 +1,62 @@
+# pryma.solutions
+
+Marketing site for **Pryma Solutions**, built in Angular (standalone, signals, OnPush),
+prerendered to static HTML and deployed to GitHub Pages on the apex domain `pryma.solutions`.
+Hungarian-first; English is a phase-2 build step.
+
+See `CLAUDE.md` for the design-system rules and `design_handoff_pryma_angular/` for the full
+handoff (PLAN, TASKS, and the `reference/` prototypes this was rebuilt from).
+
+## Commands
+
+```bash
+npm start          # ng serve (dev)
+npm run build      # static prerender → dist/pryma-solutions/browser (+ postbuild: sitemap.xml, 404.html)
+npm run extract    # ng extract-i18n → src/locale/messages.xlf
+```
+
+Preview before the domain resolves (Pages project URL):
+```bash
+npx ng build --base-href=/pryma-solutions/
+```
+
+## Structure
+
+```
+src/
+  styles/            SCSS token system → emits the :root custom-property contract
+                     (_root, _theme-light, _responsive, _reset, _fonts, _tokens, _mixins, _layout-utils)
+  app/
+    ds/              Design system, prefixed pry-, presentational only
+      actions/  brand/  forms/  surfaces/  navigation/  layout/   (+ index.ts barrel)
+    pages/           home · services · contact · not-found (lazy)
+    app.ts/.html     shell: skip link, pry-nav-bar, <router-outlet>, pry-footer
+    app.routes.ts    English slugs, HU content at /
+public/
+  CNAME · robots.txt · favicon.svg · fonts/ (self-hosted woff2) · icons/ (self-hosted Lucide SVGs)
+scripts/sitemap.mjs  postbuild: writes sitemap.xml + 404.html
+.github/workflows/deploy.yml
+```
+
+## Status
+
+**Done (this pass):**
+- Phase 0 — scaffold, static prerender, CNAME/robots/favicon, deploy workflow
+- Phase 1 — full token/type/font system (fonts self-hosted; no third-party embeds)
+- Phase 2 — the DS component library, 1:1 with the reference
+- Phase 3 — Home, Services, Contact pages (verbatim HU copy, i18n on every string), 404
+- Contact form: reactive validation + `mailto:` compose + honest success state + copy-to-clipboard
+
+**Pending / next:**
+- Phase 4 — `/demo` gallery + the three demo mini-sites (asztalos / edző / szalon)
+- `/privacy` + `/imprint` — blocked on legal copy from the client (company name, seat, tax no., host)
+- Phase 5 — `ConsentService` + cookie banner, `AnalyticsService` (GA4, consent-gated; needs the G-id),
+  `SeoService` (per-route title/description/canonical/OG)
+- Nice-to-have — scroll-reveal entrance animations, `/dev/components` gallery, OG images
+- Phase 6 — English locale (`/en/`), the second prerendered build
+
+## Deploy
+
+GitHub Actions builds on push to `main` and publishes `dist/pryma-solutions/browser` to Pages.
+Repo → Settings → Pages → **Source: GitHub Actions**. Set the custom domain to `pryma.solutions`
+and tick **Enforce HTTPS** once the certificate provisions. DNS records are in `PLAN.md §2`.

@@ -1,0 +1,51 @@
+// Pryma — the four rules that get subtly wrong everywhere in the DS, as mixins.
+@use "sass:map";
+@use "tokens" as t;
+
+// Hairline — NEVER a CSS border. An inset box-shadow so it never affects layout.
+// $extra lets a component add its own shadows alongside the hairline.
+@mixin hairline($strength: 0.14, $extra: null) {
+  @if $extra {
+    box-shadow: inset 0 0 0 1px rgba(179, 174, 212, $strength), #{$extra};
+  } @else {
+    box-shadow: inset 0 0 0 1px rgba(179, 174, 212, $strength);
+  }
+}
+
+// Glow — the elevation system on navy. A tight coloured rim + a soft bloom.
+// Reads the runtime var so it themes for free.
+@mixin glow($hue: pink, $size: sm) {
+  box-shadow: var(--glow-#{$hue}-#{$size});
+}
+
+// Display tier — the 64/58/50/32 scale WITH mandatory negative tracking.
+// Sizes come from the runtime custom properties so the responsive re-key applies.
+@mixin display($tier: xxl) {
+  font-family: var(--font-display);
+  font-size: var(--display-#{$tier}-size);
+  line-height: var(--display-#{$tier}-lh);
+  letter-spacing: var(--display-#{$tier}-ls);
+  font-weight: var(--display-#{$tier}-weight);
+  color: var(--text-hi);
+}
+
+// max-width media query (the DS is desktop-first). $k is a key in $bp.
+@mixin media-down($k) {
+  @media (max-width: map.get(t.$bp, $k)) {
+    @content;
+  }
+}
+
+// min-width media query, for the rare bottom-up rule.
+@mixin media-up($k) {
+  @media (min-width: (map.get(t.$bp, $k) + 1px)) {
+    @content;
+  }
+}
+
+// Honour the user's reduced-motion preference. Wrap every non-essential transition.
+@mixin motion-safe {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}

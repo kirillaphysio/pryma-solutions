@@ -1,0 +1,61 @@
+const { Button, Card, Eyebrow, Icon, TextInput, TextArea, Select, MeshBackdrop, TextLink } = window.PrymaDesignSystem_286b6c;
+
+function ContactScreen() {
+  const [form, setForm] = React.useState({ name: '', email: '', topic: '', brief: '' });
+  const [sent, setSent] = React.useState(false);
+  const set = k => e => setForm({ ...form, [k]: e.target.value });
+  const emailError = form.email && !form.email.includes('@') ? 'Adj meg egy teljes e-mail címet.' : undefined;
+
+  return (
+    <MeshBackdrop intensity="soft" grid contentStyle={{ padding: 'clamp(40px,7vw,80px) 0 clamp(48px,8vw,96px)' }}>
+      <Container>
+        <div className="r-form-aside">
+          <Appear immediate><Card variant="surface" padding="var(--card-pad-band)">
+            {sent ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)', alignItems: 'flex-start' }}>
+                <Icon name="circle-check" size={36} color="var(--signal-success)" />
+                <h2 style={{ fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', color: 'var(--text-hi)' }}>Köszönöm{form.name ? ', ' + form.name : ''}.</h2>
+                <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>
+                  3 munkanapon belül válaszolok. Ha sürgős, írj rá egy e-mailt, és előre veszem.
+                </p>
+                <Button variant="secondary" onClick={() => { setSent(false); setForm({ name: '', email: '', topic: '', brief: '' }); }}>Új üzenet</Button>
+              </div>
+            ) : (
+              <form onSubmit={e => { e.preventDefault(); setSent(true); }} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-xl)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+                  <Eyebrow tone="pink">Kapcsolat</Eyebrow>
+                  <h1 style={{ fontSize: 'var(--display-md-size)', fontWeight: 700, letterSpacing: 'var(--display-md-ls)', lineHeight: 'var(--display-md-lh)', color: 'var(--text-hi)' }}>Írd meg, mire lenne szükséged.</h1>
+                </div>
+                <div className="r-field-pair">
+                  <TextInput label="Név" required value={form.name} onChange={set('name')} placeholder="Kovács Anna" />
+                  <TextInput label="E-mail" type="email" required value={form.email} onChange={set('email')} error={emailError} placeholder="anna@vallalkozasom.hu" iconLeft={<Icon name="mail" size={16} />} />
+                </div>
+                <Select label="Miben segíthetek?" value={form.topic} onChange={set('topic')} placeholder="Válassz egyet" options={['Weboldal', 'Arculat', 'Weboldal és arculat', 'Marketing alapok', 'Még nem tudom']} />
+                <TextArea label="Mivel foglalkozol?" rows={5} value={form.brief} onChange={set('brief')} placeholder="Pár sor elég — és ha van már oldalad, a linkje." hint="3 munkanapon belül válaszolok." />
+                <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-lg)', flexWrap: 'wrap' }}>
+                  <Button type="submit" variant="primary" size="lg" iconRight={<Icon name="arrow-right" size={18} />}>Üzenet küldése</Button>
+                  <span style={{ fontSize: 'var(--caption-size)', color: 'var(--text-faint)' }}>Vagy írj ide: <TextLink href="mailto:hello@pryma.solutions">hello@pryma.solutions</TextLink></span>
+                </div>
+              </form>
+            )}
+          </Card></Appear>
+
+          <AppearGroup immediate style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}>
+            <Card variant="accent" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+              <Icon name="clock" size={22} color="var(--violet-400)" />
+              <h3 style={{ fontSize: 'var(--heading-sm-size)', fontWeight: 600, color: 'var(--text-hi)' }}>Mi történik ezután</h3>
+              <CheckList tone="pink" items={['Visszaírok, mit érdemes először megcsinálni', 'Egy rövid terv és egy fix ár', 'Ha kell, egy fél órás beszélgetés']} />
+            </Card>
+            <Card variant="outline" style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+              <h3 style={{ fontSize: 'var(--heading-sm-size)', fontWeight: 600, color: 'var(--text-hi)' }}>Elérhetőség</h3>
+              <p style={{ fontSize: 'var(--body-md-size)', lineHeight: 'var(--body-md-lh)', color: 'var(--text-mute)' }}>Budapest, távmunkában<br />Hétfő–péntek, 9:00–18:00</p>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: 'var(--mono-sm-size)', color: 'var(--cyan-300)' }}>hello@pryma.solutions</p>
+            </Card>
+          </AppearGroup>
+        </div>
+      </Container>
+    </MeshBackdrop>
+  );
+}
+
+Object.assign(window, { ContactScreen });

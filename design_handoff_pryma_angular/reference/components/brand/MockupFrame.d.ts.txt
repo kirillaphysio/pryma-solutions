@@ -1,0 +1,16 @@
+import * as React from 'react';
+
+/** Chrome for product-UI screenshots and live mockups floating over the mesh gradient. */
+export interface MockupFrameProps {
+  children?: React.ReactNode;
+  /** Monospace label in the title bar. */
+  title?: string;
+  /** Rim-glow colour. */
+  tone?: 'cyan' | 'pink' | 'violet';
+  /** CSS aspect-ratio, e.g. "3 / 2". */
+  aspect?: string;
+  /** Slight 3D tilt for hero composites. */
+  tilt?: boolean;
+  style?: React.CSSProperties;
+}
+export function MockupFrame(props: MockupFrameProps): JSX.Element;

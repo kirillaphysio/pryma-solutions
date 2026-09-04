@@ -1,0 +1,67 @@
+import React from 'react';
+import { Wordmark } from '../brand/Wordmark.jsx';
+import { IconButton } from '../actions/IconButton.jsx';
+import { Icon } from '../brand/Icon.jsx';
+
+export function Footer({ columns = [], social = [], legal = '© 2026 Pryma Solutions. All rights reserved.', tagline, note = 'Built on the Pryma grid', onNavigate, style }) {
+  return React.createElement('footer', {
+    style: {
+      position: 'relative', overflow: 'hidden',
+      background: 'var(--surface-void)', borderTop: '1px solid var(--line-hairline)', ...style,
+    },
+  }, [
+    React.createElement('div', {
+      key: 'glow', 'aria-hidden': 'true',
+      style: { position: 'absolute', left: 0, right: 0, top: 0, height: 1, background: 'var(--grad-brand)', opacity: 0.7 },
+    }),
+    React.createElement('div', {
+      key: 'in',
+      style: {
+        maxWidth: 'var(--container-max)', margin: '0 auto',
+        padding: 'var(--space-64) var(--container-pad) var(--space-32)',
+        display: 'flex', flexWrap: 'wrap', gap: 'var(--space-32) var(--space-48)',
+      },
+    }, [
+      React.createElement('div', { key: 'b', style: { flex: '1 1 260px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' } }, [
+        React.createElement(Wordmark, { key: 'w', size: 20 }),
+        tagline && React.createElement('p', { key: 't', style: { fontSize: 'var(--caption-size)', lineHeight: 'var(--caption-lh)', color: 'var(--text-faint)', maxWidth: 260 } }, tagline),
+        social.length > 0 && React.createElement('div', { key: 's', style: { display: 'flex', gap: 'var(--space-sm)' } },
+          social.map(s => React.createElement(IconButton, { key: s.icon, label: s.label, href: s.href, variant: 'glass', size: 'sm' },
+            React.createElement(Icon, { name: s.icon, size: 16 })))),
+      ]),
+      ...columns.map(col => React.createElement('div', { key: col.title, style: { flex: '1 1 160px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' } }, [
+        React.createElement('span', {
+          key: 'h',
+          style: { fontFamily: 'var(--font-ui)', fontWeight: 'var(--weight-bold)', fontSize: 'var(--micro-cap-size)', letterSpacing: 'var(--micro-cap-ls)', textTransform: 'uppercase', color: 'var(--text-faint)' },
+        }, col.title),
+        ...col.links.map(l => React.createElement(FooterLink, { key: l.label, link: l, onNavigate })),
+      ])),
+    ]),
+    React.createElement('div', {
+      key: 'lg',
+      style: {
+        maxWidth: 'var(--container-max)', margin: '0 auto',
+        padding: 'var(--space-xl) var(--container-pad) var(--space-32)',
+        borderTop: '1px solid var(--line-hairline)',
+        display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 'var(--space-sm) var(--space-lg)', flexWrap: 'wrap',
+        fontSize: 'var(--caption-size)', color: 'var(--text-faint)', letterSpacing: 'var(--caption-ls)',
+      },
+    }, [
+      React.createElement('span', { key: 'c' }, legal),
+      note && React.createElement('span', { key: 'm', style: { fontFamily: 'var(--font-mono)', fontSize: 'var(--mono-sm-size)', color: 'var(--text-faint)', opacity: .8 } }, note),
+    ]),
+  ]);
+}
+
+function FooterLink({ link, onNavigate }) {
+  const [hover, setHover] = React.useState(false);
+  return React.createElement('a', {
+    href: link.href,
+    onClick: onNavigate ? (e) => { e.preventDefault(); onNavigate(link.href); } : undefined,
+    onMouseEnter: () => setHover(true), onMouseLeave: () => setHover(false),
+    style: {
+      fontSize: 'var(--body-md-size)', color: hover ? 'var(--text-hi)' : 'var(--text-mute)',
+      textDecoration: 'none', transition: 'color var(--dur-fast) var(--ease-out)',
+    },
+  }, link.label);
+}

@@ -1,0 +1,22 @@
+import * as React from 'react';
+
+export interface FooterColumn { title: string; links: Array<{ label: string; href: string }> }
+export interface FooterSocial { icon: string; label: string; href: string }
+
+/** Site footer on the deepest navy, opened by a 1px brand-gradient rule. */
+export interface FooterProps {
+  /** 3–5 link groups. */
+  columns?: FooterColumn[];
+  /** Lucide icon slugs + labels for the social row. */
+  social?: FooterSocial[];
+  /** Copyright line. */
+  legal?: string;
+  /** Short line under the wordmark. */
+  tagline?: string;
+  /** Mono note at the bottom-right of the legal row. Pass null to hide. */
+  note?: string | null;
+  /** Intercept link clicks for client-side routing; without it links navigate normally. */
+  onNavigate?: (href: string) => void;
+  style?: React.CSSProperties;
+}
+export function Footer(props: FooterProps): JSX.Element;

@@ -1,0 +1,77 @@
+// Pryma — SCSS token layer. These $-maps sit ABOVE the runtime CSS custom properties
+// (which stay the source of truth for theming + the accent swap). Use these in mixins
+// and component SCSS for values that never change at runtime — breakpoints, durations,
+// the pill radius. Anything a theme re-keys must be read as a var(--…), never from here.
+@use "sass:map";
+
+$navy: (
+  1000: #05030f,
+  950: #0a0720,
+  900: #0e0a2b,
+  850: #141038,
+  800: #1b1546,
+);
+$violet: (
+  750: #241a5c,
+  700: #2e1f74,
+  500: #9d5cff,
+  400: #b78cff,
+);
+$pink: (
+  500: #ff2e88,
+  600: #e01f74,
+  700: #b3155b,
+  400: #ff6fae,
+  200: #ffc2dd,
+);
+$cyan: (
+  400: #38e1ff,
+  300: #7aecff,
+  600: #12a8cc,
+);
+
+$space: (
+  xs: 4px,
+  sm: 8px,
+  md: 12px,
+  lg: 16px,
+  xl: 20px,
+  xxl: 24px,
+  huge: 28px,
+  32: 32px,
+  48: 48px,
+  64: 64px,
+  96: 96px,
+  128: 128px,
+);
+
+$radius: (
+  xs: 2px,
+  sm: 4px,
+  md: 8px,
+  lg: 12px,
+  xl: 16px,
+  xxl: 48px,
+  pill: 90px,
+);
+
+// Layout breakpoints. Note the DS uses max-width media queries (desktop-first token
+// scaling), so these are the upper bounds of each step.
+$bp: (
+  tablet: 768px,
+  desktop: 1024px,
+  wide: 1440px,
+  // NavBar collapses to a sheet at a bespoke width, see _mixins media-down(nav)
+  nav: 860px,
+);
+
+$dur: (
+  fast: 120ms,
+  med: 220ms,
+  slow: 420ms,
+  ambient: 14s,
+);
+$ease-out: cubic-bezier(0.22, 0.68, 0, 1);
+$ease-in-out: cubic-bezier(0.55, 0.06, 0.28, 0.98);
+
+$container-max: 1240px;
