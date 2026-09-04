@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PryButton, PryContainer, PryEyebrow, PryIcon, PryMeshBackdrop } from '../../ds';
+import { SeoService } from '../../core/seo.service';
 
 @Component({
   selector: 'pry-not-found',
@@ -48,4 +49,13 @@ import { PryButton, PryContainer, PryEyebrow, PryIcon, PryMeshBackdrop } from '.
     }
   `,
 })
-export class NotFound {}
+export class NotFound {
+  constructor() {
+    inject(SeoService).update({
+      title: $localize`:@@seo.nf.title:Az oldal nem található — Pryma Solutions`,
+      description: $localize`:@@seo.nf.desc:Ez az oldal nincs meg. Vissza a kezdőlapra, és onnan megtaláljuk, amit keresel.`,
+      path: '/404',
+      noindex: true,
+    });
+  }
+}

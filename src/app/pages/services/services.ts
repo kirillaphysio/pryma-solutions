@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../core/seo.service';
 import {
   PryButton,
   PryCard,
@@ -35,6 +36,15 @@ import {
   styleUrl: './services.scss',
 })
 export class Services {
+  constructor() {
+    inject(SeoService).update({
+      title: $localize`:@@seo.services.title:Szolgáltatások — Pryma Solutions`,
+      description: $localize`:@@seo.services.desc:Arculat, weboldal és marketing alapok egy kézből. Három tipikus csomag fix áron, őszinte határidőkkel — nézd meg, mit tudok elvállalni a vállalkozásodnak.`,
+      path: '/services',
+      image: '/og/services.png',
+    });
+  }
+
   protected readonly pkg1 = [
     $localize`:@@svc.pkg1.item1:Egy oldal, mobilra optimalizálva`,
     $localize`:@@svc.pkg1.item2:Kapcsolatfelvételi űrlap`,

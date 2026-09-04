@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { SeoService } from '../../core/seo.service';
 import {
   PryButton,
   PryCard,
@@ -37,6 +38,15 @@ import {
   styleUrl: './home.scss',
 })
 export class Home {
+  constructor() {
+    inject(SeoService).update({
+      title: $localize`:@@seo.home.title:Pryma Solutions — weboldal és arculat`,
+      description: $localize`:@@seo.home.desc:Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, két munkanapon belüli válasszal.`,
+      path: '/',
+      image: '/og/home.png',
+    });
+  }
+
   // Dynamic list content — localised in TS per the DS convention.
   protected readonly whyItems = [
     $localize`:@@home.why.item1:Egy kapcsolattartó a teljes munka alatt`,

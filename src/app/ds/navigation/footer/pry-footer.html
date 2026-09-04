@@ -20,7 +20,14 @@
 
 <div class="pry-footer__legal">
   <span>{{ legal() }}</span>
-  @if (note()) {
-    <span class="pry-footer__note">{{ note() }}</span>
-  }
+  <span class="pry-footer__legal-right">
+    @if (consentLabel()) {
+      <button type="button" class="pry-footer__consent" (click)="consentClick.emit()">
+        {{ consentLabel() }}
+      </button>
+    }
+    @if (note()) {
+      <span class="pry-footer__note">{{ note() }}</span>
+    }
+  </span>
 </div>

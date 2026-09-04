@@ -67,18 +67,18 @@ Work top to bottom. Tick as you go. Don't start a phase before the previous one 
 
 ## Phase 5 — SEO, consent, launch
 
-- [ ] `SeoService` — title, description, canonical, OG, Twitter per route
-- [ ] `og:image` tags pointing at `/og/<route>.png` (files supplied later)
-- [ ] `ConsentService` (signal + localStorage), cookie banner with explicit accept/reject, re-openable from the footer
+- [x] `SeoService` — title, description, canonical, OG, Twitter per route (set during prerender; verified in output HTML)
+- [x] `og:image` tags pointing at `/og/<route>.png` (PNG files supplied later)
+- [x] `ConsentService` (signal + localStorage), cookie banner with explicit accept/reject, focus-trapped, re-openable from the footer
 - [x] Consent Mode v2 denied-by-default snippet in `index.html`
-- [ ] `AnalyticsService` — inject gtag only on grant, manual `page_view` per navigation _(needs GA4 id)_
+- [x] `AnalyticsService` — inject gtag only on grant, manual `page_view` per navigation _(dormant until the GA4 id is set in environment.ts)_
 - [x] `scripts/sitemap.mjs` + `robots.txt` pointing at it
 - [x] `404.html` emitted (SPA fallback via postbuild)
 - [ ] Register `pryma.solutions`, add A/AAAA/CNAME records, set custom domain, enforce HTTPS _(manual)_
-- [ ] Rebuild with `base-href=/`
+- [ ] Rebuild with `base-href=/` _(default already `/`)_
 - [ ] Lighthouse ≥ 95 ×4; watch blur cost on mobile
 - [x] `prefers-reduced-motion` kill-switch; keyboard skip link + visible focus ring
-- [ ] Clean-profile cookie check (verify nothing hits Google pre-consent)
+- [ ] Clean-profile cookie check (verify nothing hits Google pre-consent) — _needs a browser; logic: no gtag.js loads until state==='granted'_
 
 ## Phase 6 — EN (after launch)
 

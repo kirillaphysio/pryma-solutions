@@ -8,6 +8,7 @@ import {
   type FormControl,
 } from '@angular/forms';
 import { merge } from 'rxjs';
+import { SeoService } from '../../core/seo.service';
 import {
   PryButton,
   PryCard,
@@ -52,6 +53,15 @@ export class Contact {
   protected readonly opened = signal(false);
   protected readonly copied = signal(false);
   protected readonly submittedName = signal('');
+
+  constructor() {
+    inject(SeoService).update({
+      title: $localize`:@@seo.contact.title:Kapcsolat — Pryma Solutions`,
+      description: $localize`:@@seo.contact.desc:Írd meg, mire lenne szükséged. Küldök egy rövid tervet és egy fix árat, jellemzően három munkanapon belül. Egy kapcsolattartó, felesleges körök nélkül.`,
+      path: '/contact',
+      image: '/og/contact.png',
+    });
+  }
 
   protected readonly nextItems = [
     $localize`:@@contact.next.item1:Visszaírok, mit érdemes először megcsinálni`,

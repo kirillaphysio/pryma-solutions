@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PryWordmark } from '../../brand/wordmark/pry-wordmark';
 
@@ -25,4 +25,7 @@ export class PryFooter {
   readonly tagline = input<string>('');
   readonly legal = input('© 2026 Pryma Solutions');
   readonly note = input('A Pryma gridre építve');
+  /** When set, renders a ghost text button in the legal row (e.g. "Süti beállítások"). */
+  readonly consentLabel = input<string>('');
+  readonly consentClick = output<void>();
 }

@@ -1,0 +1,70 @@
+import { Injectable, inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
+import { environment } from '../../environments/environment';
+
+export interface SeoConfig {
+  /** Full <title>, incl. the "— Pryma Solutions" suffix. ≤ 60 chars. */
+  title: string;
+  /** Meta description, 140–160 chars, brand voice. */
+  description: string;
+  /** Route path, e.g. "/services" or "/". Canonical + OG url are built from it. */
+  path: string;
+  /** OG image path under /og/. Defaults to the home image. */
+  image?: string;
+  /** noindex the route (demo/showcase pages). */
+  noindex?: boolean;
+}
+
+/**
+ * Per-route SEO: title, description, canonical, Open Graph and Twitter tags. Called from
+ * each page so the tags are set during prerender (they land in the static HTML) and updated
+ * on client navigation.
+ */
+@Injectable({ providedIn: 'root' })
+export class SeoService {
+  private readonly title = inject(Title);
+  private readonly meta = inject(Meta);
+  private readonly doc = inject(DOCUMENT);
+  private readonly origin = environment.siteOrigin;
+
+  update(cfg: SeoConfig) {
+    const url = this.origin + (cfg.path === '/' ? '/' : cfg.path);
+    const image = this.origin + (cfg.image ?? '/og/home.png');
+
+    this.title.setTitle(cfg.title);
+    this.meta.updateTag({ name: 'description', content: cfg.description });
+    this.meta.updateTag({
+      name: 'robots',
+      content: cfg.noindex ? 'noindex, nofollow' : 'index, follow',
+    });
+
+    // Open Graph
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'Pryma Solutions' });
+    this.meta.updateTag({ property: 'og:locale', content: 'hu_HU' });
+    this.meta.updateTag({ property: 'og:title', content: cfg.title });
+    this.meta.updateTag({ property: 'og:description', content: cfg.description });
+    this.meta.updateTag({ property: 'og:url', content: url });
+    this.meta.updateTag({ property: 'og:image', content: image });
+    this.meta.updateTag({ property: 'og:image:alt', content: cfg.title });
+
+    // Twitter
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
+    this.meta.updateTag({ name: 'twitter:title', content: cfg.title });
+    this.meta.updateTag({ name: 'twitter:description', content: cfg.description });
+    this.meta.updateTag({ name: 'twitter:image', content: image });
+
+    this.setCanonical(url);
+  }
+
+  private setCanonical(url: string) {
+    let link = this.doc.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!link) {
+      link = this.doc.createElement('link');
+      link.setAttribute('rel', 'canonical');
+      this.doc.head.appendChild(link);
+    }
+    link.setAttribute('href', url);
+  }
+}

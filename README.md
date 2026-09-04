@@ -40,19 +40,22 @@ scripts/sitemap.mjs  postbuild: writes sitemap.xml + 404.html
 
 ## Status
 
-**Done (this pass):**
+**Done:**
 - Phase 0 — scaffold, static prerender, CNAME/robots/favicon, deploy workflow
 - Phase 1 — full token/type/font system (fonts self-hosted; no third-party embeds)
 - Phase 2 — the DS component library, 1:1 with the reference
 - Phase 3 — Home, Services, Contact pages (verbatim HU copy, i18n on every string), 404
 - Contact form: reactive validation + `mailto:` compose + honest success state + copy-to-clipboard
+- Phase 5 — `SeoService` (per-route title/description/canonical/OG/Twitter, set during prerender),
+  `ConsentService` + focus-trapped cookie banner (re-openable from the footer), `AnalyticsService`
+  (GA4 via gtag.js, injected only on consent). Consent Mode v2 denied-by-default in `index.html`.
 
 **Pending / next:**
-- Phase 4 — `/demo` gallery + the three demo mini-sites (asztalos / edző / szalon)
+- Phase 4 — `/demo` gallery + the three demo mini-sites (asztalos / edző / szalon); re-add Demó to the nav
 - `/privacy` + `/imprint` — blocked on legal copy from the client (company name, seat, tax no., host)
-- Phase 5 — `ConsentService` + cookie banner, `AnalyticsService` (GA4, consent-gated; needs the G-id),
-  `SeoService` (per-route title/description/canonical/OG)
-- Nice-to-have — scroll-reveal entrance animations, `/dev/components` gallery, OG images
+- Client inputs to activate what's built: **GA4 measurement id** (`src/environments/environment.ts`),
+  **OG images** (`public/og/<route>.png`), logo SVG
+- Nice-to-have — scroll-reveal entrance animations, `/dev/components` gallery
 - Phase 6 — English locale (`/en/`), the second prerendered build
 
 ## Deploy

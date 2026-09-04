@@ -84,6 +84,28 @@
     letter-spacing: var(--caption-ls);
   }
 
+  &__legal-right {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  &__consent {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: var(--caption-size);
+    letter-spacing: var(--caption-ls);
+    color: var(--text-mute);
+    transition: color var(--dur-fast) var(--ease-out);
+    &:hover {
+      color: var(--text-hi);
+    }
+  }
+
   &__note {
     font-family: var(--font-mono);
     font-size: var(--mono-sm-size);

@@ -13,57 +13,64 @@
         <source>Szolgáltatások</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">38</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nav.contact" datatype="html">
         <source>Kapcsolat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">39</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.pages" datatype="html">
         <source>Oldalak</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.home" datatype="html">
         <source>Kezdőlap</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.tagline" datatype="html">
         <source>Weboldal, arculat és marketing alapok kis vállalkozásoknak.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.legal" datatype="html">
         <source>© 2026 Pryma Solutions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.note" datatype="html">
         <source>A Pryma gridre építve</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/app.ts</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.consent" datatype="html">
+        <source>Süti beállítások</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.ts</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.done.title" datatype="html">
@@ -213,123 +220,137 @@
           <context context-type="linenumber">107,108</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="seo.contact.title" datatype="html">
+        <source>Kapcsolat — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.contact.desc" datatype="html">
+        <source>Írd meg, mire lenne szükséged. Küldök egy rövid tervet és egy fix árat, jellemzően három munkanapon belül. Egy kapcsolattartó, felesleges körök nélkül.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="contact.next.item1" datatype="html">
         <source>Visszaírok, mit érdemes először megcsinálni</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.next.item2" datatype="html">
         <source>Egy rövid terv és egy fix ár</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.next.item3" datatype="html">
         <source>Ha kell, egy fél órás beszélgetés</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.topic.web" datatype="html">
         <source>Weboldal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.topic.brand" datatype="html">
         <source>Arculat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.topic.both" datatype="html">
         <source>Weboldal és arculat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.topic.mkt" datatype="html">
         <source>Marketing alapok</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.topic.unsure" datatype="html">
         <source>Még nem tudom</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.err.name.req" datatype="html">
         <source>Add meg a neved.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.err.email.req" datatype="html">
         <source>Add meg az e-mail címed.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.err.brief.req" datatype="html">
         <source>Írj pár sort arról, mivel foglalkozol.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.err.email.invalid" datatype="html">
         <source>Adj meg egy teljes e-mail címet.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.err.brief.min" datatype="html">
         <source>Legalább 20 karakter, hogy tudjak mit válaszolni.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.mail.subject" datatype="html">
         <source>Ajánlatkérés – <x id="name" equiv-text="name"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.mail.name" datatype="html">
         <source>Név: <x id="name" equiv-text="name"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.mail.email" datatype="html">
         <source>E-mail: <x id="email" equiv-text="email"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="contact.mail.topic" datatype="html">
         <source>Téma: <x id="topic" equiv-text="topic"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/contact/contact.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="home.hero.eyebrow" datatype="html">
@@ -340,7 +361,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="home.hero.title" datatype="html">
-        <source> Weboldal és arculat<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/>a vállalkozásodnak. </source>
+        <source> Weboldal és arculat<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>a vállalkozásodnak. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
           <context context-type="linenumber">7,9</context>
@@ -563,53 +584,81 @@
           <context context-type="linenumber">141,143</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="seo.home.title" datatype="html">
+        <source>Pryma Solutions — weboldal és arculat</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.home.desc" datatype="html">
+        <source>Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, két munkanapon belüli válasszal.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/home/home.ts</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="home.why.item1" datatype="html">
         <source>Egy kapcsolattartó a teljes munka alatt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.ts</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="home.why.item2" datatype="html">
         <source>Fix ár, a munka megkezdése előtt egyeztetve</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="home.why.item3" datatype="html">
         <source>Az oldal a tiéd: a fájlok és a hozzáférések nálad maradnak</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nf.eyebrow" datatype="html">
         <source>404</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nf.title" datatype="html">
         <source>Ez az oldal nincs meg.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nf.lead" datatype="html">
         <source> Lehet, hogy elköltözött, vagy sosem létezett. Vissza a kezdőlapra, és onnan megtaláljuk, amit keresel. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nf.cta" datatype="html">
         <source>Vissza a kezdőlapra</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
-          <context context-type="linenumber">20,21</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.nf.title" datatype="html">
+        <source>Az oldal nem található — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.nf.desc" datatype="html">
+        <source>Ez az oldal nincs meg. Vissza a kezdőlapra, és onnan megtaláljuk, amit keresel.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.hero.eyebrow" datatype="html">
@@ -857,95 +906,137 @@
           <context context-type="linenumber">154,155</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="seo.services.title" datatype="html">
+        <source>Szolgáltatások — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/services/services.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.services.desc" datatype="html">
+        <source>Arculat, weboldal és marketing alapok egy kézből. Három tipikus csomag fix áron, őszinte határidőkkel — nézd meg, mit tudok elvállalni a vállalkozásodnak.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/services/services.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="svc.pkg1.item1" datatype="html">
         <source>Egy oldal, mobilra optimalizálva</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg1.item2" datatype="html">
         <source>Kapcsolatfelvételi űrlap</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg1.item3" datatype="html">
         <source>Domain és élesítés beállítva</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg2.item1" datatype="html">
         <source>3–6 aloldal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg2.item2" datatype="html">
         <source>Szerkeszthető tartalom</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg2.item3" datatype="html">
         <source>Alap keresőoptimalizálás</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg3.item1" datatype="html">
         <source>Logó és színvilág</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg3.item2" datatype="html">
         <source>Tipográfia és használati útmutató</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.pkg3.item3" datatype="html">
         <source>A kész weboldal az új arculattal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.good.item1" datatype="html">
         <source>Egy bemutatkozó oldal jellemzően 2–3 hét, összetettebb oldal 4–6 hét.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.good.item2" datatype="html">
         <source>A szöveget közösen rakjuk össze, nem kell készen küldened.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.good.item3" datatype="html">
         <source>Ha nincs fotód, mutatok megoldást arra is.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.good.item4" datatype="html">
         <source>Élesítés után egy hónapig javítom, ami menet közben derül ki.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/services/services.ts</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cookie.title" datatype="html">
+        <source>Sütik</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/cookie-banner/cookie-banner.ts</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cookie.desc" datatype="html">
+        <source> A látogatottság méréséhez sütiket használnék, de csak a beleegyezéseddel. Enélkül is minden működik az oldalon. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/cookie-banner/cookie-banner.ts</context>
+          <context context-type="linenumber">34,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cookie.accept" datatype="html">
+        <source> Elfogadom </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/cookie-banner/cookie-banner.ts</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cookie.reject" datatype="html">
+        <source> Elutasítom </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/cookie-banner/cookie-banner.ts</context>
+          <context context-type="linenumber">43,44</context>
         </context-group>
       </trans-unit>
     </body>
