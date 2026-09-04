@@ -1,0 +1,62 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Időpont"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Price list -->
+  <section class="d-section">
+    <div class="d-wrap p-head">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="d-kicker">Árak</span>
+        <h1 class="d-h" style="font-size: clamp(30px, 5vw, 44px)">Tájékoztató árlista.</h1>
+      </div>
+      <div>
+        <div class="p-list">
+          @for (row of prices; track row[0]) {
+            <div class="p-row">
+              <span class="p-row__name">{{ row[0] }}</span>
+              <span class="p-row__price">{{ row[1] }}</span>
+            </div>
+          }
+        </div>
+        <p class="p-note">A végleges ár a hajhossztól és a felhasznált anyagtól függ.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services recap -->
+  <section class="d-section d-section--alt d-section--tight">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px">
+        <span class="d-kicker">Kezelések</span>
+        <h2 class="d-h" style="font-size: clamp(24px, 3.4vw, 34px)">
+          Mennyi időt vegyél rá?
+        </h2>
+      </div>
+      <div class="p-services">
+        @for (s of services; track s.name) {
+          <div class="p-service">
+            <span class="p-service__name">{{ s.name }}</span>
+            <span class="p-service__meta">{{ s.meta }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="d-section d-section--tight">
+    <div class="d-wrap p-cta">
+      <h2 class="d-h" style="font-size: clamp(26px, 4vw, 38px)">Foglalj időpontot.</h2>
+      <p class="d-lead" style="max-width: 460px">
+        Írd meg, mit szeretnél, és mikor lenne jó. Aznap visszajelzünk a szabad időpontokról.
+      </p>
+      <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
+    </div>
+  </section>
+</pry-demo-chrome>

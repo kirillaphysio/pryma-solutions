@@ -1,0 +1,113 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Felmérés"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Hero -->
+  <section class="d-section">
+    <div class="d-wrap">
+      <div class="w-hero">
+        <span class="d-kicker">Asztalos · kivitelezés · Pest megye</span>
+        <h1 class="d-h" style="font-size: clamp(34px, 6vw, 56px)">
+          Beépített bútor, méretre, egy műhelyből.
+        </h1>
+        <p class="d-lead" style="max-width: 560px; font-size: clamp(15px, 2vw, 18px)">
+          Konyha, gardrób, fürdőszobabútor. A felmérést, a gyártást és a beépítést ugyanaz az
+          ember végzi, így nincs kire várni.
+        </p>
+        <div class="w-hero__cta">
+          <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Felmérést kérek</a>
+          <span class="w-hero__note">Válasz 2 napon belül</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-bleed image -->
+  <pry-demo-art
+    label="elkészült konyha · helyszíni fotó"
+    ratio="21 / 8"
+    variant="wood"
+    [flush]="true"
+  />
+
+  <!-- Work list -->
+  <section class="d-section">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px">
+        <span class="d-kicker">Munkák</span>
+        <h2 class="d-h" style="font-size: clamp(26px, 3.6vw, 38px)">Amit vállalok.</h2>
+      </div>
+      <div class="w-list">
+        @for (it of items; track it.n) {
+          <div class="w-row">
+            <span class="w-row__n">{{ it.n }}</span>
+            <div>
+              <h3 class="w-row__title">{{ it.title }}</h3>
+              <p class="w-row__body">{{ it.body }}</p>
+            </div>
+          </div>
+        }
+      </div>
+      <div style="margin-top: 28px">
+        <a class="d-btn d-btn--outline" [routerLink]="workPath">Munkák és anyagok</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="d-section d-section--alt">
+    <div class="d-wrap w-proc">
+      <div style="display: flex; flex-direction: column; gap: 12px">
+        <span class="d-kicker">Folyamat</span>
+        <h2 class="d-h" style="font-size: clamp(24px, 3.2vw, 34px)">
+          Négy szakasz, kiszámítható tempóban.
+        </h2>
+      </div>
+      <div class="w-proc__grid">
+        @for (s of process; track s[0]; let i = $index) {
+          <div class="w-step">
+            <span class="w-step__n">0{{ i + 1 }}</span>
+            <span class="w-step__h">{{ s[0] }}</span>
+            <p class="w-step__b">{{ s[1] }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Quote -->
+  <section class="d-section d-section--tight">
+    <div class="d-wrap w-quote">
+      <p>
+        „A megbeszélt héten kezdett, a megbeszélt áron. A konyha két éve van meg, egyetlen ajtó
+        sem lóg el.”
+      </p>
+      <span>Megbízó · konyha, 2024</span>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="kapcsolat" class="d-section" style="border-top: 1px solid var(--d-line)">
+    <div class="d-wrap w-contact">
+      <div style="display: flex; flex-direction: column; gap: 18px; align-items: flex-start">
+        <h2 class="d-h" style="font-size: clamp(26px, 4vw, 38px)">Van egy méret és egy ötlet?</h2>
+        <p class="d-lead" style="max-width: 420px">
+          Írd meg, milyen helyiségről van szó. Ha kell, kimegyek megnézni.
+        </p>
+        <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Felmérést kérek</a>
+      </div>
+      <div class="w-contact__lines">
+        <span>+36 20 987 6543</span>
+        <span>muhely&#64;example.hu</span>
+        <span class="mute">Műhely: Pest megye</span>
+        <span class="mute">H–P 7:00–16:00</span>
+      </div>
+    </div>
+  </section>
+</pry-demo-chrome>

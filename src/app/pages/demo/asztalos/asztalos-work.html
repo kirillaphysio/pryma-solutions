@@ -1,0 +1,70 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Felmérés"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Work items -->
+  <section class="d-section">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 8px">
+        <span class="d-kicker">Munkák</span>
+        <h1 class="d-h" style="font-size: clamp(30px, 5vw, 46px)">Néhány elkészült darab.</h1>
+      </div>
+      @for (it of items; track it.n) {
+        <div class="ww-item">
+          <div>
+            <span class="ww-item__n">{{ it.n }}</span>
+            <h2 class="ww-item__title">{{ it.title }}</h2>
+            <p class="ww-item__body">{{ it.body }}</p>
+          </div>
+          <div class="ww-item__art">
+            <pry-demo-art [label]="it.img" ratio="16 / 10" variant="wood" />
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Materials -->
+  <section class="d-section d-section--alt">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px">
+        <span class="d-kicker">Anyagok</span>
+        <h2 class="d-h" style="font-size: clamp(24px, 3.4vw, 34px)">Amiből dolgozom.</h2>
+      </div>
+      <div class="ww-species">
+        @for (s of species; track s[0]) {
+          <div class="ww-species__cell">
+            <pry-demo-art [label]="s[0]" ratio="1 / 1" variant="wood" />
+            <span class="ww-species__name">{{ s[0] }}</span>
+            <span class="ww-species__note">{{ s[1] }}</span>
+          </div>
+        }
+      </div>
+      <div>
+        @for (row of spec; track row[0]) {
+          <div class="ww-spec">
+            <span class="ww-spec__k">{{ row[0] }}</span>
+            <span class="ww-spec__v">{{ row[1] }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="kapcsolat" class="d-section d-section--tight">
+    <div class="d-wrap ww-cta">
+      <h2 class="d-h" style="font-size: clamp(26px, 4vw, 38px)">Van egy méret és egy ötlet?</h2>
+      <p class="d-lead" style="max-width: 460px">
+        Írd meg, milyen helyiségről van szó. Rajzot és tételes árajánlatot küldök.
+      </p>
+      <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Felmérést kérek</a>
+    </div>
+  </section>
+</pry-demo-chrome>

@@ -1,0 +1,72 @@
+.demo-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 720px;
+
+  &__title {
+    font-size: var(--display-xl-size);
+    font-weight: 700;
+    line-height: var(--display-xl-lh);
+    letter-spacing: var(--display-xl-ls);
+    color: var(--text-hi);
+    text-wrap: pretty;
+  }
+
+  &__lead {
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-lh);
+    letter-spacing: var(--body-lg-ls);
+    color: var(--text-mute);
+  }
+}
+
+.demo-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+
+  &__frame {
+    display: block;
+    width: 100%;
+    height: 420px;
+    border: 0;
+    background: #faf6f0;
+  }
+
+  &__num {
+    font-family: var(--font-mono);
+    font-size: var(--mono-sm-size);
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin-top: var(--space-sm);
+  }
+
+  &__title {
+    font-size: var(--heading-md-size);
+    font-weight: var(--heading-md-weight);
+    color: var(--text-hi);
+  }
+
+  &__note {
+    font-size: var(--body-md-size);
+    line-height: var(--body-md-lh);
+    color: var(--text-mute);
+    margin-bottom: auto;
+  }
+}
+
+.demo-closing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-32);
+  flex-wrap: wrap;
+
+  &__text {
+    font-size: var(--body-md-size);
+    line-height: var(--body-md-lh);
+    color: var(--text-mute);
+    max-width: 560px;
+  }
+}

@@ -1,0 +1,86 @@
+<!-- Hero -->
+<pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(32px,5vw,56px)">
+  <pry-container>
+    <div class="demo-hero">
+      <pry-eyebrow tone="pink" i18n="@@demo.eyebrow">Demó</pry-eyebrow>
+      <h1 class="demo-hero__title" i18n="@@demo.title">Nézd meg, mit tudna a te oldalad.</h1>
+      <p class="demo-hero__lead" i18n="@@demo.lead">
+        Három szakma, három szándékosan különböző stílus. Nyisd meg bármelyiket, és egy teljes
+        példaoldal fogad — a tieden a saját képeid és szövegeid lennének.
+      </p>
+    </div>
+  </pry-container>
+</pry-mesh-backdrop>
+
+<!-- Three demos -->
+<pry-section [tight]="true">
+  <div class="r-g3">
+    <!-- Salon -->
+    <pry-card variant="surface" class="demo-card">
+      <pry-mockup-frame title="szalon.demo" tone="pink">
+        <iframe
+          class="demo-card__frame"
+          [src]="srcSalon"
+          title="Fodrászat és kozmetika példaoldal"
+          i18n-title="@@demo.frame.szalon"
+          loading="lazy"
+          sandbox="allow-same-origin allow-scripts"
+          tabindex="-1"
+        ></iframe>
+      </pry-mockup-frame>
+      <span class="demo-card__num">01</span>
+      <h3 class="demo-card__title" i18n="@@demo.szalon.rail">Fodrászat & kozmetika</h3>
+      <p class="demo-card__note" i18n="@@demo.szalon.note">Meleg, képvezérelt, hosszú oldal.</p>
+      <a pry-text-link [arrow]="true" routerLink="/demo/szalon" i18n="@@demo.open">Megnyitom</a>
+    </pry-card>
+
+    <!-- Trainer -->
+    <pry-card variant="surface" class="demo-card">
+      <pry-mockup-frame title="edzo.demo" tone="cyan">
+        <iframe
+          class="demo-card__frame"
+          [src]="srcEdzo"
+          title="Személyi edző példaoldal"
+          i18n-title="@@demo.frame.edzo"
+          loading="lazy"
+          sandbox="allow-same-origin allow-scripts"
+          tabindex="-1"
+        ></iframe>
+      </pry-mockup-frame>
+      <span class="demo-card__num">02</span>
+      <h3 class="demo-card__title" i18n="@@demo.edzo.rail">Személyi edző</h3>
+      <p class="demo-card__note" i18n="@@demo.edzo.note">Sötét, rövid, kártyás felépítés.</p>
+      <a pry-text-link [arrow]="true" routerLink="/demo/edzo" i18n="@@demo.open">Megnyitom</a>
+    </pry-card>
+
+    <!-- Carpenter -->
+    <pry-card variant="surface" class="demo-card">
+      <pry-mockup-frame title="asztalos.demo" tone="violet">
+        <iframe
+          class="demo-card__frame"
+          [src]="srcAsztalos"
+          title="Asztalos és kivitelező példaoldal"
+          i18n-title="@@demo.frame.asztalos"
+          loading="lazy"
+          sandbox="allow-same-origin allow-scripts"
+          tabindex="-1"
+        ></iframe>
+      </pry-mockup-frame>
+      <span class="demo-card__num">03</span>
+      <h3 class="demo-card__title" i18n="@@demo.asztalos.rail">Asztalos / kivitelező</h3>
+      <p class="demo-card__note" i18n="@@demo.asztalos.note">Minimál, szöveges, kevés fotó.</p>
+      <a pry-text-link [arrow]="true" routerLink="/demo/asztalos" i18n="@@demo.open">Megnyitom</a>
+    </pry-card>
+  </div>
+</pry-section>
+
+<!-- Closing note -->
+<pry-section [tight]="true">
+  <pry-card variant="outline" class="demo-closing">
+    <p class="demo-closing__text" i18n="@@demo.closing.text">
+      A példaoldalakon szándékosan nincs kitalált cégnév, a fotók helyét pedig jelöltem. A tieden a
+      saját képeid és szövegeid lesznek.
+    </p>
+    <a pry-button variant="primary" routerLink="/contact" i18n="@@demo.closing.cta">Beszéljük át</a>
+  </pry-card>
+</pry-section>

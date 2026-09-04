@@ -1,0 +1,85 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Felmérés"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Programs detail -->
+  <section class="d-section">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px">
+        <span class="d-kicker">Programok</span>
+        <h1 class="d-h" style="font-size: clamp(32px, 5vw, 52px); text-transform: uppercase">
+          Három út, ugyanaz a módszer.
+        </h1>
+      </div>
+      <div class="ep-list">
+        @for (p of programs; track p.name) {
+          <article class="ep-prog">
+            <div class="ep-prog__head">
+              <span class="ep-prog__meta">{{ p.meta }}</span>
+              <span class="ep-prog__name">{{ p.name }}</span>
+              <p class="ep-prog__body">{{ p.body }}</p>
+            </div>
+            <ul class="ep-more">
+              @for (m of p.more; track m) {
+                <li>{{ m }}</li>
+              }
+            </ul>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Prices -->
+  <section class="d-section d-section--alt">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px">
+        <span class="d-kicker">Árak</span>
+        <h2 class="d-h" style="font-size: clamp(28px, 4vw, 44px); text-transform: uppercase">
+          Nincs éves szerződés.
+        </h2>
+      </div>
+
+      <h3 class="ep-group-label">Alkalmi</h3>
+      <div class="ep-price-group" style="margin-bottom: clamp(28px, 4vw, 44px)">
+        @for (p of alkalmi; track p.name) {
+          <div class="ep-price" [class.ep-price--hi]="p.hi">
+            <span class="ep-price__name">{{ p.name }}</span>
+            <span class="ep-price__val">{{ p.price }}</span>
+            <p class="ep-price__body">{{ p.body }}</p>
+          </div>
+        }
+      </div>
+
+      <h3 class="ep-group-label">Bérlet</h3>
+      <div class="ep-price-group">
+        @for (p of berlet; track p.name) {
+          <div class="ep-price" [class.ep-price--hi]="p.hi">
+            <span class="ep-price__name">{{ p.name }}</span>
+            <span class="ep-price__val">{{ p.price }}</span>
+            <p class="ep-price__body">{{ p.body }}</p>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="kapcsolat" class="d-section d-section--tight">
+    <div class="d-wrap" style="display: flex; flex-direction: column; gap: 16px; align-items: flex-start">
+      <h2 class="d-h" style="font-size: clamp(26px, 4vw, 40px); text-transform: uppercase">
+        Kezdjük egy felméréssel.
+      </h2>
+      <p class="d-lead" style="max-width: 480px">
+        Az első alkalom ingyenes: mozgásvizsgálat és egy beszélgetés a céljaidról.
+      </p>
+      <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Ingyenes felmérés</a>
+    </div>
+  </section>
+</pry-demo-chrome>

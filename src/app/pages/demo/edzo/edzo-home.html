@@ -1,0 +1,103 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Felmérés"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Hero -->
+  <section class="d-section">
+    <div class="d-wrap">
+      <div class="e-hero">
+        <span class="d-kicker">Személyi edzés · saját terem</span>
+        <h1 class="d-h" style="font-size: clamp(40px, 8vw, 78px); text-wrap: balance">
+          Amit nem hagysz abba három hét után.
+        </h1>
+        <p class="d-lead" style="max-width: 520px; font-size: clamp(15px, 2vw, 18px)">
+          Felmérésre épített terv, heti két alkalom. Kezdőknek, visszatérőknek és sérülés utáni
+          újrakezdéshez.
+        </p>
+        <div class="e-hero__cta">
+          <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Ingyenes felmérés</a>
+          <a class="d-btn d-btn--outline" [routerLink]="programsPath">Programok</a>
+        </div>
+      </div>
+      <div class="e-stats">
+        @for (s of stats; track s[1]) {
+          <div class="e-stat">
+            <span class="e-stat__val">{{ s[0] }}</span>
+            <span class="e-stat__lbl">{{ s[1] }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs -->
+  <section class="d-section d-section--alt">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px">
+        <span class="d-kicker">Programok</span>
+        <h2 class="d-h" style="font-size: clamp(28px, 4.4vw, 44px); text-transform: uppercase">
+          Három út, ugyanaz a módszer.
+        </h2>
+      </div>
+      <div class="e-grid3">
+        @for (p of programs; track p.name) {
+          <div class="e-prog">
+            <div class="e-prog__top">
+              <span class="e-prog__name">{{ p.name }}</span>
+              <span class="e-prog__meta">{{ p.meta }}</span>
+            </div>
+            <p class="e-prog__body">{{ p.body }}</p>
+            <div class="e-tags">
+              @for (tag of p.tags; track tag) {
+                <span class="e-tag">{{ tag }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <div style="margin-top: 28px">
+        <a class="d-btn d-btn--outline" [routerLink]="programsPath">Programok részletesen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="d-section">
+    <div class="d-wrap e-steps-grid">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span class="d-kicker">Hogyan zajlik</span>
+        <h2 class="d-h" style="font-size: clamp(26px, 3.6vw, 38px); text-transform: uppercase">
+          Három lépés.
+        </h2>
+      </div>
+      <div class="e-steps">
+        @for (s of steps; track s[0]) {
+          <div class="e-step">
+            <span class="e-step__n">{{ s[0] }}</span>
+            <div>
+              <span class="e-step__h">{{ s[1] }}</span>
+              <p class="e-step__b">{{ s[2] }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-bleed image -->
+  <pry-demo-art label="edzés közben · terem" ratio="21 / 9" [flush]="true" />
+
+  <!-- CTA band -->
+  <section id="kapcsolat" class="e-band">
+    <div class="e-band__in">
+      <h2 class="e-band__title">Az első felmérés ingyenes.</h2>
+      <a class="e-band__btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
+    </div>
+  </section>
+</pry-demo-chrome>

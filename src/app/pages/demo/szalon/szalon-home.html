@@ -1,0 +1,110 @@
+<pry-demo-chrome
+  [theme]="t"
+  [homePath]="homePath"
+  [links]="nav"
+  ctaLabel="Időpont"
+  [ctaPath]="homePath"
+  ctaFragment="kapcsolat"
+  [footerBlocks]="footer"
+  [legal]="legal"
+>
+  <!-- Hero -->
+  <section class="d-section">
+    <div class="d-wrap s-hero">
+      <div class="s-hero__text">
+        <span class="d-kicker">Belváros · hétfő–szombat</span>
+        <h1 class="d-h" style="font-size: clamp(38px, 6vw, 62px)">
+          Ápolt haj,<br />nyugodt másfél óra.
+        </h1>
+        <p class="d-lead" style="max-width: 440px">
+          Vágás, festés és arckezelés egy helyen. Előre egyeztetett időpontban, sietés nélkül.
+        </p>
+        <div class="s-hero__cta">
+          <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
+          <a class="d-btn d-btn--ghost" [routerLink]="pricingPath">Árak megtekintése</a>
+        </div>
+      </div>
+      <pry-demo-art label="portré · szalonbelső" ratio="4 / 5" />
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="d-section d-section--alt">
+    <div class="d-wrap">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 36px">
+        <span class="d-kicker">Szolgáltatások</span>
+        <h2 class="d-h" style="font-size: clamp(28px, 4vw, 40px)">Amiért a legtöbben jönnek.</h2>
+      </div>
+      <div class="s-grid3">
+        @for (s of services; track s.name) {
+          <div class="s-card">
+            <pry-demo-art [label]="s.img" ratio="4 / 3" />
+            <span class="s-card__name">{{ s.name }}</span>
+            <span class="s-card__meta">{{ s.meta }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery strip -->
+  <section class="s-strip">
+    @for (g of gallery; track g) {
+      <pry-demo-art [label]="g" ratio="3 / 4" [flush]="true" />
+    }
+  </section>
+
+  <!-- About -->
+  <section class="d-section">
+    <div class="d-wrap s-about">
+      <pry-demo-art label="a szalon · nappali fény" ratio="1 / 1" />
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <span class="d-kicker">A szalonról</span>
+        <h2 class="d-h" style="font-size: clamp(26px, 3.4vw, 38px)">
+          Két szék, egy vendég egyszerre.
+        </h2>
+        <p class="d-lead">
+          Nem futószalag: annyi időpontot adunk ki egy napra, amennyivel valóban lehet
+          foglalkozni. Az első alkalom mindig konzultációval kezdődik, hogy a hajad állapotához
+          illő megoldást válasszuk.
+        </p>
+        <ul class="s-about__list">
+          @for (a of about; track a) {
+            <li>{{ a }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quotes -->
+  <section class="d-section d-section--tight">
+    <div class="d-wrap s-quotes">
+      @for (q of quotes; track q[1]) {
+        <div class="s-quote">
+          <p>„{{ q[0] }}”</p>
+          <span>{{ q[1] }}</span>
+        </div>
+      }
+    </div>
+  </section>
+
+  <!-- Booking band -->
+  <section id="kapcsolat" class="d-section s-book">
+    <div class="d-wrap s-book__grid">
+      <div style="display: flex; flex-direction: column; gap: 16px">
+        <h2 class="d-h" style="font-size: clamp(28px, 4vw, 40px)">Kérj időpontot.</h2>
+        <p class="d-lead" style="max-width: 420px">
+          Írd meg, mikor lenne jó, és mit szeretnél. Aznap visszajelzünk.
+        </p>
+      </div>
+      <div class="s-book__form">
+        <span class="s-field">Név</span>
+        <span class="s-field">Telefonszám</span>
+        <a class="d-btn d-btn--wide" [routerLink]="homePath" fragment="kapcsolat"
+          >Időpontot kérek</a
+        >
+      </div>
+    </div>
+  </section>
+</pry-demo-chrome>
