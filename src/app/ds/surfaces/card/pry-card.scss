@@ -1,4 +1,6 @@
-.pry-card {
+// The card classes live on the host element, so every rule targets :host — a bare
+// `.pry-card` selector would only match content children under emulated encapsulation.
+:host {
   --_hoverglow: var(--glow-violet-md);
   position: relative;
   display: block;
@@ -8,58 +10,58 @@
   transition:
     transform var(--dur-med) var(--ease-out),
     box-shadow var(--dur-med) var(--ease-out);
+}
 
-  // ── Variant bases ───────────────────────────────────────
-  &.v-surface {
-    --_base: inset 0 0 0 1px var(--line-hairline), var(--elev-1);
-    background: var(--surface-card);
-    backdrop-filter: var(--blur-glass);
-    box-shadow: var(--_base);
-  }
-  &.v-accent {
-    --_base: inset 0 0 0 1px var(--line-accent);
-    background: var(--surface-accent);
-    box-shadow: var(--_base);
-  }
-  &.v-gradient {
-    --_base: var(--elev-2);
-    background: var(--surface-featured);
-    color: var(--text-on-accent);
-    box-shadow: var(--_base);
-  }
-  &.v-band {
-    --_base: var(--glow-pink-lg);
-    background: var(--surface-featured);
-    color: var(--text-on-accent);
-    padding: var(--card-pad-band);
-    box-shadow: var(--_base);
-  }
-  &.v-outline {
-    --_base: inset 0 0 0 1px var(--line-strong);
-    background: transparent;
-    box-shadow: var(--_base);
-  }
+// ── Variant bases ─────────────────────────────────────────
+:host(.v-surface) {
+  --_base: inset 0 0 0 1px var(--line-hairline), var(--elev-1);
+  background: var(--surface-card);
+  backdrop-filter: var(--blur-glass);
+  box-shadow: var(--_base);
+}
+:host(.v-accent) {
+  --_base: inset 0 0 0 1px var(--line-accent);
+  background: var(--surface-accent);
+  box-shadow: var(--_base);
+}
+:host(.v-gradient) {
+  --_base: var(--elev-2);
+  background: var(--surface-featured);
+  color: var(--text-on-accent);
+  box-shadow: var(--_base);
+}
+:host(.v-band) {
+  --_base: var(--glow-pink-lg);
+  background: var(--surface-featured);
+  color: var(--text-on-accent);
+  padding: var(--card-pad-band);
+  box-shadow: var(--_base);
+}
+:host(.v-outline) {
+  --_base: inset 0 0 0 1px var(--line-strong);
+  background: transparent;
+  box-shadow: var(--_base);
+}
 
-  // ── Resting glow (compose glow + variant base) ──────────
-  &.g-pink {
-    --_hoverglow: var(--glow-pink-md);
-    box-shadow: var(--glow-pink-md), var(--_base);
-  }
-  &.g-cyan {
-    --_hoverglow: var(--glow-cyan-md);
-    box-shadow: var(--glow-cyan-md), var(--_base);
-  }
-  &.g-violet {
-    --_hoverglow: var(--glow-violet-md);
-    box-shadow: var(--glow-violet-md), var(--_base);
-  }
+// ── Resting glow (compose glow + variant base) ────────────
+:host(.g-pink) {
+  --_hoverglow: var(--glow-pink-md);
+  box-shadow: var(--glow-pink-md), var(--_base);
+}
+:host(.g-cyan) {
+  --_hoverglow: var(--glow-cyan-md);
+  box-shadow: var(--glow-cyan-md), var(--_base);
+}
+:host(.g-violet) {
+  --_hoverglow: var(--glow-violet-md);
+  box-shadow: var(--glow-violet-md), var(--_base);
+}
 
-  // ── Interactive lift ────────────────────────────────────
-  &--interactive {
-    cursor: pointer;
-    &:hover {
-      box-shadow: var(--_hoverglow), var(--elev-2);
-      transform: translateY(-3px);
-    }
-  }
+// ── Interactive lift ──────────────────────────────────────
+:host(.pry-card--interactive) {
+  cursor: pointer;
+}
+:host(.pry-card--interactive:hover) {
+  box-shadow: var(--_hoverglow), var(--elev-2);
+  transform: translateY(-3px);
 }

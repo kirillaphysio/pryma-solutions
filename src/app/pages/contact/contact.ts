@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { merge } from 'rxjs';
 import { SeoService } from '../../core/seo.service';
+import { PryRevealGroup } from '../../shared/reveal/reveal';
 import {
   PryButton,
   PryCard,
@@ -41,6 +42,7 @@ const CONTACT_EMAIL = 'hello@pryma.solutions';
     PryTextArea,
     PryTextInput,
     PryTextLink,
+    PryRevealGroup,
   ],
   templateUrl: './contact.html',
   styleUrl: './contact.scss',

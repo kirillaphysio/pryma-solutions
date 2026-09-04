@@ -1,6 +1,8 @@
 // Button skin. Hover / press / focus are CSS pseudo-classes (no JS state), so the
 // prerendered markup is interactive before hydration.
-.pry-btn {
+// The base class lives on the host element, so host rules use :host — under emulated
+// encapsulation a bare `.pry-btn` selector would only match content children, not the host.
+:host {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -18,122 +20,121 @@
     box-shadow var(--dur-med) var(--ease-out),
     color var(--dur-fast) var(--ease-out),
     transform var(--dur-fast) var(--ease-out);
+}
 
-  &__ico {
-    display: inline-flex;
-    &:empty {
-      display: none;
-    }
-  }
-  &__label {
-    display: inline-flex;
-  }
+:host(:hover) {
+  text-decoration: none;
+  text-shadow: none;
+}
 
-  &:hover {
-    text-decoration: none;
-    text-shadow: none;
+.pry-btn__ico {
+  display: inline-flex;
+  &:empty {
+    display: none;
   }
+}
+.pry-btn__label {
+  display: inline-flex;
+}
 
-  // ── Sizes ───────────────────────────────────────────────
-  &.s-lg {
-    padding: 16px 32px;
-    font-size: var(--button-lg-size);
-    line-height: var(--button-lg-lh);
-    letter-spacing: var(--button-lg-ls);
-  }
-  &.s-md {
-    padding: 14px 28px;
-    font-size: var(--button-md-size);
-    line-height: var(--button-md-lh);
-    letter-spacing: var(--button-md-ls);
-  }
-  &.s-cap {
-    padding: 10px 22px;
-    font-size: var(--button-cap-size);
-    line-height: var(--button-cap-lh);
-    letter-spacing: var(--button-cap-ls);
-  }
+// ── Sizes ───────────────────────────────────────────────
+:host(.s-lg) {
+  padding: 16px 32px;
+  font-size: var(--button-lg-size);
+  line-height: var(--button-lg-lh);
+  letter-spacing: var(--button-lg-ls);
+}
+:host(.s-md) {
+  padding: 14px 28px;
+  font-size: var(--button-md-size);
+  line-height: var(--button-md-lh);
+  letter-spacing: var(--button-md-ls);
+}
+:host(.s-cap) {
+  padding: 10px 22px;
+  font-size: var(--button-cap-size);
+  line-height: var(--button-cap-lh);
+  letter-spacing: var(--button-cap-ls);
+}
 
-  // ── Primary — the only filled pink action ───────────────
-  &.v-primary {
-    background: var(--action-primary);
-    color: var(--text-on-accent);
-    box-shadow: var(--glow-pink-sm);
-    &:hover {
-      background: var(--action-primary-hover);
-      box-shadow: var(--glow-pink-md);
-    }
-    &:active {
-      background: var(--action-primary-press);
-      transform: translateY(1px);
-    }
-  }
+// ── Primary — the only filled pink action ───────────────
+:host(.v-primary) {
+  background: var(--action-primary);
+  color: var(--text-on-accent);
+  box-shadow: var(--glow-pink-sm);
+}
+:host(.v-primary:hover) {
+  background: var(--action-primary-hover);
+  box-shadow: var(--glow-pink-md);
+}
+:host(.v-primary:active) {
+  background: var(--action-primary-press);
+  transform: translateY(1px);
+}
 
-  // ── Secondary — violet-tinted glass, bespoke 10px 30px pad ─
-  &.v-secondary {
-    background: var(--action-secondary);
-    color: var(--text-hi);
-    box-shadow: inset 0 0 0 1px var(--line-strong);
-    padding: 10px 30px;
-    &:hover {
-      background: var(--action-secondary-hover);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-  }
+// ── Secondary — violet-tinted glass, bespoke 10px 30px pad ─
+:host(.v-secondary) {
+  background: var(--action-secondary);
+  color: var(--text-hi);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+  padding: 10px 30px;
+}
+:host(.v-secondary:hover) {
+  background: var(--action-secondary-hover);
+}
+:host(.v-secondary:active) {
+  transform: translateY(1px);
+}
 
-  // ── Outline — cyan ──────────────────────────────────────
-  &.v-outline {
-    background: transparent;
-    color: var(--action-outline);
-    box-shadow: inset 0 0 0 2px var(--line-cyan);
-    &:hover {
-      color: var(--action-outline-hover);
-      box-shadow: var(--glow-cyan-md);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-  }
+// ── Outline — cyan ──────────────────────────────────────
+:host(.v-outline) {
+  background: transparent;
+  color: var(--action-outline);
+  box-shadow: inset 0 0 0 2px var(--line-cyan);
+}
+:host(.v-outline:hover) {
+  color: var(--action-outline-hover);
+  box-shadow: var(--glow-cyan-md);
+}
+:host(.v-outline:active) {
+  transform: translateY(1px);
+}
 
-  // ── onAccent — for use on the gradient band ─────────────
-  &.v-onAccent {
-    background: transparent;
-    color: var(--text-on-accent);
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
-    &:hover {
-      background: rgba(255, 255, 255, 0.14);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-  }
+// ── onAccent — for use on the gradient band ─────────────
+:host(.v-onAccent) {
+  background: transparent;
+  color: var(--text-on-accent);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.7);
+}
+:host(.v-onAccent:hover) {
+  background: rgba(255, 255, 255, 0.14);
+}
+:host(.v-onAccent:active) {
+  transform: translateY(1px);
+}
 
-  // ── Ghost ───────────────────────────────────────────────
-  &.v-ghost {
-    background: transparent;
-    color: var(--text-mute);
-    box-shadow: none;
-    &:hover {
-      background: var(--surface-glass);
-      color: var(--text-hi);
-    }
-    &:active {
-      transform: translateY(1px);
-    }
-  }
+// ── Ghost ───────────────────────────────────────────────
+:host(.v-ghost) {
+  background: transparent;
+  color: var(--text-mute);
+  box-shadow: none;
+}
+:host(.v-ghost:hover) {
+  background: var(--surface-glass);
+  color: var(--text-hi);
+}
+:host(.v-ghost:active) {
+  transform: translateY(1px);
+}
 
-  // ── Modifiers ───────────────────────────────────────────
-  &--full {
-    display: flex;
-    width: 100%;
-  }
-
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.42;
-    filter: saturate(0.35);
-    pointer-events: none;
-  }
+// ── Modifiers ───────────────────────────────────────────
+:host(.pry-btn--full) {
+  display: flex;
+  width: 100%;
+}
+:host(.pry-btn--disabled) {
+  cursor: not-allowed;
+  opacity: 0.42;
+  filter: saturate(0.35);
+  pointer-events: none;
 }

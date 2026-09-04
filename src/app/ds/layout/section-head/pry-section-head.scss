@@ -1,33 +1,34 @@
-.pry-sh {
+// pry-sh + align-* live on the host → :host. __title / __lead are template content.
+:host {
   display: flex;
   flex-direction: column;
   gap: var(--space-lg);
+}
 
-  &.align-left {
-    align-items: flex-start;
-    text-align: left;
-  }
-  &.align-center {
-    align-items: center;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-  }
+:host(.align-left) {
+  align-items: flex-start;
+  text-align: left;
+}
+:host(.align-center) {
+  align-items: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  &__title {
-    font-size: var(--display-xl-size);
-    font-weight: var(--display-xl-weight);
-    line-height: var(--display-xl-lh);
-    letter-spacing: var(--display-xl-ls);
-    color: var(--text-hi);
-    text-wrap: pretty;
-  }
+.pry-sh__title {
+  font-size: var(--display-xl-size);
+  font-weight: var(--display-xl-weight);
+  line-height: var(--display-xl-lh);
+  letter-spacing: var(--display-xl-ls);
+  color: var(--text-hi);
+  text-wrap: pretty;
+}
 
-  &__lead {
-    font-size: var(--body-lg-size);
-    line-height: var(--body-lg-lh);
-    letter-spacing: var(--body-lg-ls);
-    color: var(--text-mute);
-    text-wrap: pretty;
-  }
+.pry-sh__lead {
+  font-size: var(--body-lg-size);
+  line-height: var(--body-lg-lh);
+  letter-spacing: var(--body-lg-ls);
+  color: var(--text-mute);
+  text-wrap: pretty;
 }

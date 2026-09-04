@@ -12,6 +12,18 @@
     />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
+    <!-- No-JS fallback: the reveal-on-scroll motion hides blocks until JS reveals them,
+         so force everything visible when scripting is off. -->
+    <noscript>
+      <style>
+        .pry-reveal,
+        .pry-reveal-group > * {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+
     <!-- Consent Mode v2 — all denied by default, BEFORE anything else. Nothing sets a
          cookie or loads a Google script until AnalyticsService updates this on consent. -->
     <script>

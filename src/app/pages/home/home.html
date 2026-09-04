@@ -1,7 +1,7 @@
 <!-- Hero -->
 <pry-mesh-backdrop intensity="full" [grid]="true" contentPad="clamp(56px,10vw,112px) 0 clamp(48px,8vw,96px)">
   <pry-container>
-    <div class="home-hero">
+    <div class="home-hero" pryRevealGroup pryRevealGroupImmediate>
       <pry-eyebrow tone="pink" i18n="@@home.hero.eyebrow">Egyszemélyes stúdió</pry-eyebrow>
       <h1 class="home-hero__title" i18n="@@home.hero.title">
         Weboldal és arculat<br/>a vállalkozásodnak.
@@ -27,6 +27,7 @@
 <!-- Three areas -->
 <pry-section>
   <pry-section-head
+    pryReveal
     eyebrow="Amiben segítek"
     i18n-eyebrow="@@home.areas.eyebrow"
     title="Három terület, egy ember."
@@ -34,7 +35,7 @@
     lead="Nem kell külön designert, fejlesztőt és marketingest keresned. Egy helyen átlátható marad, hol tart a munka."
     i18n-lead="@@home.areas.lead"
   />
-  <div class="r-g3 home-mt48">
+  <div class="r-g3 home-mt48" pryRevealGroup>
     <pry-feature-tile
       icon="palette"
       tone="pink"
@@ -65,6 +66,7 @@
 <!-- Process -->
 <pry-section [tight]="true">
   <pry-section-head
+    pryReveal
     align="center"
     tone="cyan"
     eyebrow="Hogyan dolgozunk"
@@ -72,7 +74,7 @@
     title="Négy lépés, nincs felesleges kör."
     i18n-title="@@home.process.title"
   />
-  <div class="r-g4 home-mt48">
+  <div class="r-g4 home-mt48" pryRevealGroup>
     <pry-step-card
       n="01"
       title="Beszélgetés"
@@ -106,7 +108,7 @@
 
 <!-- Why one person -->
 <pry-section [tight]="true">
-  <div class="r-g2">
+  <div class="r-g2" pryRevealGroup>
     <div class="home-why">
       <pry-eyebrow tone="violet" i18n="@@home.why.eyebrow">Miért egy emberrel</pry-eyebrow>
       <h3 class="home-why__title" i18n="@@home.why.title">Velem beszélsz, nem egy fiókkezelővel.</h3>
@@ -132,7 +134,7 @@
 
 <!-- Closing band -->
 <pry-section [tight]="true">
-  <pry-card variant="band" class="home-band">
+  <pry-card variant="band" class="home-band" pryReveal>
     <h3 class="home-band__title" i18n="@@home.band.title">Kezdjük egy beszélgetéssel.</h3>
     <p class="home-band__body" i18n="@@home.band.body">
       Írd meg, mire lenne szükséged. Két munkanapon belül küldök egy tervet és egy árat.

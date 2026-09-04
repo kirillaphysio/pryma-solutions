@@ -1,52 +1,53 @@
-.pry-mock {
+// Host classes (pry-mock, rim-*, --tilt) live on the host element → :host rules.
+:host {
   display: block;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--surface-card-solid);
+}
 
-  &.rim-cyan {
-    box-shadow: var(--glow-cyan-md), var(--elev-3);
-  }
-  &.rim-pink {
-    box-shadow: var(--glow-pink-md), var(--elev-3);
-  }
-  &.rim-violet {
-    box-shadow: var(--glow-violet-md), var(--elev-3);
-  }
+:host(.rim-cyan) {
+  box-shadow: var(--glow-cyan-md), var(--elev-3);
+}
+:host(.rim-pink) {
+  box-shadow: var(--glow-pink-md), var(--elev-3);
+}
+:host(.rim-violet) {
+  box-shadow: var(--glow-violet-md), var(--elev-3);
+}
 
-  &--tilt {
-    transform: perspective(1400px) rotateX(7deg) rotateZ(-1deg);
-  }
+:host(.pry-mock--tilt) {
+  transform: perspective(1400px) rotateX(7deg) rotateZ(-1deg);
+}
 
-  &__bar {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: 10px var(--space-md);
-    background: var(--surface-chrome);
-    border-bottom: 1px solid var(--line-hairline);
-  }
+.pry-mock__bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 10px var(--space-md);
+  background: var(--surface-chrome);
+  border-bottom: 1px solid var(--line-hairline);
+}
 
-  &__dots {
-    display: flex;
-    gap: 6px;
-    span {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      opacity: 0.65;
-    }
+.pry-mock__dots {
+  display: flex;
+  gap: 6px;
+  span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    opacity: 0.65;
   }
+}
 
-  &__title {
-    font-family: var(--font-mono);
-    font-size: var(--mono-sm-size);
-    color: var(--text-faint);
-    letter-spacing: var(--mono-sm-ls);
-    margin-left: var(--space-sm);
-  }
+.pry-mock__title {
+  font-family: var(--font-mono);
+  font-size: var(--mono-sm-size);
+  color: var(--text-faint);
+  letter-spacing: var(--mono-sm-ls);
+  margin-left: var(--space-sm);
+}
 
-  &__body {
-    position: relative;
-  }
+.pry-mock__body {
+  position: relative;
 }

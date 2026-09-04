@@ -1,4 +1,6 @@
-.pry-eyebrow {
+// The eyebrow classes (pry-eyebrow, v-*, t-*) live on the host, so every rule is a :host
+// rule — the projected label is the only content and needs no styling of its own.
+:host {
   align-self: flex-start;
   font-family: var(--font-ui);
   font-weight: var(--weight-bold);
@@ -6,44 +8,44 @@
   line-height: var(--micro-cap-lh);
   letter-spacing: var(--micro-cap-ls);
   text-transform: uppercase;
+}
 
-  &.v-bare {
-    display: inline-block;
-  }
-  &.v-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: 6px 12px;
-    border-radius: var(--radius-pill);
-  }
+:host(.v-bare) {
+  display: inline-block;
+}
+:host(.v-pill) {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+}
 
-  &.t-violet {
-    color: var(--tone-violet-fg);
-    &.v-pill {
-      background: var(--tone-violet-chip);
-      box-shadow: inset 0 0 0 1px var(--tone-violet-line);
-    }
-  }
-  &.t-pink {
-    color: var(--tone-pink-fg);
-    &.v-pill {
-      background: var(--tone-pink-chip);
-      box-shadow: inset 0 0 0 1px var(--tone-pink-line);
-    }
-  }
-  &.t-cyan {
-    color: var(--tone-cyan-fg);
-    &.v-pill {
-      background: var(--tone-cyan-chip);
-      box-shadow: inset 0 0 0 1px var(--tone-cyan-line);
-    }
-  }
-  &.t-onAccent {
-    color: rgba(255, 255, 255, 0.82);
-    &.v-pill {
-      background: rgba(255, 255, 255, 0.14);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
-    }
-  }
+:host(.t-violet) {
+  color: var(--tone-violet-fg);
+}
+:host(.t-violet.v-pill) {
+  background: var(--tone-violet-chip);
+  box-shadow: inset 0 0 0 1px var(--tone-violet-line);
+}
+:host(.t-pink) {
+  color: var(--tone-pink-fg);
+}
+:host(.t-pink.v-pill) {
+  background: var(--tone-pink-chip);
+  box-shadow: inset 0 0 0 1px var(--tone-pink-line);
+}
+:host(.t-cyan) {
+  color: var(--tone-cyan-fg);
+}
+:host(.t-cyan.v-pill) {
+  background: var(--tone-cyan-chip);
+  box-shadow: inset 0 0 0 1px var(--tone-cyan-line);
+}
+:host(.t-onAccent) {
+  color: rgba(255, 255, 255, 0.82);
+}
+:host(.t-onAccent.v-pill) {
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
 }

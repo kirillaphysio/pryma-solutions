@@ -1,4 +1,5 @@
-.pry-iconbtn {
+// pry-iconbtn / v-* / s-* / --disabled live on the host → :host rules.
+:host {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -11,50 +12,50 @@
     background var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-med) var(--ease-out),
     color var(--dur-fast) var(--ease-out);
+}
 
-  &.s-sm {
-    width: 32px;
-    height: 32px;
-  }
-  &.s-md {
-    width: 40px;
-    height: 40px;
-  }
-  &.s-lg {
-    width: 48px;
-    height: 48px;
-  }
+:host(.s-sm) {
+  width: 32px;
+  height: 32px;
+}
+:host(.s-md) {
+  width: 40px;
+  height: 40px;
+}
+:host(.s-lg) {
+  width: 48px;
+  height: 48px;
+}
 
-  &.v-ghost {
-    background: transparent;
-    color: var(--text-mute);
-    &:hover {
-      background: var(--surface-glass);
-      color: var(--text-hi);
-    }
-  }
-  &.v-glass {
-    background: var(--surface-glass);
-    color: var(--text-hi);
-    box-shadow: inset 0 0 0 1px var(--line-strong);
-    &:hover {
-      background: var(--action-secondary);
-    }
-  }
-  &.v-neon {
-    background: var(--action-primary);
-    color: var(--text-on-accent);
-    box-shadow: var(--glow-pink-sm);
-    &:hover {
-      background: var(--action-primary-hover);
-      box-shadow: var(--glow-pink-md);
-    }
-  }
+:host(.v-ghost) {
+  background: transparent;
+  color: var(--text-mute);
+}
+:host(.v-ghost:hover) {
+  background: var(--surface-glass);
+  color: var(--text-hi);
+}
+:host(.v-glass) {
+  background: var(--surface-glass);
+  color: var(--text-hi);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
+}
+:host(.v-glass:hover) {
+  background: var(--action-secondary);
+}
+:host(.v-neon) {
+  background: var(--action-primary);
+  color: var(--text-on-accent);
+  box-shadow: var(--glow-pink-sm);
+}
+:host(.v-neon:hover) {
+  background: var(--action-primary-hover);
+  box-shadow: var(--glow-pink-md);
+}
 
-  &--disabled {
-    cursor: not-allowed;
-    opacity: 0.42;
-    filter: saturate(0.35);
-    pointer-events: none;
-  }
+:host(.pry-iconbtn--disabled) {
+  cursor: not-allowed;
+  opacity: 0.42;
+  filter: saturate(0.35);
+  pointer-events: none;
 }

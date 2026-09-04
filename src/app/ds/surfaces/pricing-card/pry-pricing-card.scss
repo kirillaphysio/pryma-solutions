@@ -1,7 +1,9 @@
-.pry-pricing {
+:host {
   display: block;
   height: 100%;
+}
 
+.pry-pricing {
   &__card {
     display: flex;
     flex-direction: column;

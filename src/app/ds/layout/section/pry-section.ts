@@ -12,11 +12,11 @@ import { PryContainer } from '../container/pry-container';
     '[class.pry-section--tight]': 'tight()',
   },
   styles: `
-    .pry-section {
+    :host {
       display: block;
       padding: var(--section-pad-y) 0;
     }
-    .pry-section--tight {
+    :host(.pry-section--tight) {
       padding: var(--section-pad-y-tight) 0;
     }
   `,

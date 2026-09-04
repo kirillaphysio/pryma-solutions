@@ -1,11 +1,14 @@
-.pry-footer {
+// pry-footer is the host class → :host. The __child elements are template content.
+:host {
   position: relative;
   overflow: hidden;
   display: block;
   background: var(--surface-void);
   // The footer's top rule is the second (and last) real border in the system.
   border-top: 1px solid var(--line-hairline);
+}
 
+.pry-footer {
   &__glow {
     position: absolute;
     left: 0;

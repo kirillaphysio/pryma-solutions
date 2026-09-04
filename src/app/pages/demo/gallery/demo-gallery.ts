@@ -3,6 +3,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, type SafeResourceUrl } from '@angular/platform-browser';
 import { SeoService } from '../../../core/seo.service';
+import { PryReveal, PryRevealGroup } from '../../../shared/reveal/reveal';
 import {
   PryButton,
   PryCard,
@@ -32,6 +33,8 @@ import {
     PryMockupFrame,
     PrySection,
     PryTextLink,
+    PryReveal,
+    PryRevealGroup,
   ],
   templateUrl: './demo-gallery.html',
   styleUrl: './demo-gallery.scss',

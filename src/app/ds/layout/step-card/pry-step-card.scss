@@ -1,7 +1,9 @@
-.pry-step {
+:host {
   display: block;
   height: 100%;
+}
 
+.pry-step {
   &__card {
     display: flex;
     flex-direction: column;

@@ -1,6 +1,8 @@
-.pry-ft {
+:host {
   display: block;
+}
 
+.pry-ft {
   &__card {
     display: flex;
     flex-direction: column;

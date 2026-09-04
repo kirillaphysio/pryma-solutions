@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../core/seo.service';
+import { PryReveal, PryRevealGroup } from '../../shared/reveal/reveal';
 import {
   PryButton,
   PryCard,
@@ -31,6 +32,8 @@ import {
     PrySection,
     PrySectionHead,
     PryTextLink,
+    PryReveal,
+    PryRevealGroup,
   ],
   templateUrl: './services.html',
   styleUrl: './services.scss',

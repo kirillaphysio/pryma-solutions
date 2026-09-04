@@ -1,7 +1,9 @@
-.pry-wm {
+:host {
   display: inline-flex;
   align-items: center;
+}
 
+.pry-wm {
   &__bar {
     border-radius: var(--radius-xs);
     background: var(--grad-brand);

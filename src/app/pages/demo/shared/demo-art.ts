@@ -18,7 +18,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
     '[class.demo-art--wood]': 'variant() === "wood"',
   },
   styles: `
-    .demo-art {
+    :host {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -31,19 +31,19 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
       border: 1px solid var(--d-line);
       border-radius: var(--d-radius);
     }
-    .demo-art--flush {
+    :host(.demo-art--flush) {
       border: none;
       border-radius: 0;
     }
     /* Oak-grain fill for the carpenter demo: three grain layers over a warm base. */
-    .demo-art--wood {
+    :host(.demo-art--wood) {
       background:
         repeating-linear-gradient(0deg, color-mix(in srgb, #8a5f2c 24%, transparent) 0 1px, transparent 1px 6px),
         repeating-linear-gradient(0deg, color-mix(in srgb, #8a5f2c 13%, transparent) 0 2px, transparent 2px 15px),
         repeating-linear-gradient(0deg, transparent 0 37px, color-mix(in srgb, #8a5f2c 32%, transparent) 37px 39px, transparent 39px 96px),
         linear-gradient(180deg, #c9a469, color-mix(in srgb, #c9a469 90%, #8a5f2c));
     }
-    .demo-art--wood .cap {
+    :host(.demo-art--wood) .cap {
       color: var(--d-ink);
       background: color-mix(in srgb, var(--d-bg) 90%, transparent);
     }

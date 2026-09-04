@@ -1,16 +1,19 @@
-.pry-nav {
+// The pry-nav / pry-nav--sticky classes live on the host → :host rules. The __child
+// elements are rendered in the template (content), so they keep their class selectors.
+:host {
   display: block;
   z-index: 40;
   background: var(--surface-nav);
   backdrop-filter: var(--blur-nav);
   // The nav's bottom edge is one of only two real borders in the system.
   border-bottom: 1px solid var(--line-hairline);
+}
+:host(.pry-nav--sticky) {
+  position: sticky;
+  top: 0;
+}
 
-  &--sticky {
-    position: sticky;
-    top: 0;
-  }
-
+.pry-nav {
   &__row {
     max-width: var(--container-max);
     margin: 0 auto;

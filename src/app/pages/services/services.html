@@ -1,7 +1,7 @@
 <!-- Hero -->
 <pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(36px,6vw,64px)">
   <pry-container>
-    <div class="svc-hero">
+    <div class="svc-hero" pryRevealGroup pryRevealGroupImmediate>
       <pry-eyebrow tone="violet" i18n="@@svc.hero.eyebrow">Szolgáltatások</pry-eyebrow>
       <h1 class="svc-hero__title" i18n="@@svc.hero.title">Amit el tudok vállalni.</h1>
       <p class="svc-hero__lead" i18n="@@svc.hero.lead">
@@ -17,7 +17,7 @@
 
 <!-- Three areas -->
 <pry-section [tight]="true">
-  <div class="r-g3">
+  <div class="r-g3" pryRevealGroup>
     <pry-feature-tile
       icon="palette"
       tone="pink"
@@ -48,6 +48,7 @@
 <!-- Packages -->
 <pry-section [tight]="true">
   <pry-section-head
+    pryReveal
     tone="cyan"
     eyebrow="Csomagok"
     i18n-eyebrow="@@svc.pkg.eyebrow"
@@ -56,7 +57,7 @@
     lead="Ezek a leggyakoribb munkák. Az árat a terjedelem alapján adom meg, fix összegben, még a kezdés előtt."
     i18n-lead="@@svc.pkg.lead"
   />
-  <div class="r-g3 svc-mt48 svc-stretch">
+  <div class="r-g3 svc-mt48 svc-stretch" pryRevealGroup>
     <pry-card variant="surface" class="svc-pkg">
       <h3 class="svc-pkg__title" i18n="@@svc.pkg1.title">Bemutatkozó oldal</h3>
       <p class="svc-pkg__body" i18n="@@svc.pkg1.body">
@@ -84,7 +85,7 @@
 
 <!-- Good to know -->
 <pry-section [tight]="true">
-  <div class="r-g2">
+  <div class="r-g2" pryRevealGroup>
     <div class="svc-good">
       <pry-eyebrow tone="pink" i18n="@@svc.good.eyebrow">Jó tudni</pry-eyebrow>
       <h3 class="svc-good__title" i18n="@@svc.good.title">Mielőtt nekiállunk.</h3>
@@ -105,6 +106,7 @@
 <!-- Maintenance -->
 <pry-section [tight]="true">
   <pry-section-head
+    pryReveal
     tone="violet"
     eyebrow="Karbantartás"
     i18n-eyebrow="@@svc.maint.eyebrow"
@@ -113,7 +115,7 @@
     lead="A weboldal nem áll meg az élesítésnél. Ezekben tudok segíteni utána is."
     i18n-lead="@@svc.maint.lead"
   />
-  <div class="r-g3 svc-mt48">
+  <div class="r-g3 svc-mt48" pryRevealGroup>
     <pry-feature-tile
       icon="shield-check"
       tone="violet"
@@ -143,7 +145,7 @@
 
 <!-- Closing band -->
 <pry-section [tight]="true">
-  <pry-card variant="band" class="svc-band">
+  <pry-card variant="band" class="svc-band" pryReveal>
     <div class="svc-band__text">
       <h3 class="svc-band__title" i18n="@@svc.band.title">Beszéljük át, mire van szükséged.</h3>
       <p class="svc-band__body" i18n="@@svc.band.body">

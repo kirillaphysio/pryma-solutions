@@ -1,7 +1,7 @@
 <!-- Hero -->
 <pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(32px,5vw,56px)">
   <pry-container>
-    <div class="demo-hero">
+    <div class="demo-hero" pryRevealGroup pryRevealGroupImmediate>
       <pry-eyebrow tone="pink" i18n="@@demo.eyebrow">Demó</pry-eyebrow>
       <h1 class="demo-hero__title" i18n="@@demo.title">Nézd meg, mit tudna a te oldalad.</h1>
       <p class="demo-hero__lead" i18n="@@demo.lead">
@@ -14,7 +14,7 @@
 
 <!-- Three demos -->
 <pry-section [tight]="true">
-  <div class="r-g3">
+  <div class="r-g3" pryRevealGroup>
     <!-- Salon -->
     <pry-card variant="surface" class="demo-card">
       <pry-mockup-frame title="szalon.demo" tone="pink">
@@ -76,7 +76,7 @@
 
 <!-- Closing note -->
 <pry-section [tight]="true">
-  <pry-card variant="outline" class="demo-closing">
+  <pry-card variant="outline" class="demo-closing" pryReveal>
     <p class="demo-closing__text" i18n="@@demo.closing.text">
       A példaoldalakon szándékosan nincs kitalált cégnév, a fotók helyét pedig jelöltem. A tieden a
       saját képeid és szövegeid lesznek.

@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `<ng-content />`,
   host: { class: 'pry-container' },
   styles: `
-    .pry-container {
+    :host {
       display: block;
       max-width: var(--container-max);
       margin: 0 auto;

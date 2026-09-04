@@ -1,16 +1,20 @@
-.pry-mesh {
+:host {
   position: relative;
   display: block;
   overflow: hidden;
   background: var(--surface-page);
   isolation: isolate;
+}
 
+.pry-mesh {
   &__wash {
     position: absolute;
     inset: -10% -5%;
     background-image: var(--grad-mesh-pink), var(--grad-mesh-violet), var(--grad-mesh-cyan);
     filter: blur(10px);
     pointer-events: none;
+    // Ambient drift — the mesh breathes slowly. Killed under reduced motion (below).
+    animation: pry-mesh-drift var(--dur-ambient) var(--ease-out) infinite alternate;
   }
 
   &__grid {
@@ -45,5 +49,20 @@
   &__body {
     position: relative;
     z-index: 1;
+  }
+}
+
+@keyframes pry-mesh-drift {
+  from {
+    transform: translate3d(-1.4%, -1%, 0) scale(1.02);
+  }
+  to {
+    transform: translate3d(1.4%, 1.2%, 0) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pry-mesh__wash {
+    animation: none;
   }
 }
