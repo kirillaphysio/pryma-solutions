@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, input, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { PryIcon } from '../../../ds';
 import { DemoArt } from './demo-art';
@@ -31,6 +31,13 @@ export interface DemoFooterBlock {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [RouterLink, RouterLinkActive, PryIcon],
   template: `
+    @if (standalone()) {
+      <a class="dc-back" routerLink="/demo">
+        <pry-icon name="arrow-left" [size]="14" />
+        <span>Vissza a demókhoz</span>
+      </a>
+    }
+
     <header class="dc-head">
       <div class="dc-head__in">
         <a class="dc-brand" [routerLink]="homePath()">{{ theme().brand }}</a>
@@ -90,6 +97,23 @@ export class DemoChrome {
   readonly legal = input('');
   /** Show the trade glyphs (footer titles) — true when the graphics mode is `ikon`/`illu`. */
   readonly showIcons = input(false);
+
+  /**
+   * True only when this demo is the top-level document (opened full-page via "Megnyitás külön"),
+   * false inside the viewer's iframe. Set after hydration to avoid an SSR mismatch — it gates the
+   * floating "back to the demos" escape hatch, which the framed viewer doesn't need (it has its rail).
+   */
+  protected readonly standalone = signal(false);
+
+  constructor() {
+    afterNextRender(() => {
+      try {
+        this.standalone.set(window.self === window.top);
+      } catch {
+        this.standalone.set(false);
+      }
+    });
+  }
 
   protected vars() {
     return demoThemeStyle(this.theme());

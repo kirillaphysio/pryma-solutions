@@ -65,6 +65,7 @@ const SKIN: Record<DemoId, DemoTheme> = {
 };
 
 const SKIN_STYLE_ID = 'pryma-demo-skin';
+const EXIT_OVERLAY_ID = 'pryma-demo-exit';
 
 /** Auto-scroll tour: idle delay before it starts, and how long the full traversal takes. */
 const AUTO_DELAY_MS = 1400;
@@ -199,6 +200,8 @@ export class DemoGallery {
   private frameEl?: HTMLIFrameElement;
   private frameCleanup?: () => void;
   private autoStop?: () => void;
+  // Background of the currently-applied demo skin — the colour the outro cover fades from.
+  private lastSkinBg: string | null = null;
 
   constructor() {
     inject(SeoService).update({
@@ -368,15 +371,56 @@ export class DemoGallery {
   private applySkin(theme: DemoTheme | null) {
     let el = this.doc.getElementById(SKIN_STYLE_ID) as HTMLStyleElement | null;
     if (!theme) {
+      // Exiting a demo: cover with its background, drop the skin, then fade back to Pryma.
+      if (el) this.fadeBackToPryma(this.lastSkinBg);
       el?.remove();
+      this.lastSkinBg = null;
       return;
     }
+    this.lastSkinBg = theme.bg;
     if (!el) {
       el = this.doc.createElement('style');
       el.id = SKIN_STYLE_ID;
       this.doc.head.appendChild(el);
     }
     el.textContent = demoSkinCss(theme);
+  }
+
+  /**
+   * Smooth outro when the demo skin comes off: a full-viewport cover in the demo's background is
+   * dropped over everything, the skin is removed underneath, and the cover eases out to reveal the
+   * Pryma design. Skipped under reduced motion. Ported from the design's `fadeBackToPryma`.
+   */
+  private fadeBackToPryma(from: string | null) {
+    if (!from || !this.isBrowser) return;
+    const win = this.doc.defaultView;
+    if (win?.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    this.doc.getElementById(EXIT_OVERLAY_ID)?.remove();
+    const o = this.doc.createElement('div');
+    o.id = EXIT_OVERLAY_ID;
+    o.style.cssText = `position:fixed;inset:0;z-index:60;pointer-events:none;background:${from};opacity:1`;
+    this.doc.body.appendChild(o);
+
+    const D = 620;
+    const t0 = performance.now();
+    let raf = 0;
+    let safety = 0;
+    const kill = () => {
+      if (raf) cancelAnimationFrame(raf);
+      if (safety) clearTimeout(safety);
+      o.remove();
+    };
+    const tick = (ts: number) => {
+      const p = Math.min(1, (ts - t0) / D);
+      const eased = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; // easeInOutQuad
+      o.style.opacity = String(1 - eased);
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else kill();
+    };
+    raf = requestAnimationFrame(tick);
+    // Belt-and-braces: never let the cover linger if frames stop (throttled/background tab).
+    safety = win?.setTimeout(kill, D + 500) ?? 0;
   }
 
   private frame(path: string): SafeResourceUrl {
