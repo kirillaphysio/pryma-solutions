@@ -23,7 +23,6 @@
     linear-gradient(var(--grid-line, rgba(179, 174, 212, 0.14)) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-line, rgba(179, 174, 212, 0.14)) 1px, transparent 1px);
   background-size: var(--grid-size, 44px) var(--grid-size, 44px);
-  opacity: 0.16;
   mask-image: radial-gradient(58% 52% at 50% 46%, #000 0%, transparent 78%);
   -webkit-mask-image: radial-gradient(58% 52% at 50% 46%, #000 0%, transparent 78%);
   animation: pi-grid 420ms var(--ease-out) both;
@@ -252,8 +251,9 @@
     transform var(--dur-med) var(--ease-out),
     box-shadow var(--dur-med) var(--ease-out);
 
-  &:hover {
-    transform: translateY(-3px);
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-5px);
   }
   &--pink {
     --ring: var(--glow-pink-md);
@@ -275,6 +275,12 @@
   pointer-events: none;
   box-shadow: var(--ring), inset 0 0 0 1px var(--ring-line);
   animation: pi-flick 1040ms var(--ease-out) calc(420ms + var(--i) * 110ms) both;
+  transition: box-shadow var(--dur-med) var(--ease-out);
+}
+// Hover: intensify the tone glow (doubled) and brighten the inner edge.
+.card:hover .card__ring,
+.card:focus-visible .card__ring {
+  box-shadow: var(--ring), var(--ring), inset 0 0 0 1px var(--ring-line);
 }
 .card__top {
   display: flex;
@@ -311,6 +317,14 @@
   letter-spacing: var(--button-cap-ls);
   text-transform: uppercase;
   color: var(--text-link);
+
+  pry-icon {
+    transition: transform var(--dur-fast) var(--ease-out);
+  }
+}
+.card:hover .card__cta pry-icon,
+.card:focus-visible .card__cta pry-icon {
+  transform: translateX(3px);
 }
 
 .gate__home {
@@ -345,7 +359,7 @@
 // ── Keyframes ──────────────────────────────────────────────
 @keyframes pi-grid {
   from { opacity: 0; }
-  to { opacity: 0.16; }
+  to { opacity: 1; }
 }
 @keyframes pi-drop {
   0% { transform: translateY(-128%) scale(1.05); opacity: 0; }
