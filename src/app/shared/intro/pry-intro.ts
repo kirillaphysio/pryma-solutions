@@ -56,14 +56,19 @@ export class PryIntro {
   /** Fit the rigid boot block to whatever the device actually shows. */
   protected readonly scale = signal(1);
 
-  /** Six-frame power-on sequence; frame 1 is dark, each following frame lights one more system. */
+  /**
+   * Six-frame power-on sequence; frame 1 is dark, each following frame lights one more system.
+   * The per-frame reveal timing lives in the stylesheet (`.core__frame--fN`) — not inline — so
+   * the scoped @keyframes resolve. (Angular renames component keyframes under emulated
+   * encapsulation, so an inline `animation: pi-frame` would reference a name that no longer exists.)
+   */
   protected readonly frames = [
-    { src: this.asset('assets/intro/robot_1.jpg'), anim: null },
-    { src: this.asset('assets/intro/robot_2.jpg'), anim: 'pi-blink 300ms linear 1180ms both' },
-    { src: this.asset('assets/intro/robot_3.jpg'), anim: 'pi-frame 260ms linear 1440ms both' },
-    { src: this.asset('assets/intro/robot_4.jpg'), anim: 'pi-frame 240ms linear 1690ms both' },
-    { src: this.asset('assets/intro/robot_5.jpg'), anim: 'pi-frame 240ms linear 1920ms both' },
-    { src: this.asset('assets/intro/robot_6.jpg'), anim: 'pi-frame 300ms linear 2150ms both' },
+    { src: this.asset('assets/intro/robot_1.jpg'), cls: 'core__frame--f1' },
+    { src: this.asset('assets/intro/robot_2.jpg'), cls: 'core__frame--f2' },
+    { src: this.asset('assets/intro/robot_3.jpg'), cls: 'core__frame--f3' },
+    { src: this.asset('assets/intro/robot_4.jpg'), cls: 'core__frame--f4' },
+    { src: this.asset('assets/intro/robot_5.jpg'), cls: 'core__frame--f5' },
+    { src: this.asset('assets/intro/robot_6.jpg'), cls: 'core__frame--f6' },
   ];
 
   protected readonly gates: Gate[] = [

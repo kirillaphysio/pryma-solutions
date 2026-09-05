@@ -101,9 +101,13 @@
   user-select: none;
   opacity: 0;
 }
-.core__frame--first {
-  opacity: 1;
-}
+// Frame 1 is the dark base; each following frame lights up on schedule and stays lit.
+.core__frame--f1 { opacity: 1; }
+.core__frame--f2 { animation: pi-blink 300ms linear 1180ms both; }
+.core__frame--f3 { animation: pi-frame 260ms linear 1440ms both; }
+.core__frame--f4 { animation: pi-frame 240ms linear 1690ms both; }
+.core__frame--f5 { animation: pi-frame 240ms linear 1920ms both; }
+.core__frame--f6 { animation: pi-frame 300ms linear 2150ms both; }
 .core__scan {
   position: absolute;
   left: 0;

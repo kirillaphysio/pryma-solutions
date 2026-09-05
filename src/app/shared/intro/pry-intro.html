@@ -10,15 +10,8 @@
         <div class="core__drop">
           <div class="core__masky">
             <div class="core__maskx">
-              @for (f of frames; track f.src; let i = $index) {
-                <img
-                  class="core__frame"
-                  [class.core__frame--first]="i === 0"
-                  [src]="f.src"
-                  alt=""
-                  draggable="false"
-                  [style.animation]="f.anim"
-                />
+              @for (f of frames; track f.src) {
+                <img [class]="'core__frame ' + f.cls" [src]="f.src" alt="" draggable="false" />
               }
               <div class="core__scan" aria-hidden="true"></div>
               <div class="core__flash" aria-hidden="true"></div>
