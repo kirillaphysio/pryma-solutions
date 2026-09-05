@@ -97,6 +97,59 @@
                 </button>
               }
             </div>
+
+            <div
+              class="dg-seg"
+              role="group"
+              aria-label="Elrendezés"
+              i18n-aria-label="@@demo.layout.group"
+            >
+              @for (l of current().layouts; track l.id) {
+                <button
+                  type="button"
+                  class="dg-seg__btn"
+                  [class.is-active]="l.id === layout()"
+                  [attr.aria-pressed]="l.id === layout()"
+                  (click)="setLayout(l.id)"
+                >
+                  {{ l.label }}
+                </button>
+              }
+            </div>
+
+            <div
+              class="dg-seg"
+              role="group"
+              aria-label="Grafika"
+              i18n-aria-label="@@demo.gfx.group"
+            >
+              @for (g of gfxOptions; track g.key) {
+                <button
+                  type="button"
+                  class="dg-seg__btn"
+                  [class.is-active]="g.key === gfx()"
+                  [attr.aria-pressed]="g.key === gfx()"
+                  (click)="setGfx(g.key)"
+                >
+                  {{ g.label }}
+                </button>
+              }
+            </div>
+
+            <div class="dg-moods" role="group" aria-label="Szín" i18n-aria-label="@@demo.color.group">
+              @for (m of moods(); track m.accent; let i = $index) {
+                <button
+                  type="button"
+                  class="dg-mood"
+                  [class.is-active]="i === mood()"
+                  [attr.aria-pressed]="i === mood()"
+                  [attr.aria-label]="moodLabel(i)"
+                  [style.background]="m.dot"
+                  (click)="setMood(i)"
+                ></button>
+              }
+            </div>
+
             <a class="dg-standalone" [routerLink]="current().route">
               <span i18n="@@demo.standalone">Megnyitás külön</span>
               <pry-icon name="arrow-right" [size]="13" />
@@ -127,13 +180,27 @@
               >
                 <iframe
                   class="dg-frame"
-                  [src]="current().src"
+                  [src]="frameSrc()"
                   [title]="current().frameTitle"
                   [style.width.px]="frameW()"
                   [style.height.px]="frameH()"
                   [style.transform]="transform()"
                   sandbox="allow-same-origin allow-scripts"
+                  (load)="onFrameLoad($event)"
                 ></iframe>
+
+                <button
+                  type="button"
+                  class="dg-totop"
+                  [class.is-shown]="showTop()"
+                  (click)="toTop()"
+                  aria-label="Vissza a lap tetejére"
+                  i18n-aria-label="@@demo.totop"
+                  title="Vissza a lap tetejére"
+                  i18n-title="@@demo.totop"
+                >
+                  <pry-icon name="arrow-up" [size]="dev() === 'mobile' ? 15 : 17" />
+                </button>
               </div>
             </div>
           </div>

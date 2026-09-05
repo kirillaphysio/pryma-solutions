@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  numberAttribute,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../core/seo.service';
+import { PryIcon } from '../../../ds';
 import { DemoChrome, DemoArt } from '../shared/demo-chrome';
+import { resolveDemoTheme, type DemoGfx } from '../shared/demo-theme';
 import {
   SALON,
   SALON_HOME,
@@ -15,11 +24,14 @@ import {
   SALON_QUOTES,
 } from './szalon.data';
 
+/** Salon layout variants exposed by the demo viewer. */
+export type SalonLayout = 'split' | 'magazine';
+
 /** Salon demo — home. Warm, serif, image-led. Shell-less showcase route (noindex). */
 @Component({
   selector: 'pry-demo-szalon-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, DemoChrome, DemoArt],
+  imports: [RouterLink, DemoChrome, DemoArt, PryIcon],
   templateUrl: './szalon-home.html',
   styles: `
     .s-hero {
@@ -40,6 +52,24 @@ import {
       flex-wrap: wrap;
       align-items: center;
     }
+    /* Magazine variant: offset portrait on the left, text overlapping from the right. */
+    .s-hero--mag {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 0;
+      align-items: center;
+    }
+    .s-hero--mag .s-hero__art {
+      position: relative;
+      z-index: 1;
+    }
+    .s-hero--mag .s-hero__text {
+      position: relative;
+      z-index: 2;
+      background: var(--d-bg);
+      margin-left: -64px;
+      padding: 52px 0 52px 52px;
+    }
     .s-grid3 {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -53,6 +83,11 @@ import {
       border: 1px solid var(--d-line-soft);
       border-radius: var(--d-radius);
       padding: 14px;
+    }
+    .s-card__head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .s-card__name {
       font-family: var(--d-font-display);
@@ -91,13 +126,16 @@ import {
       align-items: baseline;
       color: var(--d-ink);
     }
-    .s-about__list li::before {
-      content: '';
+    .s-about__dash {
       width: 16px;
       height: 1px;
       background: var(--d-accent);
       flex: 0 0 auto;
       transform: translateY(-4px);
+    }
+    .s-about__ico {
+      flex: 0 0 auto;
+      transform: translateY(2px);
     }
     .s-quotes {
       display: grid;
@@ -153,6 +191,14 @@ import {
       .s-book__grid {
         grid-template-columns: minmax(0, 1fr);
       }
+      .s-hero--mag {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+      }
+      .s-hero--mag .s-hero__text {
+        margin-left: 0;
+        padding: 0;
+      }
       .s-grid3 {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -164,7 +210,14 @@ import {
   `,
 })
 export class SalonHome {
-  protected readonly t = SALON;
+  /** Colour mood index, layout variant and graphics mode — bound from the viewer's query string. */
+  readonly mood = input(0, { transform: numberAttribute });
+  readonly layout = input<SalonLayout>('split');
+  readonly gfx = input<DemoGfx>('foto');
+
+  protected readonly t = computed(() => resolveDemoTheme(SALON, this.mood()));
+  protected readonly showIcons = computed(() => this.gfx() !== 'foto');
+
   protected readonly homePath = SALON_HOME;
   protected readonly pricingPath = SALON_PRICING;
   protected readonly nav = SALON_NAV;

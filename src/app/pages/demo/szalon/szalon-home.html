@@ -1,5 +1,5 @@
 <pry-demo-chrome
-  [theme]="t"
+  [theme]="t()"
   [homePath]="homePath"
   [links]="nav"
   ctaLabel="Időpont"
@@ -7,26 +7,64 @@
   ctaFragment="kapcsolat"
   [footerBlocks]="footer"
   [legal]="legal"
+  [showIcons]="showIcons()"
 >
   <!-- Hero -->
-  <section class="d-section">
-    <div class="d-wrap s-hero">
-      <div class="s-hero__text">
-        <span class="d-kicker">Belváros · hétfő–szombat</span>
-        <h1 class="d-h" style="font-size: clamp(38px, 6vw, 62px)">
-          Ápolt haj,<br />nyugodt másfél óra.
-        </h1>
-        <p class="d-lead" style="max-width: 440px">
-          Vágás, festés és arckezelés egy helyen. Előre egyeztetett időpontban, sietés nélkül.
-        </p>
-        <div class="s-hero__cta">
-          <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
-          <a class="d-btn d-btn--ghost" [routerLink]="pricingPath">Árak megtekintése</a>
+  @if (layout() === 'magazine') {
+    <section class="d-section">
+      <div class="d-wrap s-hero--mag">
+        <div class="s-hero__art">
+          <pry-demo-art
+            label="portré · szalonbelső"
+            ratio="3 / 4"
+            [gfx]="gfx()"
+            motif="arcs"
+            icon="scissors"
+            [glyph]="30"
+          />
+        </div>
+        <div class="s-hero__text">
+          <span class="d-kicker">Belváros · hétfő–szombat</span>
+          <h1 class="d-h" style="font-size: clamp(38px, 6vw, 62px)">
+            Ápolt haj,<br />nyugodt másfél óra.
+          </h1>
+          <p class="d-lead" style="max-width: 440px">
+            Vágás, festés és arckezelés egy helyen. Előre egyeztetett időpontban, sietés nélkül.
+          </p>
+          <div class="s-hero__cta">
+            <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
+            <a class="d-btn d-btn--ghost" [routerLink]="pricingPath">Árak megtekintése</a>
+          </div>
         </div>
       </div>
-      <pry-demo-art label="portré · szalonbelső" ratio="4 / 5" />
-    </div>
-  </section>
+    </section>
+  } @else {
+    <section class="d-section">
+      <div class="d-wrap s-hero">
+        <div class="s-hero__text">
+          <span class="d-kicker">Belváros · hétfő–szombat</span>
+          <h1 class="d-h" style="font-size: clamp(38px, 6vw, 62px)">
+            Ápolt haj,<br />nyugodt másfél óra.
+          </h1>
+          <p class="d-lead" style="max-width: 440px">
+            Vágás, festés és arckezelés egy helyen. Előre egyeztetett időpontban, sietés nélkül.
+          </p>
+          <div class="s-hero__cta">
+            <a class="d-btn" [routerLink]="homePath" fragment="kapcsolat">Időpontot kérek</a>
+            <a class="d-btn d-btn--ghost" [routerLink]="pricingPath">Árak megtekintése</a>
+          </div>
+        </div>
+        <pry-demo-art
+          label="portré · szalonbelső"
+          ratio="4 / 5"
+          [gfx]="gfx()"
+          motif="arcs"
+          icon="scissors"
+          [glyph]="30"
+        />
+      </div>
+    </section>
+  }
 
   <!-- Services -->
   <section class="d-section d-section--alt">
@@ -38,8 +76,20 @@
       <div class="s-grid3">
         @for (s of services; track s.name) {
           <div class="s-card">
-            <pry-demo-art [label]="s.img" ratio="4 / 3" />
-            <span class="s-card__name">{{ s.name }}</span>
+            <pry-demo-art
+              [label]="s.img"
+              ratio="4 / 3"
+              [gfx]="gfx()"
+              [motif]="s.motif"
+              [icon]="s.icon"
+              [glyph]="24"
+            />
+            <div class="s-card__head">
+              @if (showIcons()) {
+                <pry-icon [name]="s.icon" [size]="19" [color]="t().accent" />
+              }
+              <span class="s-card__name">{{ s.name }}</span>
+            </div>
             <span class="s-card__meta">{{ s.meta }}</span>
           </div>
         }
@@ -49,15 +99,30 @@
 
   <!-- Gallery strip -->
   <section class="s-strip">
-    @for (g of gallery; track g) {
-      <pry-demo-art [label]="g" ratio="3 / 4" [flush]="true" />
+    @for (g of gallery; track g.label) {
+      <pry-demo-art
+        [label]="g.label"
+        ratio="3 / 4"
+        [flush]="true"
+        [gfx]="gfx()"
+        [motif]="g.motif"
+        [icon]="g.icon"
+        [glyph]="26"
+      />
     }
   </section>
 
   <!-- About -->
   <section class="d-section">
     <div class="d-wrap s-about">
-      <pry-demo-art label="a szalon · nappali fény" ratio="1 / 1" />
+      <pry-demo-art
+        label="a szalon · nappali fény"
+        ratio="1 / 1"
+        [gfx]="gfx()"
+        motif="rings"
+        icon="flower"
+        [glyph]="30"
+      />
       <div style="display: flex; flex-direction: column; gap: 20px">
         <span class="d-kicker">A szalonról</span>
         <h2 class="d-h" style="font-size: clamp(26px, 3.4vw, 38px)">
@@ -69,8 +134,15 @@
           illő megoldást válasszuk.
         </p>
         <ul class="s-about__list">
-          @for (a of about; track a) {
-            <li>{{ a }}</li>
+          @for (a of about; track a.text) {
+            <li>
+              @if (showIcons()) {
+                <pry-icon class="s-about__ico" [name]="a.icon" [size]="15" [color]="t().accent" />
+              } @else {
+                <span class="s-about__dash"></span>
+              }
+              {{ a.text }}
+            </li>
           }
         </ul>
       </div>

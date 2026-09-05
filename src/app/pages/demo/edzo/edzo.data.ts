@@ -16,19 +16,24 @@ export const TRAINER_NAV: DemoNavLink[] = [
 ];
 
 export const TRAINER_FOOTER: DemoFooterBlock[] = [
-  { title: 'Telefon', lines: ['+36 30 123 4567'] },
-  { title: 'E-mail', lines: ['edzes@example.hu'] },
-  { title: 'Helyszín', lines: ['Budapest · saját terem'] },
+  { title: 'Telefon', lines: ['+36 30 123 4567'], icon: 'phone' },
+  { title: 'E-mail', lines: ['edzes@example.hu'], icon: 'mail' },
+  { title: 'Helyszín', lines: ['Budapest · saját terem'], icon: 'map-pin' },
 ];
 
 export const TRAINER_LEGAL =
   'Személyi edzés · példaoldal a Pryma Solutions bemutatójához';
 
-export const TRAINER_STATS: [string, string][] = [
-  ['1:1', 'edzés, nem csoport'],
-  ['12', 'hetes felépítés'],
-  ['60', 'perc alkalmanként'],
-  ['H–Szo', 'reggel 6-tól'],
+export interface TrainerStat {
+  val: string;
+  label: string;
+  icon: string;
+}
+export const TRAINER_STATS: TrainerStat[] = [
+  { val: '1:1', label: 'edzés, nem csoport', icon: 'user' },
+  { val: '12', label: 'hetes felépítés', icon: 'calendar-days' },
+  { val: '60', label: 'perc alkalmanként', icon: 'timer' },
+  { val: 'H–Szo', label: 'reggel 6-tól', icon: 'clock' },
 ];
 
 export interface TrainerProgram {
@@ -37,6 +42,7 @@ export interface TrainerProgram {
   body: string;
   tags: string[];
   more: string[];
+  icon: string;
 }
 export const TRAINER_PROGRAM_LIST: TrainerProgram[] = [
   {
@@ -49,6 +55,7 @@ export const TRAINER_PROGRAM_LIST: TrainerProgram[] = [
       'Saját testsúlyos alapok, majd súlyzó',
       'Heti visszamérés, írásos terv',
     ],
+    icon: 'sprout',
   },
   {
     name: 'Erő',
@@ -60,6 +67,7 @@ export const TRAINER_PROGRAM_LIST: TrainerProgram[] = [
       'Blokkokra bontott, számolt terhelés',
       'Technikavideó-elemzés',
     ],
+    icon: 'dumbbell',
   },
   {
     name: 'Visszatérés',
@@ -71,25 +79,35 @@ export const TRAINER_PROGRAM_LIST: TrainerProgram[] = [
       'Fájdalomskála minden alkalommal',
       'Lassított tempó, sok kontroll',
     ],
+    icon: 'heart-pulse',
   },
 ];
 
-export const TRAINER_STEPS: [string, string, string][] = [
-  [
-    '01',
-    'Felmérés',
-    'Mozgásvizsgálat és egy beszélgetés arról, mit szeretnél elérni. Ez ingyenes és nem kötelez semmire.',
-  ],
-  [
-    '02',
-    'Terv',
-    'Kapsz egy 12 hetes vázlatot: mit, mikor, milyen terheléssel. Írásban, hogy vissza tudd olvasni.',
-  ],
-  [
-    '03',
-    'Edzés',
-    'Heti alkalmak, közben rendszeres visszamérés. Ha valami nem működik, menet közben átalakítjuk.',
-  ],
+export interface TrainerStep {
+  n: string;
+  title: string;
+  body: string;
+  icon: string;
+}
+export const TRAINER_STEPS: TrainerStep[] = [
+  {
+    n: '01',
+    title: 'Felmérés',
+    body: 'Mozgásvizsgálat és egy beszélgetés arról, mit szeretnél elérni. Ez ingyenes és nem kötelez semmire.',
+    icon: 'clipboard-list',
+  },
+  {
+    n: '02',
+    title: 'Terv',
+    body: 'Kapsz egy 12 hetes vázlatot: mit, mikor, milyen terheléssel. Írásban, hogy vissza tudd olvasni.',
+    icon: 'file-text',
+  },
+  {
+    n: '03',
+    title: 'Edzés',
+    body: 'Heti alkalmak, közben rendszeres visszamérés. Ha valami nem működik, menet közben átalakítjuk.',
+    icon: 'dumbbell',
+  },
 ];
 
 export interface TrainerPrice {

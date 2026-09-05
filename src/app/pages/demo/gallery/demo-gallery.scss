@@ -251,6 +251,36 @@
   }
 }
 
+.dg-moods {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dg-mood {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.14);
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+
+  &:hover {
+    transform: scale(1.08);
+  }
+  // The shell is skinned to the selected mood, so --action-primary is the active accent.
+  &.is-active {
+    box-shadow:
+      0 0 0 2px var(--surface-page),
+      0 0 0 4px var(--action-primary);
+  }
+}
+
 .dg-standalone {
   margin-left: auto;
   display: inline-flex;
@@ -343,6 +373,69 @@
   display: block;
   transform-origin: top left;
   background: #fff;
+}
+
+// Scroll-to-top control, overlaid bottom-right of the framed page. Accent follows the mood skin.
+.dg-totop {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  background: var(--action-primary);
+  color: var(--text-on-accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition:
+    opacity var(--dur-med) var(--ease-out),
+    transform var(--dur-med) var(--ease-out);
+
+  &.is-shown {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  &.is-shown pry-icon {
+    animation: dg-hop 1.6s cubic-bezier(0.3, 0.7, 0.3, 1) infinite;
+  }
+
+  .dg-screen--mobile & {
+    right: 12px;
+    bottom: 12px;
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@keyframes dg-hop {
+  0%,
+  58%,
+  100% {
+    transform: translateY(0);
+  }
+  72% {
+    transform: translateY(-4px);
+  }
+  86% {
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dg-totop,
+  .dg-totop pry-icon {
+    transition: none;
+    animation: none;
+  }
 }
 
 .dg-cta {

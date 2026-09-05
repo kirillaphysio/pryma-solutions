@@ -94,6 +94,47 @@
   }
 }
 
+// ---- full-page escape hatch ----------------------------------------------
+// Floating pill shown only when a demo is opened top-level (not inside the viewer iframe).
+// A 90px pill (Pryma convention) reads as an overlay control, distinct from the demo's own radius.
+.dc-back {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px 10px 13px;
+  border-radius: 90px;
+  background: var(--d-card);
+  color: var(--d-ink);
+  text-decoration: none;
+  font-family: var(--d-font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px var(--d-line);
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.22s;
+
+  &:hover {
+    transform: translateY(-2px);
+    color: var(--d-accent);
+    box-shadow:
+      0 12px 30px rgba(0, 0, 0, 0.26),
+      inset 0 0 0 1px var(--d-accent-line);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--d-accent);
+    outline-offset: 2px;
+  }
+}
+
 // ---- header ---------------------------------------------------------------
 .dc-head {
   border-bottom: 1px solid var(--d-line-soft);
@@ -181,6 +222,9 @@
   gap: 8px;
 }
 .dc-foot__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--d-font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;
@@ -218,7 +262,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   :host ::ng-deep *,
-  .dc-cta {
+  .dc-cta,
+  .dc-back {
     transition: none !important;
     animation: none !important;
   }

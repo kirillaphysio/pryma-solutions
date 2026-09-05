@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, afterNextRender, input, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { PryIcon } from '../../../ds';
 import { DemoArt } from './demo-art';
 import { demoThemeStyle, type DemoTheme } from './demo-theme';
 
@@ -15,6 +16,8 @@ export interface DemoFooterBlock {
   title: string;
   /** Lines rendered stacked; use "\n" inside a line for a soft break. */
   lines: string[];
+  /** Optional Lucide glyph shown before the title when the graphics mode uses icons. */
+  icon?: string;
 }
 
 /**
@@ -26,8 +29,15 @@ export interface DemoFooterBlock {
 @Component({
   selector: 'pry-demo-chrome',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, PryIcon],
   template: `
+    @if (standalone()) {
+      <a class="dc-back" routerLink="/demo">
+        <pry-icon name="arrow-left" [size]="14" />
+        <span>Vissza a demókhoz</span>
+      </a>
+    }
+
     <header class="dc-head">
       <div class="dc-head__in">
         <a class="dc-brand" [routerLink]="homePath()">{{ theme().brand }}</a>
@@ -54,7 +64,12 @@ export interface DemoFooterBlock {
       <div class="dc-foot__in">
         @for (b of footerBlocks(); track b.title) {
           <div class="dc-foot__col">
-            <span class="dc-foot__title">{{ b.title }}</span>
+            <span class="dc-foot__title">
+              @if (showIcons() && b.icon) {
+                <pry-icon [name]="b.icon" [size]="13" [color]="theme().accent" />
+              }
+              {{ b.title }}
+            </span>
             @for (line of b.lines; track line) {
               <span class="dc-foot__line">{{ line }}</span>
             }
@@ -80,6 +95,25 @@ export class DemoChrome {
   readonly ctaFragment = input<string | undefined>(undefined);
   readonly footerBlocks = input<DemoFooterBlock[]>([]);
   readonly legal = input('');
+  /** Show the trade glyphs (footer titles) — true when the graphics mode is `ikon`/`illu`. */
+  readonly showIcons = input(false);
+
+  /**
+   * True only when this demo is the top-level document (opened full-page via "Megnyitás külön"),
+   * false inside the viewer's iframe. Set after hydration to avoid an SSR mismatch — it gates the
+   * floating "back to the demos" escape hatch, which the framed viewer doesn't need (it has its rail).
+   */
+  protected readonly standalone = signal(false);
+
+  constructor() {
+    afterNextRender(() => {
+      try {
+        this.standalone.set(window.self === window.top);
+      } catch {
+        this.standalone.set(false);
+      }
+    });
+  }
 
   protected vars() {
     return demoThemeStyle(this.theme());
