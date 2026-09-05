@@ -29,7 +29,24 @@ export interface DemoTheme {
   displayWeight: number;
   displayTransform: 'none' | 'uppercase';
   displayTracking: string;
+  /** Selectable colour moods (mood[0] is the default accent above). */
+  moods: DemoMood[];
 }
+
+/** One accent option in the demo colour switcher. `dot` is the swatch, `accent` the applied hue. */
+export interface DemoMood {
+  dot: string;
+  accent: string;
+}
+
+/** One layout option in the demo layout switcher. `id` binds to the `layout` query param. */
+export interface DemoLayoutOption {
+  id: string;
+  label: string;
+}
+
+/** Graphics mode: marked photo-placeholder · trade icons · geometric illustration. */
+export type DemoGfx = 'foto' | 'ikon' | 'illu';
 
 const SERIF = "Georgia, 'Times New Roman', serif";
 const SANS = "system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
@@ -55,6 +72,11 @@ export const SALON_THEME: DemoTheme = {
   displayWeight: 500,
   displayTransform: 'none',
   displayTracking: '-0.01em',
+  moods: [
+    { dot: '#c0596f', accent: '#c0596f' },
+    { dot: '#b5643c', accent: '#b5643c' },
+    { dot: '#6f7d5f', accent: '#6f7d5f' },
+  ],
 };
 
 export const TRAINER_THEME: DemoTheme = {
@@ -77,6 +99,11 @@ export const TRAINER_THEME: DemoTheme = {
   displayWeight: 800,
   displayTransform: 'uppercase',
   displayTracking: '-0.025em',
+  moods: [
+    { dot: '#c7f04a', accent: '#c7f04a' },
+    { dot: '#ff6a2b', accent: '#ff6a2b' },
+    { dot: '#4ad2ff', accent: '#4ad2ff' },
+  ],
 };
 
 export const WORKSHOP_THEME: DemoTheme = {
@@ -99,7 +126,22 @@ export const WORKSHOP_THEME: DemoTheme = {
   displayWeight: 600,
   displayTransform: 'none',
   displayTracking: '-0.03em',
+  moods: [
+    { dot: '#a8762a', accent: '#a8762a' },
+    { dot: '#3a5a48', accent: '#3a5a48' },
+    { dot: '#46587a', accent: '#46587a' },
+  ],
 };
+
+/**
+ * Return a copy of `base` with the accent swapped to the selected mood. Every accent-derived
+ * token (`--d-accent-soft`, the skin's link/focus/mesh colours) is computed from `accent`, so
+ * swapping this one field re-tints the whole demo — nothing else needs to change.
+ */
+export function resolveDemoTheme(base: DemoTheme, moodIdx: number): DemoTheme {
+  const mood = base.moods[moodIdx % base.moods.length] ?? base.moods[0];
+  return mood.accent === base.accent ? base : { ...base, accent: mood.accent };
+}
 
 /** color-mix helper: `pct`% of the accent over transparent (a soft tint). */
 export function tint(color: string, pct: number): string {

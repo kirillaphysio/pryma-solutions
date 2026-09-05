@@ -181,6 +181,9 @@
   gap: 8px;
 }
 .dc-foot__title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: var(--d-font-mono);
   font-size: 10px;
   letter-spacing: 0.16em;

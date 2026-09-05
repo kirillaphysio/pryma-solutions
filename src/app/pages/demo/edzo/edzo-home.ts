@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  numberAttribute,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../core/seo.service';
+import { PryIcon } from '../../../ds';
 import { DemoChrome, DemoArt } from '../shared/demo-chrome';
+import { resolveDemoTheme, type DemoGfx } from '../shared/demo-theme';
 import {
   TRAINER,
   TRAINER_HOME,
@@ -14,11 +23,14 @@ import {
   TRAINER_STEPS,
 } from './edzo.data';
 
+/** Trainer layout variants exposed by the demo viewer. */
+export type TrainerLayout = 'left' | 'poster';
+
 /** Trainer demo — home. Dark, condensed uppercase, card-led. Shell-less showcase (noindex). */
 @Component({
   selector: 'pry-demo-edzo-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, DemoChrome, DemoArt],
+  imports: [RouterLink, DemoChrome, DemoArt, PryIcon],
   templateUrl: './edzo-home.html',
   styles: `
     .e-hero {
@@ -31,6 +43,25 @@ import {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
+    }
+    /* Poster variant: full-width centred hero, larger stat bar below. */
+    .e-hero--poster {
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+      align-items: center;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .e-hero--poster .e-hero__cta {
+      justify-content: center;
+    }
+    .e-stat--big {
+      padding: clamp(24px, 4vw, 32px) clamp(20px, 3vw, 28px);
+    }
+    .e-stat--big .e-stat__val {
+      font-size: clamp(32px, 5vw, 54px);
     }
     .e-stats {
       display: grid;
@@ -57,6 +88,9 @@ import {
       font-variant-numeric: tabular-nums;
     }
     .e-stat__lbl {
+      display: flex;
+      align-items: center;
+      gap: 7px;
       font-family: var(--d-font-mono);
       font-size: 10px;
       letter-spacing: 0.1em;
@@ -82,6 +116,11 @@ import {
       align-items: baseline;
       justify-content: space-between;
       gap: 12px;
+    }
+    .e-prog__name-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
     .e-prog__name {
       font-family: var(--d-font-display);
@@ -136,6 +175,9 @@ import {
       border-top: 1px solid var(--d-line);
     }
     .e-step__n {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-family: var(--d-font-mono);
       font-size: 12px;
       color: var(--d-accent);
@@ -208,7 +250,14 @@ import {
   `,
 })
 export class TrainerHome {
-  protected readonly t = TRAINER;
+  /** Colour mood index, layout variant and graphics mode — bound from the viewer's query string. */
+  readonly mood = input(0, { transform: numberAttribute });
+  readonly layout = input<TrainerLayout>('left');
+  readonly gfx = input<DemoGfx>('foto');
+
+  protected readonly t = computed(() => resolveDemoTheme(TRAINER, this.mood()));
+  protected readonly showIcons = computed(() => this.gfx() !== 'foto');
+
   protected readonly homePath = TRAINER_HOME;
   protected readonly programsPath = TRAINER_PROGRAMS;
   protected readonly nav = TRAINER_NAV;

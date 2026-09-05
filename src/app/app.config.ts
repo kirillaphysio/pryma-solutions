@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import {
   provideRouter,
+  withComponentInputBinding,
   withInMemoryScrolling,
 } from '@angular/router';
 import { routes } from './app.routes';
@@ -15,6 +16,8 @@ export const appConfig: ApplicationConfig = {
         anchorScrolling: 'enabled',
         scrollPositionRestoration: 'enabled',
       }),
+      // Binds route query params to demo-home component input()s (mood/layout/gfx).
+      withComponentInputBinding(),
     ),
     provideClientHydration(),
   ],

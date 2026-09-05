@@ -17,9 +17,9 @@ export const SALON_NAV: DemoNavLink[] = [
 ];
 
 export const SALON_FOOTER: DemoFooterBlock[] = [
-  { title: 'Nyitvatartás', lines: ['H–P 9:00–18:00\nSzo 9:00–13:00'] },
-  { title: 'Cím', lines: ['Belváros, főutca 12.\n1. emelet'] },
-  { title: 'Elérhetőség', lines: ['+36 1 234 5678\nidopont@example.hu'] },
+  { title: 'Nyitvatartás', lines: ['H–P 9:00–18:00\nSzo 9:00–13:00'], icon: 'clock' },
+  { title: 'Cím', lines: ['Belváros, főutca 12.\n1. emelet'], icon: 'map-pin' },
+  { title: 'Elérhetőség', lines: ['+36 1 234 5678\nidopont@example.hu'], icon: 'phone' },
 ];
 
 export const SALON_LEGAL =
@@ -29,23 +29,34 @@ export interface SalonService {
   name: string;
   meta: string;
   img: string;
+  icon: string;
+  motif: string;
 }
 export const SALON_SERVICES: SalonService[] = [
-  { name: 'Vágás és formázás', meta: '60 perc · 8 000 Ft-tól', img: 'vágás közben · közeli' },
-  { name: 'Festés és melír', meta: '120 perc · 16 000 Ft-tól', img: 'festés · előtte-utána' },
-  { name: 'Arckezelés', meta: '75 perc · 12 000 Ft-tól', img: 'kozmetikai kezelés' },
+  { name: 'Vágás és formázás', meta: '60 perc · 8 000 Ft-tól', img: 'vágás közben · közeli', icon: 'scissors', motif: 'arcs' },
+  { name: 'Festés és melír', meta: '120 perc · 16 000 Ft-tól', img: 'festés · előtte-utána', icon: 'paintbrush', motif: 'bloom' },
+  { name: 'Arckezelés', meta: '75 perc · 12 000 Ft-tól', img: 'kozmetikai kezelés', icon: 'sparkles', motif: 'grid' },
 ];
 
-export const SALON_GALLERY: string[] = [
-  'hajfestés · részlet',
-  'szalonbelső · szék',
-  'termékpolc',
+export interface SalonGalleryItem {
+  label: string;
+  motif: string;
+  icon: string;
+}
+export const SALON_GALLERY: SalonGalleryItem[] = [
+  { label: 'hajfestés · részlet', motif: 'bloom', icon: 'paintbrush' },
+  { label: 'szalonbelső · szék', motif: 'grid', icon: 'armchair' },
+  { label: 'termékpolc', motif: 'grid', icon: 'package' },
 ];
 
-export const SALON_ABOUT: string[] = [
-  'Konzultáció minden új vendégnek',
-  'Illatmentes termékek kérésre',
-  'Kártyás fizetés',
+export interface SalonAboutItem {
+  text: string;
+  icon: string;
+}
+export const SALON_ABOUT: SalonAboutItem[] = [
+  { text: 'Konzultáció minden új vendégnek', icon: 'message-circle' },
+  { text: 'Illatmentes termékek kérésre', icon: 'leaf' },
+  { text: 'Kártyás fizetés', icon: 'credit-card' },
 ];
 
 /** [name, price] rows for the price list. */

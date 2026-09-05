@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  numberAttribute,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SeoService } from '../../../core/seo.service';
+import { PryIcon } from '../../../ds';
 import { DemoChrome, DemoArt } from '../shared/demo-chrome';
+import { resolveDemoTheme, type DemoGfx } from '../shared/demo-theme';
 import {
   WORKSHOP,
   WORKSHOP_HOME,
@@ -11,13 +20,17 @@ import {
   WORKSHOP_LEGAL,
   WORK_ITEMS,
   WORK_PROCESS,
+  WORK_CONTACT,
 } from './asztalos.data';
+
+/** Carpenter layout variants exposed by the demo viewer. */
+export type WorkshopLayout = 'list' | 'wide';
 
 /** Carpenter demo — home. Minimal, sans, warm wood tones. Shell-less showcase (noindex). */
 @Component({
   selector: 'pry-demo-asztalos-home',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [RouterLink, DemoChrome, DemoArt],
+  imports: [RouterLink, DemoChrome, DemoArt, PryIcon],
   templateUrl: './asztalos-home.html',
   styles: `
     .w-hero {
@@ -40,6 +53,15 @@ import {
       text-transform: uppercase;
       color: var(--d-mute);
     }
+    /* Wide variant: full-bleed opener above, centred hero body. */
+    .w-hero--center {
+      align-items: center;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .w-hero--center .w-hero__cta {
+      justify-content: center;
+    }
     .w-list {
       border-top: 1px solid var(--d-line);
     }
@@ -57,13 +79,19 @@ import {
       letter-spacing: 0.1em;
       color: var(--d-accent);
     }
+    .w-row__head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 6px;
+    }
     .w-row__title {
       font-family: var(--d-font-display);
       font-weight: 600;
       font-size: clamp(19px, 2.6vw, 24px);
       letter-spacing: -0.02em;
       color: var(--d-ink);
-      margin: 0 0 6px;
+      margin: 0;
     }
     .w-row__body {
       color: var(--d-mute);
@@ -88,6 +116,9 @@ import {
       gap: 10px;
     }
     .w-step__n {
+      display: flex;
+      align-items: center;
+      gap: 9px;
       font-family: var(--d-font-mono);
       font-size: 11px;
       color: var(--d-accent);
@@ -142,7 +173,12 @@ import {
       letter-spacing: 0.04em;
       color: var(--d-ink);
     }
-    .w-contact__lines .mute {
+    .w-contact__line {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .w-contact__line.mute {
       color: var(--d-mute);
     }
     @media (max-width: 860px) {
@@ -157,7 +193,14 @@ import {
   `,
 })
 export class WorkshopHome {
-  protected readonly t = WORKSHOP;
+  /** Colour mood index, layout variant and graphics mode — bound from the viewer's query string. */
+  readonly mood = input(0, { transform: numberAttribute });
+  readonly layout = input<WorkshopLayout>('list');
+  readonly gfx = input<DemoGfx>('foto');
+
+  protected readonly t = computed(() => resolveDemoTheme(WORKSHOP, this.mood()));
+  protected readonly showIcons = computed(() => this.gfx() !== 'foto');
+
   protected readonly homePath = WORKSHOP_HOME;
   protected readonly workPath = WORKSHOP_WORK;
   protected readonly nav = WORKSHOP_NAV;
@@ -165,6 +208,7 @@ export class WorkshopHome {
   protected readonly legal = WORKSHOP_LEGAL;
   protected readonly items = WORK_ITEMS;
   protected readonly process = WORK_PROCESS;
+  protected readonly contactLines = WORK_CONTACT;
 
   constructor() {
     inject(SeoService).update({

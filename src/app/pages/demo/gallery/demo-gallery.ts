@@ -20,6 +20,9 @@ import {
   TRAINER_THEME,
   WORKSHOP_THEME,
   demoSkinCss,
+  resolveDemoTheme,
+  type DemoGfx,
+  type DemoLayoutOption,
   type DemoTheme,
 } from '../shared/demo-theme';
 import {
@@ -41,7 +44,9 @@ interface DemoDef {
   path: string; // route segment for the iframe src, e.g. "demo/szalon"
   route: string; // absolute app route for "open standalone"
   frameTitle: string;
-  src: SafeResourceUrl;
+  src: SafeResourceUrl; // default (query-less) src, used for the landing previews
+  theme: DemoTheme; // base theme — supplies the colour moods + skin palette
+  layouts: DemoLayoutOption[]; // the two selectable layout variants
 }
 
 /** Natural viewport of each device — the iframe renders at this width (so the demo picks the
@@ -60,6 +65,12 @@ const SKIN: Record<DemoId, DemoTheme> = {
 };
 
 const SKIN_STYLE_ID = 'pryma-demo-skin';
+
+/** Auto-scroll tour: idle delay before it starts, and how long the full traversal takes. */
+const AUTO_DELAY_MS = 1400;
+const AUTO_DURATION_MS = 30000;
+/** Show the scroll-to-top button once the framed page is scrolled past this many px. */
+const TOP_THRESHOLD = 240;
 
 /**
  * Demo viewer — the one demo route that keeps the site shell. A landing grid of the three
@@ -88,6 +99,11 @@ export class DemoGallery {
       route: '/demo/szalon',
       frameTitle: $localize`:@@demo.frame.szalon:Fodrászat és kozmetika példaoldal`,
       src: this.frame('demo/szalon'),
+      theme: SALON_THEME,
+      layouts: [
+        { id: 'split', label: $localize`:@@demo.layout.split:Osztott` },
+        { id: 'magazine', label: $localize`:@@demo.layout.magazine:Magazin` },
+      ],
     },
     {
       id: 'edzo',
@@ -97,6 +113,11 @@ export class DemoGallery {
       route: '/demo/edzo',
       frameTitle: $localize`:@@demo.frame.edzo:Személyi edző példaoldal`,
       src: this.frame('demo/edzo'),
+      theme: TRAINER_THEME,
+      layouts: [
+        { id: 'left', label: $localize`:@@demo.layout.left:Balra zárt` },
+        { id: 'poster', label: $localize`:@@demo.layout.poster:Poszter` },
+      ],
     },
     {
       id: 'asztalos',
@@ -106,7 +127,19 @@ export class DemoGallery {
       route: '/demo/asztalos',
       frameTitle: $localize`:@@demo.frame.asztalos:Asztalos és kivitelező példaoldal`,
       src: this.frame('demo/asztalos'),
+      theme: WORKSHOP_THEME,
+      layouts: [
+        { id: 'list', label: $localize`:@@demo.layout.list:Listás` },
+        { id: 'wide', label: $localize`:@@demo.layout.wide:Széles` },
+      ],
     },
+  ];
+
+  /** Graphics modes (shared across demos). */
+  protected readonly gfxOptions: { key: DemoGfx; label: string }[] = [
+    { key: 'foto', label: $localize`:@@demo.gfx.foto:Fotóhely` },
+    { key: 'ikon', label: $localize`:@@demo.gfx.ikon:Ikonok` },
+    { key: 'illu', label: $localize`:@@demo.gfx.illu:Illusztráció` },
   ];
 
   protected readonly devices: { key: Dev; label: string }[] = [
@@ -118,6 +151,12 @@ export class DemoGallery {
   // ── State ────────────────────────────────────────────────
   protected readonly pick = signal<DemoId | null>(null);
   protected readonly dev = signal<Dev>('desktop');
+  /** Whether the framed page is scrolled far enough to offer the scroll-to-top control. */
+  protected readonly showTop = signal(false);
+  // Demo playground controls — bound into the iframe src as query params.
+  protected readonly mood = signal(0);
+  protected readonly layout = signal<string>('split');
+  protected readonly gfx = signal<DemoGfx>('foto');
   private readonly stageW = signal(900);
   private readonly stageH = signal(640);
 
@@ -126,6 +165,13 @@ export class DemoGallery {
   protected readonly current = computed(
     () => this.demos.find((d) => d.id === this.pick()) ?? this.demos[0],
   );
+  protected readonly moods = computed(() => this.current().theme.moods);
+
+  /** Stage iframe src, rebuilt whenever a control changes (brief reload is acceptable). */
+  protected readonly frameSrc = computed<SafeResourceUrl>(() => {
+    const q = `?mood=${this.mood()}&layout=${this.layout()}&gfx=${this.gfx()}`;
+    return this.frame(this.current().path + q);
+  });
 
   // ── Device-frame geometry (mirrors the design's DeviceFrame) ─
   private readonly dim = computed(() => DEV_DIM[this.dev()]);
@@ -149,6 +195,10 @@ export class DemoGallery {
   protected readonly transform = computed(() => `scale(${this.scale()})`);
 
   private ro?: ResizeObserver;
+  // Live stage-iframe references, refreshed on every (load); torn down before rewiring.
+  private frameEl?: HTMLIFrameElement;
+  private frameCleanup?: () => void;
+  private autoStop?: () => void;
 
   constructor() {
     inject(SeoService).update({
@@ -179,25 +229,135 @@ export class DemoGallery {
     });
     destroyRef.onDestroy(() => this.ro?.disconnect());
 
-    // Re-skin the whole outer shell to the open demo's palette (removed on exit / leaving).
+    // Re-skin the whole outer shell to the open demo's palette at the selected mood accent
+    // (removed on exit / leaving).
     effect(() => {
       const id = this.pick();
       if (!this.isBrowser) return;
-      this.applySkin(id ? SKIN[id] : null);
+      this.applySkin(id ? resolveDemoTheme(SKIN[id], this.mood()) : null);
     });
     destroyRef.onDestroy(() => {
       if (this.isBrowser) this.applySkin(null);
     });
+    destroyRef.onDestroy(() => this.teardownFrame());
   }
 
   protected open(id: DemoId) {
     this.pick.set(id);
+    // Reset the playground to each demo's defaults (layout ids differ per demo).
+    this.mood.set(0);
+    this.layout.set(this.demos.find((d) => d.id === id)?.layouts[0].id ?? 'split');
+    this.gfx.set('foto');
   }
   protected back() {
+    this.teardownFrame();
+    this.showTop.set(false);
     this.pick.set(null);
   }
   protected setDev(d: Dev) {
     this.dev.set(d);
+  }
+  protected setMood(i: number) {
+    this.mood.set(i);
+  }
+  protected setLayout(id: string) {
+    this.layout.set(id);
+  }
+  protected setGfx(g: DemoGfx) {
+    this.gfx.set(g);
+  }
+  protected moodLabel(i: number): string {
+    return $localize`:@@demo.color.dot:Szín ${i + 1}:index:`;
+  }
+
+  /**
+   * Wire the two design behaviours onto the stage iframe each time it (re)loads: an auto-scroll
+   * tour that starts after a short idle and hands control back on the first manual input, and the
+   * scroll-to-top button's visibility. The frame is same-origin, so we drive its own contentWindow.
+   */
+  protected onFrameLoad(ev: Event) {
+    if (!this.isBrowser) return;
+    const iframe = ev.target as HTMLIFrameElement;
+    this.frameEl = iframe;
+    this.teardownFrame();
+
+    let win: Window | null;
+    let scroller: Element;
+    try {
+      win = iframe.contentWindow;
+      const cdoc = iframe.contentDocument;
+      if (!win || !cdoc) return;
+      scroller = cdoc.scrollingElement ?? cdoc.documentElement;
+    } catch {
+      return; // cross-origin (shouldn't happen for our own routes) — skip gracefully
+    }
+
+    const reduce =
+      this.doc.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+
+    // Scroll-to-top button visibility.
+    this.showTop.set(false);
+    const onScroll = () => this.showTop.set(scroller.scrollTop > TOP_THRESHOLD);
+    win.addEventListener('scroll', onScroll, { passive: true });
+
+    // Auto-scroll tour (skipped entirely under reduced-motion).
+    let raf = 0;
+    let timer = 0;
+    let stopped = false;
+    let start: number | null = null;
+    const stop = () => {
+      stopped = true;
+      if (raf) cancelAnimationFrame(raf);
+    };
+    this.autoStop = stop;
+    const step = (ts: number) => {
+      if (stopped || !win) return;
+      if (start === null) start = ts;
+      const max = scroller.scrollHeight - win.innerHeight;
+      if (max > 0) win.scrollTo(0, max * Math.min(1, (ts - start) / AUTO_DURATION_MS));
+      if (ts - start < AUTO_DURATION_MS) raf = requestAnimationFrame(step);
+    };
+    const stopEvents = ['wheel', 'touchstart', 'pointerdown', 'keydown'] as const;
+    try {
+      win.scrollTo(0, 0);
+    } catch {
+      /* ignore */
+    }
+    if (!reduce) {
+      timer = window.setTimeout(() => (raf = requestAnimationFrame(step)), AUTO_DELAY_MS);
+      stopEvents.forEach((e) => win!.addEventListener(e, stop, { passive: true }));
+    }
+
+    this.frameCleanup = () => {
+      stop();
+      clearTimeout(timer);
+      try {
+        win?.removeEventListener('scroll', onScroll);
+        stopEvents.forEach((e) => win?.removeEventListener(e, stop));
+      } catch {
+        /* frame already gone */
+      }
+    };
+  }
+
+  /** Cancel the tour and glide the framed page back to the top. */
+  protected toTop() {
+    this.autoStop?.();
+    const win = this.frameEl?.contentWindow;
+    if (!win) return;
+    const reduce =
+      this.doc.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+    try {
+      win.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    } catch {
+      win.scrollTo(0, 0);
+    }
+  }
+
+  private teardownFrame() {
+    this.frameCleanup?.();
+    this.frameCleanup = undefined;
+    this.autoStop = undefined;
   }
 
   private updateStageH() {
