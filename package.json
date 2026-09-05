@@ -7,6 +7,7 @@
     "build": "ng build",
     "postbuild": "node scripts/sitemap.mjs",
     "extract": "ng extract-i18n --output-path src/locale",
+    "og": "node scripts/og.mjs",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:pryma-solutions": "node dist/pryma-solutions/server/server.mjs"
@@ -36,6 +37,7 @@
     "jsdom": "^28.0.0",
     "lucide-static": "^0.544.0",
     "prettier": "^3.8.1",
+    "sharp": "^0.35.4",
     "typescript": "~6.0.2",
     "vitest": "^4.0.8"
   }
