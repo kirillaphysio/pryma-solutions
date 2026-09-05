@@ -295,8 +295,12 @@ export class DemoGallery {
       return; // cross-origin (shouldn't happen for our own routes) — skip gracefully
     }
 
-    const reduce =
-      this.doc.defaultView?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+    const view = this.doc.defaultView;
+    const reduce = view?.matchMedia('(prefers-reduced-motion: reduce)').matches ?? false;
+    // On touch devices the auto-scroll fights the visitor's own scrolling (its cancel listeners
+    // live on the iframe, not the outer page) and the drifting content reads as dizzy — so the
+    // tour is a pointer-device flourish only. Manual scroll and the scroll-to-top button remain.
+    const coarse = view?.matchMedia('(pointer: coarse)').matches ?? false;
 
     // Scroll-to-top button visibility.
     this.showTop.set(false);
@@ -326,7 +330,7 @@ export class DemoGallery {
     } catch {
       /* ignore */
     }
-    if (!reduce) {
+    if (!reduce && !coarse) {
       timer = window.setTimeout(() => (raf = requestAnimationFrame(step)), AUTO_DELAY_MS);
       stopEvents.forEach((e) => win!.addEventListener(e, stop, { passive: true }));
     }
