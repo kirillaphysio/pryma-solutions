@@ -24,7 +24,7 @@ import {
   PryTextLink,
 } from '../../ds';
 
-const CONTACT_EMAIL = 'hello@pryma.solutions';
+const CONTACT_EMAIL = 'info@pryma-solutions.hu';
 
 @Component({
   selector: 'pry-contact',

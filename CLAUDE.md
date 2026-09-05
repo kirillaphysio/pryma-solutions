@@ -1,6 +1,6 @@
-# CLAUDE.md — pryma.solutions
+# CLAUDE.md — pryma-solutions.hu
 
-Angular marketing site for Pryma Solutions, deployed as static prerendered HTML to GitHub Pages at `pryma.solutions`.
+Angular marketing site for Pryma Solutions, deployed as static prerendered HTML to GitHub Pages at `pryma-solutions.hu`.
 Read `PLAN.md` before starting work. Design reference lives in `reference/` (HTML/JSX prototypes — **references, not code to copy**).
 
 ## Commands

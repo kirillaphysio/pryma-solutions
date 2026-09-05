@@ -5,5 +5,5 @@ export const environment = {
   /** GA4 id, e.g. 'G-XXXXXXXXXX'. Empty = analytics off (no gtag.js is ever loaded). */
   gaMeasurementId: '',
   /** Absolute origin used for canonical + OG URLs. */
-  siteOrigin: 'https://pryma.solutions',
+  siteOrigin: 'https://pryma-solutions.hu',
 };
