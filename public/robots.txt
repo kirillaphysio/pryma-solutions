@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://pryma.solutions/sitemap.xml
+Sitemap: https://pryma-solutions.hu/sitemap.xml

@@ -1,7 +1,7 @@
-# pryma.solutions
+# pryma-solutions.hu
 
 Marketing site for **Pryma Solutions**, built in Angular (standalone, signals, OnPush),
-prerendered to static HTML and deployed to GitHub Pages on the apex domain `pryma.solutions`.
+prerendered to static HTML and deployed to GitHub Pages on the apex domain `pryma-solutions.hu`.
 Hungarian-first; English is a phase-2 build step.
 
 See `CLAUDE.md` for the design-system rules and `design_handoff_pryma_angular/` for the full
@@ -61,5 +61,5 @@ scripts/sitemap.mjs  postbuild: writes sitemap.xml + 404.html
 ## Deploy
 
 GitHub Actions builds on push to `main` and publishes `dist/pryma-solutions/browser` to Pages.
-Repo → Settings → Pages → **Source: GitHub Actions**. Set the custom domain to `pryma.solutions`
+Repo → Settings → Pages → **Source: GitHub Actions**. Set the custom domain to `pryma-solutions.hu`
 and tick **Enforce HTTPS** once the certificate provisions. DNS records are in `PLAN.md §2`.

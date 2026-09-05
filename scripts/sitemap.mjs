@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync, existsSync, copyFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const OUT = join(process.cwd(), 'dist', 'pryma-solutions', 'browser');
-const ORIGIN = 'https://pryma.solutions';
+const ORIGIN = 'https://pryma-solutions.hu';
 const ROUTES = ['/', '/services', '/contact'];
 
 if (!existsSync(OUT)) {

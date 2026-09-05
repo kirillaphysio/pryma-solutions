@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
  * Inline link. Cyan on dark surfaces; inherits white with a persistent underline on
  * gradient bands (tone="onAccent"). Apply to a native anchor so href / routerLink and
  * focus come for free:
- *   <a pry-text-link href="mailto:hello@pryma.solutions">hello@pryma.solutions</a>
+ *   <a pry-text-link href="mailto:info@pryma-solutions.hu">info@pryma-solutions.hu</a>
  *   <a pry-text-link [arrow]="true" routerLink="/services">Mit vállalok</a>
  * The trailing arrow is the one licensed Unicode glyph (→), which is type, not iconography.
  */
