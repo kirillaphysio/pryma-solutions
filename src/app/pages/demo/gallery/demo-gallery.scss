@@ -480,3 +480,19 @@
     min-width: 190px;
   }
 }
+
+// ── Small phones: tighten the playground toolbar so the controls fit ──
+@media (max-width: 560px) {
+  .dg-tools {
+    gap: var(--space-md);
+  }
+  .dg-seg {
+    flex-wrap: wrap;
+  }
+  .dg-seg__btn {
+    padding: 6px 11px;
+  }
+  .dg-standalone {
+    margin-left: 0;
+  }
+}

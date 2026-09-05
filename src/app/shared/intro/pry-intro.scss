@@ -360,6 +360,24 @@
   outline-offset: 2px;
 }
 
+// ── Mobile: cards stack one under another, tighter spacing ──
+@media (max-width: 560px) {
+  .gate {
+    gap: clamp(18px, 3.5vh, 28px);
+  }
+  .gate__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+  .card {
+    padding: var(--space-lg);
+  }
+  .skip {
+    right: 12px;
+    bottom: 12px;
+  }
+}
+
 // ── Keyframes ──────────────────────────────────────────────
 @keyframes pi-grid {
   from { opacity: 0; }
