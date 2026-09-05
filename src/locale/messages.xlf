@@ -395,168 +395,168 @@
         <source>Fodrászat &amp; kozmetika</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.szalon.note" datatype="html">
         <source>Meleg, képvezérelt, hosszú oldal.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.frame.szalon" datatype="html">
         <source>Fodrászat és kozmetika példaoldal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.split" datatype="html">
         <source>Osztott</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.magazine" datatype="html">
         <source>Magazin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.edzo.rail" datatype="html">
         <source>Személyi edző</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.edzo.note" datatype="html">
         <source>Sötét, rövid, kártyás felépítés.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.frame.edzo" datatype="html">
         <source>Személyi edző példaoldal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.left" datatype="html">
         <source>Balra zárt</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.poster" datatype="html">
         <source>Poszter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.asztalos.rail" datatype="html">
         <source>Asztalos / kivitelező</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.asztalos.note" datatype="html">
         <source>Minimál, szöveges, kevés fotó.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.frame.asztalos" datatype="html">
         <source>Asztalos és kivitelező példaoldal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.list" datatype="html">
         <source>Listás</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.layout.wide" datatype="html">
         <source>Széles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.gfx.foto" datatype="html">
         <source>Fotóhely</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.gfx.ikon" datatype="html">
         <source>Ikonok</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.gfx.illu" datatype="html">
         <source>Illusztráció</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.dev.mobile" datatype="html">
         <source>Mobil</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.dev.tablet" datatype="html">
         <source>Tablet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.dev.desktop" datatype="html">
         <source>Desktop</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="seo.demo.title" datatype="html">
         <source>Demó — Pryma Solutions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">205</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="seo.demo.desc" datatype="html">
         <source>Három szakma, három szándékosan különböző stílus. Nézd meg élő példaoldalakon, milyen lehet a te weboldalad — fodrászat, személyi edzés és asztalosmunka.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">206</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="demo.color.dot" datatype="html">
         <source>Szín <x id="index" equiv-text="i + 1"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/demo/gallery/demo-gallery.ts</context>
-          <context context-type="linenumber">270</context>
+          <context context-type="linenumber">273</context>
         </context-group>
       </trans-unit>
       <trans-unit id="home.hero.eyebrow" datatype="html">
@@ -1243,6 +1243,83 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/cookie-banner/cookie-banner.ts</context>
           <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.hud" datatype="html">
+        <source>sys // pryma core</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.skip" datatype="html">
+        <source>Kihagyás</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.eyebrow" datatype="html">
+        <source>// válaszd ki, hova tartasz</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
+          <context context-type="linenumber">51,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.cta" datatype="html">
+        <source>Megnézem</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.home" datatype="html">
+        <source>Tovább a kezdőlapra</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.services.title" datatype="html">
+        <source>Szolgáltatások</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.services.desc" datatype="html">
+        <source>Weboldal, arculat és marketing alapok kis vállalkozásoknak.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.demo.title" datatype="html">
+        <source>Demó</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.demo.desc" datatype="html">
+        <source>Élő minták valódi kisvállalkozásokra szabva.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.contact.title" datatype="html">
+        <source>Kapcsolat</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="intro.gate.contact.desc" datatype="html">
+        <source>Kérj ajánlatot, 3 munkanapon belül válaszolunk.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skip.link" datatype="html">

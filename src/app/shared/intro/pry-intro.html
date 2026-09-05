@@ -1,0 +1,82 @@
+<div class="grid" aria-hidden="true"></div>
+<div class="mesh" aria-hidden="true"></div>
+
+@if (stage() === 'boot') {
+  <div class="boot" (click)="skip()">
+    <div class="boot__stage" [style.transform]="'scale(' + scale() + ')'">
+      <div class="core">
+        <div class="core__aura" aria-hidden="true"></div>
+
+        <div class="core__drop">
+          <div class="core__masky">
+            <div class="core__maskx">
+              @for (f of frames; track f.src; let i = $index) {
+                <img
+                  class="core__frame"
+                  [class.core__frame--first]="i === 0"
+                  [src]="f.src"
+                  alt=""
+                  draggable="false"
+                  [style.animation]="f.anim"
+                />
+              }
+              <div class="core__scan" aria-hidden="true"></div>
+              <div class="core__flash" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="core__impact" aria-hidden="true"></div>
+      </div>
+
+      <div class="hud">
+        <span i18n="@@intro.hud">sys // pryma core</span>
+        <span class="hud__pct">{{ pct() }}%</span>
+      </div>
+
+      <div class="lock">
+        <pry-wordmark [size]="56" tone="gradient" [showBar]="true" />
+      </div>
+    </div>
+
+    <button type="button" class="skip" (click)="$event.stopPropagation(); skip()">
+      <span i18n="@@intro.skip">Kihagyás</span>
+      <pry-icon name="arrow-right" [size]="13" />
+    </button>
+  </div>
+} @else {
+  <div class="gate">
+    <div class="gate__head">
+      <pry-wordmark [size]="26" tone="gradient" [showBar]="true" />
+      <span class="gate__eyebrow" i18n="@@intro.gate.eyebrow">// válaszd ki, hova tartasz</span>
+    </div>
+
+    <div class="gate__grid">
+      @for (g of gates; track g.n; let i = $index) {
+        <button
+          type="button"
+          [class]="'card card--' + g.tone"
+          [style.--i]="i"
+          (click)="choose(g.href)"
+        >
+          <span class="card__ring" aria-hidden="true"></span>
+          <span class="card__top">
+            <span class="card__num">{{ g.n }}</span>
+            <span class="card__dot" aria-hidden="true"></span>
+          </span>
+          <span class="card__title">{{ g.title }}</span>
+          <span class="card__desc">{{ g.desc }}</span>
+          <span class="card__cta">
+            <span i18n="@@intro.gate.cta">Megnézem</span>
+            <pry-icon name="arrow-right" [size]="14" />
+          </span>
+        </button>
+      }
+    </div>
+
+    <button type="button" class="gate__home" (click)="choose('/')">
+      <span i18n="@@intro.gate.home">Tovább a kezdőlapra</span>
+      <pry-icon name="arrow-right" [size]="13" />
+    </button>
+  </div>
+}
