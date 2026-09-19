@@ -1217,6 +1217,258 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="terms.eyebrow" datatype="html">
+        <source>Jogi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.title" datatype="html">
+        <source>Általános Szerződési Feltételek</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.effective.label" datatype="html">
+        <source>Hatályos:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p1.title" datatype="html">
+        <source>1. Az ÁSZF célja</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p1.b1" datatype="html">
+        <source> Jelen Általános Szerződési Feltételek (a továbbiakban: „ÁSZF”) a www.pryma-solutions.hu weboldal (a továbbiakban: „Weboldal”) használatára vonatkozó általános feltételeket tartalmazzák. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">21,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p1.b2" datatype="html">
+        <source> A Weboldal célja, hogy bemutassa a Pryma Solutions szakmai tevékenységét, valamint tájékoztatást nyújtson az elérhető online szolgáltatásokról. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">26,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.title" datatype="html">
+        <source>2. A Weboldal üzemeltetője</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.name.k" datatype="html">
+        <source>Név</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.reg.k" datatype="html">
+        <source>Cégjegyzékszám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.vat.k" datatype="html">
+        <source>Adószám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.seat.k" datatype="html">
+        <source>Székhely</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p2.email.k" datatype="html">
+        <source>E-mail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.title" datatype="html">
+        <source>3. A Weboldalon elérhető szolgáltatások</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.b1" datatype="html">
+        <source> A Weboldalon a Pryma Solutions által nyújtott szolgáltatásokról található tájékoztatás. Ezek különösen a következők: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">62,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.i1" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Arculat<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – logó, színvilág, betűtípusok és rövid arculati útmutató kis vállalkozások számára. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">67,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.i2" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Weboldal<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – bemutatkozó és több oldalas weboldalak tervezése és fejlesztése, valamint azok élesítés utáni karbantartása. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">71,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.i3" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Marketing alapok<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – a célcsoport, az üzenet és a kezdő csatornák meghatározása. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">75,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.b2" datatype="html">
+        <source> A Weboldalon bemutatott mintaoldalak (a „Demó” menüpontban) kizárólag szemléltető célt szolgálnak, valódi szolgáltatást nem nyújtanak. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">80,82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p3.b3" datatype="html">
+        <source> A Weboldal önmagában nem teszi lehetővé szolgáltatás megrendelését vagy szerződés megkötését. A konkrét együttműködés feltételeiről – így különösen a szolgáltatás tartalmáról, díjáról és határidejéről – a felek külön, egyedi megállapodásban rendelkeznek, amelyet a Weboldalon megadott elérhetőségeken kezdeményezett kapcsolatfelvételt követően kötnek meg. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">84,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p4.title" datatype="html">
+        <source>4. A Weboldalon található információk</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p4.b1" datatype="html">
+        <source> A Weboldalon található szakmai és tájékoztató jellegű tartalmak általános információkat szolgáltatnak. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p4.b2" datatype="html">
+        <source> A Weboldal üzemeltetője törekszik arra, hogy a Weboldalon található információk pontosak és naprakészek legyenek, azonban az információk teljességéért és folyamatos aktualitásáért nem vállal felelősséget. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">100,103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p5.title" datatype="html">
+        <source>5. Külső weboldalak és hivatkozások</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p5.b1" datatype="html">
+        <source> A Weboldal más weboldalakra és online felületekre mutató hivatkozásokat tartalmazhat. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">110,112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p5.b2" datatype="html">
+        <source> A külső weboldalak tartalmáért és elérhetőségéért a Weboldal üzemeltetője nem vállal felelősséget. Az azokon elérhető szolgáltatásokra az adott szolgáltató saját általános szerződési feltételei, szabályzatai és egyéb feltételei vonatkoznak. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">113,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p6.title" datatype="html">
+        <source>6. Szerzői jog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">121,122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p6.b1" datatype="html">
+        <source> A Weboldalon található valamennyi szöveg, fénykép, grafika, videó, logó és egyéb tartalom – eltérő rendelkezés hiányában – szerzői jogi védelem alatt áll. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">123,125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p6.b2" datatype="html">
+        <source> A tartalmak engedély nélküli másolása, sokszorosítása, terjesztése, átdolgozása vagy kereskedelmi célú felhasználása nem megengedett. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">127,129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p6.b3" datatype="html">
+        <source> A Weboldalon található tartalmak kizárólag személyes, tájékozódási célra használhatók fel a szerzői jogi szabályok betartásával. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">131,133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p7.title" datatype="html">
+        <source>7. Az ÁSZF hatálya</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">138,139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p7.b1" datatype="html">
+        <source> Jelen ÁSZF a www.pryma-solutions.hu Weboldal használatára vonatkozik. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">140,142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p8.title" datatype="html">
+        <source>8. Záró rendelkezések</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">146,147</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p8.b1" datatype="html">
+        <source> A jelen ÁSZF-ben nem szabályozott kérdésekben a hatályos magyar jogszabályok rendelkezései az irányadóak. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">148,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="terms.p8.b2" datatype="html">
+        <source> A Weboldal üzemeltetője fenntartja a jogot a jelen ÁSZF módosítására. A módosítások a Weboldalon történő közzététellel lépnek hatályba. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.html</context>
+          <context context-type="linenumber">152,154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.terms.title" datatype="html">
+        <source>ÁSZF — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.ts</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.terms.desc" datatype="html">
+        <source>A pryma-solutions.hu weboldal használatára vonatkozó Általános Szerződési Feltételek: az elérhető szolgáltatások, a szerzői jog, az adatkezelés és a záró rendelkezések.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/terms/terms.ts</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="cookie.title" datatype="html">
         <source>Sütik</source>
         <context-group purpose="location">
@@ -1249,77 +1501,77 @@
         <source>sys // pryma core</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.skip" datatype="html">
         <source>Kihagyás</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
-          <context context-type="linenumber">43,44</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.eyebrow" datatype="html">
         <source>// válaszd ki, hova tartasz</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
-          <context context-type="linenumber">51,54</context>
+          <context context-type="linenumber">44,47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.cta" datatype="html">
         <source>Megnézem</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.home" datatype="html">
         <source>Tovább a kezdőlapra</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.html</context>
-          <context context-type="linenumber">78,79</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.services.title" datatype="html">
         <source>Szolgáltatások</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.services.desc" datatype="html">
         <source>Weboldal, arculat és marketing alapok kis vállalkozásoknak.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.demo.title" datatype="html">
         <source>Demó</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.demo.desc" datatype="html">
         <source>Élő minták valódi kisvállalkozásokra szabva.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.contact.title" datatype="html">
         <source>Kapcsolat</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="intro.gate.contact.desc" datatype="html">
         <source>Kérj ajánlatot, 3 munkanapon belül válaszolunk.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/intro/pry-intro.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="skip.link" datatype="html">
@@ -1376,32 +1628,46 @@
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="footer.legal.col" datatype="html">
+        <source>Jogi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.terms" datatype="html">
+        <source>ÁSZF</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="footer.tagline" datatype="html">
         <source>Weboldal, arculat és marketing alapok kis vállalkozásoknak.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.legal" datatype="html">
         <source>© 2026 Pryma Solutions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.note" datatype="html">
         <source>A Pryma gridre építve</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.consent" datatype="html">
         <source>Süti beállítások</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
     </body>

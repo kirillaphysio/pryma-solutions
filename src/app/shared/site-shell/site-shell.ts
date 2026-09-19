@@ -41,6 +41,10 @@ export class SiteShell {
         { label: $localize`:@@nav.contact:Kapcsolat`, path: '/contact' },
       ],
     },
+    {
+      title: $localize`:@@footer.legal.col:Jogi`,
+      links: [{ label: $localize`:@@footer.terms:ÁSZF`, path: '/terms' }],
+    },
   ];
 
   protected readonly tagline = $localize`:@@footer.tagline:Weboldal, arculat és marketing alapok kis vállalkozásoknak.`;

@@ -71,6 +71,11 @@ export const routes: Routes = [
         title: 'Kapcsolat — Pryma Solutions',
       },
       {
+        path: 'terms',
+        loadComponent: () => import('./pages/terms/terms').then((m) => m.Terms),
+        title: 'ÁSZF — Pryma Solutions',
+      },
+      {
         path: '**',
         loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),
         title: 'Az oldal nem található — Pryma Solutions',

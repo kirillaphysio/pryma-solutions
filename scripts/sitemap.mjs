@@ -6,7 +6,7 @@ import { join } from 'node:path';
 
 const OUT = join(process.cwd(), 'dist', 'pryma-solutions', 'browser');
 const ORIGIN = 'https://pryma-solutions.hu';
-const ROUTES = ['/', '/services', '/contact'];
+const ROUTES = ['/', '/services', '/contact', '/terms'];
 
 if (!existsSync(OUT)) {
   console.error(`[sitemap] build output not found at ${OUT} — run "ng build" first.`);
