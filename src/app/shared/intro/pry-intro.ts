@@ -97,7 +97,19 @@ export class PryIntro {
 
   constructor() {
     const destroyRef = inject(DestroyRef);
-    if (!this.isBrowser || this.reduced) return;
+    if (!this.isBrowser) return;
+
+    // Lock page scroll while the overlay is mounted. It covers the viewport, so scrolling the
+    // prerendered page behind it does nothing; the gate stage scrolls its own content instead
+    // (:host(.is-gate) { overflow: auto }).
+    const root = document.documentElement;
+    const prevOverflow = root.style.overflow;
+    root.style.overflow = 'hidden';
+    destroyRef.onDestroy(() => {
+      root.style.overflow = prevOverflow;
+    });
+
+    if (this.reduced) return;
 
     afterNextRender(() => {
       this.fit();

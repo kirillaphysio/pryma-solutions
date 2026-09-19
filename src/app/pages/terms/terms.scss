@@ -1,0 +1,117 @@
+// ÁSZF — a single-column legal reading page. Quiet by design: no cards, no glow, just type.
+
+.terms-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+  max-width: 760px;
+  margin: 0 auto;
+}
+.terms-hero__title {
+  font-family: var(--font-display);
+  font-size: var(--display-lg-size);
+  font-weight: var(--display-lg-weight);
+  line-height: var(--display-lg-lh);
+  letter-spacing: var(--display-lg-ls);
+  color: var(--text-hi);
+  text-wrap: balance;
+}
+.terms-hero__date {
+  font-family: var(--font-mono);
+  font-size: var(--caption-size);
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+}
+
+// ── Document ────────────────────────────────────────────────
+.terms-doc {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+.terms-clause {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+.terms-clause__title {
+  font-family: var(--font-display);
+  font-size: var(--heading-lg-size);
+  font-weight: var(--heading-lg-weight);
+  line-height: var(--heading-lg-lh);
+  letter-spacing: var(--heading-lg-ls);
+  color: var(--text-hi);
+}
+.terms-clause p {
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-lh);
+  color: var(--text-body);
+  text-wrap: pretty;
+}
+
+.terms-clause a {
+  color: var(--text-link);
+  text-decoration: none;
+  transition: color var(--dur-fast, 0.12s) var(--ease-out);
+
+  &:hover {
+    color: var(--text-link-hover);
+  }
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring, #38e1ff);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+// ── Lists ───────────────────────────────────────────────────
+.terms-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding-left: var(--space-xl);
+
+  li {
+    font-size: var(--body-md-size);
+    line-height: var(--body-md-lh);
+    color: var(--text-body);
+    text-wrap: pretty;
+  }
+  strong {
+    color: var(--text-hi);
+    font-weight: var(--weight-semibold);
+  }
+}
+
+// ── Operator facts (definition list) ────────────────────────
+.terms-facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+.terms-facts__row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: var(--space-lg);
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-lh);
+
+  dt {
+    color: var(--text-mute);
+  }
+  dd {
+    color: var(--text-hi);
+    margin: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .terms-facts__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-xs);
+  }
+}
