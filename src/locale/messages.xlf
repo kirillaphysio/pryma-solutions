@@ -595,7 +595,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="home.hero.note" datatype="html">
-        <source>Válasz két munkanapon belül.</source>
+        <source>Válasz három munkanapon belül.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.html</context>
           <context context-type="linenumber">22,24</context>
@@ -798,7 +798,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="seo.home.desc" datatype="html">
-        <source>Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, két munkanapon belüli válasszal.</source>
+        <source>Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, három munkanapon belüli válasszal.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.ts</context>
           <context context-type="linenumber">47</context>
@@ -823,6 +823,132 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/home/home.ts</context>
           <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.eyebrow" datatype="html">
+        <source>Jogi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.title" datatype="html">
+        <source>Impresszum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.title" datatype="html">
+        <source>A Weboldal üzemeltetője</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.name.k" datatype="html">
+        <source>Név</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.seat.k" datatype="html">
+        <source>Székhely</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.reg.k" datatype="html">
+        <source>Cégjegyzékszám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.vat.k" datatype="html">
+        <source>Adószám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.email.k" datatype="html">
+        <source>E-mail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.site.k" datatype="html">
+        <source>Weboldal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.operator.note" datatype="html">
+        <source> A Weboldalt a Pryma Solutions néven működő üzleti tevékenység keretében a Kirilla Physio Kft. üzemelteti. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">43,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.host.title" datatype="html">
+        <source>Tárhelyszolgáltató</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.host.name.k" datatype="html">
+        <source>Név</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.host.addr.k" datatype="html">
+        <source>Cím</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.host.site.k" datatype="html">
+        <source>Weboldal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.more.title" datatype="html">
+        <source>További tájékoztatás</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="imprint.more.b1" datatype="html">
+        <source> A Weboldal használatának feltételeit az <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/terms&quot;&gt;"/>Általános Szerződési Feltételek<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, a személyes adatok kezelésének részleteit az <x id="START_LINK_1" equiv-text="&lt;a routerLink=&quot;/privacy&quot;&gt;"/>Adatkezelési tájékoztató<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> tartalmazza. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.html</context>
+          <context context-type="linenumber">69,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.imprint.title" datatype="html">
+        <source>Impresszum — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.ts</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.imprint.desc" datatype="html">
+        <source>A pryma-solutions.hu weboldal üzemeltetőjének és tárhelyszolgáltatójának adatai.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/imprint/imprint.ts</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="nf.eyebrow" datatype="html">
@@ -865,6 +991,321 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/pages/not-found/not-found.ts</context>
           <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.eyebrow" datatype="html">
+        <source>Jogi</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.title" datatype="html">
+        <source>Adatkezelési tájékoztató</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.effective.label" datatype="html">
+        <source>Hatályos:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.title" datatype="html">
+        <source>1. Az adatkezelő</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.b1" datatype="html">
+        <source> A www.pryma-solutions.hu weboldal (a továbbiakban: „Weboldal”) használata során kezelt személyes adatok adatkezelője: </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">21,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.name.k" datatype="html">
+        <source>Név</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.reg.k" datatype="html">
+        <source>Cégjegyzékszám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">30,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.vat.k" datatype="html">
+        <source>Adószám</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.seat.k" datatype="html">
+        <source>Székhely</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.email.k" datatype="html">
+        <source>E-mail</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p1.b2" datatype="html">
+        <source> Az adatkezelés a természetes személyek személyes adatainak kezeléséről szóló (EU) 2016/679 rendelet („GDPR”), valamint az információs önrendelkezési jogról és az információszabadságról szóló 2011. évi CXII. törvény szerint történik. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">47,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.title" datatype="html">
+        <source>2. Kapcsolatfelvétel és ajánlatkérés</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.b1" datatype="html">
+        <source> A Weboldal kapcsolati űrlapja nem küld adatot a Weboldal szervereinek. Az űrlap kitöltése után az eszközöd levelezőprogramja nyílik meg egy előre kitöltött levéllel, és az adatok csak akkor jutnak el hozzánk, ha ezt a levelet te magad elküldöd. Közvetlenül e-mailben is megkereshetsz minket. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">57,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.i1" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Kezelt adatok:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> a neved, az e-mail címed, a megjelölt téma, valamint mindaz, amit a levélben megírsz. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">64,66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.i2" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Cél:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> a megkeresésed megválaszolása, az ajánlat elkészítése és a kapcsolattartás. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.i3" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Jogalap:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> a szerződéskötést megelőző lépések megtétele a te kérésedre (GDPR 6. cikk (1) bekezdés b) pont). </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">72,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p2.i4" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Megőrzési idő:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> ha nem jön létre szerződés, a megkeresés lezárásától számított egy évig. Szerződéskötés esetén a számviteli bizonylatokra vonatkozó jogszabályi megőrzési ideig (jelenleg nyolc év). </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">76,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.title" datatype="html">
+        <source>3. Látogatottság mérése (Google Analytics)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.b1" datatype="html">
+        <source> A Weboldal a látogatottság mérésére a Google Analytics 4 szolgáltatást használja. Ez kizárólag a beleegyezéseddel működik: amíg a sütiket tartalmazó sávban nem fogadod el a mérést, nem töltődik be Google-szkript, és nem kerül süti az eszközödre. Az elutasítás nem korlátozza a Weboldal használatát. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">87,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.i1" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Kezelt adatok:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> az oldalmegtekintések és a használatra vonatkozó események, a megközelítőleges földrajzi hely, az eszköz és a böngésző típusa, a hivatkozó oldal, valamint a sütiben tárolt, véletlenszerű azonosító. Az IP-cím anonimizálva kerül feldolgozásra. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">94,97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.i2" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Cél:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> annak megértése, hogyan használják a látogatók a Weboldalt, és ennek alapján a Weboldal fejlesztése. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">100,102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.i3" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Jogalap:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> a hozzájárulásod (GDPR 6. cikk (1) bekezdés a) pont). A hozzájárulást bármikor visszavonhatod a lábléc „Süti beállítások” hivatkozásával, a visszavonás előtti adatkezelés jogszerűségét ez nem érinti. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">104,107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.i4" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Sütik:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> a Google Analytics a <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>_ga<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> és a <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>_ga_*<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/> nevű sütiket használja, amelyek a Google dokumentációja szerint legfeljebb két évig érvényesek. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">109,111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p3.i5" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Adatfeldolgozó:<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Írország), illetve a Google LLC. Az adatok az Amerikai Egyesült Államokba is továbbítódhatnak; a továbbítás az EU–USA adatvédelmi keretrendszer (Data Privacy Framework) alapján történik, amelyben a Google részt vesz. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">114,117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p4.title" datatype="html">
+        <source>4. A hozzájárulás tárolása</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">124,125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p4.b1" datatype="html">
+        <source> A sütikről hozott döntésedet (elfogadás vagy elutasítás) a böngésződ helyi tárolójában (<x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>localStorage<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>, kulcs: <x id="START_TAG_CODE" ctype="x-code" equiv-text="&lt;code&gt;"/>pryma-consent<x id="CLOSE_TAG_CODE" ctype="x-code" equiv-text="&lt;/code&gt;"/>) mentjük, hogy ne kelljen minden látogatáskor újra válaszolnod. Az érték nem kerül a szervereinkre. Ugyanígy a böngésző munkamenet-tárolójában jelezzük, hogy a nyitóanimációt már lejátszottuk. Mindkettő a Weboldal működéséhez szükséges, személyes adatot nem tartalmaz, és bármikor törölhető a böngésző beállításaiban. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">126,131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p5.title" datatype="html">
+        <source>5. Tárhely és naplóadatok</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">137,138</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p5.b1" datatype="html">
+        <source> A Weboldal a GitHub, Inc. GitHub Pages szolgáltatásán fut (88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA). A szolgáltató a weboldal kiszolgálásakor technikai naplóadatokat, így például az IP-címet és a kérés időpontját kezelheti, a saját adatkezelési tájékoztatója szerint. Erre a Weboldal üzemeltetőjének nincs ráhatása, és ezekhez az adatokhoz nem fér hozzá. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">139,143</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p5.b2" datatype="html">
+        <source> A Weboldal betűtípusai a saját szerverünkről töltődnek be, külső betűtípus-szolgáltatót, beágyazott tartalmat vagy követőpixelt nem használunk. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">146,149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p6.title" datatype="html">
+        <source>6. Adattovábbítás</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">153,154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p6.b1" datatype="html">
+        <source> A személyes adataidat nem adjuk el, és marketingcélra nem adjuk át harmadik félnek. Az adatokhoz az adatkezelő, valamint az adatkezeléshez igénybe vett szolgáltatók (az e-mail szolgáltatást nyújtó Rackhost Zrt., a tárhelyszolgáltató GitHub, Inc. és a Google Analytics, utóbbi csak a hozzájárulásod esetén) férhetnek hozzá. Jogszabályi kötelezettség esetén az adatokat a hatáskörrel rendelkező hatóságnak kiadhatjuk. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">155,159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.title" datatype="html">
+        <source>7. A jogaid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">165,166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.b1" datatype="html">
+        <source>A GDPR alapján a következő jogok illetnek meg:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">166,167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i1" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Hozzáférés<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – tájékoztatást kérhetsz arról, milyen adataidat kezeljük, és másolatot kérhetsz belőlük. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">169,171</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i2" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Helyesbítés<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – kérheted a pontatlan adataid javítását. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">173,175</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i3" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Törlés<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – kérheted az adataid törlését, ha az adatkezelésnek nincs további jogalapja. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">176,178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i4" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Korlátozás<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – kérheted az adatkezelés korlátozását a GDPR 18. cikkében meghatározott esetekben. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">180,182</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i5" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Adathordozhatóság<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – kérheted, hogy a rendelkezésünkre bocsátott adataidat tagolt, géppel olvasható formátumban megkapd. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">184,186</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i6" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Tiltakozás<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – tiltakozhatsz a jogos érdeken alapuló adatkezelés ellen. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">188,190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.i7" datatype="html">
+        <source><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Hozzájárulás visszavonása<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> – a hozzájáruláson alapuló adatkezelésre adott hozzájárulásodat bármikor visszavonhatod. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">191,193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p7.b2" datatype="html">
+        <source> A kérésedet a fenti e-mail címen jelezheted. Egy hónapon belül válaszolunk, szükség esetén ez a határidő a GDPR-ban foglaltak szerint meghosszabbítható. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">196,199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p8.title" datatype="html">
+        <source>8. Záró rendelkezések</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">203,204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="privacy.p8.b1" datatype="html">
+        <source> Az adatkezelő fenntartja a jogot a jelen tájékoztató módosítására. A módosítások a Weboldalon történő közzététellel lépnek hatályba. A Weboldal használatának további feltételeit az <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/terms&quot;&gt;"/>Általános Szerződési Feltételek<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, az üzemeltető adatait az <x id="START_LINK_1" equiv-text="&lt;a routerLink=&quot;/imprint&quot;&gt;"/>Impresszum<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> tartalmazza. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.html</context>
+          <context context-type="linenumber">205,210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.privacy.title" datatype="html">
+        <source>Adatkezelési tájékoztató — Pryma Solutions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.ts</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="seo.privacy.desc" datatype="html">
+        <source>Milyen személyes adatokat kezelünk a pryma-solutions.hu oldalon, milyen célból és jogalappal, meddig, és milyen jogaid vannak.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/pages/privacy/privacy.ts</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="svc.hero.eyebrow" datatype="html">
@@ -1639,35 +2080,49 @@
         <source>ÁSZF</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.privacy" datatype="html">
+        <source>Adatkezelés</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="footer.imprint" datatype="html">
+        <source>Impresszum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.tagline" datatype="html">
         <source>Weboldal, arculat és marketing alapok kis vállalkozásoknak.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.legal" datatype="html">
         <source>© 2026 Pryma Solutions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.note" datatype="html">
         <source>A Pryma gridre építve</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="footer.consent" datatype="html">
         <source>Süti beállítások</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/site-shell/site-shell.ts</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
     </body>

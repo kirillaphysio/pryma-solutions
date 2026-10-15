@@ -10,8 +10,6 @@ import { Routes } from '@angular/router';
  *    empty-path shell parent below.
  *  - Everything else is a child of SiteShell, which supplies the nav, footer and consent
  *    banner. That includes the `/demo` gallery, which is a normal site page.
- *
- * Still pending: /privacy + /imprint (blocked on legal copy from the client).
  */
 export const routes: Routes = [
   // --- Demo mini-sites: shell-less, noindex showcase fixtures (Phase 4) -----
@@ -74,6 +72,16 @@ export const routes: Routes = [
         path: 'terms',
         loadComponent: () => import('./pages/terms/terms').then((m) => m.Terms),
         title: 'ÁSZF — Pryma Solutions',
+      },
+      {
+        path: 'privacy',
+        loadComponent: () => import('./pages/privacy/privacy').then((m) => m.Privacy),
+        title: 'Adatkezelési tájékoztató — Pryma Solutions',
+      },
+      {
+        path: 'imprint',
+        loadComponent: () => import('./pages/imprint/imprint').then((m) => m.Imprint),
+        title: 'Impresszum — Pryma Solutions',
       },
       {
         path: '**',

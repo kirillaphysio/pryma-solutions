@@ -1,0 +1,75 @@
+<!-- Hero -->
+<pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(28px,5vw,48px)">
+  <pry-container>
+    <div class="terms-hero" pryReveal>
+      <pry-eyebrow tone="cyan" i18n="@@imprint.eyebrow">Jogi</pry-eyebrow>
+      <h1 class="terms-hero__title" i18n="@@imprint.title">Impresszum</h1>
+    </div>
+  </pry-container>
+</pry-mesh-backdrop>
+
+<!-- Body -->
+<pry-section [tight]="true">
+  <article class="terms-doc" pryReveal>
+    <section class="terms-clause">
+      <h2 class="terms-clause__title" i18n="@@imprint.operator.title">A Weboldal üzemeltetője</h2>
+      <dl class="terms-facts">
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.name.k">Név</dt>
+          <dd>Kirilla Physio Kft.</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.seat.k">Székhely</dt>
+          <dd>2030 Érd, János utca 10., Magyarország</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.reg.k">Cégjegyzékszám</dt>
+          <dd>13-09-246484</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.vat.k">Adószám</dt>
+          <dd>33026642-1-13</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.email.k">E-mail</dt>
+          <dd><a href="mailto:info@pryma-solutions.hu">info&#64;pryma-solutions.hu</a></dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.operator.site.k">Weboldal</dt>
+          <dd>www.pryma-solutions.hu</dd>
+        </div>
+      </dl>
+      <p i18n="@@imprint.operator.note">
+        A Weboldalt a Pryma Solutions néven működő üzleti tevékenység keretében a Kirilla Physio
+        Kft. üzemelteti.
+      </p>
+    </section>
+
+    <section class="terms-clause">
+      <h2 class="terms-clause__title" i18n="@@imprint.host.title">Tárhelyszolgáltató</h2>
+      <dl class="terms-facts">
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.host.name.k">Név</dt>
+          <dd>GitHub, Inc. (GitHub Pages)</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.host.addr.k">Cím</dt>
+          <dd>88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, USA</dd>
+        </div>
+        <div class="terms-facts__row">
+          <dt i18n="@@imprint.host.site.k">Weboldal</dt>
+          <dd>pages.github.com</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="terms-clause">
+      <h2 class="terms-clause__title" i18n="@@imprint.more.title">További tájékoztatás</h2>
+      <p i18n="@@imprint.more.b1">
+        A Weboldal használatának feltételeit az
+        <a routerLink="/terms">Általános Szerződési Feltételek</a>, a személyes adatok kezelésének
+        részleteit az <a routerLink="/privacy">Adatkezelési tájékoztató</a> tartalmazza.
+      </p>
+    </section>
+  </article>
+</pry-section>

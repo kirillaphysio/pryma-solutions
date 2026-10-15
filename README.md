@@ -52,7 +52,6 @@ scripts/sitemap.mjs  postbuild: writes sitemap.xml + 404.html
 
 **Pending / next:**
 - Phase 4 — `/demo` gallery + the three demo mini-sites (asztalos / edző / szalon); re-add Demó to the nav
-- `/privacy` + `/imprint` — blocked on legal copy from the client (company name, seat, tax no., host)
 - Client inputs to activate what's built: **GA4 measurement id** (`src/environments/environment.ts`),
   **OG images** (`public/og/<route>.png`), logo SVG
 - Nice-to-have — scroll-reveal entrance animations, `/dev/components` gallery

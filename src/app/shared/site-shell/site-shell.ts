@@ -43,7 +43,11 @@ export class SiteShell {
     },
     {
       title: $localize`:@@footer.legal.col:Jogi`,
-      links: [{ label: $localize`:@@footer.terms:ÁSZF`, path: '/terms' }],
+      links: [
+        { label: $localize`:@@footer.terms:ÁSZF`, path: '/terms' },
+        { label: $localize`:@@footer.privacy:Adatkezelés`, path: '/privacy' },
+        { label: $localize`:@@footer.imprint:Impresszum`, path: '/imprint' },
+      ],
     },
   ];
 
