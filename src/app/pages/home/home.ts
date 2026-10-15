@@ -44,7 +44,7 @@ export class Home {
   constructor() {
     inject(SeoService).update({
       title: $localize`:@@seo.home.title:Pryma Solutions — weboldal és arculat`,
-      description: $localize`:@@seo.home.desc:Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, két munkanapon belüli válasszal.`,
+      description: $localize`:@@seo.home.desc:Fejlesztő és designer egy személyben. Arculat, weboldal és marketing alapok kis vállalkozásoknak — fix áron, egy kapcsolattartóval, három munkanapon belüli válasszal.`,
       path: '/',
       image: '/og/home.png',
     });
