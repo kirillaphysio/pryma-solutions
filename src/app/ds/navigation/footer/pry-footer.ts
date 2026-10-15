@@ -4,14 +4,17 @@ import { PryWordmark } from '../../brand/wordmark/pry-wordmark';
 
 export interface PryFooterLink {
   label: string;
-  path: string;
+  /** Internal route (routerLink). Omit when `href` is set. */
+  path?: string;
+  /** External URL, opened in a new tab. Takes precedence over `path`. */
+  href?: string;
 }
 export interface PryFooterColumn {
   title: string;
   links: PryFooterLink[];
 }
 
-/** Footer: brand + tagline, link columns, legal line and a mono build note. No social row. */
+/** Footer: brand + tagline, link columns, legal line and the consent control. No social row beyond a plain external link. */
 @Component({
   selector: 'pry-footer',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -24,7 +27,6 @@ export class PryFooter {
   readonly columns = input<PryFooterColumn[]>([]);
   readonly tagline = input<string>('');
   readonly legal = input('© 2026 Pryma Solutions');
-  readonly note = input('A Pryma gridre építve');
   /** When set, renders a ghost text button in the legal row (e.g. "Süti beállítások"). */
   readonly consentLabel = input<string>('');
   readonly consentClick = output<void>();

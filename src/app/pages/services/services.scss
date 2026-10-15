@@ -106,3 +106,78 @@
     color: rgba(255, 255, 255, 0.82);
   }
 }
+
+// Prices: the amount reads as the headline of the card, "-tól" stays quiet beside it.
+.svc-pkg__price {
+  font-family: var(--font-display);
+  font-size: var(--body-lg-size);
+  color: var(--text-mute);
+  white-space: nowrap;
+
+  strong {
+    font-size: var(--display-md-size);
+    font-weight: 700;
+    letter-spacing: var(--display-md-ls);
+    color: var(--text-hi);
+  }
+}
+
+.svc-pkg-note {
+  margin-top: var(--space-xl);
+  font-size: var(--body-md-size);
+  line-height: var(--body-md-lh);
+  color: var(--text-mute);
+}
+
+.svc-maint-price {
+  margin-top: var(--space-xxl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  &__title {
+    font-family: var(--font-display);
+    font-size: var(--heading-md-size);
+    font-weight: var(--heading-md-weight);
+    color: var(--text-hi);
+  }
+  &__body {
+    font-size: var(--body-md-size);
+    line-height: var(--body-md-lh);
+    color: var(--text-mute);
+  }
+}
+
+.svc-pkg .pry-eyebrow {
+  align-self: flex-start;
+}
+.svc-maint-price__price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+@media (max-width: 560px) {
+  .svc-maint-price__price {
+    align-items: flex-start;
+  }
+}
+
+// Struck-through list price sits quietly before the discounted amount.
+.svc-pkg__price del {
+  margin-right: var(--space-sm);
+  font-size: var(--body-md-size);
+  color: var(--text-faint);
+  text-decoration-thickness: 1px;
+}
+
+.svc-pkg-note--promo {
+  margin-top: var(--space-sm);
+}

@@ -1,0 +1,60 @@
+<!-- Hero + featured mockup -->
+<pry-mesh-backdrop intensity="soft" [grid]="false" contentPad="clamp(40px,7vw,80px) 0 clamp(48px,7vw,96px)">
+  <pry-container>
+    <div class="wk-hero" pryRevealGroup pryRevealGroupImmediate>
+      <pry-eyebrow tone="violet" i18n="@@work.hero.eyebrow">Munkák</pry-eyebrow>
+      <h1 class="wk-hero__title" i18n="@@work.hero.title">Egy oldal, ami már működik.</h1>
+    </div>
+
+    <pry-mockup-frame class="wk-shot" title="kirillareka.hu" tone="pink" pryReveal>
+      <img
+        class="wk-shot__img"
+        [src]="kirillaShot"
+        width="1440"
+        height="700"
+        alt="A kirillareka.hu kezdőlapja"
+        i18n-alt="@@work.kirilla.alt"
+        decoding="async"
+      />
+    </pry-mockup-frame>
+  </pry-container>
+</pry-mesh-backdrop>
+
+<!-- Project details -->
+<pry-section [tight]="true">
+  <div class="r-g2 wk-detail" pryRevealGroup>
+    <div class="wk-detail__text">
+      <pry-eyebrow tone="cyan" i18n="@@work.kirilla.eyebrow">Egészségügy · Weboldal</pry-eyebrow>
+      <h2 class="wk-detail__title" i18n="@@work.kirilla.title">Kirilla Physio.</h2>
+      <p class="wk-detail__body" i18n="@@work.kirilla.body">
+        Személyes weboldal egy budapesti gyógytornász-fizioterapeutának. Egy helyen mutatja be az
+        egyéni kezeléseket és az online programokat, és innen lehet vele kapcsolatba lépni.
+      </p>
+      <a
+        pry-text-link
+        [arrow]="true"
+        href="https://kirillareka.hu"
+        target="_blank"
+        rel="noopener"
+        i18n="@@work.kirilla.link"
+        >Megnézem az oldalt</a
+      >
+    </div>
+    <pry-card variant="surface" padding="var(--space-48)">
+      <pry-check-list [items]="kirillaItems" />
+    </pry-card>
+  </div>
+</pry-section>
+
+<!-- Closing band -->
+<pry-section [tight]="true">
+  <pry-card variant="band" class="wk-band" pryReveal>
+    <h3 class="wk-band__title" i18n="@@work.band.title">Legyen a következő a tiéd.</h3>
+    <p class="wk-band__body" i18n="@@work.band.body">
+      Írd meg, mire lenne szükséged. Három munkanapon belül küldök egy tervet és egy árat.
+    </p>
+    <a pry-button variant="onAccent" size="lg" routerLink="/contact" i18n="@@work.band.cta">
+      Kérj ajánlatot
+    </a>
+  </pry-card>
+</pry-section>

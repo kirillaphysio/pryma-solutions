@@ -60,6 +60,10 @@
   <div class="r-g3 svc-mt48 svc-stretch" pryRevealGroup>
     <pry-card variant="surface" class="svc-pkg">
       <h3 class="svc-pkg__title" i18n="@@svc.pkg1.title">Bemutatkozó oldal</h3>
+      <pry-eyebrow tone="pink" i18n="@@svc.pkg1.promo">25% bevezető kedvezmény*</pry-eyebrow>
+      <p class="svc-pkg__price">
+        <span i18n="@@svc.pkg1.price"><del>199 990 Ft</del><strong>149 990 Ft</strong>-tól</span>
+      </p>
       <p class="svc-pkg__body" i18n="@@svc.pkg1.body">
         Egy jól felépített oldal, amin minden fontos elfér: mit csinálsz, kinek, és hogyan lehet
         elérni téged.
@@ -68,6 +72,10 @@
     </pry-card>
     <pry-card variant="surface" class="svc-pkg">
       <h3 class="svc-pkg__title" i18n="@@svc.pkg2.title">Több oldalas weboldal</h3>
+      <pry-eyebrow tone="pink" i18n="@@svc.pkg2.promo">25% bevezető kedvezmény*</pry-eyebrow>
+      <p class="svc-pkg__price">
+        <span i18n="@@svc.pkg2.price"><del>329 990 Ft</del><strong>247 490 Ft</strong>-tól</span>
+      </p>
       <p class="svc-pkg__body" i18n="@@svc.pkg2.body">
         Ha több szolgáltatásod van, vagy referenciákat és árakat is szeretnél kiírni.
       </p>
@@ -75,12 +83,22 @@
     </pry-card>
     <pry-card variant="surface" class="svc-pkg">
       <h3 class="svc-pkg__title" i18n="@@svc.pkg3.title">Arculat és weboldal</h3>
+      <pry-eyebrow tone="pink" i18n="@@svc.pkg3.promo">25% bevezető kedvezmény*</pry-eyebrow>
+      <p class="svc-pkg__price">
+        <span i18n="@@svc.pkg3.price"><del>479 990 Ft</del><strong>359 990 Ft</strong>-tól</span>
+      </p>
       <p class="svc-pkg__body" i18n="@@svc.pkg3.body">
         Ha a nulláról induló vállalkozásnak egyszerre kell megjelenés és oldal.
       </p>
       <pry-check-list [items]="pkg3" />
     </pry-card>
   </div>
+  <p class="svc-pkg-note" pryReveal i18n="@@svc.pkg.note">
+    Az árak áfamentesek. A végleges, fix árat a terjedelem alapján, a kezdés előtt adom meg.
+  </p>
+  <p class="svc-pkg-note svc-pkg-note--promo" pryReveal i18n="@@svc.pkg.note.promo">
+    * A kedvezményes ár csak korlátozott ideig érvényes. Az elkészült oldal referenciaként felhasználható.
+  </p>
 </pry-section>
 
 <!-- Good to know -->
@@ -141,6 +159,19 @@
       i18n-body="@@svc.maint.help.body"
     />
   </div>
+  <pry-card variant="outline" class="svc-maint-price" pryReveal>
+    <div class="svc-maint-price__text">
+      <h3 class="svc-maint-price__title" i18n="@@svc.maint.price.title">Havi karbantartás</h3>
+      <p class="svc-maint-price__body" i18n="@@svc.maint.price.body">
+        A három terület együtt, havi díjért. Az ár áfamentes, a bevezető kedvezmény erre nem vonatkozik.
+      </p>
+    </div>
+    <div class="svc-maint-price__price">
+      <p class="svc-pkg__price">
+        <span i18n="@@svc.maint.price"><strong>9 900 Ft/hó</strong>-tól</span>
+      </p>
+    </div>
+  </pry-card>
 </pry-section>
 
 <!-- Closing band -->

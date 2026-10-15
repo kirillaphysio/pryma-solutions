@@ -1,0 +1,72 @@
+.wk-hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  max-width: 720px;
+
+  &__title {
+    font-size: var(--display-xl-size);
+    font-weight: var(--display-xl-weight);
+    line-height: var(--display-xl-lh);
+    letter-spacing: var(--display-xl-ls);
+    color: var(--text-hi);
+    text-wrap: pretty;
+  }
+}
+
+// The frame sits directly on the mesh: no card, no extra shadow.
+.wk-shot {
+  margin-top: var(--space-48);
+  max-width: 1040px;
+}
+.wk-shot__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wk-detail {
+  align-items: start;
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-lg);
+  }
+  &__title {
+    font-family: var(--font-display);
+    font-size: var(--display-md-size);
+    font-weight: 700;
+    letter-spacing: var(--display-md-ls);
+    color: var(--text-hi);
+  }
+  &__body {
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-lh);
+    color: var(--text-mute);
+    max-width: 520px;
+  }
+}
+
+.wk-band {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-xl);
+  padding: clamp(40px, 7vw, 72px) var(--card-pad-band);
+
+  &__title {
+    font-size: var(--display-md-size);
+    font-weight: 700;
+    letter-spacing: var(--display-md-ls);
+    color: var(--text-on-accent);
+  }
+  &__body {
+    font-size: var(--body-lg-size);
+    line-height: var(--body-lg-lh);
+    color: rgba(255, 255, 255, 0.84);
+    max-width: 540px;
+  }
+}

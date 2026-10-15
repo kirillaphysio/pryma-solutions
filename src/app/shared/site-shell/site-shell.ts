@@ -27,6 +27,7 @@ export class SiteShell {
 
   protected readonly navLinks: PryNavLink[] = [
     { label: $localize`:@@nav.services:Szolgáltatások`, path: '/services' },
+    { label: $localize`:@@nav.work:Munkák`, path: '/work' },
     { label: $localize`:@@nav.demo:Demó`, path: '/demo', dot: true },
     { label: $localize`:@@nav.contact:Kapcsolat`, path: '/contact' },
   ];
@@ -37,9 +38,14 @@ export class SiteShell {
       links: [
         { label: $localize`:@@footer.home:Kezdőlap`, path: '/' },
         { label: $localize`:@@nav.services:Szolgáltatások`, path: '/services' },
+        { label: $localize`:@@nav.work:Munkák`, path: '/work' },
         { label: $localize`:@@nav.demo:Demó`, path: '/demo' },
         { label: $localize`:@@nav.contact:Kapcsolat`, path: '/contact' },
       ],
+    },
+    {
+      title: $localize`:@@footer.follow.col:Kövess`,
+      links: [{ label: 'Instagram', href: 'https://www.instagram.com/prymasolutions' }],
     },
     {
       title: $localize`:@@footer.legal.col:Jogi`,
@@ -53,6 +59,5 @@ export class SiteShell {
 
   protected readonly tagline = $localize`:@@footer.tagline:Weboldal, arculat és marketing alapok kis vállalkozásoknak.`;
   protected readonly legal = $localize`:@@footer.legal:© 2026 Pryma Solutions`;
-  protected readonly note = $localize`:@@footer.note:A Pryma gridre építve`;
   protected readonly consentLabel = $localize`:@@footer.consent:Süti beállítások`;
 }

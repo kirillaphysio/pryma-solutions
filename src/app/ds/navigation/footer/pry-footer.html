@@ -11,8 +11,12 @@
   @for (col of columns(); track col.title) {
     <div class="pry-footer__col">
       <span class="pry-footer__col-title">{{ col.title }}</span>
-      @for (l of col.links; track l.path) {
-        <a class="pry-footer__link" [routerLink]="l.path">{{ l.label }}</a>
+      @for (l of col.links; track l.label) {
+        @if (l.href) {
+          <a class="pry-footer__link" [href]="l.href" target="_blank" rel="noopener">{{ l.label }}</a>
+        } @else {
+          <a class="pry-footer__link" [routerLink]="l.path">{{ l.label }}</a>
+        }
       }
     </div>
   }
@@ -25,9 +29,6 @@
       <button type="button" class="pry-footer__consent" (click)="consentClick.emit()">
         {{ consentLabel() }}
       </button>
-    }
-    @if (note()) {
-      <span class="pry-footer__note">{{ note() }}</span>
     }
   </span>
 </div>

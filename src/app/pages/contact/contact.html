@@ -70,7 +70,7 @@
 
             <pry-text-area
               formControlName="brief"
-              label="Mivel foglalkozol?"
+              label="Mivel foglalkozol? Milyen vállalkozásod van?"
               i18n-label="@@contact.field.brief"
               [rows]="5"
               placeholder="Pár sor elég — és ha van már oldalad, a linkje."
@@ -107,6 +107,9 @@
             Budapest, távmunkában<br />Hétfő–péntek, 9:00–18:00
           </p>
           <p class="contact-mail contact-mail--cyan">info&#64;pryma-solutions.hu</p>
+          <p class="contact-aside__body">
+            <ng-container i18n="@@contact.aside.ig">Instagram:</ng-container>&ngsp;<a pry-text-link href="https://www.instagram.com/prymasolutions" target="_blank" rel="noopener">&#64;prymasolutions</a>
+          </p>
         </pry-card>
       </div>
     </div>

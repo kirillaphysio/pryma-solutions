@@ -58,6 +58,11 @@ export const routes: Routes = [
         title: 'Szolgáltatások — Pryma Solutions',
       },
       {
+        path: 'work',
+        loadComponent: () => import('./pages/work/work').then((m) => m.Work),
+        title: 'Munkák — Pryma Solutions',
+      },
+      {
         path: 'demo',
         loadComponent: () =>
           import('./pages/demo/gallery/demo-gallery').then((m) => m.DemoGallery),

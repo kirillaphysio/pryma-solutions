@@ -97,6 +97,12 @@
   &.is-placeholder {
     color: var(--text-faint);
   }
+  // The native popup list inherits the field's translucent well and renders it grey. Give the
+  // options a solid surface so the text stays readable in both themes.
+  option {
+    background: var(--surface-card-solid);
+    color: var(--text-hi);
+  }
 }
 
 .pry-field__chevron {
